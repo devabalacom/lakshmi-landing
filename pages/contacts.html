@@ -8,8 +8,15 @@
 </head>
 <body>
     <header class="fixed w-full bg-white shadow-md z-50">
-        <nav class="container mx-auto px-4 py-4">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../index.html" class="text-2xl font-bold"><span class="text-blue-600">Лакшми</span></a>
+            <div class="hidden md:flex space-x-6">
+                <a href="../index.html#catalog" class="text-gray-700 hover:text-blue-600 transition">Каталог</a>
+                <a href="../index.html#advantages" class="text-gray-700 hover:text-blue-600 transition">Преимущества</a>
+                <a href="../index.html#about" class="text-gray-700 hover:text-blue-600 transition">О компании</a>
+                <a href="../index.html#contact" class="text-gray-700 hover:text-blue-600 transition">Контакты</a>
+            </div>
+            <a href="tel:+74996477281" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">+7 499 647-72-81</a>
         </nav>
     </header>
 
@@ -41,23 +48,31 @@
                 </div>
 
                 <div>
-                    <h2 class="text-2xl font-bold mb-6">Отправьте заявку</h2>
-                    <form class="space-y-4">
-                        <input type="text" placeholder="Имя" required class="w-full px-4 py-3 border rounded-lg">
-                        <input type="tel" placeholder="Телефон" required class="w-full px-4 py-3 border rounded-lg">
-                        <textarea placeholder="Сообщение" rows="5" class="w-full px-4 py-3 border rounded-lg"></textarea>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700">
-                            Отправить
-                        </button>
-                    </form>
+                    <h2 class="text-2xl font-bold mb-6">Связаться напрямую</h2>
+                    <div class="space-y-4">
+                        <a href="tel:+74996477281" class="block w-full px-4 py-4 border rounded-lg hover:shadow-md transition">
+                            <div class="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-1">Телефон</div>
+                            <div class="text-xl font-semibold text-gray-900">+7 499 647-72-81</div>
+                            <div class="text-gray-600 mt-1">Для расчета, сроков и уточнения деталей.</div>
+                        </a>
+                        <a href="mailto:laksmillc@yandex.ru" class="block w-full px-4 py-4 border rounded-lg hover:shadow-md transition">
+                            <div class="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-1">Email</div>
+                            <div class="text-xl font-semibold text-gray-900">laksmillc@yandex.ru</div>
+                            <div class="text-gray-600 mt-1">Для ТЗ, файлов и письменных запросов.</div>
+                        </a>
+                        <p class="text-sm text-gray-500">
+                            Режим работы: Пн-Пт 9:00 - 18:00.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
+        <div class="container mx-auto px-4 text-center space-y-3">
             <p>&copy; 2026 Лакшми. Все права защищены.</p>
+            <a href="../privacy.html" class="text-blue-400 hover:underline">Политика конфиденциальности</a>
         </div>
     </footer>
 </body>

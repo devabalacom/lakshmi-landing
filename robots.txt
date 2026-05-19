@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devabalacom.github.io/lakshmi-landing/sitemap.xml

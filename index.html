@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Лакшми - Производство технического текстиля для промышленности</title>
     <meta name="description" content="Пошив защитных чехлов, спецодежды и тактического снаряжения из сертифицированных материалов. От 1 единицы. Гарантия качества.">
+    <meta name="theme-color" content="#2563eb">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Лакшми - Производство технического текстиля для промышленности">
+    <meta property="og:description" content="Пошив защитных чехлов, спецодежды и тактического снаряжения из сертифицированных материалов.">
+    <meta property="og:url" content="https://devabalacom.github.io/lakshmi-landing/">
+    <meta property="og:image" content="https://devabalacom.github.io/lakshmi-landing/og-image.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Лакшми",
+      "url": "https://devabalacom.github.io/lakshmi-landing/",
+      "telephone": "+7-499-647-72-81",
+      "email": "laksmillc@yandex.ru",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Санкт-Петербург",
+        "streetAddress": "Литовская 12 к Д",
+        "addressCountry": "RU"
+      }
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -25,7 +48,7 @@
             <a href="tel:+74996477281" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
                 +7 499 647-72-81
             </a>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+            <button id="mobile-menu-btn" class="md:hidden text-gray-700" aria-label="Открыть меню" aria-expanded="false">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -55,14 +78,11 @@
                     Работаем по вашим ТЗ от 1 единицы. Гарантия качества и соблюдение сроков.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#contact" class="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-lg">
-                        Рассчитать стоимость
+                    <a href="tel:+74996477281" class="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-lg text-center">
+                        Позвонить
                     </a>
-                    <a href="https://wa.me/74996477281" class="bg-green-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                        WhatsApp
+                    <a href="mailto:laksmillc@yandex.ru" class="bg-white text-blue-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition shadow-lg text-center">
+                        Написать на email
                     </a>
                 </div>
             </div>
@@ -113,7 +133,7 @@
                 </a>
 
                 <!-- Card 4 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <a href="services/transport.html" aria-label="Транспортировочные тенты" class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
@@ -121,10 +141,10 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Транспортировочные тенты</h3>
                     <p class="text-gray-600">Надежные тенты для перевозки и хранения грузов</p>
-                </div>
+                </a>
 
                 <!-- Card 5 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <a href="services/fire.html" aria-label="Огнеупорные изделия" class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
@@ -132,10 +152,10 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Огнеупорные изделия</h3>
                     <p class="text-gray-600">Защита от высоких температур и открытого огня</p>
-                </div>
+                </a>
 
                 <!-- Card 6 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <a href="services/cleanroom.html" aria-label="Антистатические изделия" class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -143,10 +163,10 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Антистатические изделия</h3>
                     <p class="text-gray-600">Защита от статического электричества в производственных помещениях</p>
-                </div>
+                </a>
 
                 <!-- Card 7 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <a href="services/medical.html" aria-label="Морозостойкие чехлы" class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
@@ -154,10 +174,10 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Морозостойкие чехлы</h3>
                     <p class="text-gray-600">Эксплуатация при экстремально низких температурах</p>
-                </div>
+                </a>
 
                 <!-- Card 8 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <a href="services/interior.html" aria-label="Влагозащитные покрытия" class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
@@ -165,10 +185,10 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Влагозащитные покрытия</h3>
                     <p class="text-gray-600">Полная защита от влаги, дождя и конденсата</p>
-                </div>
+                </a>
 
                 <!-- Card 9 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <a href="services/agro.html" aria-label="Индивидуальные решения" class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
@@ -176,7 +196,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Индивидуальные решения</h3>
                     <p class="text-gray-600">Разработка и пошив по вашим уникальным требованиям</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -299,42 +319,33 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
+    <!-- Contact Section -->
     <section id="contact" class="py-16 bg-gradient-to-br from-blue-600 to-blue-800">
         <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto">
+            <div class="max-w-4xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-4">
-                    Нужен индивидуальный расчет или консультация по материалам?
+                    Нужен расчет или консультация по материалам?
                 </h2>
                 <p class="text-center text-blue-100 mb-8">
-                    Оставьте заявку и наш специалист свяжется с вами в течение часа
+                    Свяжитесь с нами удобным способом. Ответим по телефону или email в рабочее время.
                 </p>
-                <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="bg-white rounded-lg p-8 shadow-xl">
-                    <div class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-gray-700 font-semibold mb-2">Ваше имя *</label>
-                            <input type="text" id="name" name="name" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-gray-700 font-semibold mb-2">Телефон *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__"
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label for="comment" class="block text-gray-700 font-semibold mb-2">Опишите задачу</label>
-                            <textarea id="comment" name="comment" rows="4"
-                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                      placeholder="Расскажите о вашем проекте, требованиях к материалам или задайте вопрос"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition shadow-lg">
-                            Отправить заявку
-                        </button>
-                        <p class="text-sm text-gray-600 text-center">
-                            Нажимая кнопку, вы соглашаетесь с <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
-                        </p>
+                <div class="bg-white rounded-lg p-8 shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <a href="tel:+74996477281" class="block rounded-lg border border-gray-200 p-6 hover:shadow-lg transition bg-gray-50">
+                            <p class="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">Телефон</p>
+                            <p class="text-2xl font-bold text-gray-900 mb-2">+7 499 647-72-81</p>
+                            <p class="text-gray-600">Звоните для расчета, сроков и технических вопросов.</p>
+                        </a>
+                        <a href="mailto:laksmillc@yandex.ru" class="block rounded-lg border border-gray-200 p-6 hover:shadow-lg transition bg-gray-50">
+                            <p class="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">Email</p>
+                            <p class="text-2xl font-bold text-gray-900 mb-2">laksmillc@yandex.ru</p>
+                            <p class="text-gray-600">Напишите задачу, ТЗ или список материалов.</p>
+                        </a>
                     </div>
-                </form>
+                    <div class="mt-6 text-center text-sm text-gray-500">
+                        Адрес: Санкт-Петербург, Литовская 12 к Д. Режим работы: Пн-Пт 9:00 - 18:00.
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -365,6 +376,7 @@
                         <a href="#advantages" class="block text-gray-400 hover:text-white transition">Преимущества</a>
                         <a href="#about" class="block text-gray-400 hover:text-white transition">О компании</a>
                         <a href="#contact" class="block text-gray-400 hover:text-white transition">Контакты</a>
+                        <a href="privacy.html" class="block text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
                     </div>
                 </div>
             </div>
