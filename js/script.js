@@ -20,40 +20,69 @@ const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = {
-        name: document.getElementById('name').value,
-        phone: document.getElementById('phone').value,
-        comment: document.getElementById('comment').value
-    };
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
     
-    // Show success message
-    const successMessage = document.createElement('div');
-    successMessage.className = 'success-message show';
-    successMessage.innerHTML = `
-        <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-        Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.
-    `;
-    contactForm.appendChild(successMessage);
+    // Disable button and show loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span class="inline-block animate-spin mr-2">⚙️</span> Отправка...';
     
-    // Clear form
-    contactForm.reset();
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-        successMessage.remove();
-    }, 5000);
-    
-    // In production, send data to backend
-    console.log('Form data:', formData);
-    
-    // Example: Send to backend
-    // await fetch('/api/contact', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(formData)
-    // });
+    try {
+        // Submit to Formspree
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'bg-green-50 border-l-4 border-green-400 p-4 mb-4 rounded-r-lg';
+            successMessage.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <p class="text-green-800 font-semibold">Спасибо! Ваша заявка принята. Мы свяжемся с вами в течение часа.</p>
+                </div>
+            `;
+            contactForm.insertBefore(successMessage, contactForm.firstChild);
+            
+            // Clear form
+            contactForm.reset();
+            
+            // Hide success message after 8 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 8000);
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        // Show error message
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'bg-red-50 border-l-4 border-red-400 p-4 mb-4 rounded-r-lg';
+        errorMessage.innerHTML = `
+            <div class="flex items-center">
+                <svg class="w-5 h-5 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <p class="text-red-800">Произошла ошибка. Пожалуйста, позвоните нам: <a href="tel:+74996477281" class="font-semibold underline">+7 499 647-72-81</a></p>
+            </div>
+        `;
+        contactForm.insertBefore(errorMessage, contactForm.firstChild);
+        
+        setTimeout(() => {
+            errorMessage.remove();
+        }, 8000);
+    } finally {
+        // Re-enable button
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+    }
 });
 
 // Phone number formatting
