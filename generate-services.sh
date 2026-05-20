@@ -63,20 +63,23 @@ for service in "${services[@]}"; do
         </div>
     </section>
 
-    <section id="contact" class="py-16 bg-gradient-to-br from-blue-600 to-blue-800">
+    <section id="contact" class="py-16 bg-gradient-to-br from-blue-700 to-blue-950">
         <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto">
-                <h2 class="text-3xl font-bold text-center text-white mb-8">Отправьте ТЗ на расчет</h2>
-                <form class="bg-white rounded-lg p-8">
-                    <div class="space-y-4">
-                        <input type="text" placeholder="Имя" required class="w-full px-4 py-3 border rounded-lg">
-                        <input type="tel" placeholder="Телефон" required class="w-full px-4 py-3 border rounded-lg">
-                        <textarea placeholder="Опишите задачу" rows="4" class="w-full px-4 py-3 border rounded-lg"></textarea>
-                        <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700">
-                            Отправить заявку
-                        </button>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white/95 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-10">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Свяжитесь с нами для расчета</h2>
+                    <p class="text-slate-700 mb-8">Оставьте заявку по телефону или email, и мы быстро вернемся с уточнениями по ТЗ, срокам и стоимости.</p>
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <a href="tel:+74996477281" class="rounded-xl border border-slate-200 p-4 hover:border-blue-500 hover:shadow-md transition">
+                            <div class="text-sm uppercase tracking-[0.2em] text-slate-500">Телефон</div>
+                            <div class="mt-2 text-lg font-semibold text-slate-900">+7 499 647-72-81</div>
+                        </a>
+                        <a href="mailto:info@lakshmi-textile.ru" class="rounded-xl border border-slate-200 p-4 hover:border-blue-500 hover:shadow-md transition">
+                            <div class="text-sm uppercase tracking-[0.2em] text-slate-500">Email</div>
+                            <div class="mt-2 text-lg font-semibold text-slate-900">info@lakshmi-textile.ru</div>
+                        </a>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
