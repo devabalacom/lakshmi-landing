@@ -4,79 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О компании | Лакшми</title>
+    <meta name="description" content="Экспертиза Лакшми в пошиве технического текстиля и промышленной продукции на заказ.">
+    <meta name="theme-color" content="#0f5b86">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    <header class="fixed w-full bg-white shadow-md z-50">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="text-2xl font-bold"><span class="text-blue-600">Лакшми</span></a>
-            <div class="hidden md:flex space-x-6">
-                <a href="../index.html#catalog" class="text-gray-700 hover:text-blue-600 transition">Каталог</a>
-                <a href="../index.html#advantages" class="text-gray-700 hover:text-blue-600 transition">Преимущества</a>
-                <a href="../index.html#about" class="text-gray-700 hover:text-blue-600 transition">О компании</a>
-                <a href="../index.html#contact" class="text-gray-700 hover:text-blue-600 transition">Контакты</a>
+<body class="site-shell antialiased text-slate-900">
+    <header class="nav-glass fixed inset-x-0 top-0 z-50">
+        <nav class="container mx-auto flex items-center justify-between px-4 py-4 lg:px-6">
+            <a href="../index.html" class="flex items-center gap-3 text-2xl font-bold text-slate-900">
+                <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-900 text-white shadow-lg">Л</span>
+                <span><span class="text-blue-700">Лакшми</span></span>
+            </a>
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="../index.html#catalog" class="text-slate-600 transition hover:text-blue-700">Каталог</a>
+                <a href="../index.html#advantages" class="text-slate-600 transition hover:text-blue-700">Преимущества</a>
+                <a href="../index.html#about" class="text-slate-600 transition hover:text-blue-700">О компании</a>
+                <a href="../index.html#contact" class="text-slate-600 transition hover:text-blue-700">Контакты</a>
             </div>
-            <a href="tel:+74996477281" class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">+7 499 647-72-81</a>
+            <a href="tel:+74996477281" class="rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:translate-y-[-1px]">
+                +7 499 647-72-81
+            </a>
         </nav>
     </header>
 
-    <section class="pt-32 pb-16">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h1 class="text-5xl font-bold mb-6">Экспертиза в пошиве технического текстиля</h1>
-            <p class="text-xl text-gray-700 mb-12">
-                Мы специализируемся на создании высокотехнологичных изделий, способных выдерживать экстремальные нагрузки. 
-                Наше производство объединяет опытных конструкторов и современное оборудование.
-            </p>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-blue-50 p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">20+ лет</h3>
-                    <p>на рынке технического текстиля</p>
-                </div>
-                <div class="bg-blue-50 p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">1400 м²</h3>
-                    <p>производственных площадей</p>
-                </div>
-                <div class="bg-blue-50 p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">50+</h3>
-                    <p>опытных специалистов</p>
-                </div>
-                <div class="bg-blue-50 p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">1000+</h3>
-                    <p>довольных клиентов</p>
+    <main class="pt-24">
+        <section class="py-16 lg:py-20">
+            <div class="container mx-auto px-4 lg:px-6">
+                <div class="hero-frame mx-auto max-w-5xl rounded-[2rem] px-6 py-8 lg:px-10 lg:py-12">
+                    <span class="section-badge">О компании</span>
+                    <div class="mt-5 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+                        <div>
+                            <h1 class="text-4xl font-bold leading-tight text-slate-950 md:text-5xl">Экспертиза в пошиве технического текстиля</h1>
+                            <p class="section-lead mt-5 text-lg leading-relaxed">
+                                Мы создаём изделия, рассчитанные на длительную эксплуатацию в сложных условиях. Производство объединяет конструкторский отдел, швейный цех и контроль качества.
+                            </p>
+                            <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                                <div class="metric-chip rounded-2xl">
+                                    <div class="metric-value">20+</div>
+                                    <div class="metric-label">лет на рынке</div>
+                                </div>
+                                <div class="metric-chip rounded-2xl">
+                                    <div class="metric-value">1400 м²</div>
+                                    <div class="metric-label">площадь производства</div>
+                                </div>
+                                <div class="metric-chip rounded-2xl">
+                                    <div class="metric-value">50+</div>
+                                    <div class="metric-label">специалистов в штате</div>
+                                </div>
+                                <div class="metric-chip rounded-2xl">
+                                    <div class="metric-value">СТМ</div>
+                                    <div class="metric-label">пошив под брендом клиента</div>
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="panel-surface rounded-[1.75rem] p-6 lg:p-8">
+                            <h2 class="text-2xl font-bold text-slate-950">Наши мощности</h2>
+                            <div class="mt-6 space-y-5">
+                                <div class="flow-step">
+                                    <h3 class="text-lg font-semibold text-slate-950">Конструкторский отдел</h3>
+                                    <p class="mt-2 text-slate-600">Разработка чертежей и лекал по замерам или образцам.</p>
+                                </div>
+                                <div class="flow-step">
+                                    <h3 class="text-lg font-semibold text-slate-950">Современный швейный цех</h3>
+                                    <p class="mt-2 text-slate-600">Работаем с ПВХ, кордурой, брезентом и многослойными композитами.</p>
+                                </div>
+                                <div class="flow-step">
+                                    <h3 class="text-lg font-semibold text-slate-950">Контроль качества</h3>
+                                    <p class="mt-2 text-slate-600">Проверяем соответствие ТЗ и прочность швов перед отгрузкой.</p>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <h2 class="text-3xl font-bold mb-6">Наши мощности</h2>
-            <div class="space-y-6 mb-12">
-                <div class="border-l-4 border-blue-600 pl-6">
-                    <h3 class="text-xl font-semibold mb-2">Конструкторский отдел</h3>
-                    <p class="text-gray-700">Разработка чертежей и лекал по вашим замерам или образцам</p>
+        <section class="py-16 lg:py-20">
+            <div class="container mx-auto px-4 lg:px-6">
+                <div class="mx-auto max-w-3xl text-center">
+                    <span class="section-badge">Для кого мы работаем</span>
+                    <p class="section-lead mt-4 text-lg">
+                        Надежный партнер для промышленных предприятий, агрохолдингов, медицинских центров и силовых структур.
+                    </p>
                 </div>
-                <div class="border-l-4 border-blue-600 pl-6">
-                    <h3 class="text-xl font-semibold mb-2">Современный швейный цех</h3>
-                    <p class="text-gray-700">Оборудование для работы с ПВХ, кордурой, брезентом и многослойными композитами</p>
-                </div>
-                <div class="border-l-4 border-blue-600 pl-6">
-                    <h3 class="text-xl font-semibold mb-2">Контроль качества</h3>
-                    <p class="text-gray-700">Проверка каждого изделия на соответствие ТЗ и прочность швов перед отгрузкой</p>
+                <div class="mt-10 grid gap-5 md:grid-cols-3">
+                    <div class="card-surface rounded-[1.5rem] p-6">
+                        <h3 class="text-xl font-semibold text-slate-950">Промышленность</h3>
+                        <p class="mt-3 text-slate-600">Изделия для оборудования, логистики и производства.</p>
+                    </div>
+                    <div class="card-surface rounded-[1.5rem] p-6">
+                        <h3 class="text-xl font-semibold text-slate-950">Спецзадачи</h3>
+                        <p class="mt-3 text-slate-600">Решения для нестандартных условий и повышенных нагрузок.</p>
+                    </div>
+                    <div class="card-surface rounded-[1.5rem] p-6">
+                        <h3 class="text-xl font-semibold text-slate-950">СТМ</h3>
+                        <p class="mt-3 text-slate-600">Пошив под брендом клиента с контролем качества и сроков.</p>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="bg-gray-50 p-8 rounded-lg">
-                <h2 class="text-2xl font-bold mb-4">Для кого мы работаем</h2>
-                <p class="text-gray-700">
-                    Мы являемся надежным партнером для промышленных предприятий, агрохолдингов, медицинских центров 
-                    и силовых структур. Готовы к сотрудничеству в формате СТМ (пошив под вашим брендом).
-                </p>
+    <footer class="bg-slate-950 py-12 text-white">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid gap-8 md:grid-cols-3">
+                <div>
+                    <h3 class="text-2xl font-bold">Лакшми</h3>
+                    <p class="mt-4 max-w-sm text-slate-400">Производство технического текстиля для промышленности. Более 20 лет опыта.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold">Контакты</h4>
+                    <div class="mt-4 space-y-2 text-slate-400">
+                        <p>Телефон: <a href="tel:+74996477281" class="text-blue-300 hover:underline">+7 499 647-72-81</a></p>
+                        <p>Email: <a href="mailto:laksmillc@yandex.ru" class="text-blue-300 hover:underline">laksmillc@yandex.ru</a></p>
+                        <p>Адрес: Санкт-Петербург, Литовская 12 к Д</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold">Быстрые ссылки</h4>
+                    <div class="mt-4 space-y-2">
+                        <a href="../index.html#catalog" class="block text-slate-400 transition hover:text-white">Каталог</a>
+                        <a href="../index.html#advantages" class="block text-slate-400 transition hover:text-white">Преимущества</a>
+                        <a href="../index.html#about" class="block text-slate-400 transition hover:text-white">О компании</a>
+                        <a href="../index.html#contact" class="block text-slate-400 transition hover:text-white">Контакты</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center space-y-3">
-            <p>&copy; 2026 Лакшми. Все права защищены.</p>
-            <a href="../privacy.html" class="text-blue-400 hover:underline">Политика конфиденциальности</a>
+            <div class="mt-8 border-t border-white/10 pt-8 text-center text-slate-500">
+                <p>&copy; 2026 Лакшми. Все права защищены.</p>
+            </div>
         </div>
     </footer>
 </body>

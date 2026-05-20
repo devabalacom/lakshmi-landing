@@ -5,16 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Медицинский текстиль | Лакшми</title>
     <meta name="description" content="Антимикробные изделия для медицины и стоматологии">
+
+    <meta name="theme-color" content="#0f5b86">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    <header class="fixed w-full bg-white shadow-md z-50">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="text-2xl font-bold"><span class="text-blue-600">Лакшми</span></a>
-            <a href="tel:+74996477281" class="bg-blue-600 text-white px-6 py-2 rounded-lg">+7 499 647-72-81</a>
-        </nav>
-    </header>
+<body class="site-shell antialiased text-slate-900">
+    <header class="nav-glass fixed inset-x-0 top-0 z-50">
+    <nav class="container mx-auto flex items-center justify-between px-4 py-4 lg:px-6">
+        <a href="../index.html" class="flex items-center gap-3 text-2xl font-bold text-slate-900">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-900 text-white shadow-lg">Л</span>
+            <span><span class="text-blue-700">Лакшми</span></span>
+        </a>
+        <div class="hidden items-center gap-8 md:flex">
+            <a href="../index.html#catalog" class="text-slate-600 transition hover:text-blue-700">Каталог</a>
+            <a href="../index.html#advantages" class="text-slate-600 transition hover:text-blue-700">Преимущества</a>
+            <a href="../index.html#about" class="text-slate-600 transition hover:text-blue-700">О компании</a>
+            <a href="../index.html#contact" class="text-slate-600 transition hover:text-blue-700">Контакты</a>
+        </div>
+        <a href="tel:+74996477281" class="rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:translate-y-[-1px]">
+            +7 499 647-72-81
+        </a>
+    </nav>
+</header>
 
     <section class="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div class="container mx-auto px-4">
@@ -68,10 +84,35 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
+    <footer class="bg-slate-950 py-12 text-white">
+    <div class="container mx-auto px-4 lg:px-6">
+        <div class="grid gap-8 md:grid-cols-3">
+            <div>
+                <h3 class="text-2xl font-bold">Лакшми</h3>
+                <p class="mt-4 max-w-sm text-slate-400">Производство технического текстиля для промышленности. Более 20 лет опыта.</p>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold">Контакты</h4>
+                <div class="mt-4 space-y-2 text-slate-400">
+                    <p>Телефон: <a href="tel:+74996477281" class="text-blue-300 hover:underline">+7 499 647-72-81</a></p>
+                    <p>Email: <a href="mailto:laksmillc@yandex.ru" class="text-blue-300 hover:underline">laksmillc@yandex.ru</a></p>
+                    <p>Адрес: Санкт-Петербург, Литовская 12 к Д</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold">Быстрые ссылки</h4>
+                <div class="mt-4 space-y-2">
+                    <a href="../index.html#catalog" class="block text-slate-400 transition hover:text-white">Каталог</a>
+                    <a href="../index.html#advantages" class="block text-slate-400 transition hover:text-white">Преимущества</a>
+                    <a href="../index.html#about" class="block text-slate-400 transition hover:text-white">О компании</a>
+                    <a href="../index.html#contact" class="block text-slate-400 transition hover:text-white">Контакты</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 border-t border-white/10 pt-8 text-center text-slate-500">
             <p>&copy; 2026 Лакшми. Все права защищены.</p>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>
