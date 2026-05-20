@@ -16,7 +16,7 @@ COMING_SOON='                <!-- Coming Soon Notice -->
                 </div>
                 '
 
-# List of stub pages (exclude chekhly-tenты.html which is complete)
+# List of stub pages (exclude chekhly-tenty.html which is complete)
 STUB_PAGES=(
     "services/cleanroom.html"
     "services/fire.html"

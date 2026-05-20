@@ -14,7 +14,7 @@ lakshmi-landing/
 │   ├── about.html         # О компании
 │   └── contacts.html      # Контакты
 ├── services/              # 9 страниц услуг
-│   ├── chekhly-tenты.html
+│   ├── chekhly-tenty.html
 │   ├── specodezhda.html
 │   ├── tactical.html
 │   ├── medical.html
@@ -53,7 +53,7 @@ lakshmi-landing/
 8. **Контактный блок** - телефон, email, быстрый переход
 
 ### Список услуг:
-1. **Чехлы, укрытия, тенты** (chekhly-tenты.html)
+1. **Чехлы, укрытия, тенты** (chekhly-tenty.html)
    - ПВХ, Oxford, Tarpaulin
    - Защита оборудования, контейнеров, стройплощадок
 

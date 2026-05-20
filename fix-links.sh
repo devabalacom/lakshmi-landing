@@ -3,7 +3,7 @@
 
 # Полная карта карточек на файлы услуг
 declare -A services
-services["Защитные чехлы"]="services/chekhly-tenты.html"
+services["Защитные чехлы"]="services/chekhly-tenty.html"
 services["Спецодежда"]="services/specodezhda.html"
 services["Тактическое снаряжение"]="services/tactical.html"
 services["Транспортировочные тенты"]="services/transport.html"

@@ -26,10 +26,24 @@
             <a href="../index.html#about" class="text-slate-600 transition hover:text-blue-700">О компании</a>
             <a href="../index.html#contact" class="text-slate-600 transition hover:text-blue-700">Контакты</a>
         </div>
-        <a href="tel:+74996477281" class="rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:translate-y-[-1px]">
+        <a href="tel:+74996477281" class="hidden rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:translate-y-[-1px] md:inline-flex">
             +7 499 647-72-81
         </a>
+        <button id="mobile-menu-btn" class="md:hidden text-gray-700" aria-label="Открыть меню" aria-expanded="false">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
     </nav>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white/95">
+        <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+            <a href="../index.html#catalog" class="text-gray-700">Каталог</a>
+            <a href="../index.html#advantages" class="text-gray-700">Преимущества</a>
+            <a href="../index.html#about" class="text-gray-700">О компании</a>
+            <a href="../index.html#contact" class="text-gray-700">Контакты</a>
+            <a href="tel:+74996477281" class="text-blue-600 font-semibold">+7 499 647-72-81</a>
+        </div>
+    </div>
 </header>
 
     <section class="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -65,6 +79,7 @@
             </div>
         </div>
     </section>
+    <script src="../js/script.js"></script>
 
     <section id="contact" class="py-16 lg:py-20 bg-gradient-to-br from-blue-700 to-blue-950">
         <div class="container mx-auto px-4 lg:px-6">

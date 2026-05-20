@@ -67,7 +67,7 @@ This report reflects the earlier earlier implementation. The current site has mo
 8. services/transport.html - Транспортный текстиль
 
 **Complete Page:**
-- services/chekhly-tenты.html ✅ (315 lines, full content)
+- services/chekhly-tenty.html ✅ (315 lines, full content)
 
 **Direct-contact block features:**
 - 🟨 Eye-catching yellow design
