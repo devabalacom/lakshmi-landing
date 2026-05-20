@@ -63,7 +63,7 @@
 
 ```bash
 # 1. Внесите изменения в файлы
-cd /home/aroma_openclaw/projects/lakshmi-landing
+cd /home/aroma_openclaw/.openclaw/workspace-joni/lakshmi-landing
 
 # 2. Закоммитьте
 git add .

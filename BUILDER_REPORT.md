@@ -172,7 +172,7 @@ All changes committed and ready to push.
 
 ### Local Testing
 ```bash
-cd /home/aroma_openclaw/projects/lakshmi-landing
+cd /home/aroma_openclaw/.openclaw/workspace-joni/lakshmi-landing
 python3 -m http.server 8000
 # Open http://localhost:8000
 ```

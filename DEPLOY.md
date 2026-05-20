@@ -15,7 +15,7 @@
 
 Выполните на VPS:
 ```bash
-cd /home/aroma_openclaw/projects/lakshmi-landing
+cd /home/aroma_openclaw/.openclaw/workspace-joni/lakshmi-landing
 git remote add origin https://github.com/YOUR_USERNAME/lakshmi-landing.git
 git branch -M main
 git push -u origin main
@@ -31,7 +31,7 @@ git push -u origin main
 
 Затем:
 ```bash
-cd /home/aroma_openclaw/projects/lakshmi-landing
+cd /home/aroma_openclaw/.openclaw/workspace-joni/lakshmi-landing
 gh repo create lakshmi-landing --public --source=. --description="Landing for Lakshmi" --push
 ```
 
@@ -63,7 +63,7 @@ https://YOUR_USERNAME.github.io/lakshmi-landing/
 
 После изменений:
 ```bash
-cd /home/aroma_openclaw/projects/lakshmi-landing
+cd /home/aroma_openclaw/.openclaw/workspace-joni/lakshmi-landing
 git add .
 git commit -m "Update content"
 git push

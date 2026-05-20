@@ -1,14 +1,19 @@
 #!/bin/bash
 # Fix navigation links in index.html
 
-# Создаем mapping карточек на файлы услуг
+# Полная карта карточек на файлы услуг
 declare -A services
+services["Защитные чехлы"]="services/chekhly-tenты.html"
+services["Спецодежда"]="services/specodezhda.html"
+services["Тактическое снаряжение"]="services/tactical.html"
 services["Транспортировочные тенты"]="services/transport.html"
 services["Огнеупорные изделия"]="services/fire.html"
-services["Антистатические изделия"]="services/interior.html"
-services["Морозостойкие чехлы"]="services/agro.html"
-services["Влагозащитные покрытия"]="services/medical.html"
-services["Индивидуальные решения"]="services/cleanroom.html"
+services["Антистатические изделия"]="services/cleanroom.html"
+services["Медицинский текстиль"]="services/medical.html"
+services["Технический интерьерный текстиль B2B"]="services/interior.html"
+services["Агропромышленный текстиль"]="services/agro.html"
 
 echo "✓ Links mapping created"
-echo "Manually update remaining cards in index.html"
+for name in "${!services[@]}"; do
+    echo "$name -> ${services[$name]}"
+done

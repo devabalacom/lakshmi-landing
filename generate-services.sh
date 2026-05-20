@@ -21,10 +21,14 @@ services=(
   "cleanroom|Текстиль для чистых помещений|Антистатическая одежда для фармпроизводства|Пошив для фармы, биотеха, лабораторий. Антистатика, пыленепроницаемость, стерильность."
 )
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 for service in "${services[@]}"; do
   IFS='|' read -r filename h1 subtitle description <<< "$service"
   
-  cat > "/home/aroma_openclaw/projects/lakshmi-landing/services/${filename}.html" << 'EOF'
+  SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+  cat > "$SCRIPT_DIR/services/${filename}.html" << 'EOF'
 <!DOCTYPE html>
 <html lang="ru" class="scroll-smooth">
 <head>
@@ -94,9 +98,9 @@ for service in "${services[@]}"; do
 EOF
 
   # Replace placeholders
-  sed -i "s/SERVICE_H1/${h1}/g" "/home/aroma_openclaw/projects/lakshmi-landing/services/${filename}.html"
-  sed -i "s/SERVICE_SUBTITLE/${subtitle}/g" "/home/aroma_openclaw/projects/lakshmi-landing/services/${filename}.html"
-  sed -i "s/SERVICE_DESCRIPTION/${description}/g" "/home/aroma_openclaw/projects/lakshmi-landing/services/${filename}.html"
+  sed -i "s/SERVICE_H1/${h1}/g" "$SCRIPT_DIR/services/${filename}.html"
+  sed -i "s/SERVICE_SUBTITLE/${subtitle}/g" "$SCRIPT_DIR/services/${filename}.html"
+  sed -i "s/SERVICE_DESCRIPTION/${description}/g" "$SCRIPT_DIR/services/${filename}.html"
   
   echo "✓ Created ${filename}.html"
 done

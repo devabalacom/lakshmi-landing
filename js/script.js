@@ -243,8 +243,6 @@
         initHeaderScrollEffect();
         initRevealAnimations();
 
-        console.log('%cЛакшми - Производство технического текстиля', 'color: #2563eb; font-size: 20px; font-weight: bold;');
-        console.log('%cСвяжитесь с нами: +7 499 647-72-81', 'color: #6b7280; font-size: 14px;');
     };
 
     if (document.readyState === 'loading') {
