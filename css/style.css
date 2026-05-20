@@ -481,6 +481,21 @@ section:first-of-type p {
     background: linear-gradient(180deg, rgba(220, 236, 246, 0.82), rgba(230, 242, 249, 0.72)) !important;
 }
 
+/* Unify non-emphasis section backgrounds */
+section.bg-white:not(header):not(footer):not(#contact),
+section.bg-gray-50:not(#contact),
+section.bg-blue-50:not(#contact),
+section.bg-gradient-to-br.from-gray-50.to-blue-50:not(#contact) {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(247, 250, 253, 0.88)),
+        radial-gradient(circle at 50% 0%, rgba(15, 91, 134, 0.05), transparent 26rem) !important;
+}
+
+section.bg-gray-50:not(#contact),
+section.bg-blue-50:not(#contact) {
+    border-top: 1px solid rgba(15, 23, 42, 0.04);
+}
+
 /* Contact section */
 #contact {
     background:
