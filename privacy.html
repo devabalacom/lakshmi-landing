@@ -19,10 +19,30 @@
                 <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-900 text-white shadow-lg">Л</span>
                 <span><span class="text-blue-700">Лакшми</span></span>
             </a>
-            <a href="tel:+74996477281" class="rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:translate-y-[-1px]">
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="index.html#catalog" class="text-slate-600 transition hover:text-blue-700">Каталог</a>
+                <a href="index.html#advantages" class="text-slate-600 transition hover:text-blue-700">Преимущества</a>
+                <a href="index.html#about" class="text-slate-600 transition hover:text-blue-700">О компании</a>
+                <a href="index.html#contact" class="text-slate-600 transition hover:text-blue-700">Контакты</a>
+            </div>
+            <a href="tel:+74996477281" class="hidden md:inline-flex rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:translate-y-[-1px]">
                 +7 499 647-72-81
             </a>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-700" aria-label="Открыть меню" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </nav>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white/95">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+                <a href="index.html#catalog" class="text-gray-700">Каталог</a>
+                <a href="index.html#advantages" class="text-gray-700">Преимущества</a>
+                <a href="index.html#about" class="text-gray-700">О компании</a>
+                <a href="index.html#contact" class="text-gray-700">Контакты</a>
+                <a href="tel:+74996477281" class="text-blue-600 font-semibold">+7 499 647-72-81</a>
+            </div>
+        </div>
     </header>
 
     <main class="pt-24">
@@ -36,15 +56,15 @@
                     </p>
 
                     <div class="mt-8 space-y-4">
-                        <section class="card-surface rounded-[1.5rem] p-6">
+                        <section class="panel-surface rounded-[1.5rem] p-6">
                             <h2 class="text-2xl font-semibold text-slate-950">Какие данные мы получаем</h2>
                             <p class="mt-3 text-slate-600">Только те данные, которые вы сами отправляете по телефону или на email.</p>
                         </section>
-                        <section class="card-surface rounded-[1.5rem] p-6">
+                        <section class="panel-surface rounded-[1.5rem] p-6">
                             <h2 class="text-2xl font-semibold text-slate-950">Как используем</h2>
                             <p class="mt-3 text-slate-600">Для ответа на ваш запрос, расчета стоимости и согласования деталей заказа.</p>
                         </section>
-                        <section class="card-surface rounded-[1.5rem] p-6">
+                        <section class="panel-surface rounded-[1.5rem] p-6">
                             <h2 class="text-2xl font-semibold text-slate-950">Контакты</h2>
                             <p class="mt-3 text-slate-600">
                                 Телефон: <a href="tel:+74996477281" class="text-blue-700 font-semibold hover:underline">+7 499 647-72-81</a><br>
@@ -58,9 +78,35 @@
     </main>
 
     <footer class="bg-slate-950 py-12 text-white">
-        <div class="container mx-auto px-4 lg:px-6 text-center">
-            <p class="text-slate-400">&copy; 2026 Лакшми. Все права защищены.</p>
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid gap-8 md:grid-cols-3">
+                <div>
+                    <h3 class="text-2xl font-bold">Лакшми</h3>
+                    <p class="mt-4 max-w-sm text-slate-400">Производство технического текстиля для промышленности. Более 20 лет опыта.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold">Контакты</h4>
+                    <div class="mt-4 space-y-2 text-slate-400">
+                        <p>Телефон: <a href="tel:+74996477281" class="text-blue-300 hover:underline">+7 499 647-72-81</a></p>
+                        <p>Email: <a href="mailto:laksmillc@yandex.ru" class="text-blue-300 hover:underline">laksmillc@yandex.ru</a></p>
+                        <p>Адрес: Санкт-Петербург, Литовская 12 к Д</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold">Быстрые ссылки</h4>
+                    <div class="mt-4 space-y-2">
+                        <a href="index.html#catalog" class="block text-slate-400 transition hover:text-white">Каталог</a>
+                        <a href="index.html#advantages" class="block text-slate-400 transition hover:text-white">Преимущества</a>
+                        <a href="index.html#about" class="block text-slate-400 transition hover:text-white">О компании</a>
+                        <a href="index.html#contact" class="block text-slate-400 transition hover:text-white">Контакты</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-white/10 pt-8 text-center text-slate-500">
+                <p>&copy; 2026 Лакшми. Все права защищены.</p>
+            </div>
         </div>
     </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>
