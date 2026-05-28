@@ -151,30 +151,6 @@
         </div>
     </section>
 
-    <!-- Lead -->
-    <section class="lead" id="lead-form">
-        <div class="shell">
-            <div class="lead-grid">
-                <div>
-                    <div class="font-eyebrow fade-up" data-delay="100" style="color: var(--brass-deep);">Сотрудничество</div>
-                    <h2 class="lead-title fade-up" data-delay="200">Готовы <em>обсудить ваш проект</em></h2>
-                    <div class="brass-rule fade-up" data-delay="250"></div>
-                    <p class="lead-text fade-up" data-delay="300">Опишите задачу — подберём материалы и предложим решение. Приём заявок — круглосуточно. Обработка — в рабочее время.</p>
-                </div>
-                <form class="lead-form fade-up" data-delay="200" id="lead-form-el" autocomplete="off">
-                    <label class="field"><span class="field-label">Имя</span><input type="text" name="name" required placeholder="Как к вам обращаться" /></label>
-                    <label class="field"><span class="field-label">Телефон</span><input type="tel" name="phone" required placeholder="+7 ___ ___ __ __" /></label>
-                    <label class="field"><span class="field-label">Комментарий</span><textarea name="message" rows="4" placeholder="Опишите задачу"></textarea></label>
-                    <button type="submit" class="btn-brass" style="justify-content: center; width: 100%;">
-                        Отправить заявку
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                    </button>
-                    <p class="form-note">Отправка открывает WhatsApp. Альтернативно — <a href="mailto:laksmillc@yandex.ru">e-mail</a> или <a href="tel:+74996477281">+7 499 647-72-81</a>.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="shell">
@@ -187,17 +163,5 @@
     </footer>
 
     <script src="../js/script.js"></script>
-    <script>
-    document.getElementById('lead-form-el')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const fd = new FormData(this);
-        const name = (fd.get('name') || '').toString().trim();
-        const phone = (fd.get('phone') || '').toString().trim();
-        const message = (fd.get('message') || '').toString().trim();
-        const lines = ['Заявка с сайта Лакшми', 'Страница: О компании', 'Имя: ' + name, 'Телефон: ' + phone, message ? 'Задача: ' + message : ''].filter(Boolean);
-        const url = 'https://wa.me/79685999665?text=' + encodeURIComponent(lines.join('\n'));
-        window.open(url, '_blank', 'noopener');
-    });
-    </script>
 </body>
 </html>
