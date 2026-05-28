@@ -204,7 +204,10 @@
     };
 
     const initRevealAnimations = () => {
-        if (prefersReducedMotion || !supportsObserver || !supportsAnimate) {
+        const fadeElements = document.querySelectorAll('.fade-up');
+
+        if (prefersReducedMotion || !supportsObserver) {
+            fadeElements.forEach((el) => el.classList.add('is-revealed'));
             return;
         }
 
@@ -213,28 +216,15 @@
                 if (!entry.isIntersecting) {
                     return;
                 }
-
+                entry.target.classList.add('is-revealed');
                 observer.unobserve(entry.target);
-                entry.target.animate(
-                    [
-                        { opacity: 0, transform: 'translateY(16px)' },
-                        { opacity: 1, transform: 'translateY(0)' }
-                    ],
-                    {
-                        duration: 650,
-                        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-                        fill: 'both'
-                    }
-                );
             });
         }, {
             threshold: 0.12,
-            rootMargin: '0px 0px -8% 0px'
+            rootMargin: '0px 0px -6% 0px'
         });
 
-        document.querySelectorAll('section').forEach((section) => {
-            revealObserver.observe(section);
-        });
+        fadeElements.forEach((el) => revealObserver.observe(el));
     };
 
     const init = () => {
