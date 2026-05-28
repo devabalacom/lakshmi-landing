@@ -587,6 +587,177 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ============================================
+   Trust numbers strip
+   ============================================ */
+
+.metrics {
+    background: var(--ivory);
+    color: var(--ink);
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--ivory-line);
+}
+
+.metrics-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 900px) {
+    .metrics-grid { grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+}
+
+.metric {
+    text-align: left;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--ivory-line);
+}
+
+@media (min-width: 900px) {
+    .metric {
+        border-top: 0;
+        border-left: 1px solid var(--ivory-line);
+        padding: 0 0 0 1.5rem;
+    }
+    .metric:first-child {
+        border-left: 0;
+        padding-left: 0;
+    }
+}
+
+.metric-value {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.metric-value .metric-unit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    -webkit-text-fill-color: var(--ink-mute);
+    background: none;
+    animation: none;
+}
+
+.metric-label {
+    margin-top: 0.75rem;
+    color: var(--ink-mute);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   Services — 9-tile grid
+   ============================================ */
+
+.services {
+    background: var(--ivory);
+    color: var(--ink);
+    padding: 8rem 0;
+}
+
+.services-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.services-eyebrow { color: var(--brass-deep); }
+
+.services-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    line-height: 0.94;
+    text-transform: uppercase;
+    margin: 1rem 0 0;
+}
+
+.services-title em {
+    font-style: italic;
+    color: var(--brass-deep);
+    text-transform: none;
+    font-weight: 400;
+}
+
+.services-sub {
+    color: var(--ink-mute);
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.6;
+}
+
+.services-grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: 1fr;
+    background: var(--ivory-line);
+    border: 1px solid var(--ivory-line);
+}
+
+@media (min-width: 700px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1100px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.service {
+    background: var(--ivory);
+    padding: 2.5rem 2rem 2rem;
+    transition: background var(--motion), transform var(--motion);
+    position: relative;
+}
+
+.service:hover {
+    background: var(--paper);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px -28px rgba(20, 20, 20, 0.18);
+    z-index: 1;
+}
+
+.service-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 1.5rem;
+}
+
+.service h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.55rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.85rem;
+    color: var(--ink);
+}
+
+.service p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+/* ============================================
    Story section — ivory, editorial single-column
    ============================================ */
 
