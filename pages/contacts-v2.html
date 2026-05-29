@@ -135,8 +135,8 @@
 <body>
     <nav class="nav">
         <div class="shell nav-row">
-            <a href="../index.html" class="brand"><span class="brand-square">L</span><span>Лакшми <span class="mono" style="font-size: 0.7em; color: var(--mute);">/ V2</span></span></a>
-                        <div class="nav-links">
+            <a href="../index.html" class="brand"><span class="brand-square">L</span><span>Лакшми</span></a>
+            <div class="nav-links">
                 <a href="../index.html#catalog">Направления</a>
                 <a href="../pages/about-v2.html">О нас</a>
                 <a href="../index.html#process">Как работаем</a>
@@ -144,8 +144,37 @@
                 <a href="../pages/contacts-v2.html">Контакты</a>
             </div>
             <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
+            <button class="nav-burger" id="navBurger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav-mobile" id="navMobile">
+            <a href="../index.html#catalog" class="nav-mobile-link">Направления</a>
+            <a href="../pages/about-v2.html" class="nav-mobile-link">О нас</a>
+            <a href="../index.html#process" class="nav-mobile-link">Как работаем</a>
+            <a href="../index.html#faq" class="nav-mobile-link">FAQ</a>
+            <a href="../pages/contacts-v2.html" class="nav-mobile-link">Контакты</a>
+            <a href="tel:+74996477281" class="nav-mobile-cta">+7 499 647-72-81</a>
         </div>
     </nav>
+    <script>
+        (function() {
+            var btn = document.getElementById('navBurger');
+            var menu = document.getElementById('navMobile');
+            btn.addEventListener('click', function() {
+                var open = menu.classList.toggle('open');
+                btn.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', open);
+            });
+            menu.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    menu.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+    </script>
 
     <section class="hero-page">
         <div class="shell">
