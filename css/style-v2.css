@@ -161,6 +161,83 @@
         @media (min-width: 900px) { .nav-cta { display: inline-flex; } }
         .nav-cta:hover { background: var(--accent); }
 
+        /* Mobile burger button */
+        .nav-burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background var(--motion);
+        }
+
+        .nav-burger:hover { background: var(--line); }
+
+        .nav-burger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: transform var(--motion), opacity var(--motion);
+            transform-origin: center;
+        }
+
+        .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (min-width: 900px) { .nav-burger { display: none; } }
+
+        /* Mobile nav drawer */
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            background: rgba(245, 244, 238, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--line);
+            padding: 1.5rem;
+            gap: 0;
+        }
+
+        .nav-mobile.open { display: flex; }
+
+        @media (min-width: 900px) { .nav-mobile { display: none !important; } }
+
+        .nav-mobile a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+            border-bottom: 1px solid var(--line);
+            transition: color var(--motion), padding-left var(--motion);
+        }
+
+        .nav-mobile a:last-child { border-bottom: none; }
+        .nav-mobile a:hover { color: var(--accent); padding-left: 0.5rem; }
+
+        .nav-mobile .nav-mobile-cta {
+            margin-top: 1rem;
+            background: var(--ink);
+            color: var(--bg);
+            padding: 0.9rem 1.2rem;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            border-bottom: none;
+            transition: background var(--motion);
+        }
+
+        .nav-mobile .nav-mobile-cta:hover { background: var(--accent); padding-left: 0; }
+
         /* HERO */
         section.hero {
             padding: 9rem 0 5rem;
