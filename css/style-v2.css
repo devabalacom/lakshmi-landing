@@ -574,7 +574,7 @@
             overflow: hidden;
         }
 
-        @media (min-width: 700px) { .logos { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 700px) { .logos { grid-template-columns: repeat(4, 1fr); } }
 
         .logo-cell {
             background: var(--paper);
