@@ -135,20 +135,47 @@
 <body>
     <nav class="nav">
         <div class="shell nav-row">
-            <a href="../index-v2.html" class="brand"><span class="brand-square">L</span><span>Лакшми <span class="mono" style="font-size: 0.7em; color: var(--mute);">/ V2</span></span></a>
+            <a href="../index.html" class="brand"><span class="brand-square">L</span><span>Лакшми</span></a>
             <div class="nav-links">
-                <a href="../index-v2.html#catalog">Направления</a>
+                <a href="../index.html#catalog">Направления</a>
                 <a href="about-v2.html">О нас</a>
-                <a href="../index-v2.html#process">Как работаем</a>
+                <a href="../index.html#process">Как работаем</a>
                 <a href="contacts-v2.html">Контакты</a>
             </div>
             <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
+            <button class="nav-burger" id="navBurger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav-mobile" id="navMobile">
+            <a href="../index.html#catalog" class="nav-mobile-link">Направления</a>
+            <a href="about-v2.html" class="nav-mobile-link">О нас</a>
+            <a href="../index.html#process" class="nav-mobile-link">Как работаем</a>
+            <a href="contacts-v2.html" class="nav-mobile-link">Контакты</a>
+            <a href="tel:+74996477281" class="nav-mobile-cta">+7 499 647-72-81</a>
         </div>
     </nav>
+    <script>
+        (function() {
+            var btn = document.getElementById('navBurger');
+            var menu = document.getElementById('navMobile');
+            btn.addEventListener('click', function() {
+                var open = menu.classList.toggle('open');
+                btn.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', open);
+            });
+            menu.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    menu.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+    </script>
 
     <section class="hero-page">
         <div class="shell">
-            <div class="tag">about / компания</div>
             <h1 class="about-h1">Экспертиза в пошиве <span class="accent">технического текстиля</span></h1>
             <p class="hero-lead">Мы специализируемся на создании высокотехнологичных изделий, способных выдерживать экстремальные нагрузки. Производство объединяет опытных конструкторов и современное оборудование для работы с тяжёлыми и специализированными тканями.</p>
             <div class="hero-ctas" style="margin-top: 2rem;">
@@ -161,11 +188,16 @@
     <section class="section bg-dark">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">capabilities</div>
-                <h2 class="section-h2">Наши мощности</h2>
-                <p class="section-sub">Три независимых блока, единый регламент качества.</p>
+                <h2 class="section-h2">О нас</h2>
+                <p class="section-sub">20 лет опыта, 1400 м² производства, 50 специалистов.</p>
             </div>
             <div class="about-cols">
+                <div class="pill-card"><h3>Шьём уже 20 лет</h3><p>Наша команда получает внушительный опыт каждый день. За всё время существования мы стали профессионалами в своём деле.</p></div>
+                <div class="pill-card"><h3>Фабрика 1400 м²</h3><p>Мы всегда рады показать нашим партнёрам и заказчикам наше производство и склад.</p></div>
+                <div class="pill-card"><h3>Широкий ассортимент</h3><p>Выбор любого цвета, материала и свойства продукции.</p></div>
+                <div class="pill-card"><h3>Нормативная документация</h3><p>Предоставляем сертификаты или отказное письмо на материалы, сопровождаем поставку паспортом качества на партию.</p></div>
+                <div class="pill-card"><h3>Кастомизация</h3><p>Индивидуализация продукции под заказы конкретных потребителей путём внесения конструктивных или дизайнерских изменений.</p></div>
+                <div class="pill-card"><h3>50 человек в штате</h3><p>Опыт наших сотрудников колоссален — сшит из большого количества совершенно разных заказов и проверен временем.</p></div>
             </div>
         </div>
     </section>
@@ -173,7 +205,6 @@
     <section class="section">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">audience</div>
                 <h2 class="section-h2">Для кого мы работаем</h2>
                 <p class="section-sub">Промышленность, госсектор, B2B-сети.</p>
             </div>
@@ -193,11 +224,15 @@
     <section class="section bg-dark">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">process</div>
                 <h2 class="section-h2">Как мы работаем</h2>
                 <p class="section-sub">5 шагов от заявки до отгрузки.</p>
             </div>
             <div class="process-grid">
+                <div class="step"><h3>Заявка</h3><p>ТЗ, чертежи или замеры по телефону / email / WhatsApp.</p></div>
+                <div class="step"><h3>Расчёт</h3><p>Согласовываем материалы, стоимость, срок. Образцы — курьером.</p></div>
+                <div class="step"><h3>Договор</h3><p>Документы, предоплата, запуск партии в работу.</p></div>
+                <div class="step"><h3>Производство</h3><p>Пошив и контроль качества. 1-2 дня на партию 50 шт.</p></div>
+                <div class="step"><h3>Доставка</h3><p>По РФ и СНГ ТК. Сопроводительные документы в комплекте.</p></div>
             </div>
         </div>
     </section>

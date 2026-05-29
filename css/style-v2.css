@@ -425,8 +425,8 @@
             grid-template-columns: 1fr;
         }
 
-        @media (min-width: 800px) { .about-cols { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1100px) { .about-cols { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 700px) { .about-cols { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1000px) { .about-cols { grid-template-columns: repeat(3, 1fr); } }
 
         .pill-card {
             border: 1px solid rgba(245, 244, 238, 0.12);
