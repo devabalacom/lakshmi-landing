@@ -584,9 +584,22 @@
             font-size: 1.1rem;
             color: var(--ink-soft);
             transition: background var(--motion), color var(--motion);
+            padding: 1.2rem;
         }
 
-        .logo-cell:hover { background: var(--ink); color: var(--bg); }
+        .logo-cell:hover { background: var(--bg); color: var(--bg); }
+
+        .logo-cell img {
+            max-width: 100%;
+            max-height: 56px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(100%) contrast(0.7);
+            transition: filter var(--motion);
+        }
+
+        .logo-cell:hover img { filter: grayscale(0%) contrast(1); }
 
         /* FAQ */
         .faq-list {
