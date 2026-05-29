@@ -588,7 +588,7 @@
             padding: 1.2rem;
         }
 
-        .logo-cell:hover { background: var(--bg); color: var(--bg); }
+        .logo-cell:hover { background: var(--bg); color: var(--ink-soft); }
 
         .logo-cell img {
             max-width: 100%;
@@ -601,6 +601,16 @@
         }
 
         .logo-cell:hover img { filter: grayscale(0%) contrast(1); }
+
+        /* bg-dark overrides for service page spec elements */
+        .bg-dark .spec-name { color: var(--bg); }
+        .bg-dark .spec-meta { color: rgba(245, 244, 238, 0.65); }
+        .bg-dark .spec-row { border-bottom-color: rgba(245, 244, 238, 0.12); }
+        .bg-dark .spec-block-title { color: var(--accent); border-bottom-color: rgba(245, 244, 238, 0.15); }
+        .bg-dark .prop-v2 { color: var(--bg); }
+        .bg-dark .prop-v2 svg { color: var(--accent); }
+        .bg-dark .hardware-v2 li { color: rgba(245, 244, 238, 0.75); }
+        .bg-dark .hardware-v2 li::before { background: var(--accent); }
 
         /* Gallery */
         .gallery-grid {
@@ -616,7 +626,6 @@
             aspect-ratio: 4 / 3;
             overflow: hidden;
             background: var(--paper);
-            border: 1px solid var(--line);
         }
 
         .gallery-cell img {
@@ -950,4 +959,13 @@
             .section-h2 {
                 max-width: 100%;
             }
+
+            .logo-cell img { max-height: 48px; }
+        }
+
+        /* btn-secondary improved hover */
+        .btn-secondary:hover {
+            border-color: var(--ink);
+            background: var(--ink);
+            color: var(--bg);
         }
