@@ -795,3 +795,158 @@
         }
 
         .variant-switcher .active { background: var(--accent); color: var(--ink); }
+
+        /* ===== MOBILE OVERRIDES (max 599px) ===== */
+        @media (max-width: 599px) {
+
+            /* Hero */
+            section.hero {
+                padding: 6.5rem 0 2.5rem;
+            }
+
+            .hero-h1 {
+                font-size: 2.1rem;
+                margin: 1rem 0 1.2rem;
+                letter-spacing: -0.025em;
+            }
+
+            .hero-lead {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .hero-ctas .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.9rem 1.2rem;
+                font-size: 0.95rem;
+            }
+
+            .hero-side {
+                padding: 1.75rem 1.25rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            /* Sections */
+            section.section {
+                padding: 3rem 0;
+            }
+
+            .section-head {
+                margin-bottom: 1.75rem;
+            }
+
+            .section-h2 {
+                font-size: 1.75rem;
+                max-width: 100%;
+            }
+
+            /* Catalog cards */
+            .catalog-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .catalog-card h3 {
+                font-size: 1.05rem;
+            }
+
+            /* About / pill cards */
+            .pill-card {
+                padding: 1.25rem;
+            }
+
+            /* Process steps */
+            .step {
+                padding: 1.25rem 1rem;
+            }
+
+            /* Applications list — 1 column on narrow mobile */
+            .apps-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Props grid — 1 column */
+            .props-v2-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Gallery — 2 columns but tighter */
+            .gallery-grid {
+                gap: 2px;
+            }
+
+            /* FAQ */
+            .faq-item summary {
+                font-size: 0.95rem;
+            }
+
+            .faq-item {
+                padding: 1.1rem 0;
+            }
+
+            /* Contact cells */
+            .contact-cell {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .contact-cell .value {
+                font-size: 1rem;
+            }
+
+            /* Logos */
+            .logos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Footer */
+            footer.footer {
+                padding: 2.5rem 0 1.5rem;
+            }
+
+            .footer-base {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            /* Service page hero */
+            .hero-service {
+                padding: 6.5rem 0 2.5rem !important;
+            }
+
+            /* Capabilities grid — 1 col on narrow mobile */
+            .caps-v2-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Cap cards */
+            .cap-v2 {
+                padding: 1.25rem !important;
+            }
+
+            /* Spec rows */
+            .spec-name {
+                font-size: 0.95rem !important;
+            }
+        }
+
+        /* ===== TABLET (600–899px) ===== */
+        @media (min-width: 600px) and (max-width: 899px) {
+            section.section {
+                padding: 4rem 0;
+            }
+
+            .hero-ctas .btn {
+                padding: 0.8rem 1.4rem;
+            }
+
+            .section-h2 {
+                max-width: 100%;
+            }
+        }
