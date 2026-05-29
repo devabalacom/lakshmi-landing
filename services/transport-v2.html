@@ -228,20 +228,49 @@
 <body>
     <nav class="nav">
         <div class="shell nav-row">
-            <a href="../index-v2.html" class="brand">
+            <a href="../index.html" class="brand">
                 <span class="brand-square">L</span>
-                <span>Лакшми <span class="mono" style="font-size: 0.7em; color: var(--mute);">/ V2</span></span>
+                <span>Лакшми</span>
             </a>
             <div class="nav-links">
-                <a href="../index-v2.html#catalog">Направления</a>
+                <a href="../index.html#catalog">Направления</a>
                 <a href="../pages/about-v2.html">О нас</a>
-                <a href="../index-v2.html#process">Как работаем</a>
-                <a href="../index-v2.html#faq">FAQ</a>
+                <a href="../index.html#process">Как работаем</a>
+                <a href="../index.html#faq">FAQ</a>
                 <a href="../pages/contacts-v2.html">Контакты</a>
             </div>
             <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
+            <button class="nav-burger" id="navBurger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav-mobile" id="navMobile">
+            <a href="../index.html#catalog" class="nav-mobile-link">Направления</a>
+            <a href="../pages/about-v2.html" class="nav-mobile-link">О нас</a>
+            <a href="../index.html#process" class="nav-mobile-link">Как работаем</a>
+            <a href="../index.html#faq" class="nav-mobile-link">FAQ</a>
+            <a href="../pages/contacts-v2.html" class="nav-mobile-link">Контакты</a>
+            <a href="tel:+74996477281" class="nav-mobile-cta">+7 499 647-72-81</a>
         </div>
     </nav>
+    <script>
+        (function() {
+            var btn = document.getElementById('navBurger');
+            var menu = document.getElementById('navMobile');
+            btn.addEventListener('click', function() {
+                var open = menu.classList.toggle('open');
+                btn.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', open);
+            });
+            menu.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    menu.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+    </script>
 
     <section class="hero-service">
         <div class="shell">
@@ -331,10 +360,28 @@
         </div>
     </section>
 
+    <section class="section" id="gallery">
+        <div class="shell">
+            <div class="section-head">
+                <div class="tag">04 / gallery</div>
+                <h2 class="section-h2">Примеры работ</h2>
+                <p class="section-sub">Текстильные изделия для железнодорожного транспорта, авиации и специальной техники.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-cell"><div class="gallery-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="13" r="3"/></svg><span>ФОТО 01</span></div></div>
+                <div class="gallery-cell"><div class="gallery-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="13" r="3"/></svg><span>ФОТО 02</span></div></div>
+                <div class="gallery-cell"><div class="gallery-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="13" r="3"/></svg><span>ФОТО 03</span></div></div>
+                <div class="gallery-cell"><div class="gallery-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="13" r="3"/></svg><span>ФОТО 04</span></div></div>
+                <div class="gallery-cell"><div class="gallery-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="13" r="3"/></svg><span>ФОТО 05</span></div></div>
+                <div class="gallery-cell"><div class="gallery-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="13" r="3"/></svg><span>ФОТО 06</span></div></div>
+            </div>
+        </div>
+    </section>
+
     <section class="section bg-dark">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">04 / process</div>
+                <div class="tag">05 / process</div>
                 <h2 class="section-h2">Как мы работаем — 5 шагов</h2>
                 <p class="section-sub">От заявки до отгрузки.</p>
             </div>
@@ -351,7 +398,7 @@
     <section class="section">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">05 / faq</div>
+                <div class="tag">06 / faq</div>
                 <h2 class="section-h2">Вопросы по направлению</h2>
                 <p class="section-sub">Нет в списке — позвоните или напишите.</p>
             </div>
@@ -367,7 +414,7 @@
     <section class="section">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">06 / related</div>
+                <div class="tag">07 / related</div>
                 <h2 class="section-h2">Другие направления</h2>
             </div>
             <div class="catalog-grid">
@@ -386,7 +433,7 @@
     <section class="section bg-dark">
         <div class="shell">
             <div class="section-head">
-                <div class="tag">07 / contact</div>
+                <div class="tag">08 / contact</div>
                 <h2 class="section-h2">Контакты</h2>
                 <p class="section-sub">Производство — Санкт-Петербург, Литовская 12 к Д.</p>
             </div>

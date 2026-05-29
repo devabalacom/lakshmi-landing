@@ -601,6 +601,50 @@
 
         .logo-cell:hover img { filter: grayscale(0%) contrast(1); }
 
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            gap: 4px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 600px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1000px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .gallery-cell {
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid var(--line);
+        }
+
+        .gallery-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--motion);
+        }
+
+        .gallery-cell:hover img { transform: scale(1.04); }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--mute);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            background: var(--bg);
+        }
+
+        .gallery-placeholder svg { color: var(--line-strong); }
+
         /* FAQ */
         .faq-list {
             max-width: 880px;
