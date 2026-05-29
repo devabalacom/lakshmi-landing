@@ -809,15 +809,18 @@
         /* ===== MOBILE OVERRIDES (max 599px) ===== */
         @media (max-width: 599px) {
 
+            /* Shell tighter on narrow screens */
+            .shell { padding: 0 1rem; }
+
             /* Hero */
             section.hero {
-                padding: 6.5rem 0 2.5rem;
+                padding: 5.5rem 0 2rem;
             }
 
             .hero-h1 {
-                font-size: 2.1rem;
-                margin: 1rem 0 1.2rem;
-                letter-spacing: -0.025em;
+                font-size: 1.9rem;
+                margin: 0.8rem 0 1rem !important;
+                letter-spacing: -0.02em;
             }
 
             .hero-lead {
@@ -927,7 +930,7 @@
 
             /* Service page hero */
             .hero-service {
-                padding: 6.5rem 0 2.5rem !important;
+                padding: 5.5rem 0 2rem !important;
             }
 
             /* Capabilities grid — 1 col on narrow mobile */
@@ -943,6 +946,42 @@
             /* Spec rows */
             .spec-name {
                 font-size: 0.95rem !important;
+            }
+
+            /* Footer brand */
+            footer.footer .brand-text,
+            footer.footer div[style*="font-size: 1.3rem"] {
+                font-size: 1.1rem !important;
+            }
+
+            /* About/contacts hero */
+            .hero-page {
+                padding: 5.5rem 0 2rem !important;
+            }
+
+            /* Three-col specs in service pages */
+            .three-col {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            /* Desc-grid */
+            .desc-grid {
+                gap: 1.5rem !important;
+            }
+
+            /* Stat block on hero */
+            .stat-block .stat {
+                padding-bottom: 1rem;
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+
+            /* Section head spacing */
+            .section-head {
+                gap: 0.75rem;
             }
         }
 
