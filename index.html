@@ -36,6 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style-v2.css">
+    <link rel="stylesheet" href="css/motion.css">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -143,6 +144,11 @@
 </head>
 <body>
 
+    <!-- Motion: cursor + progress -->
+    <div class="m-cursor" id="mCursor"></div>
+    <div class="m-cursor-ring" id="mCursorRing"></div>
+    <div class="m-progress"><div class="m-progress-fill" id="mProgressFill"></div></div>
+
     <nav class="nav">
         <div class="shell nav-row">
             <a href="index.html" class="brand">
@@ -191,30 +197,42 @@
 
     <!-- Block 1 — Hero -->
     <section class="hero">
+        <!-- Decorative layers -->
+        <div class="hero-dot-grid" aria-hidden="true"></div>
+        <div class="hero-vline" id="heroVline" aria-hidden="true"></div>
+        <div class="hero-deco-letter" aria-hidden="true">L</div>
+
         <div class="shell">
             <div class="hero-grid">
                 <div>
-                    <h1 class="hero-h1">
+                    <div class="hero-eyebrow" id="heroEyebrow">Санкт-Петербург · с 2005 · 20 лет опыта</div>
+                    <h1 class="hero-h1" id="heroTitle">
                         Производство <span class="accent">технического текстиля</span> для промышленности и&nbsp;бизнеса
                     </h1>
                     <p class="hero-lead">
                         Пошив защитных чехлов, спецодежды и тактического снаряжения из сертифицированных материалов. Работаем по вашим ТЗ от 1 единицы. Гарантия качества и соблюдение сроков.
                     </p>
                     <div class="hero-ctas">
-                        <a href="tel:+74996477281" class="btn btn-primary">Рассчитать стоимость →</a>
-                        <a href="https://wa.me/79685999665" class="btn btn-secondary" target="_blank" rel="noopener">Связаться в WhatsApp</a>
+                        <a href="tel:+74996477281" class="btn btn-primary magnetic">Рассчитать стоимость →</a>
+                        <a href="https://wa.me/79685999665" class="btn btn-secondary magnetic" target="_blank" rel="noopener">Связаться в WhatsApp</a>
                     </div>
                 </div>
 
-                <div class="hero-side">
+                <div class="hero-side" id="heroSide">
                     <div class="stat-block">
-                        <div class="stat"><div class="stat-value">20</div><div class="stat-label">лет<br>опыта</div></div>
-                        <div class="stat"><div class="stat-value">1400</div><div class="stat-label">м²<br>фабрика</div></div>
-                        <div class="stat"><div class="stat-value">50+</div><div class="stat-label">специалистов<br>в штате</div></div>
+                        <div class="stat"><div class="stat-value" data-count="20" data-suffix="">20</div><div class="stat-label">лет<br>опыта</div></div>
+                        <div class="stat"><div class="stat-value" data-count="1400" data-suffix="">1400</div><div class="stat-label">м²<br>фабрика</div></div>
+                        <div class="stat"><div class="stat-value" data-count="50" data-suffix="+">50+</div><div class="stat-label">специалистов<br>в штате</div></div>
                         <div class="stat"><div class="stat-value">от 1</div><div class="stat-label">единицы<br>мин. заказ</div></div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true">
+            <div class="hero-scroll-hint-bar"></div>
+            <div class="hero-scroll-hint-text">Scroll</div>
         </div>
     </section>
 
@@ -362,5 +380,272 @@
             </div>
         </div>
     </footer>
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        if (typeof gsap === 'undefined') return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        /* ================================================
+           CUSTOM CURSOR
+           ================================================ */
+        var cursorEl  = document.getElementById('mCursor');
+        var cursorRing = document.getElementById('mCursorRing');
+        if (cursorEl && hasHover && !prefersReduced) {
+            var mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener('mousemove', function (e) {
+                mx = e.clientX; my = e.clientY;
+                gsap.set(cursorEl, { x: mx - 4, y: my - 4 });
+            }, { passive: true });
+
+            (function ringLoop() {
+                rx += (mx - rx) * 0.11;
+                ry += (my - ry) * 0.11;
+                gsap.set(cursorRing, { x: rx - 17, y: ry - 17 });
+                requestAnimationFrame(ringLoop);
+            })();
+
+            document.querySelectorAll('a, button, summary, .catalog-card').forEach(function (el) {
+                el.addEventListener('mouseenter', function () {
+                    cursorEl.classList.add('on-link');
+                    cursorRing.classList.add('on-link');
+                });
+                el.addEventListener('mouseleave', function () {
+                    cursorEl.classList.remove('on-link');
+                    cursorRing.classList.remove('on-link');
+                });
+            });
+        }
+
+        /* ================================================
+           SCROLL PROGRESS
+           ================================================ */
+        var progressFill = document.getElementById('mProgressFill');
+        if (progressFill) {
+            window.addEventListener('scroll', function () {
+                var total = document.documentElement.scrollHeight - window.innerHeight;
+                progressFill.style.width = Math.min(100, (window.scrollY / total) * 100) + '%';
+            }, { passive: true });
+        }
+
+        /* ================================================
+           NAV SCROLL STATE
+           ================================================ */
+        var navEl = document.querySelector('nav.nav');
+        window.addEventListener('scroll', function () {
+            navEl.classList.toggle('nav-scrolled', window.scrollY > 55);
+        }, { passive: true });
+
+        /* ================================================
+           HERO ENTRANCE (blur + translateY — 21st.dev pattern)
+           ================================================ */
+        if (!prefersReduced) {
+            var heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+            heroTl
+                .to('#heroVline',   { height: '65%', duration: 1.4 })
+                .from('#heroEyebrow', { y: 14, opacity: 0, filter: 'blur(6px)', duration: 0.8 }, '-=1.0')
+                .from('#heroTitle',   { y: 70, opacity: 0, filter: 'blur(10px)', duration: 1.1 }, '-=0.55')
+                .from('.hero-lead',   { y: 40, opacity: 0, filter: 'blur(8px)',  duration: 0.85 }, '-=0.6')
+                .from('.hero-ctas .btn', { y: 28, opacity: 0, filter: 'blur(6px)', duration: 0.7, stagger: 0.12 }, '-=0.5')
+                .from('#heroSide',    { x: 55, opacity: 0, filter: 'blur(12px)', duration: 1.1 }, '-=0.85')
+                .to('#heroScrollHint', { opacity: 1, duration: 0.5 }, '-=0.1');
+        }
+
+        /* ================================================
+           STAT COUNTERS
+           ================================================ */
+        ScrollTrigger.create({
+            trigger: '#heroSide',
+            start: 'top 82%',
+            once: true,
+            onEnter: function () {
+                document.querySelectorAll('.stat-value[data-count]').forEach(function (el) {
+                    var target = parseFloat(el.dataset.count);
+                    var suffix = el.dataset.suffix || '';
+                    var obj = { v: 0 };
+                    gsap.to(obj, {
+                        v: target,
+                        duration: 2.2,
+                        delay: 0.3,
+                        ease: 'expo.out',
+                        onUpdate: function () {
+                            el.textContent = Math.round(obj.v) + suffix;
+                        },
+                        onComplete: function () {
+                            el.textContent = target + suffix;
+                        }
+                    });
+                });
+            }
+        });
+
+        /* ================================================
+           SCROLL REVEAL HELPER
+           ================================================ */
+        function reveal(targets, opts) {
+            if (prefersReduced) return;
+            gsap.from(targets, Object.assign({
+                ease: 'expo.out',
+                opacity: 0,
+                y: 50,
+                filter: 'blur(8px)',
+                duration: 0.85
+            }, opts || {}));
+        }
+
+        /* ================================================
+           SECTION HEADINGS
+           ================================================ */
+        document.querySelectorAll('.section-h2').forEach(function (el) {
+            reveal(el, {
+                scrollTrigger: { trigger: el, start: 'top 84%' },
+                y: 55, duration: 0.9
+            });
+        });
+
+        document.querySelectorAll('.section-sub').forEach(function (el) {
+            reveal(el, {
+                scrollTrigger: { trigger: el, start: 'top 88%' },
+                y: 30, duration: 0.7, delay: 0.1, filter: 'blur(5px)'
+            });
+        });
+
+        /* ================================================
+           CATALOG CARDS — stagger + blur
+           ================================================ */
+        reveal('.catalog-card', {
+            scrollTrigger: { trigger: '.catalog-grid', start: 'top 80%' },
+            y: 60, stagger: 0.07, duration: 0.75
+        });
+
+        /* ================================================
+           ABOUT PILLS
+           ================================================ */
+        reveal('.pill-card', {
+            scrollTrigger: { trigger: '.about-cols', start: 'top 80%' },
+            y: 50, stagger: 0.1, duration: 0.7
+        });
+
+        /* ================================================
+           PROCESS STEPS
+           ================================================ */
+        reveal('.step', {
+            scrollTrigger: { trigger: '.process-grid', start: 'top 80%' },
+            y: 55, stagger: 0.11, duration: 0.7
+        });
+
+        /* ================================================
+           LOGOS
+           ================================================ */
+        gsap.from('.logo-cell', {
+            scrollTrigger: { trigger: '.logos', start: 'top 82%' },
+            scale: 0.84, opacity: 0, filter: 'blur(6px)',
+            duration: 0.55, stagger: 0.09, ease: 'back.out(1.4)'
+        });
+
+        /* ================================================
+           FAQ ITEMS
+           ================================================ */
+        reveal('.faq-item', {
+            scrollTrigger: { trigger: '.faq-list', start: 'top 80%' },
+            x: -35, y: 0, stagger: 0.08, duration: 0.65, filter: 'blur(4px)'
+        });
+
+        /* ================================================
+           CONTACT CELLS
+           ================================================ */
+        reveal('.contact-cell', {
+            scrollTrigger: { trigger: '.contact-cards', start: 'top 82%' },
+            y: 40, stagger: 0.09, duration: 0.65
+        });
+
+        /* ================================================
+           3D TILT ON CATALOG CARDS
+           ================================================ */
+        if (hasHover && !prefersReduced) {
+            document.querySelectorAll('.catalog-card').forEach(function (card) {
+                card.addEventListener('mousemove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    var x = (e.clientX - r.left) / r.width  - 0.5;
+                    var y = (e.clientY - r.top)  / r.height - 0.5;
+                    gsap.to(card, {
+                        rotateY: x * 12, rotateX: -y * 12,
+                        z: 12,
+                        duration: 0.35, ease: 'power2.out',
+                        transformPerspective: 700
+                    });
+                });
+                card.addEventListener('mouseleave', function () {
+                    gsap.to(card, {
+                        rotateX: 0, rotateY: 0, z: 0,
+                        duration: 0.65, ease: 'elastic.out(1, 0.55)'
+                    });
+                });
+            });
+        }
+
+        /* ================================================
+           MAGNETIC BUTTONS
+           ================================================ */
+        if (hasHover && !prefersReduced) {
+            document.querySelectorAll('.magnetic').forEach(function (btn) {
+                btn.addEventListener('mousemove', function (e) {
+                    var r = btn.getBoundingClientRect();
+                    var dx = e.clientX - r.left - r.width  / 2;
+                    var dy = e.clientY - r.top  - r.height / 2;
+                    gsap.to(btn, { x: dx * 0.28, y: dy * 0.28, duration: 0.4, ease: 'power2.out' });
+                });
+                btn.addEventListener('mouseleave', function () {
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.45)' });
+                });
+            });
+        }
+
+        /* ================================================
+           PARALLAX — hero dot-grid on scroll
+           ================================================ */
+        if (!prefersReduced) {
+            gsap.to('.hero-dot-grid', {
+                scrollTrigger: {
+                    trigger: 'section.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                y: 90, ease: 'none'
+            });
+
+            gsap.to('.hero-deco-letter', {
+                scrollTrigger: {
+                    trigger: 'section.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1.8
+                },
+                y: -60, ease: 'none'
+            });
+        }
+
+        /* ================================================
+           FAQ — animate p on open
+           ================================================ */
+        document.querySelectorAll('.faq-item').forEach(function (item) {
+            item.addEventListener('toggle', function () {
+                if (item.open && !prefersReduced) {
+                    var p = item.querySelector('p');
+                    if (p) gsap.from(p, { opacity: 0, y: 10, duration: 0.4, ease: 'expo.out' });
+                }
+            });
+        });
+
+    })();
+    </script>
 </body>
 </html>

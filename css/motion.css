@@ -1,0 +1,460 @@
+/* ================================================================
+   ЛАКШМИ · MOTION SYSTEM v4
+   WOW-layer поверх style-v2.css — 2026 design trends
+   ================================================================ */
+
+:root {
+  --expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ================================================================
+   CUSTOM CURSOR
+   ================================================================ */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+.m-cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  top: 0; left: 0;
+  transition: width 0.22s var(--expo), height 0.22s var(--expo), opacity 0.22s;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+.m-cursor-ring {
+  position: fixed;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(255, 77, 28, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  top: 0; left: 0;
+  transition: width 0.35s var(--expo), height 0.35s var(--expo), border-color 0.35s;
+  will-change: transform;
+}
+
+.m-cursor.on-link {
+  width: 50px; height: 50px; opacity: 0.1;
+}
+
+.m-cursor-ring.on-link {
+  width: 50px; height: 50px;
+  border-color: rgba(255, 77, 28, 0.25);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .m-cursor, .m-cursor-ring { display: none !important; }
+}
+
+/* ================================================================
+   SCROLL PROGRESS BAR
+   ================================================================ */
+.m-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255, 77, 28, 0.1);
+  z-index: 201;
+  pointer-events: none;
+}
+
+.m-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+  will-change: width;
+}
+
+/* ================================================================
+   NAV — scrolled state
+   ================================================================ */
+nav.nav {
+  transition: background 0.45s var(--expo), box-shadow 0.45s var(--expo) !important;
+}
+
+nav.nav.nav-scrolled {
+  background: rgba(245, 244, 238, 0.97) !important;
+  box-shadow: 0 2px 28px rgba(13, 20, 34, 0.09);
+}
+
+/* ================================================================
+   HERO DECORATIVE LAYERS
+   ================================================================ */
+section.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Moving dot grid */
+.hero-dot-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(13, 20, 34, 0.07) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: dotGridDrift 22s linear infinite;
+}
+
+@keyframes dotGridDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 30px 30px; }
+}
+
+/* Vertical accent streak */
+.hero-vline {
+  position: absolute;
+  top: 0; right: 28%;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--accent) 0%, rgba(255,77,28,0) 100%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Large decorative background letter */
+.hero-deco-letter {
+  position: absolute;
+  bottom: -0.08em; right: -0.04em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 30vw;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  animation: decoFloat 12s ease-in-out infinite;
+}
+
+@keyframes decoFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-18px) rotate(-2deg); }
+}
+
+/* Hero eyebrow tag */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: dotPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.7); opacity: 0.55; }
+}
+
+/* Shell above decorative layers */
+section.hero .shell {
+  position: relative;
+  z-index: 3;
+}
+
+/* Hero side glow + corner bracket */
+.hero-side {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.hero-side::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -25%;
+  width: 90%; height: 90%;
+  background: radial-gradient(circle, rgba(255,77,28,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  animation: heroGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.9; transform: scale(1.12); }
+}
+
+.hero-side::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50px; height: 50px;
+  border-top: 2px solid rgba(255,77,28,0.35);
+  border-right: 2px solid rgba(255,77,28,0.35);
+  pointer-events: none;
+}
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-scroll-hint-bar {
+  width: 1px; height: 46px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  transform-origin: top;
+  animation: scrollScan 2s ease-in-out infinite;
+}
+
+@keyframes scrollScan {
+  0%  { transform: scaleY(0); transform-origin: top;    opacity: 1; }
+  48% { transform: scaleY(1); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: bottom; }
+  100%{ transform: scaleY(0); transform-origin: bottom; opacity: 0.4; }
+}
+
+.hero-scroll-hint-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* ================================================================
+   STAT COUNTERS
+   ================================================================ */
+.stat-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ================================================================
+   CATALOG CARDS — 3D tilt + shine + accent border
+   ================================================================ */
+.catalog-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  border-left: 3px solid transparent !important;
+  transition: background var(--motion), border-color 0.3s, transform 0.3s var(--expo) !important;
+}
+
+.catalog-card:hover {
+  border-left-color: var(--accent) !important;
+}
+
+.catalog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.catalog-card:hover::before { opacity: 1; }
+
+/* ================================================================
+   BUTTONS — glow & magnetic ready
+   ================================================================ */
+.btn-primary {
+  position: relative;
+  will-change: transform;
+  transition: transform 0.4s var(--expo), background var(--motion),
+              box-shadow 0.35s, color var(--motion) !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 40px rgba(255, 77, 28, 0.38) !important;
+}
+
+.btn-secondary {
+  will-change: transform;
+  transition: transform 0.4s var(--expo), border-color var(--motion),
+              background var(--motion), color var(--motion) !important;
+}
+
+/* ================================================================
+   PROCESS STEPS — large bg counter + bottom sweep
+   ================================================================ */
+.process-grid { counter-reset: s; }
+
+.step {
+  position: relative;
+  overflow: hidden;
+  counter-increment: s;
+}
+
+.step::before {
+  content: counter(s, decimal-leading-zero);
+  position: absolute;
+  top: -0.12em; right: -0.04em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 4.8rem;
+  line-height: 1;
+  color: var(--line);
+  pointer-events: none;
+  transition: color 0.35s, transform 0.4s var(--expo);
+  z-index: 0;
+}
+
+.step > * { position: relative; z-index: 1; }
+
+.step:hover::before {
+  color: var(--line-strong);
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.step::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.5s var(--expo);
+  z-index: 1;
+}
+
+.step:hover::after { width: 100%; }
+
+/* ================================================================
+   ABOUT DARK SECTION — radial glow
+   ================================================================ */
+.bg-dark {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-dark::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 12% 88%, rgba(255,77,28,0.07) 0%, transparent 52%),
+    radial-gradient(ellipse at 88% 12%, rgba(255,77,28,0.05) 0%, transparent 52%);
+  pointer-events: none;
+}
+
+.bg-dark .pill-card {
+  transition: border-color var(--motion), background var(--motion),
+              box-shadow 0.35s !important;
+}
+
+.bg-dark .pill-card:hover {
+  box-shadow: 0 0 0 1px rgba(255,77,28,0.22),
+              inset 0 0 50px rgba(255,77,28,0.04);
+}
+
+/* ================================================================
+   CONTACT CELLS — top accent sweep
+   ================================================================ */
+.contact-cell {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cell::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 3px;
+  background: var(--accent);
+  transition: width 0.45s var(--expo);
+}
+
+.contact-cell:hover::after { width: 100%; }
+
+/* ================================================================
+   LOGO CELLS
+   ================================================================ */
+.logo-cell {
+  transition: background var(--motion), transform 0.3s var(--expo) !important;
+}
+
+.logo-cell:hover { transform: translateY(-3px); }
+
+/* ================================================================
+   BRAND SQUARE — rotate on hover
+   ================================================================ */
+.brand-square {
+  transition: background 0.3s, transform 0.4s var(--back) !important;
+}
+
+.brand:hover .brand-square {
+  background: var(--accent) !important;
+  transform: rotate(12deg) !important;
+}
+
+/* ================================================================
+   FAQ — slight tint when open
+   ================================================================ */
+.faq-item[open] {
+  background: rgba(255,77,28,0.018);
+  border-radius: 4px;
+  padding: 1.5rem 0.6rem;
+  margin: 0 -0.6rem;
+}
+
+.faq-item[open] summary { color: var(--accent); }
+
+/* ================================================================
+   FOOTER — gradient top line
+   ================================================================ */
+footer.footer {
+  position: relative;
+}
+
+footer.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,77,28,0.35) 25%,
+    rgba(255,77,28,0.6)  50%,
+    rgba(255,77,28,0.35) 75%,
+    transparent 100%);
+}
+
+/* ================================================================
+   SECTION — subtle blur dividers
+   ================================================================ */
+section.section {
+  position: relative;
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-dot-grid    { animation: none !important; }
+  .hero-deco-letter { animation: none !important; }
+  .hero-eyebrow::before { animation: none !important; }
+  .hero-scroll-hint-bar { animation: none !important; }
+  .hero-side::before    { animation: none !important; }
+}
