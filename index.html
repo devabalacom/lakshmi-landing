@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style-v2.css">
-    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/motion.css?v=5">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -532,8 +532,11 @@
                 start: 'top 76%',
                 once: true,
                 onEnter: function () {
+                    var grid = document.querySelector('.process-grid');
+                    var rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+                    var targetW = grid ? Math.max(0, grid.offsetWidth - rem * 4) : 0;
                     gsap.to(lineFill, {
-                        width: 'calc(100% - 4rem - 2px)',
+                        width: targetW,
                         duration: 1.4,
                         delay: 0.55,
                         ease: 'expo.out'

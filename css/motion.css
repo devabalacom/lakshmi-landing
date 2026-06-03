@@ -7,6 +7,10 @@
   --back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Restore default cursor — guards against cached versions of this file */
+*, *::before, *::after { cursor: auto; }
+a, button, summary, label, [role="button"] { cursor: pointer !important; }
+
 /* ================================================================
    SCROLL PROGRESS BAR
    ================================================================ */
@@ -460,29 +464,22 @@ section.hero .shell {
 }
 
 /* ================================================================
-   BUTTONS — fill sweep
+   BUTTONS — fill sweep via gradient background-position
    ================================================================ */
 .btn-primary {
-  position: relative;
-  will-change: transform;
-  overflow: hidden;
-  z-index: 0;
-  transition: transform 0.35s var(--expo), box-shadow 0.35s,
-              background var(--motion), color var(--motion) !important;
+  background: linear-gradient(90deg, var(--accent) 50%, var(--ink) 50%) !important;
+  background-size: 200% 100% !important;
+  background-position: 100% 0 !important;
+  will-change: background-position, transform;
+  transition: background-position 0.45s var(--expo), transform 0.35s var(--expo),
+              box-shadow 0.35s !important;
 }
 
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.42s var(--expo);
-  z-index: -1;
+.btn-primary:hover {
+  background-position: 0% 0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 28px rgba(255, 77, 28, 0.28) !important;
 }
-
-.btn-primary:hover::after { transform: scaleX(1); }
 
 .btn-secondary {
   will-change: transform;
