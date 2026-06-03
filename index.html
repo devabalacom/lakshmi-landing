@@ -144,9 +144,7 @@
 </head>
 <body>
 
-    <!-- Motion: cursor + progress -->
-    <div class="m-cursor" id="mCursor"></div>
-    <div class="m-cursor-ring" id="mCursorRing"></div>
+    <!-- Motion: progress -->
     <div class="m-progress"><div class="m-progress-fill" id="mProgressFill"></div></div>
 
     <nav class="nav">
@@ -213,8 +211,8 @@
                         Пошив защитных чехлов, спецодежды и тактического снаряжения из сертифицированных материалов. Работаем по вашим ТЗ от 1 единицы. Гарантия качества и соблюдение сроков.
                     </p>
                     <div class="hero-ctas">
-                        <a href="tel:+74996477281" class="btn btn-primary magnetic">Рассчитать стоимость →</a>
-                        <a href="https://wa.me/79685999665" class="btn btn-secondary magnetic" target="_blank" rel="noopener">Связаться в WhatsApp</a>
+                        <a href="tel:+74996477281" class="btn btn-primary">Рассчитать стоимость →</a>
+                        <a href="https://wa.me/79685999665" class="btn btn-secondary" target="_blank" rel="noopener">Связаться в WhatsApp</a>
                     </div>
                 </div>
 
@@ -281,6 +279,7 @@
                 <p class="section-sub">От заявки до отгрузки. Прозрачно на каждом этапе.</p>
             </div>
             <div class="process-grid">
+                <div class="process-line-fill" id="processLineFill"></div>
                 <div class="step"><h3>Заявка</h3><p>ТЗ, чертежи или замеры по телефону / email / WhatsApp.</p></div>
                 <div class="step"><h3>Расчёт</h3><p>Согласовываем материалы, стоимость, срок. Образцы — курьером.</p></div>
                 <div class="step"><h3>Договор</h3><p>Документы, предоплата, запуск партии в работу.</p></div>
@@ -297,11 +296,17 @@
                 <h2 class="section-h2">Нам доверяют</h2>
                 <p class="section-sub">Среди клиентов — РЖД, Hyundai, крупные логистические партнёры.</p>
             </div>
-            <div class="logos">
-                <div class="logo-cell"><img src="img/partners/rzd.svg" alt="РЖД"></div>
-                <div class="logo-cell"><img src="img/partners/hyundai.svg" alt="Hyundai"></div>
-                <div class="logo-cell"><img src="img/partners/aeroflot.svg" alt="Аэрофлот"></div>
-                <div class="logo-cell"><img src="img/partners/l1.svg" alt="Партнёр"></div>
+            <div class="logos-marquee">
+                <div class="logos-track">
+                    <div class="logo-cell"><img src="img/partners/rzd.svg" alt="РЖД"></div>
+                    <div class="logo-cell"><img src="img/partners/hyundai.svg" alt="Hyundai"></div>
+                    <div class="logo-cell"><img src="img/partners/aeroflot.svg" alt="Аэрофлот"></div>
+                    <div class="logo-cell"><img src="img/partners/l1.svg" alt="Партнёр"></div>
+                    <div class="logo-cell"><img src="img/partners/rzd.svg" alt="РЖД"></div>
+                    <div class="logo-cell"><img src="img/partners/hyundai.svg" alt="Hyundai"></div>
+                    <div class="logo-cell"><img src="img/partners/aeroflot.svg" alt="Аэрофлот"></div>
+                    <div class="logo-cell"><img src="img/partners/l1.svg" alt="Партнёр"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -391,38 +396,6 @@
         gsap.registerPlugin(ScrollTrigger);
 
         var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-        /* ================================================
-           CUSTOM CURSOR
-           ================================================ */
-        var cursorEl  = document.getElementById('mCursor');
-        var cursorRing = document.getElementById('mCursorRing');
-        if (cursorEl && hasHover && !prefersReduced) {
-            var mx = 0, my = 0, rx = 0, ry = 0;
-            document.addEventListener('mousemove', function (e) {
-                mx = e.clientX; my = e.clientY;
-                gsap.set(cursorEl, { x: mx - 4, y: my - 4 });
-            }, { passive: true });
-
-            (function ringLoop() {
-                rx += (mx - rx) * 0.11;
-                ry += (my - ry) * 0.11;
-                gsap.set(cursorRing, { x: rx - 17, y: ry - 17 });
-                requestAnimationFrame(ringLoop);
-            })();
-
-            document.querySelectorAll('a, button, summary, .catalog-card').forEach(function (el) {
-                el.addEventListener('mouseenter', function () {
-                    cursorEl.classList.add('on-link');
-                    cursorRing.classList.add('on-link');
-                });
-                el.addEventListener('mouseleave', function () {
-                    cursorEl.classList.remove('on-link');
-                    cursorRing.classList.remove('on-link');
-                });
-            });
-        }
 
         /* ================================================
            SCROLL PROGRESS
@@ -444,17 +417,17 @@
         }, { passive: true });
 
         /* ================================================
-           HERO ENTRANCE (blur + translateY — 21st.dev pattern)
+           HERO ENTRANCE — clean clip-path + translate, no blur
            ================================================ */
         if (!prefersReduced) {
             var heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
             heroTl
-                .to('#heroVline',   { height: '65%', duration: 1.4 })
-                .from('#heroEyebrow', { y: 14, opacity: 0, filter: 'blur(6px)', duration: 0.8 }, '-=1.0')
-                .from('#heroTitle',   { y: 70, opacity: 0, filter: 'blur(10px)', duration: 1.1 }, '-=0.55')
-                .from('.hero-lead',   { y: 40, opacity: 0, filter: 'blur(8px)',  duration: 0.85 }, '-=0.6')
-                .from('.hero-ctas .btn', { y: 28, opacity: 0, filter: 'blur(6px)', duration: 0.7, stagger: 0.12 }, '-=0.5')
-                .from('#heroSide',    { x: 55, opacity: 0, filter: 'blur(12px)', duration: 1.1 }, '-=0.85')
+                .to('#heroVline',      { height: '65%', duration: 1.4 })
+                .from('#heroEyebrow',  { y: 12, opacity: 0, duration: 0.7 }, '-=1.0')
+                .from('#heroTitle',    { clipPath: 'inset(0 0 100% 0)', y: 18, duration: 1.05 }, '-=0.5')
+                .from('.hero-lead',    { opacity: 0, y: 18, duration: 0.75 }, '-=0.5')
+                .from('.hero-ctas .btn', { opacity: 0, y: 14, duration: 0.55, stagger: 0.1 }, '-=0.45')
+                .from('#heroSide',     { clipPath: 'inset(0 0 100% 0)', duration: 0.95 }, '-=0.65')
                 .to('#heroScrollHint', { opacity: 1, duration: 0.5 }, '-=0.1');
         }
 
@@ -472,8 +445,8 @@
                     var obj = { v: 0 };
                     gsap.to(obj, {
                         v: target,
-                        duration: 2.2,
-                        delay: 0.3,
+                        duration: 2.0,
+                        delay: 0.2,
                         ease: 'expo.out',
                         onUpdate: function () {
                             el.textContent = Math.round(obj.v) + suffix;
@@ -487,16 +460,25 @@
         });
 
         /* ================================================
-           SCROLL REVEAL HELPER
+           CLIP-PATH REVEAL HELPER
            ================================================ */
         function reveal(targets, opts) {
             if (prefersReduced) return;
             gsap.from(targets, Object.assign({
                 ease: 'expo.out',
-                opacity: 0,
-                y: 50,
-                filter: 'blur(8px)',
+                clipPath: 'inset(0 0 100% 0)',
                 duration: 0.85
+            }, opts || {}));
+        }
+
+        /* Slide reveal (no clip-path — for inline elements, headings) */
+        function slideUp(targets, opts) {
+            if (prefersReduced) return;
+            gsap.from(targets, Object.assign({
+                ease: 'expo.out',
+                opacity: 0,
+                y: 40,
+                duration: 0.8
             }, opts || {}));
         }
 
@@ -504,109 +486,77 @@
            SECTION HEADINGS
            ================================================ */
         document.querySelectorAll('.section-h2').forEach(function (el) {
-            reveal(el, {
-                scrollTrigger: { trigger: el, start: 'top 84%' },
-                y: 55, duration: 0.9
+            slideUp(el, {
+                scrollTrigger: { trigger: el, start: 'top 86%' },
+                y: 45, duration: 0.85
             });
         });
 
         document.querySelectorAll('.section-sub').forEach(function (el) {
-            reveal(el, {
-                scrollTrigger: { trigger: el, start: 'top 88%' },
-                y: 30, duration: 0.7, delay: 0.1, filter: 'blur(5px)'
+            slideUp(el, {
+                scrollTrigger: { trigger: el, start: 'top 90%' },
+                y: 22, duration: 0.65, delay: 0.1
             });
         });
 
         /* ================================================
-           CATALOG CARDS — stagger + blur
+           CATALOG CARDS — stagger clip-path reveal
            ================================================ */
         reveal('.catalog-card', {
             scrollTrigger: { trigger: '.catalog-grid', start: 'top 80%' },
-            y: 60, stagger: 0.07, duration: 0.75
+            stagger: { amount: 0.55, from: 'start' },
+            duration: 0.8
         });
 
         /* ================================================
-           ABOUT PILLS
+           ABOUT PILLS — clip-path reveal
            ================================================ */
         reveal('.pill-card', {
             scrollTrigger: { trigger: '.about-cols', start: 'top 80%' },
-            y: 50, stagger: 0.1, duration: 0.7
+            stagger: 0.12, duration: 0.75
         });
 
         /* ================================================
-           PROCESS STEPS
+           PROCESS STEPS — stagger clip-path + line draw
            ================================================ */
         reveal('.step', {
             scrollTrigger: { trigger: '.process-grid', start: 'top 80%' },
-            y: 55, stagger: 0.11, duration: 0.7
+            stagger: 0.1, duration: 0.72
         });
 
-        /* ================================================
-           LOGOS
-           ================================================ */
-        gsap.from('.logo-cell', {
-            scrollTrigger: { trigger: '.logos', start: 'top 82%' },
-            scale: 0.84, opacity: 0, filter: 'blur(6px)',
-            duration: 0.55, stagger: 0.09, ease: 'back.out(1.4)'
-        });
+        /* Timeline line fill (desktop) */
+        var lineFill = document.getElementById('processLineFill');
+        if (lineFill) {
+            ScrollTrigger.create({
+                trigger: '.process-grid',
+                start: 'top 76%',
+                once: true,
+                onEnter: function () {
+                    gsap.to(lineFill, {
+                        width: 'calc(100% - 4rem - 2px)',
+                        duration: 1.4,
+                        delay: 0.55,
+                        ease: 'expo.out'
+                    });
+                }
+            });
+        }
 
         /* ================================================
-           FAQ ITEMS
+           FAQ ITEMS — slide up
            ================================================ */
-        reveal('.faq-item', {
+        slideUp('.faq-item', {
             scrollTrigger: { trigger: '.faq-list', start: 'top 80%' },
-            x: -35, y: 0, stagger: 0.08, duration: 0.65, filter: 'blur(4px)'
+            stagger: 0.07, duration: 0.65
         });
 
         /* ================================================
-           CONTACT CELLS
+           CONTACT CELLS — clip-path reveal
            ================================================ */
         reveal('.contact-cell', {
             scrollTrigger: { trigger: '.contact-cards', start: 'top 82%' },
-            y: 40, stagger: 0.09, duration: 0.65
+            stagger: 0.1, duration: 0.7
         });
-
-        /* ================================================
-           3D TILT ON CATALOG CARDS
-           ================================================ */
-        if (hasHover && !prefersReduced) {
-            document.querySelectorAll('.catalog-card').forEach(function (card) {
-                card.addEventListener('mousemove', function (e) {
-                    var r = card.getBoundingClientRect();
-                    var x = (e.clientX - r.left) / r.width  - 0.5;
-                    var y = (e.clientY - r.top)  / r.height - 0.5;
-                    gsap.to(card, {
-                        rotateY: x * 12, rotateX: -y * 12,
-                        z: 12,
-                        duration: 0.35, ease: 'power2.out',
-                        transformPerspective: 700
-                    });
-                });
-                card.addEventListener('mouseleave', function () {
-                    gsap.to(card, {
-                        rotateX: 0, rotateY: 0, z: 0,
-                        duration: 0.65, ease: 'elastic.out(1, 0.55)'
-                    });
-                });
-            });
-        }
-
-        /* ================================================
-           MAGNETIC BUTTONS
-           ================================================ */
-        if (hasHover && !prefersReduced) {
-            document.querySelectorAll('.magnetic').forEach(function (btn) {
-                btn.addEventListener('mousemove', function (e) {
-                    var r = btn.getBoundingClientRect();
-                    var dx = e.clientX - r.left - r.width  / 2;
-                    var dy = e.clientY - r.top  - r.height / 2;
-                    gsap.to(btn, { x: dx * 0.28, y: dy * 0.28, duration: 0.4, ease: 'power2.out' });
-                });
-                btn.addEventListener('mouseleave', function () {
-                    gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.45)' });
-                });
-            });
-        }
 
         /* ================================================
            PARALLAX — hero dot-grid on scroll
@@ -619,7 +569,7 @@
                     end: 'bottom top',
                     scrub: true
                 },
-                y: 90, ease: 'none'
+                y: 80, ease: 'none'
             });
 
             gsap.to('.hero-deco-letter', {
@@ -627,9 +577,9 @@
                     trigger: 'section.hero',
                     start: 'top top',
                     end: 'bottom top',
-                    scrub: 1.8
+                    scrub: 1.6
                 },
-                y: -60, ease: 'none'
+                y: -55, ease: 'none'
             });
         }
 
@@ -640,7 +590,7 @@
             item.addEventListener('toggle', function () {
                 if (item.open && !prefersReduced) {
                     var p = item.querySelector('p');
-                    if (p) gsap.from(p, { opacity: 0, y: 10, duration: 0.4, ease: 'expo.out' });
+                    if (p) gsap.from(p, { opacity: 0, y: 8, duration: 0.38, ease: 'expo.out' });
                 }
             });
         });
