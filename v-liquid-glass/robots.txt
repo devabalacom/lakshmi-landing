@@ -1,0 +1,28 @@
+# robots.txt — ООО «Лакшми»
+# https://devabalacom.github.io/lakshmi-landing/
+
+User-agent: *
+Allow: /
+Disallow: /index-v2.html
+Disallow: /index-v3.html
+Disallow: /services/*-v2.html
+Disallow: /services/*-v3.html
+Disallow: /pages/about-v2.html
+Disallow: /pages/about-v3.html
+Disallow: /pages/contacts-v2.html
+Disallow: /pages/contacts-v3.html
+
+User-agent: Yandex
+Allow: /
+Disallow: /index-v2.html
+Disallow: /index-v3.html
+Disallow: /services/*-v2.html
+Disallow: /services/*-v3.html
+Disallow: /pages/about-v2.html
+Disallow: /pages/about-v3.html
+Disallow: /pages/contacts-v2.html
+Disallow: /pages/contacts-v3.html
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+Host: devabalacom.github.io
+
+Sitemap: https://devabalacom.github.io/lakshmi-landing/sitemap.xml

@@ -1,0 +1,560 @@
+/* ================================================================
+   ЛАКШМИ · MOTION SYSTEM v5 — Precision Industrial
+   ================================================================ */
+
+:root {
+  --expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Restore default cursor — guards against cached versions of this file */
+*, *::before, *::after { cursor: auto; }
+a, button, summary, label, [role="button"] { cursor: pointer !important; }
+
+/* ================================================================
+   SCROLL PROGRESS BAR
+   ================================================================ */
+.m-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255, 77, 28, 0.1);
+  z-index: 201;
+  pointer-events: none;
+}
+
+.m-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+  will-change: width;
+}
+
+/* ================================================================
+   NAV — scrolled state
+   ================================================================ */
+nav.nav {
+  transition: background 0.45s var(--expo), box-shadow 0.45s var(--expo) !important;
+}
+
+nav.nav.nav-scrolled {
+  background: rgba(245, 244, 238, 0.97) !important;
+  box-shadow: 0 2px 28px rgba(13, 20, 34, 0.09);
+}
+
+/* ================================================================
+   HERO DECORATIVE LAYERS
+   ================================================================ */
+section.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-dot-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(13, 20, 34, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.hero-vline {
+  position: absolute;
+  top: 0; right: 28%;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--accent) 0%, rgba(255,77,28,0) 100%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hero-deco-letter {
+  position: absolute;
+  bottom: -0.08em; right: -0.04em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 30vw;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.018;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: dotPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.7); opacity: 0.55; }
+}
+
+section.hero .shell {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-side {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.hero-side::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -25%;
+  width: 90%; height: 90%;
+  background: radial-gradient(circle, rgba(255,77,28,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-side::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50px; height: 50px;
+  border-top: 2px solid rgba(255,77,28,0.35);
+  border-right: 2px solid rgba(255,77,28,0.35);
+  pointer-events: none;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.hero-scroll-hint-bar {
+  width: 1px; height: 46px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  transform-origin: top;
+  animation: scrollScan 2s ease-in-out infinite;
+}
+
+@keyframes scrollScan {
+  0%  { transform: scaleY(0); transform-origin: top;    opacity: 1; }
+  48% { transform: scaleY(1); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: bottom; }
+  100%{ transform: scaleY(0); transform-origin: bottom; opacity: 0.4; }
+}
+
+.hero-scroll-hint-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* ================================================================
+   STAT COUNTERS
+   ================================================================ */
+.stat-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ================================================================
+   CATALOG CARDS — numbered + precision hover
+   ================================================================ */
+.catalog-grid { counter-reset: cat; }
+
+.catalog-card {
+  counter-increment: cat;
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid transparent !important;
+  transition: background var(--motion), border-color 0.35s var(--expo) !important;
+}
+
+/* Mono counter top-right */
+.catalog-card::before {
+  content: counter(cat, decimal-leading-zero);
+  position: absolute;
+  top: 1.2rem; right: 1.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--line-strong);
+  letter-spacing: 0.08em;
+  transition: color 0.3s;
+  z-index: 0;
+}
+
+.catalog-card:hover {
+  border-left-color: var(--accent) !important;
+}
+
+.catalog-card:hover::before {
+  color: var(--accent);
+}
+
+/* Bottom sweep line */
+.catalog-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.5s var(--expo);
+}
+
+.catalog-card:hover::after { width: 100%; }
+
+.catalog-card .link {
+  transition: color 0.25s, letter-spacing 0.3s var(--expo);
+}
+
+.catalog-card:hover .link {
+  letter-spacing: 0.02em;
+}
+
+/* ================================================================
+   ABOUT DARK SECTION — grid overlay + numbered cards
+   ================================================================ */
+.bg-dark {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-dark::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 5% 95%, rgba(255,77,28,0.065) 0%, transparent 48%),
+    radial-gradient(ellipse at 95% 5%, rgba(255,77,28,0.04) 0%, transparent 48%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-dark::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-dark .shell { position: relative; z-index: 1; }
+
+/* Pill cards — numbered backdrop */
+.about-cols { counter-reset: about; }
+
+.pill-card {
+  counter-increment: about;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(245, 244, 238, 0.1) !important;
+  transition: border-color 0.35s, background 0.35s !important;
+  border-radius: 4px;
+}
+
+/* Large ghost number */
+.pill-card::before {
+  content: counter(about, decimal-leading-zero);
+  position: absolute;
+  bottom: -0.1em; right: 0.1em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: rgba(245, 244, 238, 0.038);
+  pointer-events: none;
+  z-index: 0;
+  transition: color 0.4s, transform 0.45s var(--expo);
+}
+
+/* Left accent bar slides up */
+.pill-card::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 3px; height: 0;
+  background: var(--accent);
+  transition: height 0.45s var(--expo);
+}
+
+.pill-card > * { position: relative; z-index: 1; }
+
+.pill-card:hover {
+  border-color: rgba(255, 77, 28, 0.22) !important;
+  background: rgba(255, 77, 28, 0.04) !important;
+}
+
+.pill-card:hover::before {
+  color: rgba(245, 244, 238, 0.07);
+  transform: scale(1.06);
+}
+
+.pill-card:hover::after {
+  height: 100%;
+}
+
+/* ================================================================
+   PROCESS SECTION — Timeline with line draw
+   ================================================================ */
+.process-grid {
+  position: relative;
+  counter-reset: s;
+}
+
+@media (min-width: 1100px) {
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    top: 1.1rem;
+    left: 2rem; right: 2rem;
+    height: 1px;
+    background: var(--line);
+    z-index: 0;
+  }
+
+  .process-line-fill {
+    position: absolute;
+    top: 1.1rem;
+    left: 2rem;
+    height: 1px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), rgba(255,77,28,0.4));
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+.process-line-fill { display: none; }
+@media (min-width: 1100px) { .process-line-fill { display: block; } }
+
+.step {
+  position: relative;
+  overflow: hidden;
+  counter-increment: s;
+  z-index: 2;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 1.75rem 1.5rem;
+  border-radius: 4px;
+  transition: border-color 0.35s, transform 0.35s var(--expo) !important;
+}
+
+.step:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Step number — mono badge top */
+.step::before {
+  content: counter(s, decimal-leading-zero);
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 0.88rem;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.04em;
+  transition: letter-spacing 0.3s;
+}
+
+.step:hover::before { letter-spacing: 0.1em; }
+
+.step > * { position: relative; z-index: 1; }
+
+.step::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.5s var(--expo);
+}
+
+.step:hover::after { width: 100%; }
+
+/* ================================================================
+   LOGO MARQUEE
+   ================================================================ */
+.logos-marquee {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%);
+  mask-image: linear-gradient(90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%);
+}
+
+.logos-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.logos-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.logos-marquee .logo-cell {
+  flex-shrink: 0;
+  width: 200px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1.5rem;
+  border-right: 1px solid var(--line);
+  background: var(--paper);
+  transition: background 0.3s;
+}
+
+.logos-marquee .logo-cell:hover { background: var(--bg); }
+
+.logos-marquee .logo-cell img {
+  max-width: 100%;
+  max-height: 40px;
+  width: auto; height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.45);
+  transition: filter 0.35s;
+}
+
+.logos-marquee .logo-cell:hover img {
+  filter: grayscale(0%) opacity(1);
+}
+
+/* ================================================================
+   BUTTONS — fill sweep via gradient background-position
+   ================================================================ */
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent) 50%, var(--ink) 50%) !important;
+  background-size: 200% 100% !important;
+  background-position: 100% 0 !important;
+  will-change: background-position, transform;
+  transition: background-position 0.45s var(--expo), transform 0.35s var(--expo),
+              box-shadow 0.35s !important;
+}
+
+.btn-primary:hover {
+  background-position: 0% 0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 28px rgba(255, 77, 28, 0.28) !important;
+}
+
+.btn-secondary {
+  will-change: transform;
+  transition: transform 0.35s var(--expo), border-color var(--motion),
+              background var(--motion), color var(--motion) !important;
+}
+
+/* ================================================================
+   CONTACT CELLS
+   ================================================================ */
+.contact-cell {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cell::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 3px;
+  background: var(--accent);
+  transition: width 0.45s var(--expo);
+}
+
+.contact-cell:hover::after { width: 100%; }
+
+/* ================================================================
+   BRAND SQUARE — rotate on hover
+   ================================================================ */
+.brand-square {
+  transition: background 0.3s, transform 0.4s var(--back) !important;
+}
+
+.brand:hover .brand-square {
+  background: var(--accent) !important;
+  transform: rotate(12deg) !important;
+}
+
+/* ================================================================
+   FAQ
+   ================================================================ */
+.faq-item[open] {
+  background: rgba(255,77,28,0.018);
+  border-radius: 4px;
+  padding: 1.5rem 0.6rem;
+  margin: 0 -0.6rem;
+}
+
+.faq-item[open] summary { color: var(--accent); }
+
+/* ================================================================
+   FOOTER — gradient top line
+   ================================================================ */
+footer.footer {
+  position: relative;
+}
+
+footer.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,77,28,0.35) 25%,
+    rgba(255,77,28,0.6)  50%,
+    rgba(255,77,28,0.35) 75%,
+    transparent 100%);
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow::before  { animation: none !important; }
+  .hero-scroll-hint-bar  { animation: none !important; }
+  .logos-track           { animation: none !important; }
+}
