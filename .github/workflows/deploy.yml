@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'v-liquid-glass/**'
+  workflow_dispatch:
 
 jobs:
   deploy:
