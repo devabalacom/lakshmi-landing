@@ -1,5 +1,5 @@
-# robots.txt — ООО «Лакшми»
-# https://devabalacom.github.io/lakshmi-landing/
+# robots.txt — Пром-текстиль
+# https://пром-текстиль.рф/
 
 User-agent: *
 Allow: /
@@ -23,6 +23,6 @@ Disallow: /pages/about-v3.html
 Disallow: /pages/contacts-v2.html
 Disallow: /pages/contacts-v3.html
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
-Host: devabalacom.github.io
+Host: пром-текстиль.рф
 
-Sitemap: https://devabalacom.github.io/lakshmi-landing/sitemap.xml
+Sitemap: https://пром-текстиль.рф/sitemap.xml
