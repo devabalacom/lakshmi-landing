@@ -23,7 +23,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./v-liquid-glass/
-          server-dir: ./
+          server-dir: /www/xn----jtbjhgbnhjpid6k.xn--p1ai/
           timeout: 60000
           log-level: standard
           security: loose
