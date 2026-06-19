@@ -1023,55 +1023,46 @@
         </div>
         <div class="cat-list reveal">
             <a class="cat-card" href="services/chekhly-tenty-v2.html">
-                <div class="cat-cat">Укрывные изделия</div>
                 <h3>Чехлы, укрытия, тенты</h3>
                 <p>ПВХ, Oxford, Tarpaulin. Любая сложность и форма.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/specodezhda-v2.html">
-                <div class="cat-cat">Защитная одежда</div>
                 <h3>Спецодежда</h3>
                 <p>Огнеупорная и антистатическая. По ГОСТ и ТУ. Под СТМ.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/tactical-v2.html">
-                <div class="cat-cat">Снаряжение</div>
                 <h3>Тактическое и outdoor</h3>
                 <p>Cordura, Ripstop, мультикам. Под СТМ для брендов.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/medical-v2.html">
-                <div class="cat-cat">Здравоохранение</div>
                 <h3>Медицинский текстиль</h3>
                 <p>Антимикробные ткани. Многоразовые изделия для клиник.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/interior-v2.html">
-                <div class="cat-cat">HoReCa / Девелопмент</div>
                 <h3>Интерьерный B2B</h3>
                 <p>Огнестойкие шторы, обивка. Для HoReCa и девелоперов.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/transport-v2.html">
-                <div class="cat-cat">Транспорт</div>
                 <h3>Транспортный текстиль</h3>
                 <p>ЖД, авиа, спецтехника. Интеграция креплений.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/agro-v2.html">
-                <div class="cat-cat">Сельское хозяйство</div>
                 <h3>Агропромышленный</h3>
                 <p>Укрывные системы для ферм и теплиц. УФ-защита.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/fire-v2.html">
-                <div class="cat-cat">МЧС / Пожарная служба</div>
                 <h3>Пожарозащита</h3>
                 <p>Негорючие палатки и тенты. Экстремальные условия.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
             <a class="cat-card" href="services/cleanroom-v2.html">
-                <div class="cat-cat">Фармацевтика</div>
                 <h3>Чистые помещения</h3>
                 <p>Антистатика и пыленепроницаемость для фармы.</p>
                 <span class="cat-arrow">Подробнее →</span>
@@ -1453,43 +1444,9 @@
             }
         });
 
-        gsap.registerPlugin(ScrollTrigger);
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        /* Hero entrance animation */
-        if(!reduced){
-            gsap.timeline({defaults: {ease: 'expo.out'}})
-                .to('#heroH1',         {opacity: 1, y: 0, duration: 1.1, delay: .15})
-                .to('#heroLead',       {opacity: 1, y: 0, duration: .8},  '-=.72')
-                .to('#heroBtns',       {opacity: 1, y: 0, duration: .7},  '-=.5')
-                .to('#heroSide',       {opacity: 1, y: 0, duration: .9},  '-=.65')
-                .to('#heroScrollHint', {opacity: 1, duration: .6},         '-=.15');
-        } else {
-            ['heroH1','heroLead','heroBtns','heroSide','heroScrollHint'].forEach(function(id){
-                var el = document.getElementById(id);
-                if(el){ el.style.opacity = '1'; el.style.transform = 'none'; }
-            });
-        }
-
-        /* Stat counter animation */
-        ScrollTrigger.create({
-            trigger: '#stats', start: 'top 80%', once: true,
-            onEnter: function(){
-                document.querySelectorAll('.stat-num[data-count]').forEach(function(el){
-                    var target = parseFloat(el.dataset.count);
-                    var sfx    = el.textContent.replace(/[\d,.]/g, '');
-                    if(reduced){ el.textContent = target + sfx; return; }
-                    var obj = {v: 0};
-                    gsap.to(obj, {
-                        v: target, duration: 2, ease: 'expo.out',
-                        onUpdate:  function(){ el.textContent = Math.round(obj.v) + sfx; },
-                        onComplete:function(){ el.textContent = target + sfx; }
-                    });
-                });
-            }
-        });
-
-        /* Scroll reveal — IntersectionObserver */
+        /* Scroll reveal — IntersectionObserver (no GSAP dependency) */
         var io = new IntersectionObserver(function(entries){
             entries.forEach(function(e){
                 if(e.isIntersecting){
@@ -1500,17 +1457,7 @@
         }, {threshold: .07, rootMargin: '0px 0px -24px 0px'});
         document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-        /* FAQ open animation */
-        document.querySelectorAll('.faq-item').forEach(function(item){
-            item.addEventListener('toggle', function(){
-                if(item.open && !reduced){
-                    var b = item.querySelector('.faq-body');
-                    if(b) gsap.from(b, {opacity: 0, y: 8, duration: .35, ease: 'expo.out'});
-                }
-            });
-        });
-
-        /* Anchor scroll with nav offset */
+        /* Anchor scroll with nav offset (no GSAP dependency) */
         document.querySelectorAll('a[href^="#"]').forEach(function(a){
             a.addEventListener('click', function(e){
                 var href = this.getAttribute('href');
@@ -1524,7 +1471,8 @@
                 if(history.pushState) history.pushState(null, '', href);
             });
         });
-        /* Modal */
+
+        /* Modal (no GSAP dependency) */
         var calcModal  = document.getElementById('calcModal');
         var openBtn    = document.getElementById('openCalcModal');
         var closeBtn   = document.getElementById('closeCalcModal');
@@ -1540,10 +1488,10 @@
         }
         if(openBtn) openBtn.addEventListener('click', openModal);
         if(closeBtn) closeBtn.addEventListener('click', closeModal);
-        calcModal.addEventListener('click', function(e){ if(e.target === calcModal) closeModal(); });
-        document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && calcModal.classList.contains('open')) closeModal(); });
+        if(calcModal) calcModal.addEventListener('click', function(e){ if(e.target === calcModal) closeModal(); });
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && calcModal && calcModal.classList.contains('open')) closeModal(); });
 
-        /* Mobile submenu toggle */
+        /* Mobile submenu toggle (no GSAP dependency) */
         var mobToggle = document.getElementById('mobMenuToggle');
         var mobSub    = document.getElementById('mobMenuSub');
         var mobArrow  = document.getElementById('mobMenuArrow');
@@ -1551,6 +1499,60 @@
             var open = mobSub.classList.toggle('open');
             if(mobArrow) mobArrow.textContent = open ? '▴' : '▾';
         });
+
+        /* GSAP animations — optional enhancement, skipped gracefully if CDN unavailable */
+        if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
+            gsap.registerPlugin(ScrollTrigger);
+
+            /* Hero entrance */
+            if(!reduced){
+                gsap.timeline({defaults: {ease: 'expo.out'}})
+                    .to('#heroH1',         {opacity: 1, y: 0, duration: 1.1, delay: .15})
+                    .to('#heroLead',       {opacity: 1, y: 0, duration: .8},  '-=.72')
+                    .to('#heroBtns',       {opacity: 1, y: 0, duration: .7},  '-=.5')
+                    .to('#heroSide',       {opacity: 1, y: 0, duration: .9},  '-=.65')
+                    .to('#heroScrollHint', {opacity: 1, duration: .6},         '-=.15');
+            } else {
+                ['heroH1','heroLead','heroBtns','heroSide','heroScrollHint'].forEach(function(id){
+                    var el = document.getElementById(id);
+                    if(el){ el.style.opacity = '1'; el.style.transform = 'none'; }
+                });
+            }
+
+            /* Stat counter */
+            ScrollTrigger.create({
+                trigger: '#stats', start: 'top 80%', once: true,
+                onEnter: function(){
+                    document.querySelectorAll('.stat-num[data-count]').forEach(function(el){
+                        var target = parseFloat(el.dataset.count);
+                        var sfx    = el.textContent.replace(/[\d,.]/g, '');
+                        if(reduced){ el.textContent = target + sfx; return; }
+                        var obj = {v: 0};
+                        gsap.to(obj, {
+                            v: target, duration: 2, ease: 'expo.out',
+                            onUpdate:  function(){ el.textContent = Math.round(obj.v) + sfx; },
+                            onComplete:function(){ el.textContent = target + sfx; }
+                        });
+                    });
+                }
+            });
+
+            /* FAQ open animation */
+            document.querySelectorAll('.faq-item').forEach(function(item){
+                item.addEventListener('toggle', function(){
+                    if(item.open && !reduced){
+                        var b = item.querySelector('.faq-body');
+                        if(b) gsap.from(b, {opacity: 0, y: 8, duration: .35, ease: 'expo.out'});
+                    }
+                });
+            });
+        } else {
+            /* GSAP fallback: make hero elements visible immediately */
+            ['heroH1','heroLead','heroBtns','heroSide','heroScrollHint'].forEach(function(id){
+                var el = document.getElementById(id);
+                if(el){ el.style.opacity = '1'; el.style.transform = 'none'; el.style.transition = 'none'; }
+            });
+        }
 
     })();
     </script>
