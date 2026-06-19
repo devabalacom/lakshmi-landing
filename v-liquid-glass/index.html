@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пром-текстиль · Производство изделий из технического текстиля</title>
     <meta name="description" content="Производство технического текстиля для промышленности и бизнеса. Чехлы, тенты, спецодежда, тактическое снаряжение. Серии от 1 единицы.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lakshmi-textile.ru/">
+    <meta property="og:title" content="Пром-текстиль — промышленный пошив">
+    <meta property="og:description" content="Профессиональный промышленный пошив: спецодежда, тенты, медицинский текстиль, агроткань.">
+    <meta property="og:image" content="https://lakshmi-textile.ru/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Пром-текстиль — промышленный пошив">
+    <meta name="twitter:description" content="Профессиональный промышленный пошив: спецодежда, тенты, медицинский текстиль, агроткань.">
+    <meta name="twitter:image" content="https://lakshmi-textile.ru/og-image.jpg">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#C5973E">
     <link rel="canonical" href="https://пром-текстиль.рф/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,21 +256,6 @@
         @keyframes goldShimmer {
             0%, 100% { background-position: 0% 50%; }
             50%       { background-position: 100% 50%; }
-        }
-
-        .hero-tagline {
-            display: flex; align-items: center; gap: .8rem;
-            margin-top: 1.6rem;
-            font-family: var(--fm); font-size: .6rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: .2em;
-            color: var(--ink3);
-            opacity: 0; transform: translateY(16px);
-        }
-        .hero-tagline::before {
-            content: ''; display: block;
-            width: 30px; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--g0));
-            flex-shrink: 0;
         }
 
         .hero-lead {
@@ -712,7 +707,7 @@
         /* ─── REDUCED MOTION ─── */
         @media(prefers-reduced-motion: reduce) {
             .reveal { transition: none !important; }
-            .hero-h1, .hero-tagline, .hero-lead, .hero-btns, .hero-side { transition: none !important; }
+            .hero-h1, .hero-lead, .hero-btns, .hero-side { transition: none !important; }
             .hero-h1 em { animation: none !important; }
             .hero-scroll-bar { animation: none !important; }
         }
@@ -974,6 +969,7 @@
         <a href="tel:+74996477281">+7 499 647-72-81</a>
     </div>
 
+    <main>
     <!-- ═══ HERO ═══ -->
     <section class="hero">
         <div class="hero-deco" aria-hidden="true">Т</div>
@@ -1323,24 +1319,24 @@
             <div class="s-head reveal">
                 <h2 class="s-h2">Частые вопросы</h2>
             </div>
-            <div class="faq-list reveal">
-                <details class="faq-item">
+            <div class="faq-list">
+                <details class="faq-item reveal">
                     <summary>Какой минимальный заказ? <span class="faq-toggle">+</span></summary>
                     <p class="faq-body">От 1 единицы. Работаем как с единичными изделиями, так и с серийными партиями до тысяч штук.</p>
                 </details>
-                <details class="faq-item">
+                <details class="faq-item reveal">
                     <summary>Сколько времени занимает производство? <span class="faq-toggle">+</span></summary>
                     <p class="faq-body">Партия из 50 изделий — 1-2 рабочих дня в пошиве. Обычно от 5 до 14 дней от заявки до отгрузки.</p>
                 </details>
-                <details class="faq-item">
+                <details class="faq-item reveal">
                     <summary>Работаете ли с юридическими лицами? <span class="faq-toggle">+</span></summary>
                     <p class="faq-body">Да, работаем по договору с ИП, ООО, АО и государственными структурами. Полный пакет документов.</p>
                 </details>
-                <details class="faq-item">
+                <details class="faq-item reveal">
                     <summary>Производите ли под СТМ? <span class="faq-toggle">+</span></summary>
                     <p class="faq-body">Да. Шьём изделия с вашими логотипами, этикетками и маркировкой. Возможен полный белый лейбл.</p>
                 </details>
-                <details class="faq-item">
+                <details class="faq-item reveal">
                     <summary>Какие материалы используете? <span class="faq-toggle">+</span></summary>
                     <p class="faq-body">ПВХ, Oxford 600D/1000D, Tarpaulin, Cordura, Ripstop, брезент, многослойные композиты.</p>
                 </details>
@@ -1381,6 +1377,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ═══ FOOTER ═══ -->
     <footer>
         <div class="shell footer-inner">
@@ -1389,6 +1387,25 @@
             <a href="privacy.html">Политика конфиденциальности</a>
         </div>
     </footer>
+
+    <!-- ═══ MODAL ═══ -->
+    <div class="modal-overlay" id="calcModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-box">
+            <button class="modal-close" id="closeCalcModal" type="button" aria-label="Закрыть">✕</button>
+            <h3 id="modalTitle">Рассчитать стоимость</h3>
+            <p>Оставьте заявку — ответим с расчётом в течение часа в рабочее время.</p>
+            <form class="modal-form" id="calcForm" method="post" onsubmit="handleCalcForm(event)">
+                <label for="calcName" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Ваше имя</label>
+                <input id="calcName" type="text" name="name" placeholder="Ваше имя" required>
+                <label for="calcPhone" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Телефон или WhatsApp</label>
+                <input id="calcPhone" type="tel" name="phone" placeholder="Телефон или WhatsApp" required>
+                <label for="calcTask" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Опишите задачу</label>
+                <textarea id="calcTask" name="task" placeholder="Опишите задачу: что нужно пошить, материал, тираж, размеры" rows="3"></textarea>
+                <button type="submit" class="btn btn-gold">Отправить заявку →</button>
+                <p class="modal-note">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" style="color:var(--g2)">политикой конфиденциальности</a></p>
+            </form>
+        </div>
+    </div>
 
     <!-- ═══ SCRIPTS ═══ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1537,21 +1554,6 @@
 
     })();
     </script>
-    <!-- ═══ MODAL ═══ -->
-    <div class="modal-overlay" id="calcModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal-box">
-            <button class="modal-close" id="closeCalcModal" aria-label="Закрыть">✕</button>
-            <h3 id="modalTitle">Рассчитать стоимость</h3>
-            <p>Оставьте заявку — ответим с расчётом в течение часа в рабочее время.</p>
-            <form class="modal-form" id="calcForm" onsubmit="handleCalcForm(event)">
-                <input type="text" name="name" placeholder="Ваше имя" required>
-                <input type="tel" name="phone" placeholder="Телефон или WhatsApp" required>
-                <textarea name="task" placeholder="Опишите задачу: что нужно пошить, материал, тираж, размеры" rows="3"></textarea>
-                <button type="submit" class="btn btn-gold">Отправить заявку →</button>
-                <p class="modal-note">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" style="color:var(--g2)">политикой конфиденциальности</a></p>
-            </form>
-        </div>
-    </div>
     <script>
     function handleCalcForm(e) {
         e.preventDefault();
