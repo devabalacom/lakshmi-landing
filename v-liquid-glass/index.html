@@ -63,8 +63,8 @@
 
             /* Radii */
             --rs:  6px;
-            --r:   12px;
-            --rl:  22px;
+            --r:   16px;
+            --rl:  24px;
             --rp:  999px;
 
             /* Motion */
@@ -190,8 +190,8 @@
         .hero {
             position: relative;
             min-height: 100svh;
-            display: flex; align-items: flex-end;
-            padding: 100px 0 5rem;
+            display: flex; align-items: center;
+            padding: 80px 0 3rem;
             overflow: hidden;
             background: var(--bg);
         }
@@ -227,13 +227,16 @@
             display: grid; grid-template-columns: 1fr;
             gap: 2.5rem; width: 100%;
         }
+        @media(min-width:640px) {
+            .hero-inner { grid-template-columns: 1fr 260px; align-items: center; gap: 2rem; }
+        }
         @media(min-width:960px) {
-            .hero-inner { grid-template-columns: 1fr 300px; align-items: flex-end; gap: 4rem; }
+            .hero-inner { grid-template-columns: 1fr 300px; align-items: center; gap: 4rem; }
         }
 
         .hero-h1 {
             font-family: var(--fd);
-            font-size: clamp(3.2rem, 8.5vw, 7.8rem);
+            font-size: clamp(2rem, 5vw, 4.8rem);
             font-weight: 400; line-height: .95; letter-spacing: -.02em;
             animation: heroFadeUp 0.8s var(--ease) both;
         }
@@ -556,7 +559,6 @@
         .process-list {
             display: grid; grid-template-columns: 1fr;
             gap: 12px; background: transparent;
-            border-radius: var(--rl); overflow: hidden;
         }
         @media(min-width:640px) { .process-list { grid-template-columns: repeat(5, 1fr); } }
 
@@ -708,9 +710,11 @@
         /* ─── RESPONSIVE ─── */
         @media(max-width:767px) {
             .section { padding: 4rem 0; }
-            .hero { padding: 90px 0 3.5rem; }
+            .hero { padding: 64px 0 2rem; }
             .stats-section { padding: 3.5rem 0; }
-            .stats-island { padding: 2.5rem 1.5rem; border-radius: 16px; }
+            .stats-island { padding: 2.5rem 1.5rem; border-radius: var(--r); }
+            .why-section { padding: 0; }
+            .why-island { padding: 2.5rem 1.5rem; border-radius: 16px; }
             .cta-block { padding: 2.5rem 1.8rem; flex-direction: column; align-items: flex-start; }
         }
 
@@ -855,6 +859,23 @@
         .task-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; color: var(--ink); }
         .task-card p { font-size: .85rem; color: var(--ink2); line-height: 1.65; }
 
+        /* ═══ WHY ISLAND ═══ */
+        .why-section { background: var(--bg); }
+        .why-island {
+            background: var(--nr);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-island::before {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 55% 70% at 15% 40%, rgba(197,151,62,0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 65% at 85% 60%, rgba(197,151,62,0.03) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
         /* ═══ ПОЧЕМУ МЫ section ═══ */
         .why-grid {
             display: grid; grid-template-columns: repeat(3, 1fr);
@@ -888,9 +909,9 @@
         @media(min-width:640px)  { .cat-list { grid-template-columns: 1fr 1fr; } }
         @media(min-width:1024px) { .cat-list { grid-template-columns: repeat(3, 1fr); } }
         .cat-card {
-            border-radius: 18px; border: 1px solid var(--bg3);
+            border-radius: var(--r); border: 1px solid var(--bg3);
         }
-        .cat-card::after { border-radius: 0 0 18px 18px; }
+        .cat-card::after { border-radius: 0 0 var(--r) var(--r); }
 
         /* ═══ PROCESS TIMELINE ═══ */
         .process-timeline { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
@@ -1200,13 +1221,14 @@
     <div class="sep"></div>
 
     <!-- ═══ ПОЧЕМУ МЫ ═══ -->
-    <section class="section" style="background:var(--nr);overflow:hidden" id="why">
+    <section class="section why-section" id="why">
         <div class="shell">
-            <div class="s-head s-dark reveal">
+            <div class="why-island reveal">
+            <div class="s-head s-dark">
                 <h2 class="s-h2">Надёжный партнёр по производству</h2>
                 <p class="s-sub" style="color:var(--nt2)">Работаем не только с разовыми заказами, но и на постоянной основе — как производственный партнёр вашего бизнеса.</p>
             </div>
-            <div class="why-grid reveal">
+            <div class="why-grid">
                 <div class="why-card">
                     <div class="why-icon">
                         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -1250,6 +1272,7 @@
                     <p>Нет минимального тиража. Единичное изделие обрабатываем с тем же вниманием, что и серию. Производительность — до 5 000 изделий в месяц.</p>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
@@ -1262,55 +1285,31 @@
                 <h2 class="s-h2">От заявки до отгрузки</h2>
                 <p class="s-sub">Прозрачно на каждом этапе. Обычно 5–14 рабочих дней.</p>
             </div>
-            <div class="process-timeline reveal">
-                <div class="pt-item">
-                    <div class="pt-left">
-                        <div class="pt-num">01</div>
-                        <div class="pt-line"></div>
-                    </div>
-                    <div class="pt-content">
-                        <h3>Заявка</h3>
-                        <p>Пришлите ТЗ, чертёж, фото или образец — по телефону, email или WhatsApp. Ответим в течение часа.</p>
-                    </div>
+            <div class="process-list reveal">
+                <div class="p-step" data-n="1">
+                    <div class="p-num">01</div>
+                    <h3>Заявка</h3>
+                    <p>Пришлите ТЗ, чертёж, фото или образец — по телефону, email или WhatsApp. Ответим в течение часа.</p>
                 </div>
-                <div class="pt-item">
-                    <div class="pt-left">
-                        <div class="pt-num">02</div>
-                        <div class="pt-line"></div>
-                    </div>
-                    <div class="pt-content">
-                        <h3>Расчёт и материалы</h3>
-                        <p>Согласовываем материалы, конструкцию и стоимость. При необходимости отправляем образцы тканей курьером.</p>
-                    </div>
+                <div class="p-step" data-n="2">
+                    <div class="p-num">02</div>
+                    <h3>Расчёт и материалы</h3>
+                    <p>Согласовываем материалы, конструкцию и стоимость. При необходимости отправляем образцы тканей курьером.</p>
                 </div>
-                <div class="pt-item">
-                    <div class="pt-left">
-                        <div class="pt-num">03</div>
-                        <div class="pt-line"></div>
-                    </div>
-                    <div class="pt-content">
-                        <h3>Договор и оплата</h3>
-                        <p>Подписываем договор, счёт, авансовая оплата 30% — и партия запускается в работу.</p>
-                    </div>
+                <div class="p-step" data-n="3">
+                    <div class="p-num">03</div>
+                    <h3>Договор и оплата</h3>
+                    <p>Подписываем договор, счёт, авансовая оплата 30% — и партия запускается в работу.</p>
                 </div>
-                <div class="pt-item">
-                    <div class="pt-left">
-                        <div class="pt-num">04</div>
-                        <div class="pt-line"></div>
-                    </div>
-                    <div class="pt-content">
-                        <h3>Производство и ОТК</h3>
-                        <p>Пошив по лекалам. Трёхступенчатый контроль качества после раскроя, пошива и перед упаковкой.</p>
-                    </div>
+                <div class="p-step" data-n="4">
+                    <div class="p-num">04</div>
+                    <h3>Производство и ОТК</h3>
+                    <p>Пошив по лекалам. Трёхступенчатый контроль качества после раскроя, пошива и перед упаковкой.</p>
                 </div>
-                <div class="pt-item pt-item--last">
-                    <div class="pt-left">
-                        <div class="pt-num pt-num--gold">05</div>
-                    </div>
-                    <div class="pt-content">
-                        <h3>Отгрузка по РФ и СНГ</h3>
-                        <p>Доставка проверенными перевозчиками: ПЭК, Деловые Линии, СДЭК. Полный пакет документов.</p>
-                    </div>
+                <div class="p-step" data-n="5">
+                    <div class="p-num">05</div>
+                    <h3>Отгрузка по РФ и СНГ</h3>
+                    <p>Доставка проверенными перевозчиками: ПЭК, Деловые Линии, СДЭК. Полный пакет документов.</p>
                 </div>
             </div>
         </div>
