@@ -235,7 +235,11 @@
             font-family: var(--fd);
             font-size: clamp(3.2rem, 8.5vw, 7.8rem);
             font-weight: 400; line-height: .95; letter-spacing: -.02em;
-            opacity: 0; transform: translateY(32px);
+            animation: heroFadeUp 0.8s var(--ease) both;
+        }
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: none; }
         }
         /* Metallic gold gradient on accent word */
         .hero-h1 em {
@@ -262,12 +266,12 @@
             font-size: 1rem; color: var(--ink2);
             max-width: 460px; line-height: 1.75;
             margin-top: 1.5rem;
-            opacity: 0; transform: translateY(16px);
+            animation: heroFadeUp 0.8s 0.2s var(--ease) both;
         }
         .hero-btns {
             display: flex; gap: .8rem; flex-wrap: wrap;
             margin-top: 2rem;
-            opacity: 0; transform: translateY(16px);
+            animation: heroFadeUp 0.7s 0.35s var(--ease) both;
         }
 
         /* ─── BUTTONS ─── */
@@ -298,7 +302,7 @@
         }
 
         /* ─── HERO GLASS PANEL ─── */
-        .hero-side { opacity: 0; transform: translateY(16px); }
+        .hero-side { animation: heroFadeUp 0.9s 0.5s var(--ease) both; }
 
         .hero-glass {
             background: var(--gbg);
@@ -460,23 +464,28 @@
         .cat-card:hover .cat-arrow { color: var(--g0); gap: .6rem; }
 
         /* ═══════════════════════════════════════════
-           STATS — dark strip for visual rhythm
+           STATS — island for visual rhythm
            ═══════════════════════════════════════════ */
-        .stats-strip {
-            background: var(--nr);
-            position: relative; overflow: hidden;
+        .stats-section {
+            background: var(--bg);
             padding: 5rem 0;
+            position: relative;
         }
-        /* Subtle radial glow */
-        .stats-strip::before {
+        .stats-island {
+            background: var(--nr);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .stats-island::before {
             content: ''; position: absolute; inset: 0;
             background:
                 radial-gradient(ellipse 65% 80% at 22% 50%, rgba(197,151,62,0.055) 0%, transparent 65%),
                 radial-gradient(ellipse 55% 70% at 82% 50%, rgba(197,151,62,0.035) 0%, transparent 60%);
             pointer-events: none;
         }
-        /* Subtle grid lines — editorial depth */
-        .stats-strip::after {
+        .stats-island::after {
             content: ''; position: absolute; inset: 0;
             background-image:
                 linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
@@ -700,14 +709,15 @@
         @media(max-width:767px) {
             .section { padding: 4rem 0; }
             .hero { padding: 90px 0 3.5rem; }
-            .stats-strip { padding: 3.5rem 0; }
+            .stats-section { padding: 3.5rem 0; }
+            .stats-island { padding: 2.5rem 1.5rem; border-radius: 16px; }
             .cta-block { padding: 2.5rem 1.8rem; flex-direction: column; align-items: flex-start; }
         }
 
         /* ─── REDUCED MOTION ─── */
         @media(prefers-reduced-motion: reduce) {
             .reveal { transition: none !important; }
-            .hero-h1, .hero-lead, .hero-btns, .hero-side { transition: none !important; }
+            .hero-h1, .hero-lead, .hero-btns, .hero-side { animation: none !important; opacity: 1 !important; }
             .hero-h1 em { animation: none !important; }
             .hero-scroll-bar { animation: none !important; }
         }
@@ -872,16 +882,15 @@
 
         /* Cat-list cards rounded */
         .cat-list {
-            border-radius: var(--rl); overflow: hidden;
-            gap: 12px; background: transparent;
+            gap: 16px; background: transparent;
             border: none;
         }
         @media(min-width:640px)  { .cat-list { grid-template-columns: 1fr 1fr; } }
         @media(min-width:1024px) { .cat-list { grid-template-columns: repeat(3, 1fr); } }
         .cat-card {
-            border-radius: var(--r); border: 1px solid var(--bg3);
+            border-radius: 18px; border: 1px solid var(--bg3);
         }
-        .cat-card::after { border-radius: 0 0 var(--r) var(--r); }
+        .cat-card::after { border-radius: 0 0 18px 18px; }
 
         /* ═══ PROCESS TIMELINE ═══ */
         .process-timeline { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
@@ -1021,8 +1030,7 @@
                 <h2 class="s-h2">Что мы производим</h2>
                 <p class="s-sub">9 направлений технического текстиля. Работаем с юридическими лицами и госструктурами.</p>
             </div>
-        </div>
-        <div class="cat-list reveal">
+            <div class="cat-list reveal">
             <a class="cat-card" href="services/chekhly-tenty-v2.html">
                 <h3>Чехлы, укрытия, тенты</h3>
                 <p>ПВХ, Oxford, Tarpaulin. Любая сложность и форма.</p>
@@ -1068,6 +1076,7 @@
                 <p>Антистатика и пыленепроницаемость для фармы.</p>
                 <span class="cat-arrow">Подробнее →</span>
             </a>
+            </div>
         </div>
     </section>
 
@@ -1115,29 +1124,33 @@
         </div>
     </section>
 
-    <!-- ═══ STATS — dark editorial strip ═══ -->
-    <section class="stats-strip" id="stats">
-        <div class="stats-inner shell">
-            <div class="s-head s-dark reveal">
-                <h2 class="s-h2">20 лет в производстве</h2>
-            </div>
-        </div>
-        <div class="stats-row reveal">
-            <div class="stat-cell">
-                <span class="stat-num" data-count="20">20</span>
-                <div class="stat-desc">лет опыта в производстве технического текстиля</div>
-            </div>
-            <div class="stat-cell">
-                <span class="stat-num" data-count="1400">1400</span>
-                <div class="stat-desc">м² собственный швейный цех в Санкт-Петербурге</div>
-            </div>
-            <div class="stat-cell">
-                <span class="stat-num" data-count="50">50+</span>
-                <div class="stat-desc">специалистов: конструкторы, закройщики, технологи</div>
-            </div>
-            <div class="stat-cell">
-                <span class="stat-num">от&nbsp;1</span>
-                <div class="stat-desc">минимальный заказ — серии любого объёма</div>
+    <!-- ═══ STATS — island ═══ -->
+    <section class="stats-section" id="stats">
+        <div class="shell">
+            <div class="stats-island reveal">
+                <div class="stats-inner">
+                    <div class="s-head s-dark">
+                        <h2 class="s-h2">20 лет в производстве</h2>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat-cell">
+                            <span class="stat-num" data-count="20">20</span>
+                            <div class="stat-desc">лет опыта в производстве технического текстиля</div>
+                        </div>
+                        <div class="stat-cell">
+                            <span class="stat-num" data-count="1400">1400</span>
+                            <div class="stat-desc">м² собственный швейный цех в Санкт-Петербурге</div>
+                        </div>
+                        <div class="stat-cell">
+                            <span class="stat-num" data-count="50">50+</span>
+                            <div class="stat-desc">специалистов: конструкторы, закройщики, технологи</div>
+                        </div>
+                        <div class="stat-cell">
+                            <span class="stat-num">от&nbsp;1</span>
+                            <div class="stat-desc">минимальный заказ — серии любого объёма</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1505,20 +1518,9 @@
         if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
             gsap.registerPlugin(ScrollTrigger);
 
-            /* Hero entrance */
-            if(!reduced){
-                gsap.timeline({defaults: {ease: 'expo.out'}})
-                    .to('#heroH1',         {opacity: 1, y: 0, duration: 1.1, delay: .15})
-                    .to('#heroLead',       {opacity: 1, y: 0, duration: .8},  '-=.72')
-                    .to('#heroBtns',       {opacity: 1, y: 0, duration: .7},  '-=.5')
-                    .to('#heroSide',       {opacity: 1, y: 0, duration: .9},  '-=.65')
-                    .to('#heroScrollHint', {opacity: 1, duration: .6},         '-=.15');
-            } else {
-                ['heroH1','heroLead','heroBtns','heroSide','heroScrollHint'].forEach(function(id){
-                    var el = document.getElementById(id);
-                    if(el){ el.style.opacity = '1'; el.style.transform = 'none'; }
-                });
-            }
+            /* Hero entrance handled by CSS animations */
+            var scrollHint = document.getElementById('heroScrollHint');
+            if(scrollHint){ scrollHint.style.opacity = '1'; }
 
             /* Stat counter */
             ScrollTrigger.create({
@@ -1548,11 +1550,9 @@
                 });
             });
         } else {
-            /* GSAP fallback: make hero elements visible immediately */
-            ['heroH1','heroLead','heroBtns','heroSide','heroScrollHint'].forEach(function(id){
-                var el = document.getElementById(id);
-                if(el){ el.style.opacity = '1'; el.style.transform = 'none'; el.style.transition = 'none'; }
-            });
+            /* GSAP fallback: only show scroll hint; CSS animations handle hero elements */
+            var sh = document.getElementById('heroScrollHint');
+            if(sh){ sh.style.opacity = '1'; }
         }
 
     })();
