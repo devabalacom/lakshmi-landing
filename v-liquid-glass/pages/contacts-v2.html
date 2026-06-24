@@ -111,8 +111,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style-v2.css">
     <style>
-        .hero-page { padding: 9rem 0 5rem; border-bottom: 1px solid #E8E0D0; }
-        .contact-h1 { font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; margin: 1.5rem 0; }
+        :root {
+            --bg: #FDFAF5; --glass: rgba(255,255,255,0.68); --glass-md: rgba(255,255,255,0.86);
+            --glass-border: rgba(197,151,62,0.18); --glass-hi: rgba(197,151,62,0.38);
+            --accent: #C5973E; --accent2: #E4B867; --accent-glow: rgba(197,151,62,0.28);
+            --accent-soft: rgba(197,151,62,0.09); --text: #1A1612; --text-soft: #4A4138;
+            --text-muted: #877769; --r: 16px; --rs: 6px; --rl: 24px;
+        }
+        .hero-page { padding: 9rem 0 5rem; border-bottom: 1px solid rgba(197,151,62,0.18); }
+        .contact-h1 { font-size: clamp(2.4rem, 6vw, 5rem); font-family: 'Calistoga', Georgia, serif; font-weight: 400; line-height: 1.02; letter-spacing: -0.02em; margin: 1.5rem 0; }
         .contact-h1 .accent { color: var(--accent); }
     </style>
 </head>
