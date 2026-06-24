@@ -139,8 +139,8 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{cursor:pointer;bo
 @keyframes blobA{from{transform:translate(0,0) scale(1);border-radius:60% 40% 30% 70%/60% 30% 70% 40%}to{transform:translate(60px,-40px) scale(1.08);border-radius:30% 60% 70% 40%/50% 60% 30% 60%}}
 @keyframes blobB{from{transform:translate(0,0) scale(1);border-radius:40% 60% 55% 45%/45% 55% 40% 60%}to{transform:translate(-50px,60px) scale(1.06);border-radius:60% 40% 30% 70%/55% 40% 65% 35%}}
 .shell{max-width:1380px;margin:0 auto;padding:0 1.5rem}@media(min-width:768px){.shell{padding:0 3rem}}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 0;background:rgba(249,247,242,.75);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--glass-border);transition:background .4s,border-color .4s,padding .3s}
-.nav.solid{background:rgba(249,247,242,.96);border-bottom-color:rgba(181,148,16,.28);padding:.8rem 0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 0;background:white;border-bottom:1px solid var(--glass-border);transition:background .4s,border-color .4s,padding .3s}
+.nav.solid{border-bottom-color:rgba(181,148,16,.28);padding:.8rem 0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:.8rem;font-weight:900;font-size:1.1rem;letter-spacing:-.015em}
 .brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;color:#fff;box-shadow:0 0 22px var(--accent-glow)}
@@ -223,7 +223,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 <body>
 <div class="progress" id="progressBar"></div>
 <div class="blobs"><div class="blob blob-a"></div><div class="blob blob-b"></div></div>
-<nav class="nav" id="mainNav"><div class="shell nav-inner"><a href="../index.html" class="brand"><span class="brand-logo">П</span>Пром-текстиль</a><div class="nav-links"><a href="../index.html#catalog">Направления</a><a href="../pages/about-v2.html">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a></div><a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a><button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button></div></nav><div class="nav-mobile" id="navMobile"><a href="../index.html#catalog">Направления</a><a href="../pages/about-v2.html">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a><a href="tel:+74996477281">+7 499 647-72-81</a></div>
+<nav class="nav" id="mainNav"><div class="shell nav-inner"><a href="../index.html" class="brand">Пром-текстиль</a><div class="nav-links"><a href="../index.html#catalog">Направления</a><a href="../pages/about-v2.html">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a></div><a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a><button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button></div></nav><div class="nav-mobile" id="navMobile"><a href="../index.html#catalog">Направления</a><a href="../pages/about-v2.html">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a><a href="tel:+74996477281">+7 499 647-72-81</a></div>
 
     <section class="hero-service">
         <div class="shell">
