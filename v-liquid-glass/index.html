@@ -106,13 +106,11 @@
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 1.2rem 0;
-            transition: background .5s var(--ease), border-color .5s var(--ease), padding .4s var(--ease);
+            background: white;
+            border-bottom: 1px solid var(--bg3);
+            transition: padding .4s var(--ease);
         }
         .nav.solid {
-            background: var(--gbg2);
-            backdrop-filter: blur(24px) saturate(1.3);
-            -webkit-backdrop-filter: blur(24px) saturate(1.3);
-            border-bottom: 1px solid var(--gbd);
             padding: .85rem 0;
         }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; }
@@ -187,12 +185,17 @@
         /* ═══════════════════════════════════════════
            HERO
            ═══════════════════════════════════════════ */
+        .hero-section {
+            background: white;
+            padding: 90px 0 3rem;
+        }
         .hero {
             position: relative;
-            min-height: 100svh;
+            min-height: 80svh;
             display: flex; align-items: center;
-            padding: 80px 0 3rem;
+            padding: 4rem 3rem 5rem;
             overflow: hidden;
+            border-radius: var(--rl);
             background:
                 linear-gradient(rgba(253,250,245,0.50), rgba(253,250,245,0.50)),
                 url('img/hero-textile-factory.png') center/cover no-repeat;
@@ -966,7 +969,6 @@
     <nav class="nav" id="mainNav">
         <div class="shell nav-inner">
             <a href="index.html" class="brand">
-                <span class="brand-mark">ПТ</span>
                 <span class="brand-name">Пром-текстиль</span>
             </a>
             <div class="nav-links">
@@ -1020,42 +1022,46 @@
 
     <main>
     <!-- ═══ HERO ═══ -->
-    <section class="hero">
-        <div class="hero-deco" aria-hidden="true">Т</div>
-        <div class="shell hero-inner">
-            <div>
-                <h1 class="hero-h1" id="heroH1">
-                    Производство<br>изделий из<br>
-                    <em>технического</em><br>
-                    текстиля
-                </h1>
-                <p class="hero-lead" id="heroLead">
-                    Партия от 1 единицы до массового производства — по ТЗ, чертежу или образцу.<br><br>
-                    Работаем как с государственными заказами, так и с частными компаниями.
-                </p>
-                <div class="hero-btns" id="heroBtns">
-                    <a href="tel:+74996477281" class="btn btn-gold">Позвонить →</a>
-                </div>
-            </div>
-            <div class="hero-side" id="heroSide">
-                <div class="hero-glass">
-                    <div class="glass-label">Тираж</div>
-                    <div class="mat-row" style="flex-direction:column;align-items:flex-start;gap:.3rem;padding:1rem 0">
-                        <span style="font-family:var(--fd);font-size:2.2rem;line-height:1;background:linear-gradient(135deg,var(--g2),var(--g0),var(--g1));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">от 1 единицы</span>
-                        <span style="font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;color:var(--g2);text-transform:uppercase">до 1 миллиона</span>
+    <section class="hero-section">
+        <div class="shell">
+            <div class="hero">
+                <div class="hero-deco" aria-hidden="true">Т</div>
+                <div class="hero-inner">
+                    <div>
+                        <h1 class="hero-h1" id="heroH1">
+                            Производство<br>изделий из<br>
+                            <em>технического</em><br>
+                            текстиля
+                        </h1>
+                        <p class="hero-lead" id="heroLead">
+                            Партия от 1 единицы до массового производства — по ТЗ, чертежу или образцу.<br><br>
+                            Работаем как с государственными заказами, так и с частными компаниями.
+                        </p>
+                        <div class="hero-btns" id="heroBtns">
+                            <a href="tel:+74996477281" class="btn btn-gold">Позвонить →</a>
+                        </div>
                     </div>
-                    <div class="glass-label" style="margin-top:1rem">Материалы</div>
-                    <div class="mat-row"><span class="mat-name">Oxford 600D / 1000D</span><span class="mat-dot"></span></div>
-                    <div class="mat-row"><span class="mat-name">Cordura / Ripstop</span><span class="mat-dot"></span></div>
-                    <div class="mat-row"><span class="mat-name">ПВХ / Tarpaulin</span><span class="mat-dot"></span></div>
-                    <div class="mat-row"><span class="mat-name">Брезент, Номекс</span><span class="mat-dot"></span></div>
+                    <div class="hero-side" id="heroSide">
+                        <div class="hero-glass">
+                            <div class="glass-label">Тираж</div>
+                            <div class="mat-row" style="flex-direction:column;align-items:flex-start;gap:.3rem;padding:1rem 0">
+                                <span style="font-family:var(--fd);font-size:2.2rem;line-height:1;background:linear-gradient(135deg,var(--g2),var(--g0),var(--g1));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">от 1 единицы</span>
+                                <span style="font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;color:var(--g2);text-transform:uppercase">до 1 миллиона</span>
+                            </div>
+                            <div class="glass-label" style="margin-top:1rem">Материалы</div>
+                            <div class="mat-row"><span class="mat-name">Oxford 600D / 1000D</span><span class="mat-dot"></span></div>
+                            <div class="mat-row"><span class="mat-name">Cordura / Ripstop</span><span class="mat-dot"></span></div>
+                            <div class="mat-row"><span class="mat-name">ПВХ / Tarpaulin</span><span class="mat-dot"></span></div>
+                            <div class="mat-row"><span class="mat-name">Брезент, Номекс</span><span class="mat-dot"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="animation:scrollScan 2.2s ease-in-out infinite">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
                 </div>
             </div>
-        </div>
-        <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="animation:scrollScan 2.2s ease-in-out infinite">
-                <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
         </div>
     </section>
 
