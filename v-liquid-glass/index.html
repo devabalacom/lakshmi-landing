@@ -277,11 +277,20 @@
             animation: heroFadeUp 0.8s 0.2s var(--ease) both;
         }
         .hero-text-glass {
-            background: rgba(255,255,255,0.45);
+            background: var(--gbg);
+            backdrop-filter: blur(20px) saturate(1.25);
+            -webkit-backdrop-filter: blur(20px) saturate(1.25);
             border: 1px solid var(--gbd);
             border-radius: var(--rl);
             box-shadow: var(--gsh), inset 0 1px 0 rgba(255,255,255,0.92);
             padding: 2.5rem 2.8rem;
+            position: relative;
+        }
+        .hero-text-glass::before {
+            content: ''; position: absolute;
+            top: 0; left: 12%; right: 12%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.96), transparent);
+            border-radius: var(--rp);
         }
         .hero-btns {
             display: flex; gap: .8rem; flex-wrap: wrap;
