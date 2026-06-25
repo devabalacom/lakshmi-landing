@@ -74,7 +74,7 @@ section.hero {
 .hero-deco-letter {
   position: absolute;
   bottom: -0.08em; right: -0.04em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 30vw;
   line-height: 1;
@@ -89,7 +89,7 @@ section.hero {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -169,7 +169,7 @@ section.hero .shell {
 }
 
 .hero-scroll-hint-text {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.58rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -202,7 +202,7 @@ section.hero .shell {
   content: counter(cat, decimal-leading-zero);
   position: absolute;
   top: 1.2rem; right: 1.4rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.62rem;
   font-weight: 700;
   color: var(--line-strong);
@@ -287,7 +287,7 @@ section.hero .shell {
   content: counter(about, decimal-leading-zero);
   position: absolute;
   bottom: -0.1em; right: 0.1em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 4.5rem;
   line-height: 1;
@@ -378,7 +378,7 @@ section.hero .shell {
 .step::before {
   content: counter(s, decimal-leading-zero);
   display: block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 0.88rem;
   line-height: 1;

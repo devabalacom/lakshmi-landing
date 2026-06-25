@@ -19,7 +19,7 @@
     <link rel="canonical" href="https://пром-текстиль.рф/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════
            DESIGN TOKENS — LIGHT PREMIUM / BRUSHED GOLD
@@ -56,10 +56,10 @@
             --gsh:   0 8px 32px rgba(26,22,18,0.07), 0 1px 3px rgba(26,22,18,0.04);
 
             /* Typography */
-            --fd: 'Calistoga', Georgia, serif;
-            --fs: 'Cormorant Garamond', Georgia, serif;
-            --fb: 'Manrope', -apple-system, sans-serif;
-            --fm: 'JetBrains Mono', monospace;
+            --fd: 'Montserrat', sans-serif;
+            --fs: 'Montserrat', sans-serif;
+            --fb: 'Montserrat', sans-serif;
+            --fm: 'Montserrat', monospace;
 
             /* Radii */
             --rs:  6px;
@@ -1054,7 +1054,8 @@
                             Работаем как с государственными заказами, так и с частными компаниями.
                         </p>
                         <div class="hero-btns" id="heroBtns">
-                            <a href="tel:+74996477281" class="btn btn-gold">Позвонить →</a>
+                            <button class="btn btn-gold" id="openCalcModal" type="button">Рассчитать стоимость →</button>
+                            <a href="tel:+74996477281" class="btn btn-ghost">Позвонить</a>
                         </div>
                     </div>
                     <div class="hero-side" id="heroSide">
@@ -1349,6 +1350,102 @@
 
                     <h3>Отгрузка по РФ и СНГ</h3>
                     <p>Доставка проверенными перевозчиками: ПЭК, Деловые Линии, СДЭК. Полный пакет документов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══ ЭКСПЕРТИЗА ═══ -->
+    <section class="section" id="expertise" style="background:white">
+        <div class="shell">
+            <div class="s-head reveal">
+                <h2 class="s-h2">Экспертиза в техническом текстиле</h2>
+                <p class="s-sub">20 лет работы с промышленными заказчиками — знаем, какой материал реально работает в полевых условиях.</p>
+            </div>
+            <div class="about-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+                <div class="about-card" style="padding:0;overflow:hidden">
+                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div style="padding:1.8rem 2rem">
+                        <h3>Специализированные ткани</h3>
+                        <p>Работаем только с сертифицированными материалами — огнеупорными, антистатическими, морозостойкими, влагозащитными. Полный пакет документов.</p>
+                    </div>
+                </div>
+                <div class="about-card" style="padding:0;overflow:hidden">
+                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M8.46 8.46a5 5 0 0 0 0 7.07"/></svg>
+                    </div>
+                    <div style="padding:1.8rem 2rem">
+                        <h3>Любая сложность</h3>
+                        <p>Разрабатываем лекала под нестандартное оборудование по фото, чертежам или замерам. Конструкторский отдел — в штате.</p>
+                    </div>
+                </div>
+                <div class="about-card" style="padding:0;overflow:hidden">
+                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div style="padding:1.8rem 2rem">
+                        <h3>Гибкость партий</h3>
+                        <p>От 1 экземпляра до серийного производства — без скрытых наценок на малые тиражи. Производительность до 5 000 изделий в месяц.</p>
+                    </div>
+                </div>
+                <div class="about-card" style="padding:0;overflow:hidden">
+                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div style="padding:1.8rem 2rem">
+                        <h3>Точные сроки</h3>
+                        <p>Оптимизированные процессы и склад сырья позволяют выпускать продукцию точно в срок. Срочные заказы — от 1 дня.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══ КЕЙСЫ ═══ -->
+    <section class="section" id="cases" style="background:var(--bg2)">
+        <div class="shell">
+            <div class="s-head reveal">
+                <h2 class="s-h2">Наши кейсы</h2>
+                <p class="s-sub">Работаем с B2B, B2G, маркетплейсами и премиум-сегментом.</p>
+            </div>
+            <div class="about-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--g2);padding:.25rem .7rem;border-radius:var(--rp)">B2G</span>
+                    </div>
+                    <h3 style="font-size:1.05rem;margin-bottom:.5rem">Защитные тенты для объектов РЖД</h3>
+                    <p>2 000+ защитных чехлов для путевого оборудования по техническому заданию. Сертификация EN 45545, поставка в срок 4 недели.</p>
+                    <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2019 года</p>
+                </div>
+                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--g2);padding:.25rem .7rem;border-radius:var(--rp)">B2B</span>
+                    </div>
+                    <h3 style="font-size:1.05rem;margin-bottom:.5rem">Спецодежда для нефтегазового холдинга</h3>
+                    <p>5 000 комплектов огнестойкой спецодежды с логотипом заказчика. Регулярные поставки 3 раза в год по единым ценам.</p>
+                    <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2018 года</p>
+                </div>
+                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--nr);padding:.25rem .7rem;border-radius:var(--rp)">WB</span>
+                    </div>
+                    <h3 style="font-size:1.05rem;margin-bottom:.5rem">Тактическое снаряжение для маркетплейса</h3>
+                    <p>500 рюкзаков и подсумков под СТМ. Вышли в топ категории Wildberries за первые 3 месяца после запуска.</p>
+                    <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Серийный выпуск под брендом клиента</p>
+                </div>
+                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                    <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--ink2);padding:.25rem .7rem;border-radius:var(--rp)">Премиум</span>
+                    </div>
+                    <h3 style="font-size:1.05rem;margin-bottom:.5rem">Текстиль для автомобилей премиум-класса</h3>
+                    <p>Индивидуальный пошив чехлов и обивки для автомобилей по размерам производителя. Партнёрство с детейлинг-центрами.</p>
+                    <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Москва, Санкт-Петербург, Казань</p>
                 </div>
             </div>
         </div>

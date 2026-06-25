@@ -39,7 +39,7 @@ body {
     margin: 0;
     background: var(--ivory);
     color: var(--ink);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -58,14 +58,14 @@ button { font-family: inherit; cursor: pointer; }
    ============================================ */
 
 .font-display-serif {
-    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     font-style: italic;
     letter-spacing: -0.01em;
 }
 
 .font-display-grotesk {
-    font-family: 'Oswald', 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: -0.005em;
@@ -73,7 +73,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .font-eyebrow {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.28em;
@@ -81,7 +81,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .font-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.2em;
@@ -184,7 +184,7 @@ button { font-family: inherit; cursor: pointer; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-size: 1.1rem;
     color: var(--brass-bright);
@@ -192,7 +192,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .brand-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-size: 1.15rem;
     letter-spacing: 0.02em;
@@ -209,7 +209,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 900px) { .nav-links { display: flex; } }
 
 .nav-links a {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -366,7 +366,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: clamp(2.6rem, 6.5vw, 5.4rem);
@@ -412,7 +412,7 @@ button { font-family: inherit; cursor: pointer; }
     background: linear-gradient(120deg, #b88a47, #e8c884, #c9a063);
     background-size: 200% 200%;
     color: var(--noir);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.28em;
@@ -524,7 +524,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .statement-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.8rem, 8vw, 7rem);
     line-height: 0.92;
@@ -624,7 +624,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .metric-value {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.4rem, 5vw, 4rem);
     line-height: 1;
@@ -634,7 +634,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .metric-value .metric-unit {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 0.85rem;
     letter-spacing: 0.18em;
@@ -675,7 +675,7 @@ button { font-family: inherit; cursor: pointer; }
 .services-eyebrow { color: var(--brass-deep); }
 
 .services-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.4rem, 6vw, 5rem);
     line-height: 0.94;
@@ -729,7 +729,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .service-num {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.78rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -738,7 +738,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .service h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: italic;
     font-size: 1.55rem;
@@ -841,7 +841,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .about-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: clamp(2.2rem, 5vw, 4rem);
@@ -893,7 +893,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .cap-num {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.28em;
     color: var(--brass-bright);
@@ -901,7 +901,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .capability h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.3rem;
@@ -974,7 +974,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .lead-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 400;
     font-size: clamp(2rem, 4.5vw, 3.4rem);
@@ -1009,7 +1009,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hint-tag {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 0.7rem;
     letter-spacing: 0.22em;
@@ -1033,7 +1033,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .field-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.22em;
@@ -1043,7 +1043,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .field input,
 .field textarea {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     padding: 0.85rem 1rem;
     background: var(--ivory);
@@ -1107,7 +1107,7 @@ button { font-family: inherit; cursor: pointer; }
 .process-eyebrow { color: var(--brass-bright); }
 
 .process-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.2rem, 5.5vw, 4.5rem);
     line-height: 0.94;
@@ -1160,7 +1160,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .step-num {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 2.5rem;
     line-height: 1;
@@ -1170,7 +1170,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .process-step h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.3rem;
@@ -1207,7 +1207,7 @@ button { font-family: inherit; cursor: pointer; }
 .clients-eyebrow { color: var(--brass-deep); }
 
 .clients-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 400;
     font-size: clamp(2rem, 5vw, 3.6rem);
@@ -1245,7 +1245,7 @@ button { font-family: inherit; cursor: pointer; }
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.4rem;
@@ -1295,7 +1295,7 @@ button { font-family: inherit; cursor: pointer; }
 .faq-eyebrow { color: var(--brass-bright); }
 
 .faq-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.2rem, 5.5vw, 4.5rem);
     line-height: 0.94;
@@ -1340,7 +1340,7 @@ button { font-family: inherit; cursor: pointer; }
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.35rem;
@@ -1391,7 +1391,7 @@ button { font-family: inherit; cursor: pointer; }
 .story-eyebrow { color: var(--brass-deep); }
 
 .story-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 400;
     font-size: clamp(2rem, 4vw, 3.4rem);
@@ -1491,7 +1491,7 @@ button { font-family: inherit; cursor: pointer; }
 .lab-eyebrow { color: var(--brass-bright); }
 
 .lab-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.4rem, 6vw, 5rem);
     line-height: 0.94;
@@ -1591,7 +1591,7 @@ model-viewer {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--noir-line);
     padding: 0.15rem 0.5rem;
-    font-family: 'Inter', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: var(--brass-bright);
     font-size: 0.7rem;
 }
@@ -1618,7 +1618,7 @@ model-viewer {
 .silhouettes-eyebrow { color: var(--brass-deep); }
 
 .silhouettes-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: clamp(2.2rem, 5.5vw, 4.5rem);
     line-height: 0.94;
@@ -1685,7 +1685,7 @@ model-viewer {
 .silhouette .silhouette-tag strong {
     display: block;
     margin-top: 0.4rem;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1726,7 +1726,7 @@ model-viewer {
 }
 
 .contact-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: clamp(2.4rem, 5.5vw, 4.4rem);
@@ -1766,7 +1766,7 @@ model-viewer {
 
 .contact-card .card-value {
     margin-top: 0.6rem;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-size: 1.5rem;
     color: var(--ivory);
@@ -1801,7 +1801,7 @@ model-viewer {
 }
 
 .footer-mark {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-size: 1.6rem;
     color: var(--ivory);
@@ -1915,7 +1915,7 @@ model-viewer {
 
 .specs-subtitle {
     color: var(--brass-bright);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.26em;
@@ -1934,7 +1934,7 @@ model-viewer {
 .spec:last-child { border-bottom: 0; }
 
 .spec-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.2rem;
@@ -2030,7 +2030,7 @@ model-viewer {
 }
 
 .cap-item h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.3rem;
@@ -2078,14 +2078,14 @@ model-viewer {
 }
 
 .related-num {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.24em;
     color: var(--brass-deep);
 }
 
 .related-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.05rem;

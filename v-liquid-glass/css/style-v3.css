@@ -21,7 +21,7 @@
         body {
             background: var(--cream);
             color: var(--ink);
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -33,7 +33,7 @@
         button { cursor: pointer; border: 0; font: inherit; }
 
         .display {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             letter-spacing: -0.005em;
             text-transform: uppercase;
@@ -41,7 +41,7 @@
         }
 
         .serif {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
         }
 
@@ -49,7 +49,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-size: 0.92rem;
             color: var(--red);
@@ -92,7 +92,7 @@
             display: flex;
             align-items: baseline;
             gap: 0.7rem;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 0.02em;
@@ -100,7 +100,7 @@
         }
 
         .brand .v-tag {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-size: 0.65em;
             color: var(--red);
@@ -117,7 +117,7 @@
         @media (min-width: 900px) { .nav-links { display: flex; } }
 
         .nav-links a {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-size: 1rem;
             color: var(--ink);
@@ -131,7 +131,7 @@
             background: var(--noir);
             color: var(--cream);
             padding: 0.6rem 1.2rem;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -145,7 +145,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.95rem 1.7rem;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -189,7 +189,7 @@
 
         .hero-h1 .red { color: var(--red); }
         .hero-h1 .serif {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -199,7 +199,7 @@
         }
 
         .hero-lead {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.2rem;
             color: var(--ink);
             line-height: 1.6;
@@ -232,7 +232,7 @@
         }
 
         .meta-stat .num {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.4rem, 5vw, 4rem);
             line-height: 1;
             color: var(--red);
@@ -240,7 +240,7 @@
         }
 
         .meta-stat .label {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             color: var(--ink-soft);
             font-size: 0.95rem;
@@ -264,7 +264,7 @@
 
         .section-h2 .red { color: var(--red); }
         .section-h2 .serif {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -273,7 +273,7 @@
         }
 
         .section-lead {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.1rem;
             color: var(--ink-soft);
             margin-top: 1.5rem;
@@ -320,7 +320,7 @@
         .catalog-card:hover .num { color: var(--red); }
 
         .catalog-card .num {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             line-height: 1;
             color: var(--red);
@@ -328,7 +328,7 @@
         }
 
         .catalog-card h3 {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             text-transform: uppercase;
             line-height: 1.05;
@@ -336,7 +336,7 @@
         }
 
         .catalog-card p {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.95rem;
             line-height: 1.55;
             color: inherit;
@@ -345,7 +345,7 @@
 
         .catalog-card .link {
             margin-top: auto;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             color: var(--red);
             text-transform: uppercase;
@@ -387,7 +387,7 @@
         .about-card:hover { background: var(--red); border-color: var(--red); }
 
         .about-card .num {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--red);
             font-size: 2.5rem;
             line-height: 1;
@@ -398,7 +398,7 @@
         .about-card:hover .num { color: var(--cream); }
 
         .about-card h3 {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
             text-transform: uppercase;
             margin-bottom: 0.75rem;
@@ -406,7 +406,7 @@
         }
 
         .about-card p {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.95rem;
             color: var(--cream-deep);
             line-height: 1.6;
@@ -451,7 +451,7 @@
         }
 
         .field label {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.95rem;
             text-transform: uppercase;
             color: var(--noir);
@@ -459,7 +459,7 @@
         }
 
         .field input, .field textarea {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.05rem;
             padding: 0.85rem 1rem;
             background: var(--cream-deep);
@@ -476,7 +476,7 @@
         }
 
         .form-note {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-size: 0.88rem;
             color: var(--ink-soft);
@@ -492,7 +492,7 @@
         }
 
         .bonus-strip .b-tag {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--red);
             font-size: 0.95rem;
             text-transform: uppercase;
@@ -502,7 +502,7 @@
         }
 
         .bonus-strip p {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-size: 1.05rem;
         }
@@ -535,7 +535,7 @@
         .step:hover .step-num { color: var(--red); }
 
         .step-num {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 3rem;
             line-height: 1;
             color: var(--red);
@@ -544,14 +544,14 @@
         }
 
         .step h3 {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.2rem;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
         }
 
         .step p {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.92rem;
             line-height: 1.5;
         }
@@ -572,7 +572,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.6rem;
             text-transform: uppercase;
             color: var(--noir);
@@ -603,7 +603,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 1.5rem;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.4rem;
             text-transform: uppercase;
             line-height: 1.15;
@@ -615,7 +615,7 @@
         .faq-item summary:hover { color: var(--red); }
 
         .faq-item .chev {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--red);
             font-size: 1.6rem;
             transition: transform var(--motion);
@@ -626,7 +626,7 @@
 
         .faq-item p {
             margin-top: 1rem;
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.05rem;
             color: var(--ink-soft);
             line-height: 1.65;
@@ -659,7 +659,7 @@
         .contact-cell:hover { background: var(--noir); color: var(--cream); }
 
         .contact-cell .label {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             text-transform: uppercase;
             color: var(--red);
@@ -668,7 +668,7 @@
         }
 
         .contact-cell .value {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             text-transform: uppercase;
             color: inherit;
@@ -677,7 +677,7 @@
         }
 
         .contact-cell .hint {
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-style: italic;
             font-size: 0.92rem;
             opacity: 0.85;
@@ -700,7 +700,7 @@
         @media (min-width: 700px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
 
         .footer-brand {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             text-transform: uppercase;
             color: var(--cream);
@@ -710,7 +710,7 @@
         .footer-brand .red { color: var(--red); }
 
         .footer h4 {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--red);
             font-size: 1.1rem;
             margin-bottom: 1rem;
@@ -719,7 +719,7 @@
 
         .footer ul li {
             margin-bottom: 0.6rem;
-            font-family: 'PT Serif', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
         }
 
@@ -732,7 +732,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 0.75rem;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -745,7 +745,7 @@
         }
 
         .variant-switcher a {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
             color: var(--red);
             border: 2px solid var(--red);

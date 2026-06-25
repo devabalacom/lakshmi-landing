@@ -21,7 +21,7 @@
         body {
             background: var(--bg);
             color: var(--ink);
-            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 400;
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
@@ -34,7 +34,7 @@
         button { cursor: pointer; border: 0; font: inherit; }
 
         .mono {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 500;
             letter-spacing: -0.02em;
         }
@@ -43,7 +43,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -98,7 +98,7 @@
             color: var(--bg);
             display: inline-flex; align-items: center; justify-content: center;
             font-weight: 800;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .nav-links {
@@ -307,7 +307,7 @@
             font-size: 2.4rem;
             font-weight: 800;
             line-height: 1;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             letter-spacing: -0.04em;
         }
 
@@ -378,7 +378,7 @@
         .catalog-card:hover { background: var(--bg); }
 
         .catalog-card .num {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.78rem;
             color: var(--accent);
             font-weight: 600;
@@ -440,7 +440,7 @@
         }
 
         .pill-card .num {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             color: var(--accent);
             font-size: 0.78rem;
             font-weight: 600;
@@ -542,7 +542,7 @@
         .step:hover { border-color: var(--accent); transform: translateY(-2px); }
 
         .step-num {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
             font-weight: 800;
             color: var(--accent);
@@ -646,7 +646,7 @@
             justify-content: center;
             gap: 0.5rem;
             color: var(--mute);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.72rem;
             letter-spacing: 0.1em;
             background: var(--bg);
@@ -723,7 +723,7 @@
         .contact-cell:hover { background: var(--bg); }
 
         .contact-cell .label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.72rem;
             font-weight: 600;
             color: var(--accent);
@@ -783,7 +783,7 @@
             flex-wrap: wrap;
             gap: 0.5rem;
             font-size: 0.78rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .variant-switcher {
@@ -793,7 +793,7 @@
         }
 
         .variant-switcher a {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.7rem;
             font-weight: 600;
             color: var(--accent);
