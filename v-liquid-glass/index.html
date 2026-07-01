@@ -26,33 +26,51 @@
            ═══════════════════════════════════════════ */
         :root {
             /* Backgrounds */
-            --bg:    #e6dc20;
-            --bg2:   #F6F0E4;
-            --bg3:   #EDE5D4;
+            --bg:    #F8FAFC;
+            --bg2:   #EEF2F6;
+            --bg3:   #E2E8F0;
+            --bg-alt: #EEF2F6;
+            --card:  #FFFFFF;
 
-            /* Ink */
-            --ink:   #1A1612;
-            --ink2:  #4A4138;
-            --ink3:  #877769;
+            /* Borders */
+            --border:  #CBD5E1;
+            --divider: #E2E8F0;
 
-            /* Gold spectrum */
-            --g0:    #C5973E;
-            --g1:    #E4B867;
-            --g2:    #8A6530;
-            --ga:    rgba(197,151,62,0.09);
-            --gl:    rgba(197,151,62,0.16);
-            --glh:   rgba(197,151,62,0.38);
+            /* Ink / Text */
+            --ink:       #1E293B;
+            --ink2:      #475569;
+            --ink3:      #64748B;
+            --text:      #1E293B;
+            --text-body: #475569;
+            --text-muted: #64748B;
+            --text-soft: #94A3B8;
+
+            /* Gold / Accent */
+            --g0:    #D4A017;
+            --g1:    #FACC15;
+            --g2:    #8B6508;
+            --ga:    rgba(212,160,23,0.09);
+            --gl:    rgba(212,160,23,0.16);
+            --glh:   rgba(212,160,23,0.38);
+            --accent:        #D4A017;
+            --accent-hover:  #B8860B;
+            --accent-active: #8B6508;
+            --accent-bg:     #FFFBEB;
+            --accent-border: #FDE68A;
 
             /* Dark strip */
-            --nr:    #110F0A;
+            --nr:    #0F172A;
             --nr2:   #1D1914;
-            --nt:    #F5EFE4;
-            --nt2:   rgba(245,239,228,0.65);
+            --nt:    #F8FAFC;
+            --nt2:   rgba(248,250,252,0.65);
+            --dark:      #0F172A;
+            --dark-text: #F8FAFC;
+            --dark-muted: #CBD5E1;
 
             /* Glass */
             --gbg:   rgba(255,255,255,0.68);
-            --gbg2:  rgba(253,250,245,0.86);
-            --gbd:   rgba(197,151,62,0.18);
+            --gbg2:  rgba(255,255,255,0.86);
+            --gbd:   rgba(212,160,23,0.18);
             --gsh:   0 8px 32px rgba(26,22,18,0.07), 0 1px 3px rgba(26,22,18,0.04);
 
             /* Typography */
@@ -304,15 +322,15 @@
             transition: all .4s var(--ease);
         }
         .btn-gold {
-            background: linear-gradient(135deg, var(--g2) 0%, var(--g0) 45%, var(--g1) 100%);
-            background-size: 200% 200%; background-position: 0% 50%;
-            color: white;
-            box-shadow: 0 8px 28px rgba(197,151,62,0.28);
+            background: #D4A017;
+            color: #111827;
+            box-shadow: 0 8px 28px rgba(212,160,23,0.28);
         }
         .btn-gold:hover {
-            background-position: 100% 50%;
+            background: #B8860B;
+            color: #FFFFFF;
             transform: translateY(-2px);
-            box-shadow: 0 14px 36px rgba(197,151,62,0.38);
+            box-shadow: 0 14px 36px rgba(212,160,23,0.38);
         }
         .btn-ghost {
             border: 1.5px solid rgba(26,22,18,0.18);
