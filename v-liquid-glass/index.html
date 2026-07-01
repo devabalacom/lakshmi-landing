@@ -576,16 +576,28 @@
         }
         .about-card {
             background: white;
-            border: 1px solid var(--bg3);
+            border: 1px solid var(--gbd);
             border-radius: var(--r);
             padding: 2.2rem 2rem;
             transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+            position: relative;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--g0), var(--g1));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--ease);
+            z-index: 1;
         }
         .about-card:hover {
-            border-color: var(--gl);
+            border-color: var(--glh);
             transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(197,151,62,0.08), 0 2px 8px rgba(26,22,18,0.04);
+            box-shadow: 0 12px 36px rgba(212,160,23,0.10), 0 2px 8px rgba(26,22,18,0.04);
         }
+        .about-card:hover::before { transform: scaleX(1); }
         .about-icon {
             width: 44px; height: 44px; border-radius: 50%;
             border: 1.5px solid var(--glh);
@@ -1383,7 +1395,7 @@
             </div>
             <div class="about-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
                 <div class="about-card" style="padding:0;overflow:hidden">
-                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                    <div style="height:180px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);display:flex;align-items:center;justify-content:center">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
                     <div style="padding:1.8rem 2rem">
@@ -1392,7 +1404,7 @@
                     </div>
                 </div>
                 <div class="about-card" style="padding:0;overflow:hidden">
-                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                    <div style="height:180px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);display:flex;align-items:center;justify-content:center">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M8.46 8.46a5 5 0 0 0 0 7.07"/></svg>
                     </div>
                     <div style="padding:1.8rem 2rem">
@@ -1401,7 +1413,7 @@
                     </div>
                 </div>
                 <div class="about-card" style="padding:0;overflow:hidden">
-                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                    <div style="height:180px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);display:flex;align-items:center;justify-content:center">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                     </div>
                     <div style="padding:1.8rem 2rem">
@@ -1410,7 +1422,7 @@
                     </div>
                 </div>
                 <div class="about-card" style="padding:0;overflow:hidden">
-                    <div style="height:180px;background:linear-gradient(135deg,#1A1612 0%,#2d2318 100%);display:flex;align-items:center;justify-content:center">
+                    <div style="height:180px;background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);display:flex;align-items:center;justify-content:center">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div style="padding:1.8rem 2rem">
@@ -1432,7 +1444,7 @@
                 <p class="s-sub">Работаем с B2B, B2G, маркетплейсами и премиум-сегментом.</p>
             </div>
             <div class="about-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                <div class="about-card">
                     <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
                         <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--g2);padding:.25rem .7rem;border-radius:var(--rp)">B2G</span>
                     </div>
@@ -1440,7 +1452,7 @@
                     <p>2 000+ защитных чехлов для путевого оборудования по техническому заданию. Сертификация EN 45545, поставка в срок 4 недели.</p>
                     <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2019 года</p>
                 </div>
-                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                <div class="about-card">
                     <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
                         <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--g2);padding:.25rem .7rem;border-radius:var(--rp)">B2B</span>
                     </div>
@@ -1448,17 +1460,17 @@
                     <p>5 000 комплектов огнестойкой спецодежды с логотипом заказчика. Регулярные поставки 3 раза в год по единым ценам.</p>
                     <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2018 года</p>
                 </div>
-                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                <div class="about-card">
                     <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--nr);padding:.25rem .7rem;border-radius:var(--rp)">WB</span>
+                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--g2);padding:.25rem .7rem;border-radius:var(--rp)">WB</span>
                     </div>
                     <h3 style="font-size:1.05rem;margin-bottom:.5rem">Тактическое снаряжение для маркетплейса</h3>
                     <p>500 рюкзаков и подсумков под СТМ. Вышли в топ категории Wildberries за первые 3 месяца после запуска.</p>
                     <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Серийный выпуск под брендом клиента</p>
                 </div>
-                <div class="about-card" style="border-left:3px solid var(--g0);border-radius:var(--r)">
+                <div class="about-card">
                     <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--ink2);padding:.25rem .7rem;border-radius:var(--rp)">Премиум</span>
+                        <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:var(--g2);padding:.25rem .7rem;border-radius:var(--rp)">Премиум</span>
                     </div>
                     <h3 style="font-size:1.05rem;margin-bottom:.5rem">Текстиль для автомобилей премиум-класса</h3>
                     <p>Индивидуальный пошив чехлов и обивки для автомобилей по размерам производителя. Партнёрство с детейлинг-центрами.</p>
