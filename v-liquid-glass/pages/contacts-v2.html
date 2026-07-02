@@ -112,16 +112,19 @@
     <link rel="stylesheet" href="../css/style-v2.css">
     <style>
         :root {
-            --bg: #F8FAFC; --glass: rgba(255,255,255,0.68); --glass-md: rgba(255,255,255,0.86);
+            --bg: #F8FAFC; --bg-alt: #EEF2F6; --card: #FFFFFF; --border: #CBD5E1; --divider: #E2E8F0;
+            --glass: rgba(255,255,255,0.68); --glass-md: rgba(255,255,255,0.86);
             --glass-border: rgba(212,160,23,0.18); --glass-hi: rgba(212,160,23,0.38);
-            --accent: #D4A017; --accent2: #FACC15; --accent-glow: rgba(212,160,23,0.28);
-            --accent-soft: rgba(212,160,23,0.09); --text: #1E293B; --text-soft: #475569;
-            --text-muted: #64748B; --r: 16px; --rs: 6px; --rl: 24px;
+            --accent: #D4A017; --accent2: #FACC15; --accent-hover: #B8860B; --accent-active: #8B6508;
+            --accent-bg: #FFFBEB; --accent-border: #FDE68A; --accent-glow: rgba(212,160,23,0.28);
+            --accent-soft: rgba(212,160,23,0.09); --text: #1E293B; --text-body: #475569; --text-soft: #94A3B8;
+            --text-muted: #64748B; --dark: #0F172A; --dark-text: #F8FAFC; --dark-muted: #CBD5E1;
+            --r: 16px; --rs: 6px; --rl: 24px;
         }
         .hero-page { padding: 9rem 0 5rem; border-bottom: 1px solid rgba(212,160,23,0.18); }
         .contact-h1 { font-size: clamp(2.4rem, 6vw, 5rem); font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.02; letter-spacing: -0.02em; margin: 1.5rem 0; }
         .contact-h1 .accent { color: var(--accent); }
-        .nav-dropdown{position:relative}.dropdown-menu{display:none;position:absolute;top:calc(100% + 1.2rem);left:-1rem;min-width:240px;background:var(--glass-md);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid var(--glass-border);border-radius:var(--r);box-shadow:0 8px 32px rgba(26,22,18,0.07),0 1px 3px rgba(26,22,18,0.04);padding:.5rem 0;z-index:200;opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;pointer-events:none}.dropdown-menu::before{content:'';position:absolute;top:-1.2rem;left:0;right:0;height:1.2rem}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{display:block;opacity:1;transform:none;pointer-events:auto}.dropdown-menu a{display:block;padding:.6rem 1.2rem;font-size:.78rem;font-weight:500;color:var(--text-soft);transition:color .2s,background .2s;letter-spacing:.02em}.dropdown-menu a:hover{color:var(--accent);background:var(--accent-soft)}.dropdown-menu a::after{display:none!important}.nav-dd-arrow{display:inline-block;margin-left:.3rem;font-size:.6rem;transition:transform .25s;vertical-align:middle}.nav-dropdown:hover .nav-dd-arrow{transform:rotate(180deg)}
+        .nav-dropdown{position:relative}.dropdown-menu{display:none;position:absolute;top:calc(100% + 1.2rem);left:-1rem;min-width:240px;background:var(--glass-md);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid var(--glass-border);border-radius:var(--r);box-shadow:0 8px 32px rgba(26,22,18,0.07),0 1px 3px rgba(26,22,18,0.04);padding:.5rem 0;z-index:200;opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;pointer-events:none}.dropdown-menu::before{content:'';position:absolute;top:-1.2rem;left:0;right:0;height:1.2rem}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{display:block;opacity:1;transform:none;pointer-events:auto}.dropdown-menu a{display:block;padding:.6rem 1.2rem;font-size:.78rem;font-weight:500;color:var(--text-body);transition:color .2s,background .2s;letter-spacing:.02em}.dropdown-menu a:hover{color:var(--accent);background:var(--accent-soft)}.dropdown-menu a::after{display:none!important}.nav-dd-arrow{display:inline-block;margin-left:.3rem;font-size:.6rem;transition:transform .25s;vertical-align:middle}.nav-dropdown:hover .nav-dd-arrow{transform:rotate(180deg)}
     </style>
 </head>
 <body>
