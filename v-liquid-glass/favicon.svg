@@ -1,0 +1,34 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Пром-Текстиль.рф mark</title>
+  <desc id="desc">Compact industrial textile woven mark in gold and slate.</desc>
+  <defs>
+    <linearGradient id="gold" x1="55" y1="38" x2="137" y2="137" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FACC15"/>
+      <stop offset="0.58" stop-color="#D4A017"/>
+      <stop offset="1" stop-color="#8B6508"/>
+    </linearGradient>
+    <linearGradient id="slate" x1="43" y1="35" x2="137" y2="146" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="softShadow" x="12" y="14" width="156" height="156" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="180" height="180" fill="#F8FAFC"/>
+  <g filter="url(#softShadow)">
+    <rect x="30" y="30" width="120" height="120" rx="24" fill="#FFFFFF"/>
+    <rect x="30.75" y="30.75" width="118.5" height="118.5" rx="23.25" stroke="#CBD5E1" stroke-width="1.5"/>
+  </g>
+  <path d="M59 61C59 56.5817 62.5817 53 67 53H113C117.418 53 121 56.5817 121 61V73H59V61Z" fill="url(#slate)"/>
+  <path d="M59 107H121V119C121 123.418 117.418 127 113 127H67C62.5817 127 59 123.418 59 119V107Z" fill="url(#slate)"/>
+  <path d="M53 67C53 62.5817 56.5817 59 61 59H73V121H61C56.5817 121 53 117.418 53 113V67Z" fill="url(#gold)"/>
+  <path d="M107 59H119C123.418 59 127 62.5817 127 67V113C127 117.418 123.418 121 119 121H107V59Z" fill="url(#gold)"/>
+  <path d="M72 70H109C112.314 70 115 72.6863 115 76V84H78C74.6863 84 72 81.3137 72 78V70Z" fill="#FFFBEB"/>
+  <path d="M65 89C65 85.6863 67.6863 83 71 83H109C112.314 83 115 85.6863 115 89V98H77C70.3726 98 65 92.6274 65 86V89Z" fill="#D4A017"/>
+  <path d="M65 103H102C105.314 103 108 105.686 108 109V117H71C67.6863 117 65 114.314 65 111V103Z" fill="#1E293B"/>
+  <path d="M83 58H97V122H83V58Z" fill="#FDE68A" opacity="0.72"/>
+  <path d="M58 83H122V97H58V83Z" fill="#0F172A" opacity="0.18"/>
+  <path d="M83 83H97V97H83V83Z" fill="#B8860B"/>
+</svg>
