@@ -1,4 +1,4 @@
-# robots.txt — ООО «Лакшми»
+# robots.txt — Пром-текстиль
 # https://пром-текстиль.рф/
 
 User-agent: *
