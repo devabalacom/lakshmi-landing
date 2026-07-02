@@ -581,6 +581,7 @@
             padding: 2.2rem 2rem;
             transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
             position: relative;
+            overflow: hidden;
         }
         .about-card::before {
             content: '';
@@ -598,19 +599,6 @@
             box-shadow: 0 12px 36px rgba(212,160,23,0.10), 0 2px 8px rgba(26,22,18,0.04);
         }
         .about-card:hover::before { transform: scaleX(1); }
-        .about-icon {
-            width: 44px; height: 44px; border-radius: 50%;
-            border: 1.5px solid var(--glh);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.2rem; color: var(--g2);
-            transition: background .3s, border-color .3s, color .3s;
-        }
-        .about-card:hover .about-icon { background: var(--g0); border-color: var(--g0); color: white; }
-        .about-icon svg {
-            width: 20px; height: 20px;
-            fill: none; stroke: currentColor;
-            stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-        }
         .about-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
         .about-card p { font-size: .85rem; color: var(--ink2); line-height: 1.65; }
 
@@ -955,15 +943,6 @@
             transition: background .3s var(--ease), transform .4s var(--ease);
         }
         .why-card:hover { background: var(--nr2); transform: translateY(-3px); }
-        .why-icon {
-            width: 48px; height: 48px; border-radius: 50%;
-            border: 1.5px solid rgba(197,151,62,0.35);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.2rem; color: var(--g0);
-            transition: background .3s, border-color .3s;
-        }
-        .why-card:hover .why-icon { background: rgba(197,151,62,0.12); border-color: var(--g0); }
-        .why-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
         .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--nt); margin-bottom: .45rem; }
         .why-card p { font-size: .85rem; color: var(--nt2); line-height: 1.65; }
 
@@ -1256,30 +1235,18 @@
             </div>
             <div class="about-grid reveal">
                 <div class="about-card">
-                    <div class="about-icon">
-                        <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V8l8-6 8 6v12"/><path d="M9 20v-6h6v6"/></svg>
-                    </div>
                     <h3>Конструкторский отдел</h3>
                     <p>Чертежи и лекала по замерам, образцам или фотографиям.</p>
                 </div>
                 <div class="about-card">
-                    <div class="about-icon">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                    </div>
                     <h3>Швейный цех 1400 м²</h3>
                     <p>ПВХ, кордура, брезент, многослойные композиты.</p>
                 </div>
                 <div class="about-card">
-                    <div class="about-icon">
-                        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-                    </div>
                     <h3>Контроль качества</h3>
                     <p>Проверка ТЗ и прочности швов перед отгрузкой.</p>
                 </div>
                 <div class="about-card">
-                    <div class="about-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                    </div>
                     <h3>Под маркой клиента</h3>
                     <p>Шьём под собственными торговыми марками брендов.</p>
                 </div>
@@ -1299,44 +1266,26 @@
             </div>
             <div class="why-grid">
                 <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
                     <h3>Постоянный партнёр</h3>
                     <p>Работаем не только с разовыми заказами, но и в режиме постоянного партнёрства — регулярные поставки по согласованному графику, единые цены, приоритетная очередь.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    </div>
                     <h3>Подбор материала под задачу</h3>
                     <p>Не навязываем дорогие ткани там, где не нужно. Подбираем оптимальный материал под ваши требования по характеристикам, срокам службы и бюджету.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-                    </div>
                     <h3>Работа с юр. лицами и госструктурами</h3>
                     <p>Полный пакет документов: договор, счёт, накладная, сертификаты. Опыт работы по 44-ФЗ и 223-ФЗ — участвуем в тендерах и госзакупках.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
                     <h3>Сроки и доставка</h3>
                     <p>Соблюдаем оговорённые сроки. Работаем по всей России с проверенными перевозчиками: ПЭК, Деловые Линии, СДЭК. Крупные партии — фурой за наш счёт.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                    </div>
                     <h3>Контроль качества на каждом этапе</h3>
                     <p>Трёхступенчатый ОТК: после раскроя, после пошива и перед упаковкой. Проверяем швы, фурнитуру, размеры, соответствие ТЗ.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    </div>
                     <h3>От 1 единицы до миллиона</h3>
                     <p>Нет минимального тиража. Единичное изделие обрабатываем с тем же вниманием, что и серию. Производительность — до 5 000 изделий в месяц.</p>
                 </div>
