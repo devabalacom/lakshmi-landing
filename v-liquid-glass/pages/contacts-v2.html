@@ -110,32 +110,380 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style-v2.css">
     <style>
+        /* ═══════════════════════════════════════════
+           DESIGN TOKENS — LIGHT PREMIUM / BRUSHED GOLD
+           (canon: index.html)
+           ═══════════════════════════════════════════ */
         :root {
-            --bg: #F8FAFC; --bg-alt: #EEF2F6; --card: #FFFFFF; --border: #CBD5E1; --divider: #E2E8F0;
-            --glass: rgba(255,255,255,0.68); --glass-md: rgba(255,255,255,0.86);
-            --glass-border: rgba(212,160,23,0.18); --glass-hi: rgba(212,160,23,0.38);
-            --accent: #D4A017; --accent2: #FACC15; --accent-hover: #B8860B; --accent-active: #8B6508;
-            --accent-bg: #FFFBEB; --accent-border: #FDE68A; --accent-glow: rgba(212,160,23,0.28);
-            --accent-soft: rgba(212,160,23,0.09); --text: #1E293B; --text-body: #475569; --text-soft: #94A3B8;
-            --text-muted: #64748B; --dark: #0F172A; --dark-text: #F8FAFC; --dark-muted: #CBD5E1;
-            --r: 16px; --rs: 6px; --rl: 24px;
+            --bg:    #F8FAFC;
+            --bg2:   #EEF2F6;
+            --bg3:   #E2E8F0;
+
+            --ink:   #1E293B;
+            --ink2:  #475569;
+            --ink3:  #64748B;
+
+            --g0:    #D4A017;
+            --g1:    #FACC15;
+            --g2:    #8B6508;
+            --ga:    rgba(212,160,23,0.09);
+            --gl:    rgba(212,160,23,0.16);
+            --glh:   rgba(212,160,23,0.38);
+
+            --nr:    #0F172A;
+            --nr2:   #1D1914;
+            --nt:    #F8FAFC;
+            --nt2:   rgba(248,250,252,0.65);
+
+            --gbg:   rgba(255,255,255,0.68);
+            --gbg2:  rgba(255,255,255,0.86);
+            --gbd:   rgba(212,160,23,0.18);
+            --gsh:   0 8px 32px rgba(26,22,18,0.07), 0 1px 3px rgba(26,22,18,0.04);
+
+            --fd: 'Montserrat', sans-serif;
+            --fs: 'Montserrat', sans-serif;
+            --fb: 'Montserrat', sans-serif;
+            --fm: 'Montserrat', monospace;
+
+            --rs:  6px;
+            --r:   16px;
+            --rl:  24px;
+            --rp:  999px;
+
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .hero-page { padding: 9rem 0 5rem; border-bottom: 1px solid rgba(212,160,23,0.18); }
-        .contact-h1 { font-size: clamp(2.4rem, 6vw, 5rem); font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.02; letter-spacing: -0.02em; margin: 1.5rem 0; }
-        .contact-h1 .accent { color: var(--accent); }
-        .nav-cta{display:none;padding:.55rem 1.4rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--glass-hi);background:transparent;color:var(--accent);transition:background .3s,color .3s,border-color .3s,transform .25s}
-        @media(min-width:920px){.nav-cta{display:inline-flex}}.nav-cta:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-1px)}
-        .nav-dropdown{position:relative}.dropdown-menu{display:none;position:absolute;top:calc(100% + 1.2rem);left:-1rem;min-width:240px;background:var(--glass-md);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid var(--glass-border);border-radius:var(--r);box-shadow:0 8px 32px rgba(26,22,18,0.07),0 1px 3px rgba(26,22,18,0.04);padding:.5rem 0;z-index:200;opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;pointer-events:none}.dropdown-menu::before{content:'';position:absolute;top:-1.2rem;left:0;right:0;height:1.2rem}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{display:block;opacity:1;transform:none;pointer-events:auto}.dropdown-menu a{display:block;padding:.6rem 1.2rem;font-size:.78rem;font-weight:500;color:var(--text-body);transition:color .2s,background .2s;letter-spacing:.02em}.dropdown-menu a:hover{color:var(--accent);background:var(--accent-soft)}.dropdown-menu a::after{display:none!important}.nav-dd-arrow{display:inline-block;margin-left:.3rem;font-size:.6rem;transition:transform .25s;vertical-align:middle}.nav-dropdown:hover .nav-dd-arrow{transform:rotate(180deg)}
+
+        /* ─── RESET ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; background: var(--bg); }
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--fb);
+            font-weight: 400;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: 0; font: inherit; background: none; }
+        :focus-visible { outline: 2px solid var(--g0); outline-offset: 3px; border-radius: 4px; }
+
+        /* ─── PROGRESS ─── */
+        .progress {
+            position: fixed; top: 0; left: 0;
+            height: 2px; width: 0;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            z-index: 300; transition: width .08s linear; pointer-events: none;
+        }
+
+        /* ─── SHELL ─── */
+        .shell { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        @media(min-width:768px) { .shell { padding: 0 3rem; } }
+
+        /* ═══════════════════════════════════════════
+           NAV
+           ═══════════════════════════════════════════ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 0;
+            background: white;
+            border-bottom: 1px solid var(--bg3);
+            transition: padding .4s var(--ease);
+        }
+        .nav.solid { padding: .85rem 0; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+
+        .brand { display: flex; align-items: center; gap: .75rem; }
+        .brand-mark {
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 1.5px solid var(--glh);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--fm); font-weight: 600; font-size: .72rem;
+            color: var(--g2); flex-shrink: 0;
+            transition: background .3s var(--ease), border-color .3s, color .3s;
+        }
+        .brand:hover .brand-mark { background: var(--g0); border-color: var(--g0); color: white; }
+        .brand-name { font-weight: 800; font-size: .95rem; letter-spacing: .01em; color: var(--ink); }
+
+        .nav-links { display: none; align-items: center; gap: 2.2rem; }
+        @media(min-width:900px) { .nav-links { display: flex; } }
+        .nav-links a {
+            font-size: .72rem; font-weight: 600;
+            color: var(--ink3); letter-spacing: .08em; text-transform: uppercase;
+            transition: color .25s; position: relative; padding: .2rem 0;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute;
+            left: 0; right: 100%; bottom: -2px;
+            height: 1px; background: var(--g0);
+            transition: right .35s var(--ease);
+        }
+        .nav-links a:hover { color: var(--g2); }
+        .nav-links a:hover::after { right: 0; }
+
+        .nav-cta {
+            display: none;
+            padding: .55rem 1.4rem; border-radius: var(--rp);
+            border: 1.5px solid var(--glh);
+            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g0);
+            transition: background .3s, color .3s, border-color .3s, transform .25s;
+        }
+        @media(min-width:920px) { .nav-cta { display: inline-flex; } }
+        .nav-cta:hover { background: var(--g0); border-color: var(--g0); color: white; transform: translateY(-1px); }
+
+        .nav-burger {
+            display: flex; flex-direction: column; gap: 5px;
+            width: 36px; height: 36px; justify-content: center; padding: 4px;
+        }
+        .nav-burger span {
+            display: block; width: 100%; height: 1.5px;
+            background: var(--ink); border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+        @media(min-width:900px) { .nav-burger { display: none; } }
+
+        .nav-mobile {
+            display: none; position: fixed; inset: 0; top: 58px;
+            background: rgba(253,250,245,0.97);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            padding: 2.5rem 2rem; flex-direction: column; gap: .2rem; z-index: 99;
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a {
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
+            color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s, padding-left .25s;
+        }
+        .nav-mobile a:hover { color: var(--g0); padding-left: .5rem; }
+
+        /* ─── DROPDOWN NAV ─── */
+        .nav-dropdown { position: relative; }
+        .dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 1.2rem); left: -1rem;
+            min-width: 240px;
+            background: var(--gbg2); backdrop-filter: blur(24px) saturate(1.3);
+            -webkit-backdrop-filter: blur(24px) saturate(1.3);
+            border: 1px solid var(--gbd); border-radius: var(--r);
+            box-shadow: var(--gsh); padding: .5rem 0; z-index: 200;
+            opacity: 0; transform: translateY(-8px);
+            transition: opacity .25s var(--ease), transform .25s var(--ease), display .25s;
+            pointer-events: none;
+        }
+        .dropdown-menu::before {
+            content: ''; position: absolute;
+            top: -1.2rem; left: 0; right: 0; height: 1.2rem;
+        }
+        .nav-dropdown:hover .dropdown-menu,
+        .nav-dropdown:focus-within .dropdown-menu {
+            display: block; opacity: 1; transform: none; pointer-events: auto;
+        }
+        .dropdown-menu a {
+            display: block; padding: .6rem 1.2rem;
+            font-size: .78rem; font-weight: 500; color: var(--ink2);
+            transition: color .2s, background .2s; letter-spacing: .02em;
+            text-transform: none;
+        }
+        .dropdown-menu a:hover { color: var(--g2); background: var(--ga); }
+        .dropdown-menu a::after { display: none !important; }
+        .nav-dd-arrow {
+            display: inline-block; margin-left: .3rem; font-size: .6rem;
+            transition: transform .25s var(--ease); vertical-align: middle;
+        }
+        .nav-dropdown:hover .nav-dd-arrow { transform: rotate(180deg); }
+
+        /* Mobile accordion */
+        .mnl-group { display: flex; flex-direction: column; }
+        .mnl-toggle {
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
+            color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .mnl-toggle:hover { color: var(--g0); }
+        .mnl-sub { display: none; flex-direction: column; padding: .4rem 0 .8rem 1rem; }
+        .mnl-sub.open { display: flex; }
+        .mnl-sub a {
+            padding: .55rem 0; font-size: .95rem; font-weight: 600;
+            color: var(--ink3); border-bottom: none !important;
+            transition: color .2s;
+        }
+        .mnl-sub a:hover { color: var(--g0); }
+
+        /* ═══════════════════════════════════════════
+           SECTION BASE
+           ═══════════════════════════════════════════ */
+        .section { padding: 6rem 0; position: relative; }
+        @media(min-width:768px) { .section { padding: 8rem 0; } }
+        @media(max-width:767px) { .section { padding: 4rem 0; } }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity .72s var(--ease), transform .72s var(--ease);
+        }
+        .reveal.vis { opacity: 1; transform: none; }
+
+        /* ═══════════════════════════════════════════
+           HERO — page header (unique to inner pages)
+           ═══════════════════════════════════════════ */
+        .hero-page {
+            padding: 9rem 0 4rem;
+            background: white;
+            border-bottom: 1px solid var(--gbd);
+        }
+        @media(max-width:767px) { .hero-page { padding: 6.5rem 0 2.5rem; } }
+
+        .contact-h1 {
+            font-family: var(--fd);
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            font-weight: 400; line-height: 1.02; letter-spacing: -.02em;
+            margin: 1.5rem 0;
+            animation: heroFadeUp .8s var(--ease) both;
+        }
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: none; }
+        }
+        .contact-h1 .accent {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--g2) 0%, var(--g0) 28%, var(--g1) 52%, var(--g0) 74%, var(--g2) 100%);
+            background-size: 220% 220%;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+            animation: goldShimmer 9s ease-in-out infinite;
+        }
+        @keyframes goldShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%       { background-position: 100% 50%; }
+        }
+        .hero-lead {
+            font-size: 1rem; color: var(--ink2); font-weight: 400;
+            max-width: 460px; line-height: 1.75;
+            margin-top: 1.5rem;
+            animation: heroFadeUp .8s .2s var(--ease) both;
+        }
+        .hero-page .hero-lead { max-width: 640px; }
+
+        /* ═══════════════════════════════════════════
+           CONTACT
+           ═══════════════════════════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px; background: transparent;
+            border: none;
+            margin-bottom: 2.5rem;
+        }
+        .contact-cell {
+            background: var(--bg); padding: 1.8rem 2rem;
+            border-radius: var(--r);
+            position: relative; overflow: hidden;
+            transition: background .3s;
+        }
+        .contact-cell::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .45s var(--ease);
+        }
+        .contact-cell:hover::before { transform: scaleX(1); }
+        .contact-cell:hover { background: white; }
+        .c-label {
+            font-family: var(--fm); font-size: .58rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: .18em;
+            color: var(--ink3); margin-bottom: .5rem;
+        }
+        .c-value { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+        .c-value a { color: var(--g2); transition: color .25s; }
+        .c-value a:hover { color: var(--g0); }
+        /* .hint — unique to contacts page, no direct canon analogue */
+        .contact-cell .hint {
+            margin-top: .5rem;
+            font-size: .82rem; color: var(--ink3); line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER — with sitemap columns (unique to inner pages)
+           ═══════════════════════════════════════════ */
+        footer {
+            background: var(--bg2);
+            position: relative;
+            padding: 4rem 0 2rem;
+        }
+        footer::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(197,151,62,0.35) 25%,
+                rgba(197,151,62,0.6)  50%,
+                rgba(197,151,62,0.35) 75%,
+                transparent 100%);
+        }
+        .footer-grid {
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 2.5rem;
+        }
+        @media(min-width:700px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+        footer h4 {
+            color: var(--ink);
+            font-size: .82rem; margin-bottom: 1rem;
+            font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+        }
+        footer p, footer .footer-copy { font-size: .88rem; color: var(--ink3); line-height: 1.6; }
+        footer ul li { margin-bottom: .6rem; font-size: .88rem; }
+        footer ul li a { color: var(--ink3); transition: color .25s; }
+        footer ul li a:hover { color: var(--g0); }
+        .footer-base {
+            border-top: 1px solid var(--bg3);
+            padding-top: 1.5rem;
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+            font-size: .78rem; color: var(--ink3);
+        }
+        @media(max-width:767px) { .footer-base { flex-direction: column; gap: .35rem; } }
+
+        /* ─── REDUCED MOTION ─── */
+        @media(prefers-reduced-motion: reduce) {
+            .reveal { transition: none !important; }
+            .contact-h1, .hero-lead { animation: none !important; opacity: 1 !important; }
+            .contact-h1 .accent { animation: none !important; }
+        }
     </style>
 </head>
 <body>
+    <div class="progress" id="progressBar"></div>
+
+    <!-- ═══ NAV ═══ -->
     <nav class="nav" id="mainNav">
         <div class="shell nav-inner">
-            <a href="../index.html" class="brand">Пром-текстиль</a>
+            <a href="../index.html" class="brand">
+                <span class="brand-name">Пром-текстиль</span>
+            </a>
             <div class="nav-links">
-                <div class="nav-dropdown"><a href="../index.html#catalog">Изделия <span class="nav-dd-arrow">▾</span></a><div class="dropdown-menu"><a href="../services/chekhly-tenty-v2.html">Чехлы, укрытия, тенты</a><a href="../services/specodezhda-v2.html">Спецодежда</a><a href="../services/tactical-v2.html">Тактическое и outdoor</a><a href="../services/medical-v2.html">Медицинский текстиль</a><a href="../services/interior-v2.html">Интерьерный B2B</a><a href="../services/transport-v2.html">Транспортный текстиль</a><a href="../services/agro-v2.html">Агропромышленный</a><a href="../services/fire-v2.html">Пожарозащита</a><a href="../services/cleanroom-v2.html">Чистые помещения</a></div></div>
+                <div class="nav-dropdown">
+                    <a href="../index.html#catalog">Изделия <span class="nav-dd-arrow">▾</span></a>
+                    <div class="dropdown-menu">
+                        <a href="../services/chekhly-tenty-v2.html">Чехлы, укрытия, тенты</a>
+                        <a href="../services/specodezhda-v2.html">Спецодежда</a>
+                        <a href="../services/tactical-v2.html">Тактическое и outdoor</a>
+                        <a href="../services/medical-v2.html">Медицинский текстиль</a>
+                        <a href="../services/interior-v2.html">Интерьерный B2B</a>
+                        <a href="../services/transport-v2.html">Транспортный текстиль</a>
+                        <a href="../services/agro-v2.html">Агропромышленный</a>
+                        <a href="../services/fire-v2.html">Пожарозащита</a>
+                        <a href="../services/cleanroom-v2.html">Чистые помещения</a>
+                    </div>
+                </div>
                 <a href="../pages/about-v2.html">О нас</a>
                 <a href="../index.html#process">Как работаем</a>
                 <a href="../index.html#faq">FAQ</a>
@@ -146,19 +494,33 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
-        <div class="nav-mobile" id="navMobile">
-            <a href="../index.html#catalog" class="mnl">Направления</a>
-            <a href="../pages/about-v2.html" class="mnl">О нас</a>
-            <a href="../index.html#process" class="mnl">Как работаем</a>
-            <a href="../index.html#faq" class="mnl">FAQ</a>
-            <a href="../pages/contacts-v2.html" class="mnl" aria-current="page">Контакты</a>
-            <a href="tel:+74996477281" class="mnl">+7 499 647-72-81</a>
-        </div>
     </nav>
+
+    <div class="nav-mobile" id="navMobile">
+        <div class="mnl-group">
+            <div class="mnl-toggle" id="mobMenuToggle">Изделия <span id="mobMenuArrow">▾</span></div>
+            <div class="mnl-sub" id="mobMenuSub">
+                <a href="../services/chekhly-tenty-v2.html" class="mnl">Чехлы, укрытия, тенты</a>
+                <a href="../services/specodezhda-v2.html" class="mnl">Спецодежда</a>
+                <a href="../services/tactical-v2.html" class="mnl">Тактическое и outdoor</a>
+                <a href="../services/medical-v2.html" class="mnl">Медицинский текстиль</a>
+                <a href="../services/interior-v2.html" class="mnl">Интерьерный B2B</a>
+                <a href="../services/transport-v2.html" class="mnl">Транспортный текстиль</a>
+                <a href="../services/agro-v2.html" class="mnl">Агропромышленный</a>
+                <a href="../services/fire-v2.html" class="mnl">Пожарозащита</a>
+                <a href="../services/cleanroom-v2.html" class="mnl">Чистые помещения</a>
+            </div>
+        </div>
+        <a href="../pages/about-v2.html" class="mnl">О нас</a>
+        <a href="../index.html#process" class="mnl">Как работаем</a>
+        <a href="../index.html#faq" class="mnl">FAQ</a>
+        <a href="../pages/contacts-v2.html" class="mnl" aria-current="page">Контакты</a>
+        <a href="tel:+74996477281" class="mnl">+7 499 647-72-81</a>
+    </div>
 
 <main>
     <section class="hero-page">
-        <div class="shell">
+        <div class="shell reveal">
             <h1 class="contact-h1">Свяжитесь с нами <span class="accent">удобным способом</span></h1>
             <p class="hero-lead">Производство в Санкт-Петербурге, Литовская 12 к Д. Рабочие часы — Пн–Пт 9:00–18:00. Заявки принимаем по телефону и email.</p>
         </div>
@@ -166,25 +528,25 @@
 
     <section class="section">
         <div class="shell">
-            <div class="contact-cards" style="background: #EEF2F6; border: 1px solid #EEF2F6;">
-                <a class="contact-cell" href="tel:+74996477281"><div class="label">Phone · Производство</div><div class="value">+7 499 647-72-81</div><div class="hint">Расчёт, сроки, технические вопросы. Пн–Пт 9–18.</div></a>
-                <a class="contact-cell" href="https://maps.google.com/?q=Пром-текстиль+Москва"><div class="label">Производство · Санкт-Петербург</div><div class="value" style="font-size: 1rem;">Литовская 12, к. Д</div><div class="hint">Приезд по согласованию. Покажем производство.</div></a>
+            <div class="contact-grid reveal">
+                <a class="contact-cell" href="tel:+74996477281"><div class="c-label">Phone · Производство</div><div class="c-value">+7 499 647-72-81</div><div class="hint">Расчёт, сроки, технические вопросы. Пн–Пт 9–18.</div></a>
+                <a class="contact-cell" href="https://maps.google.com/?q=Пром-текстиль+Москва"><div class="c-label">Производство · Санкт-Петербург</div><div class="c-value" style="font-size:.95rem">Литовская 12, к. Д</div><div class="hint">Приезд по согласованию. Покажем производство.</div></a>
             </div>
 
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #EEF2F6; font-size: 0.9rem; color: #64748B; line-height: 1.7;">
-                <strong style="color: #0F172A;">Пром-текстиль</strong><br>
+            <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--bg3);font-size:.9rem;color:var(--ink2);line-height:1.7">
+                <strong style="color:var(--ink)">Пром-текстиль</strong><br>
                 Адрес: Санкт-Петербург, Литовская 12, к. Д
             </div>
         </div>
     </section>
 
 </main>
-    <footer class="footer">
+    <footer>
         <div class="shell">
             <div class="footer-grid">
                 <div>
-                    <div style="font-weight: 800; font-size: 1.3rem; color: var(--bg); margin-bottom: 0.5rem;">Пром-текстиль <span class="mono" style="font-size: 0.6em; color: var(--mute);">/ Lakshmi</span></div>
-                    <p style="max-width: 38ch; font-size: 0.88rem;">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
+                    <div style="font-weight:800;font-size:1.3rem;color:var(--ink);margin-bottom:.5rem">Пром-текстиль <span style="font-size:.6em;color:var(--ink3)">/ Lakshmi</span></div>
+                    <p style="max-width:38ch">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
                 </div>
                 <div>
                     <h4>Направления</h4>
@@ -202,7 +564,6 @@
                         <li><a href="../pages/about-v2.html">О компании</a></li>
                         <li><a href="../pages/contacts-v2.html">Контакты</a></li>
                         <li><a href="tel:+74996477281">+7 499 647-72-81</a></li>
-                        
                         <li><a href="../privacy.html">Конфиденциальность</a></li>
                     </ul>
                 </div>
@@ -210,28 +571,74 @@
             <div class="footer-base">
                 <span>© 2026 Пром-текстиль</span>
                 <span>СПб · Литовская 12 к Д</span>
-                
             </div>
         </div>
     </footer>
 <script>
 (function() {
+    'use strict';
+
+    /* Progress bar */
+    var pb = document.getElementById('progressBar');
+    window.addEventListener('scroll', function(){
+        var t = document.documentElement.scrollHeight - window.innerHeight;
+        if (pb && t > 0) pb.style.width = Math.min(100, (window.scrollY / t) * 100) + '%';
+    }, {passive: true});
+
+    /* Nav glass on scroll */
+    var nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', function(){
+        if (nav) nav.classList.toggle('solid', window.scrollY > 48);
+    }, {passive: true});
+
+    /* Mobile menu */
     var btn = document.getElementById('navBurger');
     var menu = document.getElementById('navMobile');
     btn.addEventListener('click', function() {
         var open = menu.classList.toggle('open');
         btn.classList.toggle('open', open);
-        btn.setAttribute('aria-expanded', open);
+        btn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
     });
-    menu.querySelectorAll('a').forEach(function(a) {
+    menu.querySelectorAll('.mnl').forEach(function(a) {
         a.addEventListener('click', function() {
             menu.classList.remove('open');
             btn.classList.remove('open');
             btn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         });
     });
+    document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            btn.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+
+    /* Mobile "Изделия" accordion */
+    var mobToggle = document.getElementById('mobMenuToggle');
+    var mobSub    = document.getElementById('mobMenuSub');
+    var mobArrow  = document.getElementById('mobMenuArrow');
+    if (mobToggle) mobToggle.addEventListener('click', function(){
+        var open = mobSub.classList.toggle('open');
+        if (mobArrow) mobArrow.textContent = open ? '▴' : '▾';
+    });
+
+    /* Scroll reveal */
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if (e.isIntersecting) {
+                e.target.classList.add('vis');
+                io.unobserve(e.target);
+            }
+        });
+    }, {threshold: .07, rootMargin: '0px 0px -24px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    if (reduced) document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('vis'); });
 })();
 </script>
 </body>
 </html>
-

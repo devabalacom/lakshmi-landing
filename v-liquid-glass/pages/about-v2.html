@@ -69,143 +69,678 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
     <style>
-:root{--bg:#F8FAFC;--bg-alt:#EEF2F6;--card:#FFFFFF;--border:#CBD5E1;--divider:#E2E8F0;--glass:rgba(255,255,255,0.68);--glass-md:rgba(255,255,255,0.86);--glass-border:rgba(212,160,23,0.18);--glass-hi:rgba(212,160,23,0.38);--accent:#D4A017;--accent2:#FACC15;--accent-hover:#B8860B;--accent-active:#8B6508;--accent-bg:#FFFBEB;--accent-border:#FDE68A;--accent-glow:rgba(212,160,23,0.28);--accent-soft:rgba(212,160,23,0.09);--text:#1E293B;--text-body:#475569;--text-soft:#94A3B8;--text-muted:#64748B;--dark:#0F172A;--dark-text:#F8FAFC;--dark-muted:#CBD5E1;--blur:24px;--r:16px;--rs:6px;--rl:24px;--ease:cubic-bezier(0.22,1,0.36,1);--fd: 'Montserrat', sans-serif;--fs: 'Montserrat', sans-serif;--fb: 'Montserrat', sans-serif;--fm: 'Montserrat', monospace;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}ul{list-style:none}button{cursor:pointer;border:0;font:inherit;background:none}img{display:block;max-width:100%}
-.progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:200;transition:width .08s linear}
-.shell{max-width:1380px;margin:0 auto;padding:0 1.5rem}@media(min-width:768px){.shell{padding:0 3rem}}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 0;background:white;border-bottom:1px solid var(--glass-border);transition:background .4s,border-color .4s,padding .3s}
-.nav.solid{border-bottom-color:rgba(212,160,23,.28);padding:.8rem 0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:.8rem;font-weight:900;font-size:1.1rem;letter-spacing:-.015em}
-.brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;color:#fff;box-shadow:0 0 22px var(--accent-glow)}
-.nav-links{display:none;align-items:center;gap:2.2rem}@media(min-width:920px){.nav-links{display:flex}}
-.nav-links a{font-size:.875rem;font-weight:500;color:var(--text-muted);transition:color .3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}
-.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-dropdown{position:relative}.dropdown-menu{display:none;position:absolute;top:calc(100% + 1.2rem);left:-1rem;min-width:240px;background:var(--glass-md);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid var(--glass-border);border-radius:var(--r);box-shadow:0 8px 32px rgba(26,22,18,0.07),0 1px 3px rgba(26,22,18,0.04);padding:.5rem 0;z-index:200;opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;pointer-events:none}.dropdown-menu::before{content:'';position:absolute;top:-1.2rem;left:0;right:0;height:1.2rem}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{display:block;opacity:1;transform:none;pointer-events:auto}.dropdown-menu a{display:block;padding:.6rem 1.2rem;font-size:.78rem;font-weight:500;color:var(--text-body);transition:color .2s,background .2s;letter-spacing:.02em}.dropdown-menu a:hover{color:var(--accent);background:var(--accent-soft)}.dropdown-menu a::after{display:none!important}.nav-dd-arrow{display:inline-block;margin-left:.3rem;font-size:.6rem;transition:transform .25s;vertical-align:middle}.nav-dropdown:hover .nav-dd-arrow{transform:rotate(180deg)}
-.nav-cta{display:none;padding:.55rem 1.4rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--glass-hi);color:var(--accent);transition:background .3s,color .3s,border-color .3s,transform .25s}
-@media(min-width:920px){.nav-cta{display:inline-flex}}.nav-cta:hover{background:var(--accent);border-color:var(--accent);color:white;transform:translateY(-1px)}
-.nav-burger{display:flex;flex-direction:column;gap:5px;width:36px;height:36px;justify-content:center;padding:4px}
-.nav-burger span{display:block;width:100%;height:2px;background:var(--text);border-radius:2px;transition:transform .3s,opacity .3s}
-.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-burger.open span:nth-child(2){opacity:0}.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(min-width:920px){.nav-burger{display:none}}
-.nav-mobile{display:none;position:fixed;inset:0;top:62px;background:rgba(255,255,255,.98);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);padding:2.5rem 2rem;flex-direction:column;gap:.25rem;z-index:99}
-.nav-mobile.open{display:flex}.nav-mobile a{padding:1.1rem 0;font-size:1.4rem;font-weight:700;color:var(--text-body);border-bottom:1px solid var(--glass-border);transition:color .3s,padding-left .3s}
-.nav-mobile a:hover{color:var(--accent);padding-left:.75rem}
-.hero-service{padding:9rem 0 5rem;position:relative;z-index:1;border-bottom:1px solid var(--glass-border);overflow:hidden}.hero-service::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(26,22,18,0.042) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0}.hero-service::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 65% at 78% 28%,rgba(212,160,23,0.08) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 18% 78%,rgba(212,160,23,0.05) 0%,transparent 65%);pointer-events:none;z-index:0}.hero-service .shell{position:relative;z-index:1}
-.hero-h1{font-size:clamp(2.2rem,5vw,3.8rem);font-family:'Montserrat',sans-serif;font-weight:400;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem}
-.hero-h1 .accent{background:linear-gradient(135deg,#0F172A 10%,var(--accent) 55%,var(--accent2) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-lead{font-size:1.05rem;color:var(--text-body);max-width:560px;line-height:1.75;margin-bottom:2rem}
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-.btn,.btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.8rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:all .3s var(--ease);cursor:pointer;position:relative;overflow:hidden}
-.btn-primary{background:var(--accent);color:#111827;box-shadow:0 4px 22px var(--accent-glow)}
-.btn-primary:hover{background:var(--accent-hover);color:#fff;transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow)}
-.btn-secondary{background:rgba(255,255,255,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-hi);color:var(--text)}
-.btn-secondary:hover{border-color:rgba(212,160,23,.45);transform:translateY(-2px)}
-.section{position:relative;z-index:1;padding:5.5rem 0}
-.section.bg-dark{background:linear-gradient(135deg,rgba(212,160,23,.04) 0%,rgba(255,255,255,.5) 100%);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
-.section-head{margin-bottom:2.5rem}.section-h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:-.01em;line-height:1.12;margin-bottom:.75rem}.section-sub{font-size:1rem;color:var(--text-body);max-width:580px}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.vis{opacity:1;transform:none}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;margin-top:2rem}
-.stat-card{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--r);padding:2rem 1.5rem;text-align:center;transition:border-color .3s,transform .3s}
-.stat-card:hover{border-color:var(--glass-hi);transform:translateY(-2px)}
-.stat-num{font-family:'Montserrat',sans-serif;font-size:2.4rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.4rem}
-.stat-label{font-size:.85rem;color:var(--text-muted);line-height:1.4}
-.caps-v2-grid{display:grid;gap:1rem;grid-template-columns:1fr}@media(min-width:600px){.caps-v2-grid{grid-template-columns:1fr 1fr}}@media(min-width:1000px){.caps-v2-grid{grid-template-columns:repeat(4,1fr)}}
-.cap-v2{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);padding:1.75rem;border-radius:var(--r);transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
-.cap-v2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .4s}
-.cap-v2:hover{border-color:rgba(212,160,23,.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}.cap-v2:hover::before{transform:scaleX(1)}
-.cap-v2 .num{font-family:'Montserrat',sans-serif;color:var(--accent);font-size:.72rem;font-weight:600;margin-bottom:.75rem;letter-spacing:.1em}
-.cap-v2 h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}.cap-v2 p{font-size:.87rem;color:var(--text-muted);line-height:1.6}
-.apps-grid{display:grid;gap:.6rem;grid-template-columns:1fr}@media(min-width:500px){.apps-grid{grid-template-columns:1fr 1fr}}
-.application-v2{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--rs);font-size:.88rem;color:var(--text);transition:border-color .3s,transform .3s}
-.application-v2:hover{border-color:var(--glass-hi);transform:translateY(-1px)}.application-v2 svg{color:var(--accent);flex-shrink:0}
-.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));position:relative;gap:0}
-.process-grid::before{content:'';position:absolute;top:30px;left:calc(10% + 2rem);right:calc(10% + 2rem);height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2),rgba(212,160,23,.3));display:none}
-@media(min-width:768px){.process-grid::before{display:block}}
-.step{padding:0 1.2rem 2rem;text-align:center}
-.step-num{width:44px;height:44px;border-radius:50%;background:var(--glass-md);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid var(--glass-hi);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;color:var(--accent);margin:0 auto 1rem;position:relative;z-index:1;box-shadow:0 0 20px var(--accent-glow),0 0 0 5px rgba(212,160,23,.05)}
-.step h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}.step p{font-size:.83rem;color:var(--text-muted);line-height:1.6}
-.contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.contact-cell{display:block;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--r);padding:1.6rem 1.75rem;transition:transform .4s,border-color .4s,box-shadow .4s}
-.contact-cell:hover{transform:translateY(-3px);border-color:rgba(212,160,23,.35);box-shadow:0 12px 40px rgba(0,0,0,.08)}
-.contact-cell .label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--text-muted);margin-bottom:.5rem}
-.contact-cell .value{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}.contact-cell .hint{font-size:.82rem;color:var(--text-muted)}
-footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padding:3rem 0 2rem}
-.footer-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-bottom:2.5rem}@media(min-width:768px){.footer-grid{grid-template-columns:1.5fr 1fr 1fr}}
-.footer-grid h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:1rem}
-.footer-grid ul{display:flex;flex-direction:column;gap:.5rem}.footer-grid ul a{font-size:.88rem;color:var(--text-body);transition:color .3s}.footer-grid ul a:hover{color:var(--accent)}
-.footer-base{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--text-muted);border-top:1px solid var(--glass-border);padding-top:1.5rem}
-@media(max-width:767px){.section{padding:3.5rem 0}.hero-service{padding:7rem 0 3.5rem}}
+        /* ═══════════════════════════════════════════
+           DESIGN TOKENS — LIGHT PREMIUM / BRUSHED GOLD
+           ═══════════════════════════════════════════ */
+        :root {
+            /* Backgrounds */
+            --bg:    #F8FAFC;
+            --bg2:   #EEF2F6;
+            --bg3:   #E2E8F0;
+            --card:  #FFFFFF;
+
+            /* Borders */
+            --border:  #CBD5E1;
+
+            /* Ink / Text */
+            --ink:       #1E293B;
+            --ink2:      #475569;
+            --ink3:      #64748B;
+            --text-soft: #94A3B8;
+
+            /* Gold / Accent */
+            --g0:    #D4A017;
+            --g1:    #FACC15;
+            --g2:    #8B6508;
+            --ga:    rgba(212,160,23,0.09);
+            --gl:    rgba(212,160,23,0.16);
+            --glh:   rgba(212,160,23,0.38);
+            --accent-hover:  #B8860B;
+            --accent-active: #8B6508;
+            --accent-bg:     #FFFBEB;
+            --accent-border: #FDE68A;
+
+            /* Dark strip */
+            --nr:    #0F172A;
+            --nr2:   #1D1914;
+            --nt:    #F8FAFC;
+            --nt2:   rgba(248,250,252,0.65);
+            --dark-muted: #CBD5E1;
+
+            /* Glass */
+            --gbg:   rgba(255,255,255,0.68);
+            --gbg2:  rgba(255,255,255,0.86);
+            --gbd:   rgba(212,160,23,0.18);
+            --gsh:   0 8px 32px rgba(26,22,18,0.07), 0 1px 3px rgba(26,22,18,0.04);
+
+            /* Typography */
+            --fd: 'Montserrat', sans-serif;
+            --fs: 'Montserrat', sans-serif;
+            --fb: 'Montserrat', sans-serif;
+            --fm: 'Montserrat', monospace;
+
+            /* Radii */
+            --rs:  6px;
+            --r:   16px;
+            --rl:  24px;
+            --rp:  999px;
+
+            /* Motion */
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ─── RESET ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; background: var(--bg); }
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--fb);
+            font-weight: 400;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: 0; font: inherit; background: none; }
+        :focus-visible { outline: 2px solid var(--g0); outline-offset: 3px; border-radius: 4px; }
+
+        /* ─── PROGRESS ─── */
+        .progress {
+            position: fixed; top: 0; left: 0;
+            height: 2px; width: 0;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            z-index: 300; transition: width .08s linear; pointer-events: none;
+        }
+
+        /* ─── SHELL ─── */
+        .shell { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        @media(min-width:768px) { .shell { padding: 0 3rem; } }
+
+        /* ═══════════════════════════════════════════
+           NAV — glass on scroll
+           ═══════════════════════════════════════════ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 0;
+            background: white;
+            border-bottom: 1px solid var(--bg3);
+            transition: padding .4s var(--ease);
+        }
+        .nav.solid { padding: .85rem 0; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+
+        .brand { display: flex; align-items: center; gap: .75rem; }
+        .brand-name { font-weight: 800; font-size: .95rem; letter-spacing: .01em; color: var(--ink); }
+
+        .nav-links { display: none; align-items: center; gap: 2.2rem; }
+        @media(min-width:900px) { .nav-links { display: flex; } }
+        .nav-links a {
+            font-size: .72rem; font-weight: 600;
+            color: var(--ink3); letter-spacing: .08em; text-transform: uppercase;
+            transition: color .25s; position: relative; padding: .2rem 0;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute;
+            left: 0; right: 100%; bottom: -2px;
+            height: 1px; background: var(--g0);
+            transition: right .35s var(--ease);
+        }
+        .nav-links a:hover { color: var(--g2); }
+        .nav-links a:hover::after { right: 0; }
+
+        .nav-cta {
+            display: none;
+            padding: .55rem 1.4rem; border-radius: var(--rp);
+            border: 1.5px solid var(--glh);
+            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g0);
+            transition: background .3s, color .3s, border-color .3s, transform .25s;
+        }
+        @media(min-width:920px) { .nav-cta { display: inline-flex; } }
+        .nav-cta:hover { background: var(--g0); border-color: var(--g0); color: white; transform: translateY(-1px); }
+
+        .nav-burger {
+            display: flex; flex-direction: column; gap: 5px;
+            width: 36px; height: 36px; justify-content: center; padding: 4px;
+        }
+        .nav-burger span {
+            display: block; width: 100%; height: 1.5px;
+            background: var(--ink); border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+        @media(min-width:900px) { .nav-burger { display: none; } }
+
+        .nav-mobile {
+            display: none; position: fixed; inset: 0; top: 58px;
+            background: rgba(253,250,245,0.97);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            padding: 2.5rem 2rem; flex-direction: column; gap: .2rem; z-index: 99;
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a {
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
+            color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s, padding-left .25s;
+        }
+        .nav-mobile a:hover { color: var(--g0); padding-left: .5rem; }
+
+        /* ═══ DROPDOWN NAV ═══ */
+        .nav-dropdown { position: relative; }
+        .dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 1.2rem); left: -1rem;
+            min-width: 240px;
+            background: var(--gbg2); backdrop-filter: blur(24px) saturate(1.3);
+            -webkit-backdrop-filter: blur(24px) saturate(1.3);
+            border: 1px solid var(--gbd); border-radius: var(--r);
+            box-shadow: var(--gsh); padding: .5rem 0; z-index: 200;
+            opacity: 0; transform: translateY(-8px);
+            transition: opacity .25s var(--ease), transform .25s var(--ease), display .25s;
+            pointer-events: none;
+        }
+        .dropdown-menu::before {
+            content: ''; position: absolute;
+            top: -1.2rem; left: 0; right: 0; height: 1.2rem;
+        }
+        .nav-dropdown:hover .dropdown-menu,
+        .nav-dropdown:focus-within .dropdown-menu {
+            display: block; opacity: 1; transform: none; pointer-events: auto;
+        }
+        .dropdown-menu a {
+            display: block; padding: .6rem 1.2rem;
+            font-size: .78rem; font-weight: 500; color: var(--ink2);
+            transition: color .2s, background .2s; letter-spacing: .02em;
+            text-transform: none;
+        }
+        .dropdown-menu a:hover { color: var(--g2); background: var(--ga); }
+        .dropdown-menu a::after { display: none !important; }
+        .nav-dd-arrow {
+            display: inline-block; margin-left: .3rem; font-size: .6rem;
+            transition: transform .25s var(--ease); vertical-align: middle;
+        }
+        .nav-dropdown:hover .nav-dd-arrow { transform: rotate(180deg); }
+
+        /* Mobile dropdown */
+        .mnl-group { display: flex; flex-direction: column; }
+        .mnl-toggle {
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
+            color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .mnl-toggle:hover { color: var(--g0); }
+        .mnl-sub { display: none; flex-direction: column; padding: .4rem 0 .8rem 1rem; }
+        .mnl-sub.open { display: flex; }
+        .mnl-sub a {
+            padding: .55rem 0; font-size: .95rem; font-weight: 600;
+            color: var(--ink3); border-bottom: none !important;
+            transition: color .2s;
+        }
+        .mnl-sub a:hover { color: var(--g0); }
+
+        /* ═══════════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════════ */
+        .hero-section { background: white; padding: 90px 0 3rem; }
+        .hero {
+            position: relative;
+            min-height: 80svh;
+            display: flex; align-items: center;
+            padding: 4rem 3rem 5rem;
+            overflow: hidden;
+            border-radius: var(--rl);
+            background: linear-gradient(rgba(253,250,245,0.5), rgba(253,250,245,0.5)), var(--bg2);
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(26,22,18,0.042) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 65% at 78% 28%, rgba(197,151,62,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 18% 78%, rgba(197,151,62,0.05) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr;
+            gap: 2.5rem; width: 100%; max-width: 760px;
+        }
+        .hero-text-glass {
+            background: var(--gbg);
+            border: 1px solid var(--gbd);
+            border-radius: var(--rl);
+            box-shadow: var(--gsh), inset 0 1px 0 rgba(255,255,255,0.92);
+            padding: 2.5rem 2.8rem;
+            position: relative;
+        }
+        .hero-text-glass::before {
+            content: ''; position: absolute;
+            top: 0; left: 12%; right: 12%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.96), transparent);
+            border-radius: var(--rp);
+        }
+        .hero-h1 {
+            font-family: var(--fd);
+            font-size: clamp(2rem, 5vw, 4.8rem);
+            font-weight: 400; line-height: .95; letter-spacing: -.02em;
+            animation: heroFadeUp 0.8s var(--ease) both;
+        }
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: none; }
+        }
+        .hero-h1 em {
+            font-style: normal;
+            background: linear-gradient(
+                135deg,
+                var(--g2) 0%,
+                var(--g0) 28%,
+                var(--g1) 52%,
+                var(--g0) 74%,
+                var(--g2) 100%
+            );
+            background-size: 220% 220%;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+            animation: goldShimmer 9s ease-in-out infinite;
+        }
+        @keyframes goldShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%       { background-position: 100% 50%; }
+        }
+        .hero-lead {
+            font-size: 1rem; color: var(--ink2); font-weight: 400;
+            max-width: 560px; line-height: 1.75;
+            margin-top: 1.5rem;
+            animation: heroFadeUp 0.8s 0.2s var(--ease) both;
+        }
+        .hero-btns {
+            display: flex; gap: .8rem; flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: heroFadeUp 0.7s 0.35s var(--ease) both;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .9rem 1.9rem; border-radius: var(--rp);
+            font-weight: 700; font-size: .82rem; letter-spacing: .04em;
+            transition: all .4s var(--ease);
+        }
+        .btn-gold {
+            background: #D4A017;
+            color: #111827;
+            box-shadow: 0 8px 28px rgba(212,160,23,0.28);
+        }
+        .btn-gold:hover {
+            background: #B8860B;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(212,160,23,0.38);
+        }
+
+        /* ═══════════════════════════════════════════
+           SECTION BASE
+           ═══════════════════════════════════════════ */
+        .section { padding: 6rem 0; position: relative; }
+        @media(min-width:768px) { .section { padding: 8rem 0; } }
+
+        .s-head { margin-bottom: 3.5rem; }
+        .s-h2 {
+            font-family: var(--fd);
+            font-size: clamp(2rem, 4vw, 3.6rem);
+            font-weight: 400; line-height: 1.05; letter-spacing: -.01em;
+            margin-bottom: .7rem;
+        }
+        .s-sub { font-size: 1rem; color: var(--ink2); max-width: 560px; line-height: 1.7; }
+
+        /* Dark variants */
+        .s-dark .s-h2 { color: var(--nt); }
+        .s-dark .s-sub { color: var(--nt2); }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity .72s var(--ease), transform .72s var(--ease);
+        }
+        .reveal.vis { opacity: 1; transform: none; }
+
+        /* ═══════════════════════════════════════════
+           STATS — island for visual rhythm
+           ═══════════════════════════════════════════ */
+        .stats-section { background: var(--bg); padding: 5rem 0; position: relative; }
+        .stats-island {
+            background: var(--nr);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .stats-island::before {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 65% 80% at 22% 50%, rgba(197,151,62,0.055) 0%, transparent 65%),
+                radial-gradient(ellipse 55% 70% at 82% 50%, rgba(197,151,62,0.035) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .stats-island::after {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
+            background-size: 56px 56px;
+            pointer-events: none;
+        }
+        .stats-inner { position: relative; z-index: 1; }
+        .stats-row {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; background: transparent;
+        }
+        @media(min-width:640px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
+        .stat-cell {
+            background: var(--nr); padding: 3rem 2.5rem; text-align: center;
+            border-radius: var(--rs);
+            transition: background .3s;
+        }
+        .stat-cell:hover { background: var(--nr2); }
+        .stat-num {
+            font-family: var(--fd);
+            font-size: clamp(2.6rem, 5vw, 4rem);
+            color: var(--g0); line-height: 1;
+            display: block; margin-bottom: .5rem;
+        }
+        .stat-desc { font-size: .78rem; color: var(--nt2); line-height: 1.5; max-width: 120px; margin: 0 auto; }
+
+        /* ═══════════════════════════════════════════
+           ABOUT — capability cards on light
+           ═══════════════════════════════════════════ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        .about-card {
+            background: white;
+            border: 1px solid var(--gbd);
+            border-radius: var(--r);
+            padding: 2.2rem 2rem;
+            transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--g0), var(--g1));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--ease);
+            z-index: 1;
+        }
+        .about-card:hover {
+            border-color: var(--glh);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(212,160,23,0.10), 0 2px 8px rgba(26,22,18,0.04);
+        }
+        .about-card:hover::before { transform: scaleX(1); }
+        .about-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+        .about-card p { font-size: .85rem; color: var(--ink2); line-height: 1.65; }
+
+        /* ═══ ДЛЯ КОГО РАБОТАЕМ — unique tag cloud (no canon analog) ═══ */
+        .apps-grid { display: grid; gap: .6rem; grid-template-columns: 1fr; }
+        @media(min-width:500px) { .apps-grid { grid-template-columns: 1fr 1fr; } }
+        .application-v2 {
+            display: flex; align-items: center; gap: .6rem;
+            padding: .75rem 1rem;
+            background: var(--gbg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--gbd); border-radius: var(--rs);
+            font-size: .88rem; color: var(--ink);
+            transition: border-color .3s, transform .3s;
+        }
+        .application-v2:hover { border-color: var(--glh); transform: translateY(-1px); }
+        .application-v2 svg { color: var(--g0); flex-shrink: 0; }
+
+        /* ═══════════════════════════════════════════
+           PROCESS — numbered editorial steps
+           ═══════════════════════════════════════════ */
+        .process-bg { background: var(--bg2); }
+        .process-list {
+            display: grid; grid-template-columns: 1fr;
+            gap: 12px; background: transparent;
+        }
+        @media(min-width:640px) { .process-list { grid-template-columns: repeat(5, 1fr); } }
+        .p-step {
+            background: var(--bg2); padding: 2.2rem 1.8rem;
+            border-radius: var(--r);
+            position: relative; overflow: hidden;
+            transition: background .3s;
+        }
+        .p-step:hover { background: white; }
+        .p-step::before {
+            content: attr(data-n);
+            position: absolute; bottom: -.05em; right: .1em;
+            font-family: var(--fm); font-weight: 800;
+            font-size: 5.5rem; line-height: 1;
+            color: var(--ink); opacity: .028;
+            pointer-events: none;
+        }
+        .p-step h3 { font-size: .98rem; font-weight: 700; margin-bottom: .4rem; position: relative; }
+        .p-step p { font-size: .82rem; color: var(--ink2); line-height: 1.6; position: relative; }
+
+        /* ═══════════════════════════════════════════
+           CONTACT
+           ═══════════════════════════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px; background: transparent;
+            border: none;
+            margin-bottom: 2.5rem;
+        }
+        .contact-cell {
+            display: block;
+            background: var(--bg); padding: 1.8rem 2rem;
+            border-radius: var(--r);
+            position: relative; overflow: hidden;
+            transition: background .3s;
+        }
+        .contact-cell::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .45s var(--ease);
+        }
+        .contact-cell:hover::before { transform: scaleX(1); }
+        .contact-cell:hover { background: white; }
+        .c-label {
+            font-family: var(--fm); font-size: .58rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: .18em;
+            color: var(--ink3); margin-bottom: .5rem;
+        }
+        .c-value { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            background: var(--bg2);
+            position: relative;
+            padding: 3rem 0 2rem;
+        }
+        footer::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(197,151,62,0.35) 25%,
+                rgba(197,151,62,0.6)  50%,
+                rgba(197,151,62,0.35) 75%,
+                transparent 100%);
+        }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        @media(min-width:768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+        .footer-grid h4 {
+            font-size: .8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: .1em; color: var(--ink3); margin-bottom: 1rem;
+        }
+        .footer-grid ul { display: flex; flex-direction: column; gap: .5rem; }
+        .footer-grid ul a { font-size: .88rem; color: var(--ink2); transition: color .3s; }
+        .footer-grid ul a:hover { color: var(--g0); }
+        .footer-base {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            font-size: .8rem; color: var(--ink3);
+            border-top: 1px solid var(--bg3); padding-top: 1.5rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:767px) {
+            .section { padding: 4rem 0; }
+            .hero { padding: 64px 0 2rem; }
+            .stats-section { padding: 3.5rem 0; }
+            .stats-island { padding: 2.5rem 1.5rem; border-radius: var(--r); }
+        }
+
+        /* ─── REDUCED MOTION ─── */
+        @media(prefers-reduced-motion: reduce) {
+            .reveal { transition: none !important; }
+            .hero-h1, .hero-lead, .hero-btns { animation: none !important; opacity: 1 !important; }
+            .hero-h1 em { animation: none !important; }
+        }
     </style>
 </head>
 <body>
 <div class="progress" id="progressBar"></div>
-<nav class="nav" id="mainNav"><div class="shell nav-inner"><a href="../index.html" class="brand">Пром-текстиль</a><div class="nav-links"><div class="nav-dropdown"><a href="../index.html#catalog">Изделия <span class="nav-dd-arrow">▾</span></a><div class="dropdown-menu"><a href="../services/chekhly-tenty-v2.html">Чехлы, укрытия, тенты</a><a href="../services/specodezhda-v2.html">Спецодежда</a><a href="../services/tactical-v2.html">Тактическое и outdoor</a><a href="../services/medical-v2.html">Медицинский текстиль</a><a href="../services/interior-v2.html">Интерьерный B2B</a><a href="../services/transport-v2.html">Транспортный текстиль</a><a href="../services/agro-v2.html">Агропромышленный</a><a href="../services/fire-v2.html">Пожарозащита</a><a href="../services/cleanroom-v2.html">Чистые помещения</a></div></div><a href="../pages/about-v2.html" aria-current="page">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a></div><a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a><button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button></div></nav><div class="nav-mobile" id="navMobile"><a href="../index.html#catalog">Направления</a><a href="../pages/about-v2.html" aria-current="page">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a><a href="tel:+74996477281">+7 499 647-72-81</a></div>
+<nav class="nav" id="mainNav">
+    <div class="shell nav-inner">
+        <a href="../index.html" class="brand"><span class="brand-name">Пром-текстиль</span></a>
+        <div class="nav-links">
+            <div class="nav-dropdown">
+                <a href="../index.html#catalog">Изделия <span class="nav-dd-arrow">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="../services/chekhly-tenty-v2.html">Чехлы, укрытия, тенты</a>
+                    <a href="../services/specodezhda-v2.html">Спецодежда</a>
+                    <a href="../services/tactical-v2.html">Тактическое и outdoor</a>
+                    <a href="../services/medical-v2.html">Медицинский текстиль</a>
+                    <a href="../services/interior-v2.html">Интерьерный B2B</a>
+                    <a href="../services/transport-v2.html">Транспортный текстиль</a>
+                    <a href="../services/agro-v2.html">Агропромышленный</a>
+                    <a href="../services/fire-v2.html">Пожарозащита</a>
+                    <a href="../services/cleanroom-v2.html">Чистые помещения</a>
+                </div>
+            </div>
+            <a href="../pages/about-v2.html" aria-current="page">О нас</a>
+            <a href="../index.html#process">Как работаем</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="#contact">Контакты</a>
+        </div>
+        <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
+        <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+    <div class="mnl-group">
+        <div class="mnl-toggle" id="mobMenuToggle">Изделия <span id="mobMenuArrow">▾</span></div>
+        <div class="mnl-sub" id="mobMenuSub">
+            <a href="../services/chekhly-tenty-v2.html" class="mnl">Чехлы, укрытия, тенты</a>
+            <a href="../services/specodezhda-v2.html" class="mnl">Спецодежда</a>
+            <a href="../services/tactical-v2.html" class="mnl">Тактическое и outdoor</a>
+            <a href="../services/medical-v2.html" class="mnl">Медицинский текстиль</a>
+            <a href="../services/interior-v2.html" class="mnl">Интерьерный B2B</a>
+            <a href="../services/transport-v2.html" class="mnl">Транспортный текстиль</a>
+            <a href="../services/agro-v2.html" class="mnl">Агропромышленный</a>
+            <a href="../services/fire-v2.html" class="mnl">Пожарозащита</a>
+            <a href="../services/cleanroom-v2.html" class="mnl">Чистые помещения</a>
+        </div>
+    </div>
+    <a href="../pages/about-v2.html" class="mnl" aria-current="page">О нас</a>
+    <a href="../index.html#process" class="mnl">Как работаем</a>
+    <a href="../index.html#faq" class="mnl">FAQ</a>
+    <a href="#contact" class="mnl">Контакты</a>
+    <a href="tel:+74996477281">+7 499 647-72-81</a>
+</div>
 
 <main>
-    <section class="hero-service">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-section">
         <div class="shell">
-            <h1 class="hero-h1">Пром-текстиль — <span class="accent">производство технического текстиля</span></h1>
-            <p class="hero-lead">20 лет на рынке. Собственный цех 1400 м² в Санкт-Петербурге. Конструкторский отдел, серийный пошив, контроль качества на каждом этапе.</p>
-            <div class="hero-ctas">
-                <a href="tel:+74996477281" class="btn btn-primary">Позвонить →</a>
-                </div>
-        </div>
-    </section>
-
-    <section class="section bg-dark">
-        <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Компания в цифрах</h2>
-                <p class="section-sub">Факты о производстве.</p>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card reveal">
-                    <div class="stat-num">20</div>
-                    <div class="stat-label">лет на рынке технического текстиля</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-num">1400</div>
-                    <div class="stat-label">м² производственной площади</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-num">50</div>
-                    <div class="stat-label">специалистов в штате</div>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-num">9</div>
-                    <div class="stat-label">направлений технического текстиля</div>
+            <div class="hero">
+                <div class="hero-inner">
+                    <div class="hero-text-glass">
+                        <h1 class="hero-h1">Пром-текстиль — <em>производство технического текстиля</em></h1>
+                        <p class="hero-lead">20 лет на рынке. Собственный цех 1400 м² в Санкт-Петербурге. Конструкторский отдел, серийный пошив, контроль качества на каждом этапе.</p>
+                        <div class="hero-btns">
+                            <a href="tel:+74996477281" class="btn btn-gold">Позвонить →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══ STATS — island ═══ -->
+    <section class="stats-section">
+        <div class="shell">
+            <div class="stats-island reveal">
+                <div class="stats-inner">
+                    <div class="s-head s-dark">
+                        <h2 class="s-h2">Компания в цифрах</h2>
+                        <p class="s-sub">Факты о производстве.</p>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat-cell">
+                            <span class="stat-num">20</span>
+                            <div class="stat-desc">лет на рынке технического текстиля</div>
+                        </div>
+                        <div class="stat-cell">
+                            <span class="stat-num">1400</span>
+                            <div class="stat-desc">м² производственной площади</div>
+                        </div>
+                        <div class="stat-cell">
+                            <span class="stat-num">50</span>
+                            <div class="stat-desc">специалистов в штате</div>
+                        </div>
+                        <div class="stat-cell">
+                            <span class="stat-num">9</span>
+                            <div class="stat-desc">направлений технического текстиля</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ НАШИ ВОЗМОЖНОСТИ ═══ -->
     <section class="section">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Наши возможности</h2>
-                <p class="section-sub">Полный цикл от ТЗ до отгрузки.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Наши возможности</h2>
+                <p class="s-sub">Полный цикл от ТЗ до отгрузки.</p>
             </div>
-            <div class="caps-v2-grid">
-                <div class="cap-v2 reveal">
-                    <div class="num">01</div>
+            <div class="about-grid reveal">
+                <div class="about-card">
                     <h3>Конструкторский отдел</h3>
                     <p>Разрабатываем лекала по фото, чертежу или образцу. Индивидуальные ТЗ любой сложности.</p>
                 </div>
-                <div class="cap-v2 reveal">
-                    <div class="num">02</div>
+                <div class="about-card">
                     <h3>Швейный цех 1400 м²</h3>
                     <p>ПВХ, кордура, брезент, огнеупорные и антистатические ткани, многослойные композиты.</p>
                 </div>
-                <div class="cap-v2 reveal">
-                    <div class="num">03</div>
+                <div class="about-card">
                     <h3>Контроль качества</h3>
                     <p>Проверка соответствия ТЗ и прочности швов перед каждой отгрузкой. Паспорт качества на партию.</p>
                 </div>
-                <div class="cap-v2 reveal">
-                    <div class="num">04</div>
+                <div class="about-card">
                     <h3>СТМ и брендирование</h3>
                     <p>Пошив под торговой маркой клиента. Печать, вышивка, термотрансфер, фирменная упаковка.</p>
                 </div>
@@ -213,11 +748,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
         </div>
     </section>
 
-    <section class="section bg-dark">
+    <!-- ═══ ДЛЯ КОГО РАБОТАЕМ — unique section, no canon analog, tokens only ═══ -->
+    <section class="section" style="background:var(--bg2)">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Для кого работаем</h2>
-                <p class="section-sub">Промышленность, госсектор, B2B.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Для кого работаем</h2>
+                <p class="s-sub">Промышленность, госсектор, B2B.</p>
             </div>
             <div class="apps-grid reveal">
                 <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Промышленные предприятия</span></div>
@@ -232,35 +768,31 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
         </div>
     </section>
 
-    <section class="section" id="process">
+    <!-- ═══ ПРОЦЕСС ═══ -->
+    <section class="section process-bg" id="process">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Как мы работаем — 5 шагов</h2>
-                <p class="section-sub">От заявки до отгрузки. Прозрачно на каждом этапе.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Как мы работаем — 5 шагов</h2>
+                <p class="s-sub">От заявки до отгрузки. Прозрачно на каждом этапе.</p>
             </div>
-            <div class="process-grid">
-                <div class="step reveal">
-                    <div class="step-num">01</div>
+            <div class="process-list reveal">
+                <div class="p-step" data-n="1">
                     <h3>Заявка</h3>
                     <p>ТЗ, чертежи или замеры по телефону / email.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">02</div>
+                <div class="p-step" data-n="2">
                     <h3>Расчёт</h3>
                     <p>Согласовываем материалы, стоимость, срок. Образцы курьером.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">03</div>
+                <div class="p-step" data-n="3">
                     <h3>Договор</h3>
                     <p>Документы, предоплата, запуск партии в работу.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">04</div>
+                <div class="p-step" data-n="4">
                     <h3>Производство</h3>
                     <p>Пошив и контроль качества. 1–2 дня на партию 50 шт.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">05</div>
+                <div class="p-step" data-n="5">
                     <h3>Доставка</h3>
                     <p>По РФ и СНГ ТК. Сопроводительные документы в комплекте.</p>
                 </div>
@@ -268,44 +800,82 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
         </div>
     </section>
 
-    <section class="section bg-dark" id="contact">
+    <!-- ═══ КОНТАКТЫ ═══ -->
+    <section class="section" id="contact">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Контакты</h2>
-                <p class="section-sub">Производство — Санкт-Петербург, Литовская 12 к Д.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Контакты</h2>
+                <p class="s-sub">Производство — Санкт-Петербург, Литовская 12 к Д.</p>
             </div>
-            <div class="contact-cards">
-                <a class="contact-cell reveal" href="tel:+74996477281">
-                    <div class="label">Phone · Производство</div>
-                    <div class="value">+7 499 647-72-81</div>
-                    <div class="hint">Расчёт, сроки, технические вопросы. Пн–Пт 9–18.</div>
+            <div class="contact-grid reveal">
+                <a class="contact-cell" href="tel:+74996477281">
+                    <div class="c-label">Phone · Производство</div>
+                    <div class="c-value">+7 499 647-72-81</div>
+                    <p style="font-size:.82rem;color:var(--ink3);margin-top:.35rem">Расчёт, сроки, технические вопросы. Пн–Пт 9–18.</p>
                 </a>
-
-                <a class="contact-cell reveal" href="../pages/contacts-v2.html">
-                    <div class="label">Studio · Санкт-Петербург</div>
-                    <div class="value">Литовская 12 к Д</div>
-                    <div class="hint">Все контакты и реквизиты →</div>
+                <a class="contact-cell" href="../pages/contacts-v2.html">
+                    <div class="c-label">Studio · Санкт-Петербург</div>
+                    <div class="c-value">Литовская 12 к Д</div>
+                    <p style="font-size:.82rem;color:var(--ink3);margin-top:.35rem">Все контакты и реквизиты →</p>
                 </a>
             </div>
         </div>
     </section>
 
 </main>
-<footer><div class="shell"><div class="footer-grid"><div><div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem">Пром-текстиль</div><p style="font-size:.88rem;color:var(--text-muted);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p></div><div><h4>Направления</h4><ul><li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li><li><a href="../services/specodezhda-v2.html">Спецодежда</a></li><li><a href="../services/tactical-v2.html">Тактика</a></li><li><a href="../services/medical-v2.html">Медицинский</a></li><li><a href="../services/interior-v2.html">Интерьерный B2B</a></li><li><a href="../services/transport-v2.html">Транспортный</a></li><li><a href="../services/agro-v2.html">Агропромышленный</a></li><li><a href="../services/fire-v2.html">Пожарозащита</a></li><li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li></ul></div><div><h4>Компания</h4><ul><li><a href="../pages/about-v2.html">О компании</a></li><li><a href="../pages/contacts-v2.html">Контакты</a></li><li><a href="tel:+74996477281">+7 499 647-72-81</a></li><li><a href="../privacy.html">Конфиденциальность</a></li></ul></div></div><div class="footer-base"><span>© 2026 Пром-текстиль</span><span>СПб · Литовская 12 к Д</span></div></div></footer>
+<footer>
+    <div class="shell">
+        <div class="footer-grid">
+            <div>
+                <div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem;color:var(--ink)">Пром-текстиль</div>
+                <p style="font-size:.88rem;color:var(--ink3);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
+            </div>
+            <div>
+                <h4>Направления</h4>
+                <ul>
+                    <li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li>
+                    <li><a href="../services/specodezhda-v2.html">Спецодежда</a></li>
+                    <li><a href="../services/tactical-v2.html">Тактика</a></li>
+                    <li><a href="../services/medical-v2.html">Медицинский</a></li>
+                    <li><a href="../services/interior-v2.html">Интерьерный B2B</a></li>
+                    <li><a href="../services/transport-v2.html">Транспортный</a></li>
+                    <li><a href="../services/agro-v2.html">Агропромышленный</a></li>
+                    <li><a href="../services/fire-v2.html">Пожарозащита</a></li>
+                    <li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="../pages/about-v2.html">О компании</a></li>
+                    <li><a href="../pages/contacts-v2.html">Контакты</a></li>
+                    <li><a href="tel:+74996477281">+7 499 647-72-81</a></li>
+                    <li><a href="../privacy.html">Конфиденциальность</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 Пром-текстиль</span>
+            <span>СПб · Литовская 12 к Д</span>
+        </div>
+    </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
 var pb=document.getElementById('progressBar');
-window.addEventListener('scroll',function(){var t=document.documentElement.scrollHeight-window.innerHeight;pb.style.width=Math.min(100,(window.scrollY/t)*100)+'%';},{passive:true});
+window.addEventListener('scroll',function(){var t=document.documentElement.scrollHeight-window.innerHeight;if(t>0)pb.style.width=Math.min(100,(window.scrollY/t)*100)+'%';},{passive:true});
 var nav=document.getElementById('mainNav');
-window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>55)},{passive:true});
+window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>48)},{passive:true});
 var burger=document.getElementById('navBurger'),mob=document.getElementById('navMobile');
-burger.addEventListener('click',function(){burger.classList.toggle('open');mob.classList.toggle('open');document.body.style.overflow=mob.classList.contains('open')?'hidden':'';});
-mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';});});
+burger.addEventListener('click',function(){var open=burger.classList.toggle('open');mob.classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':'';});
+document.querySelectorAll('.mnl').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';});});
+var mobToggle=document.getElementById('mobMenuToggle'),mobSub=document.getElementById('mobMenuSub'),mobArrow=document.getElementById('mobMenuArrow');
+if(mobToggle)mobToggle.addEventListener('click',function(){var open=mobSub.classList.toggle('open');if(mobArrow)mobArrow.textContent=open?'▴':'▾';});
 gsap.registerPlugin(ScrollTrigger);
-var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -24px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 })();
 </script>

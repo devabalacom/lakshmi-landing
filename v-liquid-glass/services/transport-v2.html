@@ -178,108 +178,682 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
     <style>
-:root{--bg:#F8FAFC;--bg-alt:#EEF2F6;--card:#FFFFFF;--border:#CBD5E1;--divider:#E2E8F0;--glass:rgba(255,255,255,0.68);--glass-md:rgba(255,255,255,0.86);--glass-border:rgba(212,160,23,0.18);--glass-hi:rgba(212,160,23,0.38);--accent:#D4A017;--accent2:#FACC15;--accent-hover:#B8860B;--accent-active:#8B6508;--accent-bg:#FFFBEB;--accent-border:#FDE68A;--accent-glow:rgba(212,160,23,0.28);--accent-soft:rgba(212,160,23,0.09);--text:#1E293B;--text-body:#475569;--text-soft:#94A3B8;--text-muted:#64748B;--dark:#0F172A;--dark-text:#F8FAFC;--dark-muted:#CBD5E1;--blur:24px;--r:16px;--rs:6px;--rl:24px;--ease:cubic-bezier(0.22,1,0.36,1);--fd: 'Montserrat', sans-serif;--fs: 'Montserrat', sans-serif;--fb: 'Montserrat', sans-serif;--fm: 'Montserrat', monospace;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}ul{list-style:none}button{cursor:pointer;border:0;font:inherit;background:none}img{display:block;max-width:100%}
-.progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:200;transition:width .08s linear}
-.shell{max-width:1380px;margin:0 auto;padding:0 1.5rem}@media(min-width:768px){.shell{padding:0 3rem}}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 0;background:white;border-bottom:1px solid var(--glass-border);transition:background .4s,border-color .4s,padding .3s}
-.nav.solid{padding:.8rem 0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:.8rem;font-weight:900;font-size:1.1rem;letter-spacing:-.015em}
-.brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;color:#fff;box-shadow:0 0 22px var(--accent-glow)}
-.nav-links{display:none;align-items:center;gap:2.2rem}@media(min-width:920px){.nav-links{display:flex}}
-.nav-links a{font-size:.875rem;font-weight:500;color:var(--text-muted);transition:color .3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .3s}
-.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
-.nav-dropdown{position:relative}.dropdown-menu{display:none;position:absolute;top:calc(100% + 1.2rem);left:-1rem;min-width:240px;background:var(--glass-md);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid var(--glass-border);border-radius:var(--r);box-shadow:0 8px 32px rgba(26,22,18,0.07),0 1px 3px rgba(26,22,18,0.04);padding:.5rem 0;z-index:200;opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;pointer-events:none}.dropdown-menu::before{content:'';position:absolute;top:-1.2rem;left:0;right:0;height:1.2rem}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{display:block;opacity:1;transform:none;pointer-events:auto}.dropdown-menu a{display:block;padding:.6rem 1.2rem;font-size:.78rem;font-weight:500;color:var(--text-body);transition:color .2s,background .2s;letter-spacing:.02em}.dropdown-menu a:hover{color:var(--accent);background:var(--accent-soft)}.dropdown-menu a::after{display:none!important}.nav-dd-arrow{display:inline-block;margin-left:.3rem;font-size:.6rem;transition:transform .25s;vertical-align:middle}.nav-dropdown:hover .nav-dd-arrow{transform:rotate(180deg)}
-.nav-cta{display:none;padding:.55rem 1.4rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--glass-hi);color:var(--accent);transition:background .3s,color .3s,border-color .3s,transform .25s}
-@media(min-width:920px){.nav-cta{display:inline-flex}}.nav-cta:hover{background:var(--accent);border-color:var(--accent);color:white;transform:translateY(-1px)}
-.nav-burger{display:flex;flex-direction:column;gap:5px;width:36px;height:36px;justify-content:center;padding:4px}
-.nav-burger span{display:block;width:100%;height:2px;background:var(--text);border-radius:2px;transition:transform .3s,opacity .3s}
-.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-burger.open span:nth-child(2){opacity:0}.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(min-width:920px){.nav-burger{display:none}}
-.nav-mobile{display:none;position:fixed;inset:0;top:62px;background:rgba(255,255,255,.98);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);padding:2.5rem 2rem;flex-direction:column;gap:.25rem;z-index:99}
-.nav-mobile.open{display:flex}.nav-mobile a{padding:1.1rem 0;font-size:1.4rem;font-weight:700;color:var(--text-body);border-bottom:1px solid var(--glass-border);transition:color .3s,padding-left .3s}
-.nav-mobile a:hover{color:var(--accent);padding-left:.75rem}
-.hero-service{padding:9rem 0 5rem;position:relative;z-index:1;border-bottom:1px solid var(--glass-border);overflow:hidden}.hero-service::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(26,22,18,0.042) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0}.hero-service::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 65% at 78% 28%,rgba(212,160,23,0.08) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 18% 78%,rgba(212,160,23,0.05) 0%,transparent 65%);pointer-events:none;z-index:0}.hero-service .shell{position:relative;z-index:1}.hero-card{position:relative;min-height:55svh;display:flex;align-items:center;padding:4rem 3rem 5rem;overflow:hidden;border-radius:var(--rl);background-size:cover;background-position:center;background-repeat:no-repeat}.hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,0.50),rgba(255,255,255,0.50));pointer-events:none;z-index:0}.hero-card-inner{position:relative;z-index:1;width:100%}.hero-island{background:rgba(255,255,255,0.68);border:1px solid rgba(212,160,23,0.18);border-radius:var(--rl);box-shadow:0 8px 32px rgba(26,22,18,0.07),0 1px 3px rgba(26,22,18,0.04),inset 0 1px 0 rgba(255,255,255,0.92);padding:2.5rem 2.8rem;position:relative;max-width:660px}.hero-island::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.96),transparent)}
-.hero-h1{font-size:clamp(2.2rem,5vw,3.8rem);font-family:'Montserrat',sans-serif;font-weight:400;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem}
-.hero-h1 .accent{background:linear-gradient(135deg,#0F172A 10%,var(--accent) 55%,var(--accent2) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-lead{font-size:1.05rem;color:var(--text-body);max-width:560px;line-height:1.75;margin-bottom:2rem}
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-.btn,.btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.8rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:all .3s var(--ease);cursor:pointer;position:relative;overflow:hidden}
-.btn-primary{background:var(--accent);color:#111827;box-shadow:0 4px 22px var(--accent-glow)}
-.btn-primary:hover{background:var(--accent-hover);color:#fff;transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow)}
-.btn-secondary{background:rgba(255,255,255,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-hi);color:var(--text)}
-.btn-secondary:hover{border-color:rgba(212,160,23,.45);transform:translateY(-2px)}
-.section{position:relative;z-index:1;padding:5.5rem 0}
-.section.bg-dark{background:linear-gradient(135deg,rgba(212,160,23,.04) 0%,rgba(255,255,255,.5) 100%);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
-.section-head{margin-bottom:2.5rem}.section-h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:-.01em;line-height:1.12;margin-bottom:.75rem}.section-sub{font-size:1rem;color:var(--text-body);max-width:580px}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.vis{opacity:1;transform:none}
-.apps-grid{display:grid;gap:.6rem;grid-template-columns:1fr}@media(min-width:500px){.apps-grid{grid-template-columns:1fr 1fr}}
-.application-v2{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--rs);font-size:.88rem;color:var(--text);transition:border-color .3s,transform .3s}
-.application-v2:hover{border-color:var(--glass-hi);transform:translateY(-1px)}.application-v2 svg{color:var(--accent);flex-shrink:0}
-.spec-row{padding:1rem 0;border-bottom:1px solid var(--glass-border)}.spec-row:last-child{border-bottom:0}.spec-name{font-weight:700;font-size:1rem;margin-bottom:.25rem}.spec-meta{color:var(--text-muted);font-size:.88rem}
-.spec-block-title{font-family:'Montserrat',sans-serif;font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--glass-border);font-weight:600}
-.props-v2-grid{display:grid;gap:.4rem;grid-template-columns:1fr}@media(min-width:500px){.props-v2-grid{grid-template-columns:1fr 1fr}}
-.prop-v2{display:flex;align-items:center;gap:.5rem;padding:.5rem 0;font-size:.9rem;color:var(--text-body)}.prop-v2 svg{color:var(--accent);flex-shrink:0}
-.hardware-v2{display:flex;flex-direction:column;gap:.6rem}.hardware-v2 li{padding-left:1.25rem;position:relative;color:var(--text-body);font-size:.9rem;line-height:1.5;list-style:none}
-.hardware-v2 li::before{content:'';position:absolute;left:0;top:.65rem;width:8px;height:1.5px;background:var(--accent)}
-.three-col{display:grid;gap:2.5rem;grid-template-columns:1fr}@media(min-width:900px){.three-col{grid-template-columns:1fr 1fr 1fr}}
-.desc-grid{display:grid;gap:3rem;grid-template-columns:1fr;align-items:start}@media(min-width:900px){.desc-grid{grid-template-columns:1fr .9fr;gap:4rem}}
-.desc-grid>p{font-size:1.02rem;color:var(--text-body);line-height:1.75}
-.caps-v2-grid{display:grid;gap:1rem;grid-template-columns:1fr}@media(min-width:600px){.caps-v2-grid{grid-template-columns:1fr 1fr}}@media(min-width:1000px){.caps-v2-grid{grid-template-columns:repeat(4,1fr)}}
-.cap-v2{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);padding:1.75rem;border-radius:var(--r);transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
-.cap-v2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .4s}
-.cap-v2:hover{border-color:rgba(212,160,23,.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}.cap-v2:hover::before{transform:scaleX(1)}
+        /* ═══════════════════════════════════════════
+           DESIGN TOKENS — LIGHT PREMIUM / BRUSHED GOLD
+           (canon — mirrors index.html)
+           ═══════════════════════════════════════════ */
+        :root {
+            --bg:    #F8FAFC;
+            --bg2:   #EEF2F6;
+            --bg3:   #E2E8F0;
+            --bg-alt: #EEF2F6;
+            --card:  #FFFFFF;
 
-.cap-v2 h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}.cap-v2 p{font-size:.87rem;color:var(--text-muted);line-height:1.6}
-.gallery-grid{display:grid;gap:1rem;grid-template-columns:1fr 1fr}@media(min-width:768px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
-.gallery-cell{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--glass);border:1px solid var(--glass-border)}
-.gallery-cell img{width:100%;height:100%;object-fit:cover;transition:transform .4s}.gallery-cell:hover img{transform:scale(1.04)}
-.gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;color:var(--text-muted)}
-.gallery-placeholder span{font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.1em}
-.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));position:relative;gap:0}
-.process-grid::before{content:'';position:absolute;top:30px;left:calc(10% + 2rem);right:calc(10% + 2rem);height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2),rgba(212,160,23,.3));display:none}
-@media(min-width:768px){.process-grid::before{display:block}}
-.step{padding:0 1.2rem 2rem;text-align:center}
-.step-num{width:44px;height:44px;border-radius:50%;background:var(--glass-md);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid var(--glass-hi);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;color:var(--accent);margin:0 auto 1rem;position:relative;z-index:1;box-shadow:0 0 20px var(--accent-glow),0 0 0 5px rgba(212,160,23,.05)}
-.step h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}.step p{font-size:.83rem;color:var(--text-muted);line-height:1.6}
-.faq-list{display:flex;flex-direction:column;gap:.7rem;max-width:820px}
-.faq-item{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--r);overflow:hidden;transition:border-color .3s}
-.faq-item:hover{border-color:rgba(212,160,23,.28)}.faq-item[open]{border-color:rgba(212,160,23,.4)}
-.faq-item summary{padding:1.2rem 1.5rem;font-weight:600;font-size:.94rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;transition:color .3s;gap:1rem}
-.faq-item summary:hover{color:var(--accent)}.faq-item summary .chev{flex-shrink:0;transition:transform .35s;color:var(--accent)}.faq-item[open] summary .chev{transform:rotate(180deg)}
-.faq-item p{padding:0 1.5rem 1.2rem;font-size:.9rem;color:var(--text-body);line-height:1.75}.faq-item summary span{flex:1}
-.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
-.catalog-card{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--r);padding:1.6rem;display:flex;flex-direction:column;gap:.6rem;transition:transform .4s,border-color .4s,box-shadow .4s;cursor:pointer}
-.catalog-card:hover{transform:translateY(-4px);border-color:rgba(212,160,23,.32);box-shadow:0 16px 48px rgba(0,0,0,.1)}.catalog-card h3{font-size:.97rem;font-weight:700;line-height:1.3}.catalog-card .link{font-size:.82rem;font-weight:700;color:var(--accent);margin-top:.25rem}
-.contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.contact-cell{display:block;background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:var(--r);padding:1.6rem 1.75rem;transition:transform .4s,border-color .4s,box-shadow .4s}
-.contact-cell:hover{transform:translateY(-3px);border-color:rgba(212,160,23,.35);box-shadow:0 12px 40px rgba(0,0,0,.08)}
-.contact-cell .label{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--text-muted);margin-bottom:.5rem}
-.contact-cell .value{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}.contact-cell .hint{font-size:.82rem;color:var(--text-muted)}
-footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padding:3rem 0 2rem}
-.footer-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-bottom:2.5rem}@media(min-width:768px){.footer-grid{grid-template-columns:1.5fr 1fr 1fr}}
-.footer-grid h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:1rem}
-.footer-grid ul{display:flex;flex-direction:column;gap:.5rem}.footer-grid ul a{font-size:.88rem;color:var(--text-body);transition:color .3s}.footer-grid ul a:hover{color:var(--accent)}
-.footer-base{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--text-muted);border-top:1px solid var(--glass-border);padding-top:1.5rem}
-@media(max-width:767px){.section{padding:3.5rem 0}.hero-service{padding:7rem 0 3.5rem}}@media(max-width:767px){.hero-card{padding:3rem 1.5rem 3.5rem;min-height:0}.hero-island{padding:1.75rem 1.5rem}}
+            --border:  #CBD5E1;
+            --divider: #E2E8F0;
+
+            --ink:       #1E293B;
+            --ink2:      #475569;
+            --ink3:      #64748B;
+            --text:      #1E293B;
+            --text-body: #475569;
+            --text-muted: #64748B;
+            --text-soft: #94A3B8;
+
+            --g0:    #D4A017;
+            --g1:    #FACC15;
+            --g2:    #8B6508;
+            --ga:    rgba(212,160,23,0.09);
+            --gl:    rgba(212,160,23,0.16);
+            --glh:   rgba(212,160,23,0.38);
+            --accent:        #D4A017;
+            --accent-hover:  #B8860B;
+            --accent-active: #8B6508;
+            --accent-bg:     #FFFBEB;
+            --accent-border: #FDE68A;
+
+            --nr:    #0F172A;
+            --nr2:   #1D1914;
+            --nt:    #F8FAFC;
+            --nt2:   rgba(248,250,252,0.65);
+            --dark:      #0F172A;
+            --dark-text: #F8FAFC;
+            --dark-muted: #CBD5E1;
+
+            --gbg:   rgba(255,255,255,0.68);
+            --gbg2:  rgba(255,255,255,0.86);
+            --gbd:   rgba(212,160,23,0.18);
+            --gsh:   0 8px 32px rgba(26,22,18,0.07), 0 1px 3px rgba(26,22,18,0.04);
+
+            --fd: 'Montserrat', sans-serif;
+            --fs: 'Montserrat', sans-serif;
+            --fb: 'Montserrat', sans-serif;
+            --fm: 'Montserrat', monospace;
+
+            --rs:  6px;
+            --r:   16px;
+            --rl:  24px;
+            --rp:  999px;
+
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ─── RESET ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; background: var(--bg); }
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--fb);
+            font-weight: 400;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: 0; font: inherit; background: none; }
+        img { display: block; max-width: 100%; }
+        :focus-visible { outline: 2px solid var(--g0); outline-offset: 3px; border-radius: 4px; }
+
+        /* ─── PROGRESS ─── */
+        .progress {
+            position: fixed; top: 0; left: 0;
+            height: 2px; width: 0;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            z-index: 300; transition: width .08s linear; pointer-events: none;
+        }
+
+        /* ─── SHELL ─── */
+        .shell { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        @media(min-width:768px) { .shell { padding: 0 3rem; } }
+
+        /* ═══════════════════════════════════════════
+           NAV — glass on scroll
+           ═══════════════════════════════════════════ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 0;
+            background: white;
+            border-bottom: 1px solid var(--bg3);
+            transition: padding .4s var(--ease);
+        }
+        .nav.solid { padding: .85rem 0; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+
+        .brand { display: flex; align-items: center; gap: .75rem; }
+        .brand-name { font-weight: 800; font-size: .95rem; letter-spacing: .01em; color: var(--ink); }
+
+        .nav-links { display: none; align-items: center; gap: 2.2rem; }
+        @media(min-width:900px) { .nav-links { display: flex; } }
+        .nav-links a {
+            font-size: .72rem; font-weight: 600;
+            color: var(--ink3); letter-spacing: .08em; text-transform: uppercase;
+            transition: color .25s; position: relative; padding: .2rem 0;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute;
+            left: 0; right: 100%; bottom: -2px;
+            height: 1px; background: var(--g0);
+            transition: right .35s var(--ease);
+        }
+        .nav-links a:hover { color: var(--g2); }
+        .nav-links a:hover::after { right: 0; }
+
+        .nav-cta {
+            display: none;
+            padding: .55rem 1.4rem; border-radius: var(--rp);
+            border: 1.5px solid var(--glh);
+            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g0);
+            transition: background .3s, color .3s, border-color .3s, transform .25s;
+        }
+        @media(min-width:920px) { .nav-cta { display: inline-flex; } }
+        .nav-cta:hover { background: var(--g0); border-color: var(--g0); color: white; transform: translateY(-1px); }
+
+        .nav-burger {
+            display: flex; flex-direction: column; gap: 5px;
+            width: 36px; height: 36px; justify-content: center; padding: 4px;
+        }
+        .nav-burger span {
+            display: block; width: 100%; height: 1.5px;
+            background: var(--ink); border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+        @media(min-width:900px) { .nav-burger { display: none; } }
+
+        .nav-mobile {
+            display: none; position: fixed; inset: 0; top: 58px;
+            background: rgba(253,250,245,0.97);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            padding: 2.5rem 2rem; flex-direction: column; gap: .2rem; z-index: 99;
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a {
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
+            color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s, padding-left .25s;
+        }
+        .nav-mobile a:hover { color: var(--g0); padding-left: .5rem; }
+
+        /* ═══ DROPDOWN NAV ═══ */
+        .nav-dropdown { position: relative; }
+        .dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 1.2rem); left: -1rem;
+            min-width: 240px;
+            background: var(--gbg2); backdrop-filter: blur(24px) saturate(1.3);
+            -webkit-backdrop-filter: blur(24px) saturate(1.3);
+            border: 1px solid var(--gbd); border-radius: var(--r);
+            box-shadow: var(--gsh); padding: .5rem 0; z-index: 200;
+            opacity: 0; transform: translateY(-8px);
+            transition: opacity .25s var(--ease), transform .25s var(--ease);
+            pointer-events: none;
+        }
+        .dropdown-menu::before {
+            content: ''; position: absolute;
+            top: -1.2rem; left: 0; right: 0; height: 1.2rem;
+        }
+        .nav-dropdown:hover .dropdown-menu,
+        .nav-dropdown:focus-within .dropdown-menu {
+            display: block; opacity: 1; transform: none; pointer-events: auto;
+        }
+        .dropdown-menu a {
+            display: block; padding: .6rem 1.2rem;
+            font-size: .78rem; font-weight: 500; color: var(--ink2);
+            transition: color .2s, background .2s; letter-spacing: .02em;
+            text-transform: none;
+        }
+        .dropdown-menu a:hover { color: var(--g2); background: var(--ga); }
+        .dropdown-menu a::after { display: none !important; }
+        .nav-dd-arrow {
+            display: inline-block; margin-left: .3rem; font-size: .6rem;
+            transition: transform .25s var(--ease); vertical-align: middle;
+        }
+        .nav-dropdown:hover .nav-dd-arrow { transform: rotate(180deg); }
+
+        /* Mobile dropdown accordion */
+        .mnl-group { display: flex; flex-direction: column; }
+        .mnl-toggle {
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
+            color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .mnl-toggle:hover { color: var(--g0); }
+        .mnl-sub { display: none; flex-direction: column; padding: .4rem 0 .8rem 1rem; }
+        .mnl-sub.open { display: flex; }
+        .mnl-sub a {
+            padding: .55rem 0; font-size: .95rem; font-weight: 600;
+            color: var(--ink3); border-bottom: none !important;
+            transition: color .2s;
+        }
+        .mnl-sub a:hover { color: var(--g0); }
+
+        /* ═══════════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════════ */
+        .hero-section { background: white; padding: 90px 0 3rem; }
+        .hero {
+            position: relative;
+            min-height: 80svh;
+            display: flex; align-items: center;
+            padding: 4rem 3rem 5rem;
+            overflow: hidden;
+            border-radius: var(--rl);
+            background:
+                linear-gradient(rgba(253,250,245,0.50), rgba(253,250,245,0.50)),
+                url('../img/transport/service-hero-transport.png') center/cover no-repeat;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(26,22,18,0.042) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 65% at 78% 28%, rgba(197,151,62,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 18% 78%, rgba(197,151,62,0.05) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr;
+            gap: 2.5rem; width: 100%;
+        }
+        .hero-h1 {
+            font-family: var(--fd);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 400; line-height: 1.05; letter-spacing: -.02em;
+            animation: heroFadeUp 0.8s var(--ease) both;
+        }
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: none; }
+        }
+        .hero-h1 em {
+            font-style: normal;
+            background: linear-gradient(
+                135deg,
+                var(--g2) 0%,
+                var(--g0) 28%,
+                var(--g1) 52%,
+                var(--g0) 74%,
+                var(--g2) 100%
+            );
+            background-size: 220% 220%;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+            animation: goldShimmer 9s ease-in-out infinite;
+        }
+        @keyframes goldShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%       { background-position: 100% 50%; }
+        }
+        .hero-lead {
+            font-size: 1.05rem; color: var(--ink2); font-weight: 400;
+            max-width: 560px; line-height: 1.75;
+            margin-top: 1.5rem;
+            animation: heroFadeUp 0.8s 0.2s var(--ease) both;
+        }
+        .hero-text-glass {
+            background: var(--gbg);
+            border: 1px solid var(--gbd);
+            border-radius: var(--rl);
+            box-shadow: var(--gsh), inset 0 1px 0 rgba(255,255,255,0.92);
+            padding: 2.5rem 2.8rem;
+            position: relative;
+            max-width: 660px;
+        }
+        .hero-text-glass::before {
+            content: ''; position: absolute;
+            top: 0; left: 12%; right: 12%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.96), transparent);
+            border-radius: var(--rp);
+        }
+        .hero-btns {
+            display: flex; gap: .8rem; flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: heroFadeUp 0.7s 0.35s var(--ease) both;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .9rem 1.9rem; border-radius: var(--rp);
+            font-weight: 700; font-size: .82rem; letter-spacing: .04em;
+            transition: all .4s var(--ease);
+        }
+        .btn-gold {
+            background: #D4A017;
+            color: #111827;
+            box-shadow: 0 8px 28px rgba(212,160,23,0.28);
+        }
+        .btn-gold:hover {
+            background: #B8860B;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(212,160,23,0.38);
+        }
+        .btn-ghost {
+            border: 1.5px solid rgba(26,22,18,0.18);
+            color: var(--ink);
+        }
+        .btn-ghost:hover {
+            border-color: var(--g0); color: var(--g2);
+            background: var(--ga); transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════
+           SECTION BASE
+           ═══════════════════════════════════════════ */
+        .section { padding: 6rem 0; position: relative; }
+        @media(min-width:768px) { .section { padding: 8rem 0; } }
+        .section.bg-dark {
+            background: linear-gradient(135deg, rgba(212,160,23,.04) 0%, rgba(255,255,255,.5) 100%);
+            border-top: 1px solid var(--bg3);
+            border-bottom: 1px solid var(--bg3);
+        }
+
+        .s-head { margin-bottom: 3.5rem; }
+        .s-h2 {
+            font-family: var(--fd);
+            font-size: clamp(2rem, 4vw, 3.6rem);
+            font-weight: 400; line-height: 1.05; letter-spacing: -.01em;
+            margin-bottom: .7rem;
+        }
+        .s-sub { font-size: 1rem; color: var(--ink2); max-width: 560px; line-height: 1.7; }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity .72s var(--ease), transform .72s var(--ease);
+        }
+        .reveal.vis { opacity: 1; transform: none; }
+
+        /* ═══ Описание/применение (уникальный блок направления) ═══ */
+        .desc-grid { display: grid; gap: 3rem; grid-template-columns: 1fr; align-items: start; }
+        @media(min-width:900px) { .desc-grid { grid-template-columns: 1fr .9fr; gap: 4rem; } }
+        .desc-grid > p { font-size: 1.02rem; color: var(--ink2); line-height: 1.75; }
+        .apps-grid { display: grid; gap: .6rem; grid-template-columns: 1fr; }
+        @media(min-width:500px) { .apps-grid { grid-template-columns: 1fr 1fr; } }
+        .application-v2 {
+            display: flex; align-items: center; gap: .6rem;
+            padding: .75rem 1rem; background: var(--gbg);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--gbd); border-radius: var(--rs);
+            font-size: .88rem; color: var(--ink);
+            transition: border-color .3s, transform .3s;
+        }
+        .application-v2:hover { border-color: var(--glh); transform: translateY(-1px); }
+        .application-v2 svg { color: var(--g0); flex-shrink: 0; }
+
+        /* ═══ Материалы и защита (уникальный B2B-блок) ═══ */
+        .three-col { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+        @media(min-width:900px) { .three-col { grid-template-columns: 1fr 1fr 1fr; } }
+        .spec-row { padding: 1rem 0; border-bottom: 1px solid var(--bg3); }
+        .spec-row:last-child { border-bottom: 0; }
+        .spec-name { font-weight: 700; font-size: 1rem; margin-bottom: .25rem; color: var(--ink); }
+        .spec-meta { color: var(--ink3); font-size: .88rem; }
+        .spec-block-title {
+            font-family: var(--fm); font-size: .75rem; color: var(--g0);
+            text-transform: uppercase; letter-spacing: .15em; margin-bottom: 1.25rem;
+            padding-bottom: .75rem; border-bottom: 1px solid var(--bg3); font-weight: 600;
+        }
+        .props-v2-grid { display: grid; gap: .4rem; grid-template-columns: 1fr; }
+        @media(min-width:500px) { .props-v2-grid { grid-template-columns: 1fr 1fr; } }
+        .prop-v2 { display: flex; align-items: center; gap: .5rem; padding: .5rem 0; font-size: .9rem; color: var(--ink2); }
+        .prop-v2 svg { color: var(--g0); flex-shrink: 0; }
+        .hardware-v2 { display: flex; flex-direction: column; gap: .6rem; }
+        .hardware-v2 li { padding-left: 1.25rem; position: relative; color: var(--ink2); font-size: .9rem; line-height: 1.5; list-style: none; }
+        .hardware-v2 li::before { content: ''; position: absolute; left: 0; top: .65rem; width: 8px; height: 1.5px; background: var(--g0); }
+
+        /* ═══ ABOUT — capability cards (canon) ═══ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        .about-card {
+            background: white;
+            border: 1px solid var(--gbd);
+            border-radius: var(--r);
+            padding: 2.2rem 2rem;
+            transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--g0), var(--g1));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--ease);
+            z-index: 1;
+        }
+        .about-card:hover {
+            border-color: var(--glh);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(212,160,23,0.10), 0 2px 8px rgba(26,22,18,0.04);
+        }
+        .about-card:hover::before { transform: scaleX(1); }
+        .about-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+        .about-card p { font-size: .85rem; color: var(--ink2); line-height: 1.65; }
+
+        /* ═══ Примеры работ — галерея (уникальный блок) ═══ */
+        .gallery-grid { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+        @media(min-width:768px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        .gallery-cell { border-radius: var(--r); overflow: hidden; aspect-ratio: 4/3; background: var(--bg2); border: 1px solid var(--bg3); }
+        .gallery-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+        .gallery-cell:hover img { transform: scale(1.04); }
+
+        /* ═══════════════════════════════════════════
+           PROCESS — numbered editorial steps (canon)
+           ═══════════════════════════════════════════ */
+        .process-list {
+            display: grid; grid-template-columns: 1fr;
+            gap: 12px; background: transparent;
+        }
+        @media(min-width:640px) { .process-list { grid-template-columns: repeat(5, 1fr); } }
+        .p-step {
+            background: var(--bg2); padding: 2.2rem 1.8rem;
+            border-radius: var(--r);
+            position: relative; overflow: hidden;
+            transition: background .3s;
+        }
+        .p-step:hover { background: white; }
+        .p-step::before {
+            content: attr(data-n);
+            position: absolute; bottom: -.05em; right: .1em;
+            font-family: var(--fm); font-weight: 800;
+            font-size: 5.5rem; line-height: 1;
+            color: var(--ink); opacity: .028;
+            pointer-events: none;
+        }
+        .p-step h3 { font-size: .98rem; font-weight: 700; margin-bottom: .4rem; position: relative; }
+        .p-step p { font-size: .82rem; color: var(--ink2); line-height: 1.6; position: relative; }
+
+        /* ═══════════════════════════════════════════
+           FAQ — clean accordion (canon)
+           ═══════════════════════════════════════════ */
+        .faq-list { max-width: 860px; display: flex; flex-direction: column; }
+        .faq-item { border-top: 1px solid var(--bg3); overflow: hidden; border-radius: var(--rs); }
+        .faq-item:last-child { border-bottom: 1px solid var(--bg3); }
+        .faq-item summary {
+            padding: 1.4rem 0;
+            font-weight: 600; font-size: .93rem;
+            cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            list-style: none; color: var(--ink2); gap: 1rem;
+            transition: color .25s;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary:hover, .faq-item[open] summary { color: var(--ink); }
+        .faq-toggle {
+            width: 24px; height: 24px; border-radius: 50%;
+            border: 1.5px solid var(--glh);
+            display: flex; align-items: center; justify-content: center;
+            font-size: .9rem; color: var(--g0); flex-shrink: 0;
+            font-family: var(--fm); font-weight: 600;
+            transition: transform .35s var(--ease), background .3s, border-color .3s;
+        }
+        .faq-item[open] .faq-toggle { transform: rotate(45deg); background: var(--ga); }
+        .faq-body {
+            padding: 0 0 1.4rem;
+            font-size: .9rem; color: var(--ink2);
+            line-height: 1.75; max-width: 72ch;
+        }
+
+        /* ═══════════════════════════════════════════
+           CATALOG — cross-links (canon)
+           ═══════════════════════════════════════════ */
+        .cat-list {
+            display: grid; grid-template-columns: 1fr;
+            gap: 16px; background: transparent;
+        }
+        @media(min-width:640px)  { .cat-list { grid-template-columns: 1fr 1fr; } }
+        @media(min-width:1024px) { .cat-list { grid-template-columns: repeat(3, 1fr); } }
+        .cat-card {
+            background: var(--bg);
+            border: 1px solid var(--bg3);
+            border-radius: var(--r);
+            padding: 2.2rem 2rem 2rem;
+            position: relative; overflow: hidden;
+            display: block;
+            transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+        }
+        .cat-card::after {
+            content: ''; position: absolute;
+            bottom: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .5s var(--ease);
+            border-radius: 0 0 var(--r) var(--r);
+        }
+        .cat-card:hover {
+            z-index: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(26,22,18,0.10);
+        }
+        .cat-card:hover::after { transform: scaleX(1); }
+        .cat-card h3 {
+            font-family: var(--fd); font-size: 1.4rem; font-weight: 400;
+            line-height: 1.2; margin-bottom: .6rem;
+            transition: color .3s;
+        }
+        .cat-card:hover h3 { color: var(--g2); }
+        .cat-arrow {
+            font-size: .75rem; font-weight: 700; color: var(--ink3);
+            display: flex; align-items: center; gap: .3rem; letter-spacing: .04em;
+            transition: color .3s, gap .35s var(--ease);
+        }
+        .cat-card:hover .cat-arrow { color: var(--g0); gap: .6rem; }
+
+        /* ═══════════════════════════════════════════
+           CONTACT (canon)
+           ═══════════════════════════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px; background: transparent;
+            margin-bottom: 2.5rem;
+        }
+        .contact-cell {
+            display: block;
+            background: var(--bg); padding: 1.8rem 2rem;
+            border-radius: var(--r);
+            position: relative; overflow: hidden;
+            transition: background .3s;
+        }
+        .contact-cell::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .45s var(--ease);
+        }
+        .contact-cell:hover::before { transform: scaleX(1); }
+        .contact-cell:hover { background: white; }
+        .c-label {
+            font-family: var(--fm); font-size: .58rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: .18em;
+            color: var(--ink3); margin-bottom: .5rem;
+        }
+        .c-value { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+        .contact-cell .hint { font-size: .82rem; color: var(--ink3); margin-top: .3rem; }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            position: relative;
+            background: var(--bg2);
+            padding: 3rem 0 2rem;
+        }
+        footer::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(197,151,62,0.35) 25%,
+                rgba(197,151,62,0.6)  50%,
+                rgba(197,151,62,0.35) 75%,
+                transparent 100%);
+        }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        @media(min-width:768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+        .footer-grid h4 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink3); margin-bottom: 1rem; }
+        .footer-grid ul { display: flex; flex-direction: column; gap: .5rem; }
+        .footer-grid ul a { font-size: .88rem; color: var(--ink2); transition: color .3s; }
+        .footer-grid ul a:hover { color: var(--g0); }
+        .footer-base { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .8rem; color: var(--ink3); border-top: 1px solid var(--bg3); padding-top: 1.5rem; }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:767px) {
+            .section { padding: 4rem 0; }
+            .hero-section { padding: 64px 0 2rem; }
+            .hero { padding: 3rem 1.5rem 3.5rem; min-height: 0; }
+            .hero-text-glass { padding: 1.75rem 1.5rem; }
+        }
+
+        /* ─── REDUCED MOTION ─── */
+        @media(prefers-reduced-motion: reduce) {
+            .reveal { transition: none !important; }
+            .hero-h1, .hero-lead, .hero-btns { animation: none !important; opacity: 1 !important; }
+            .hero-h1 em { animation: none !important; }
+        }
     </style>
 </head>
 <body>
 <div class="progress" id="progressBar"></div>
-<nav class="nav" id="mainNav"><div class="shell nav-inner"><a href="../index.html" class="brand">Пром-текстиль</a><div class="nav-links"><div class="nav-dropdown"><a href="../index.html#catalog">Изделия <span class="nav-dd-arrow">▾</span></a><div class="dropdown-menu"><a href="chekhly-tenty-v2.html">Чехлы, укрытия, тенты</a><a href="specodezhda-v2.html">Спецодежда</a><a href="tactical-v2.html">Тактическое и outdoor</a><a href="medical-v2.html">Медицинский текстиль</a><a href="interior-v2.html">Интерьерный B2B</a><a href="transport-v2.html">Транспортный текстиль</a><a href="agro-v2.html">Агропромышленный</a><a href="fire-v2.html">Пожарозащита</a><a href="cleanroom-v2.html">Чистые помещения</a></div></div><a href="../pages/about-v2.html">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a></div><a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a><button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button></div></nav><div class="nav-mobile" id="navMobile"><a href="../index.html#catalog">Направления</a><a href="../pages/about-v2.html">О нас</a><a href="../index.html#process">Как работаем</a><a href="../index.html#faq">FAQ</a><a href="#contact">Контакты</a><a href="tel:+74996477281">+7 499 647-72-81</a></div>
+<nav class="nav" id="mainNav">
+    <div class="shell nav-inner">
+        <a href="../index.html" class="brand">
+            <span class="brand-name">Пром-текстиль</span>
+        </a>
+        <div class="nav-links">
+            <div class="nav-dropdown">
+                <a href="../index.html#catalog">Изделия <span class="nav-dd-arrow">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="chekhly-tenty-v2.html">Чехлы, укрытия, тенты</a>
+                    <a href="specodezhda-v2.html">Спецодежда</a>
+                    <a href="tactical-v2.html">Тактическое и outdoor</a>
+                    <a href="medical-v2.html">Медицинский текстиль</a>
+                    <a href="interior-v2.html">Интерьерный B2B</a>
+                    <a href="transport-v2.html">Транспортный текстиль</a>
+                    <a href="agro-v2.html">Агропромышленный</a>
+                    <a href="fire-v2.html">Пожарозащита</a>
+                    <a href="cleanroom-v2.html">Чистые помещения</a>
+                </div>
+            </div>
+            <a href="../pages/about-v2.html">О нас</a>
+            <a href="../index.html#process">Как работаем</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="#contact">Контакты</a>
+        </div>
+        <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
+        <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+    <div class="mnl-group">
+        <div class="mnl-toggle" id="mobMenuToggle">Изделия <span id="mobMenuArrow">▾</span></div>
+        <div class="mnl-sub" id="mobMenuSub">
+            <a href="chekhly-tenty-v2.html" class="mnl">Чехлы, укрытия, тенты</a>
+            <a href="specodezhda-v2.html" class="mnl">Спецодежда</a>
+            <a href="tactical-v2.html" class="mnl">Тактическое и outdoor</a>
+            <a href="medical-v2.html" class="mnl">Медицинский текстиль</a>
+            <a href="interior-v2.html" class="mnl">Интерьерный B2B</a>
+            <a href="transport-v2.html" class="mnl">Транспортный текстиль</a>
+            <a href="agro-v2.html" class="mnl">Агропромышленный</a>
+            <a href="fire-v2.html" class="mnl">Пожарозащита</a>
+            <a href="cleanroom-v2.html" class="mnl">Чистые помещения</a>
+        </div>
+    </div>
+    <a href="../pages/about-v2.html" class="mnl">О нас</a>
+    <a href="../index.html#process" class="mnl">Как работаем</a>
+    <a href="../index.html#faq" class="mnl">FAQ</a>
+    <a href="#contact" class="mnl">Контакты</a>
+    <a href="tel:+74996477281" class="mnl">+7 499 647-72-81</a>
+</div>
 
-    <section class="hero-service">
+    <section class="hero-section">
         <div class="shell">
-            <div class="hero-card" style="background-image:url('../img/transport/service-hero-transport.png')">
-                <div class="hero-card-inner">
-                    <div class="hero-island">
-                        <h1 class="hero-h1">Транспортный <span class="accent">текстиль для ЖД, авиа и спецтехники</span></h1>
+            <div class="hero">
+                <div class="hero-inner">
+                    <div class="hero-text-glass">
+                        <h1 class="hero-h1">Транспортный <em>текстиль для ЖД, авиа и спецтехники</em></h1>
                         <p class="hero-lead">Чехлы, обивки, мягкие панели. Интеграция креплений, молний, липучек. Под отраслевые нормы.</p>
-                        <div class="hero-ctas">
-                            <a href="tel:+74996477281" class="btn btn-primary">Получить расчёт →</a>
+                        <div class="hero-btns">
+                            <a href="tel:+74996477281" class="btn btn-gold">Получить расчёт →</a>
                         </div>
                     </div>
                 </div>
@@ -289,9 +863,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Описание и применение</h2>
-                <p class="section-sub">Где востребовано и какие задачи решает.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Описание и применение</h2>
+                <p class="s-sub">Где востребовано и какие задачи решает.</p>
             </div>
             <div class="desc-grid">
                 <p class="reveal">Производим транспортный текстиль для железнодорожного, авиационного и морского транспорта, а также для спецтехники и автопарков. Чехлы для локомотивов и вагонов, накидки для авиационного оборудования, защитные кожухи для спецмашин с интеграцией крепёжных и адаптерных систем. Опыт поставок для РЖД и авиационных предприятий.</p>
@@ -309,9 +883,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section bg-dark">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Материалы и защита</h2>
-                <p class="section-sub">Конкретные ткани, свойства, фурнитура — для B2B-расчёта.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Материалы и защита</h2>
+                <p class="s-sub">Конкретные ткани, свойства, фурнитура — для B2B-расчёта.</p>
             </div>
             <div class="three-col">
                 <div class="reveal">
@@ -347,24 +921,24 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Особенности пошива</h2>
-                <p class="section-sub">Что входит в наши возможности.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Особенности пошива</h2>
+                <p class="s-sub">Что входит в наши возможности.</p>
             </div>
-            <div class="caps-v2-grid">
-                <div class="cap-v2 reveal">
+            <div class="about-grid">
+                <div class="about-card reveal">
                     <h3>Брендирование</h3>
                     <p>Печать, вышивка, термотрансфер. Бирки и упаковка под СТМ.</p>
                 </div>
-                <div class="cap-v2 reveal">
+                <div class="about-card reveal">
                     <h3>Разработка лекал</h3>
                     <p>Лекала с нуля по фото, чертежу или замерам.</p>
                 </div>
-                <div class="cap-v2 reveal">
+                <div class="about-card reveal">
                     <h3>Усиленные швы</h3>
                     <p>Армированные нити, двойная прострочка, проклейка.</p>
                 </div>
-                <div class="cap-v2 reveal">
+                <div class="about-card reveal">
                     <h3>ГОСТ и ТУ</h3>
                     <p>Соответствие нормам, паспорта качества на партию.</p>
                 </div>
@@ -374,9 +948,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section" id="gallery">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Примеры работ</h2>
-                <p class="section-sub">Текстильные изделия для железнодорожного транспорта, авиации и специальной техники.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Примеры работ</h2>
+                <p class="s-sub">Текстильные изделия для железнодорожного транспорта, авиации и специальной техники.</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-cell reveal"><img src="../img/transport/01-railway-seat-upholstery.png" alt="Обивка сидений для железнодорожного транспорта" loading="lazy"></div>
@@ -391,33 +965,28 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section bg-dark" id="process">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Как мы работаем — 5 шагов</h2>
-                <p class="section-sub">От заявки до отгрузки.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Как мы работаем — 5 шагов</h2>
+                <p class="s-sub">От заявки до отгрузки.</p>
             </div>
-            <div class="process-grid">
-                <div class="step reveal">
-                    <div class="step-num">01</div>
+            <div class="process-list">
+                <div class="p-step reveal" data-n="1">
                     <h3>Заявка</h3>
                     <p>ТЗ, чертежи или замеры.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">02</div>
+                <div class="p-step reveal" data-n="2">
                     <h3>Расчёт</h3>
                     <p>Материалы, стоимость, срок. Образцы — курьером.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">03</div>
+                <div class="p-step reveal" data-n="3">
                     <h3>Договор</h3>
                     <p>Документы, предоплата.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">04</div>
+                <div class="p-step reveal" data-n="4">
                     <h3>Производство</h3>
                     <p>Пошив и контроль качества.</p>
                 </div>
-                <div class="step reveal">
-                    <div class="step-num">05</div>
+                <div class="p-step reveal" data-n="5">
                     <h3>Доставка</h3>
                     <p>По РФ и СНГ с документами.</p>
                 </div>
@@ -427,34 +996,34 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section" id="faq">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Вопросы по направлению</h2>
-                <p class="section-sub">Нет в списке — позвоните или напишите.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Вопросы по направлению</h2>
+                <p class="s-sub">Нет в списке — позвоните или напишите.</p>
             </div>
             <div class="faq-list">
                 <details class="faq-item reveal">
-                    <summary><span>Соответствуют ли изделия нормативам РЖД?</span><svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary>
-                    <p>Да, работаем по техническим требованиям РЖД к защитным укрытиям и текстильным изделиям. Используем огнестойкие ткани, соответствующие требованиям пожарной безопасности ЦТ/4ЦЗ. Документация (паспорт качества, протоколы испытаний) — в комплекте поставки.</p>
+                    <summary>Соответствуют ли изделия нормативам РЖД? <span class="faq-toggle">+</span></summary>
+                    <p class="faq-body">Да, работаем по техническим требованиям РЖД к защитным укрытиям и текстильным изделиям. Используем огнестойкие ткани, соответствующие требованиям пожарной безопасности ЦТ/4ЦЗ. Документация (паспорт качества, протоколы испытаний) — в комплекте поставки.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Работаете ли с авиационными предприятиями?</span><svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary>
-                    <p>Да. Производим чехлы и защитные укрытия для воздушных судов, наземного авиационного оборудования (ГСМ-системы, аэродромная техника) и авиадвигателей. Используем ткани, допущенные к применению в авиационной отрасли, с документами о соответствии требованиям по горючести.</p>
+                    <summary>Работаете ли с авиационными предприятиями? <span class="faq-toggle">+</span></summary>
+                    <p class="faq-body">Да. Производим чехлы и защитные укрытия для воздушных судов, наземного авиационного оборудования (ГСМ-системы, аэродромная техника) и авиадвигателей. Используем ткани, допущенные к применению в авиационной отрасли, с документами о соответствии требованиям по горючести.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Как обеспечивается виброустойчивость швов при эксплуатации?</span><svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary>
-                    <p>Используем двойную и тройную прострочку армированными нитями Coats или аналогами, а также проклейку критических швов термолентой. Для вибронагруженных конструкций применяем ткани с демпфирующим слоем и эластичными вставками в зонах крепления.</p>
+                    <summary>Как обеспечивается виброустойчивость швов при эксплуатации? <span class="faq-toggle">+</span></summary>
+                    <p class="faq-body">Используем двойную и тройную прострочку армированными нитями Coats или аналогами, а также проклейку критических швов термолентой. Для вибронагруженных конструкций применяем ткани с демпфирующим слоем и эластичными вставками в зонах крепления.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Можно ли интегрировать крепёжные и адаптерные системы?</span><svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary>
-                    <p>Да — это наш стандарт для транспортного текстиля. Интегрируем люверсы, рельсовые направляющие, молниевые замки YKK, кнопочные и байонетные застёжки, карабины на стропах. Адаптация под стандарты крепления конкретной техники — по чертежам заказчика.</p>
+                    <summary>Можно ли интегрировать крепёжные и адаптерные системы? <span class="faq-toggle">+</span></summary>
+                    <p class="faq-body">Да — это наш стандарт для транспортного текстиля. Интегрируем люверсы, рельсовые направляющие, молниевые замки YKK, кнопочные и байонетные застёжки, карабины на стропах. Адаптация под стандарты крепления конкретной техники — по чертежам заказчика.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Производите ли изделия для крупногабаритной спецтехники?</span><svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary>
-                    <p>Да. Работаем с изделиями любых размеров — от небольших подсумков до укрытий площадью 500+ м². Для габаритных изделий используем сварку ПВХ высокочастотным методом (ВЧ-сварка) в дополнение к традиционному пошиву — это даёт абсолютно герметичный шов.</p>
+                    <summary>Производите ли изделия для крупногабаритной спецтехники? <span class="faq-toggle">+</span></summary>
+                    <p class="faq-body">Да. Работаем с изделиями любых размеров — от небольших подсумков до укрытий площадью 500+ м². Для габаритных изделий используем сварку ПВХ высокочастотным методом (ВЧ-сварка) в дополнение к традиционному пошиву — это даёт абсолютно герметичный шов.</p>
                 </details>
                 <details class="faq-item reveal">
-                    <summary><span>Какой минимальный тираж и срок производства?</span><svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary>
-                    <p>Минимальный заказ — 1 единица. Срок для типовых изделий по готовым лекалам — 3–5 рабочих дней. Для сложных изделий с разработкой конструкции — по согласованию. Серийные партии (50+ единиц) — с ускоренным графиком при предварительном планировании.</p>
+                    <summary>Какой минимальный тираж и срок производства? <span class="faq-toggle">+</span></summary>
+                    <p class="faq-body">Минимальный заказ — 1 единица. Срок для типовых изделий по готовым лекалам — 3–5 рабочих дней. Для сложных изделий с разработкой конструкции — по согласованию. Серийные партии (50+ единиц) — с ускоренным графиком при предварительном планировании.</p>
                 </details>
             </div>
         </div>
@@ -462,53 +1031,55 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 
     <section class="section">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Другие направления</h2>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Другие направления</h2>
             </div>
-            <div class="catalog-grid">
-                <a href="chekhly-tenty-v2.html" class="catalog-card reveal"><h3>Чехлы, укрытия, тенты</h3><span class="link">Подробнее →</span></a>
-                <a href="specodezhda-v2.html" class="catalog-card reveal"><h3>Спецодежда с защитными свойствами</h3><span class="link">Подробнее →</span></a>
-                <a href="tactical-v2.html" class="catalog-card reveal"><h3>Тактическое и outdoor-снаряжение</h3><span class="link">Подробнее →</span></a>
-                <a href="medical-v2.html" class="catalog-card reveal"><h3>Медицинский и санитарный текстиль</h3><span class="link">Подробнее →</span></a>
-                <a href="interior-v2.html" class="catalog-card reveal"><h3>Технический интерьерный текстиль B2B</h3><span class="link">Подробнее →</span></a>
-                <a href="agro-v2.html" class="catalog-card reveal"><h3>Агропромышленный технический текстиль</h3><span class="link">Подробнее →</span></a>
-                <a href="fire-v2.html" class="catalog-card reveal"><h3>Пожарозащита, МЧС и охрана объектов</h3><span class="link">Подробнее →</span></a>
-                <a href="cleanroom-v2.html" class="catalog-card reveal"><h3>Текстиль для чистых помещений</h3><span class="link">Подробнее →</span></a>
+            <div class="cat-list">
+                <a href="chekhly-tenty-v2.html" class="cat-card reveal"><h3>Чехлы, укрытия, тенты</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="specodezhda-v2.html" class="cat-card reveal"><h3>Спецодежда с защитными свойствами</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="tactical-v2.html" class="cat-card reveal"><h3>Тактическое и outdoor-снаряжение</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="medical-v2.html" class="cat-card reveal"><h3>Медицинский и санитарный текстиль</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="interior-v2.html" class="cat-card reveal"><h3>Технический интерьерный текстиль B2B</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="agro-v2.html" class="cat-card reveal"><h3>Агропромышленный технический текстиль</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="fire-v2.html" class="cat-card reveal"><h3>Пожарозащита, МЧС и охрана объектов</h3><span class="cat-arrow">Подробнее →</span></a>
+                <a href="cleanroom-v2.html" class="cat-card reveal"><h3>Текстиль для чистых помещений</h3><span class="cat-arrow">Подробнее →</span></a>
             </div>
         </div>
     </section>
 
     <section class="section bg-dark" id="contact">
         <div class="shell">
-            <div class="section-head reveal">
-                <h2 class="section-h2">Контакты</h2>
-                <p class="section-sub">Производство — Санкт-Петербург, Литовская 12 к Д.</p>
+            <div class="s-head reveal">
+                <h2 class="s-h2">Контакты</h2>
+                <p class="s-sub">Производство — Санкт-Петербург, Литовская 12 к Д.</p>
             </div>
-            <div class="contact-cards">
-                <a class="contact-cell reveal" href="tel:+74996477281"><div class="label">Phone</div><div class="value">+7 499 647-72-81</div><div class="hint">Расчёт, сроки.</div></a>
-                <a class="contact-cell reveal" href="https://yandex.ru/maps/?text=Литовская+12+Санкт-Петербург"><div class="label">Studio</div><div class="value">Литовская 12 к Д</div><div class="hint">По записи.</div></a>
+            <div class="contact-grid">
+                <a class="contact-cell reveal" href="tel:+74996477281"><div class="c-label">Phone</div><div class="c-value">+7 499 647-72-81</div><div class="hint">Расчёт, сроки.</div></a>
+                <a class="contact-cell reveal" href="https://yandex.ru/maps/?text=Литовская+12+Санкт-Петербург"><div class="c-label">Studio</div><div class="c-value">Литовская 12 к Д</div><div class="hint">По записи.</div></a>
             </div>
         </div>
     </section>
 
-<footer><div class="shell"><div class="footer-grid"><div><div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem">Пром-текстиль</div><p style="font-size:.88rem;color:var(--text-muted);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p></div><div><h4>Направления</h4><ul><li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li><li><a href="../services/specodezhda-v2.html">Спецодежда</a></li><li><a href="../services/tactical-v2.html">Тактика</a></li><li><a href="../services/medical-v2.html">Медицинский</a></li><li><a href="../services/interior-v2.html">Интерьерный B2B</a></li><li><a href="../services/transport-v2.html">Транспортный</a></li><li><a href="../services/agro-v2.html">Агропромышленный</a></li><li><a href="../services/fire-v2.html">Пожарозащита</a></li><li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li></ul></div><div><h4>Компания</h4><ul><li><a href="../pages/about-v2.html">О компании</a></li><li><a href="tel:+74996477281">+7 499 647-72-81</a></li><li><a href="../privacy.html">Конфиденциальность</a></li></ul></div></div><div class="footer-base"><span>© 2026 Пром-текстиль</span><span>СПб · Литовская 12 к Д</span></div></div></footer>
+<footer><div class="shell"><div class="footer-grid"><div><div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem;color:var(--ink)">Пром-текстиль</div><p style="font-size:.88rem;color:var(--ink3);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p></div><div><h4>Направления</h4><ul><li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li><li><a href="../services/specodezhda-v2.html">Спецодежда</a></li><li><a href="../services/tactical-v2.html">Тактика</a></li><li><a href="../services/medical-v2.html">Медицинский</a></li><li><a href="../services/interior-v2.html">Интерьерный B2B</a></li><li><a href="../services/transport-v2.html">Транспортный</a></li><li><a href="../services/agro-v2.html">Агропромышленный</a></li><li><a href="../services/fire-v2.html">Пожарозащита</a></li><li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li></ul></div><div><h4>Компания</h4><ul><li><a href="../pages/about-v2.html">О компании</a></li><li><a href="tel:+74996477281">+7 499 647-72-81</a></li><li><a href="../privacy.html">Конфиденциальность</a></li></ul></div></div><div class="footer-base"><span>© 2026 Пром-текстиль</span><span>СПб · Литовская 12 к Д</span></div></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
 var pb=document.getElementById('progressBar');
-window.addEventListener('scroll',function(){var t=document.documentElement.scrollHeight-window.innerHeight;pb.style.width=Math.min(100,(window.scrollY/t)*100)+'%';},{passive:true});
+window.addEventListener('scroll',function(){var t=document.documentElement.scrollHeight-window.innerHeight;if(t>0)pb.style.width=Math.min(100,(window.scrollY/t)*100)+'%';},{passive:true});
 var nav=document.getElementById('mainNav');
-window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>55)},{passive:true});
+window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>48)},{passive:true});
 var burger=document.getElementById('navBurger'),mob=document.getElementById('navMobile');
-burger.addEventListener('click',function(){burger.classList.toggle('open');mob.classList.toggle('open');document.body.style.overflow=mob.classList.contains('open')?'hidden':'';});
-mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';});});
+burger.addEventListener('click',function(){var open=burger.classList.toggle('open');mob.classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':'';});
+document.querySelectorAll('.mnl').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';});});
+var mobToggle=document.getElementById('mobMenuToggle'),mobSub=document.getElementById('mobMenuSub'),mobArrow=document.getElementById('mobMenuArrow');
+if(mobToggle)mobToggle.addEventListener('click',function(){var open=mobSub.classList.toggle('open');if(mobArrow)mobArrow.textContent=open?'▴':'▾';});
 gsap.registerPlugin(ScrollTrigger);
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-document.querySelectorAll('.faq-item').forEach(function(item){item.addEventListener('toggle',function(){if(item.open&&!reduced){var p=item.querySelector('p');if(p)gsap.from(p,{opacity:0,y:6,duration:.3,ease:'expo.out'});}});});
+document.querySelectorAll('.faq-item').forEach(function(item){item.addEventListener('toggle',function(){if(item.open&&!reduced){var b=item.querySelector('.faq-body');if(b)gsap.from(b,{opacity:0,y:6,duration:.3,ease:'expo.out'});}});});
 })();
 </script>
 </body>
