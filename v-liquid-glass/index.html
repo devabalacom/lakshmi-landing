@@ -118,7 +118,6 @@
     <link rel="preload" as="image" href="img/hero-textile-factory.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"></noscript>
@@ -744,6 +743,10 @@
         .faq-list { max-width: 860px; display: flex; flex-direction: column; }
         .faq-item { border-top: 1px solid var(--bg3); overflow: hidden; border-radius: var(--rs); }
         .faq-item:last-child { border-bottom: 1px solid var(--bg3); }
+        @keyframes faqReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: no-preference) {
+            .faq-item[open] > :last-child { animation: faqReveal .35s cubic-bezier(.16,1,.3,1) both; }
+        }
         .faq-item summary {
             padding: 1.4rem 0;
             font-weight: 600; font-size: .93rem;
@@ -1617,8 +1620,6 @@
     </div>
 
     <!-- ═══ SCRIPTS ═══ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
     (function(){
         'use strict';
@@ -1718,46 +1719,38 @@
             if(mobArrow) mobArrow.textContent = open ? '▴' : '▾';
         });
 
-        /* GSAP animations — optional enhancement, skipped gracefully if CDN unavailable */
-        if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
-            gsap.registerPlugin(ScrollTrigger);
+        /* Hero entrance handled by CSS animations */
+        var scrollHint = document.getElementById('heroScrollHint');
+        if(scrollHint){ scrollHint.style.opacity = '1'; }
 
-            /* Hero entrance handled by CSS animations */
-            var scrollHint = document.getElementById('heroScrollHint');
-            if(scrollHint){ scrollHint.style.opacity = '1'; }
-
-            /* Stat counter */
-            ScrollTrigger.create({
-                trigger: '#stats', start: 'top 80%', once: true,
-                onEnter: function(){
+        /* Stat counter — vanilla rAF tween, no GSAP dependency */
+        var statsEl = document.getElementById('stats');
+        if(statsEl){
+            var statsIo = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if(!e.isIntersecting) return;
+                    statsIo.unobserve(e.target);
                     document.querySelectorAll('.stat-num[data-count]').forEach(function(el){
                         var target = parseFloat(el.dataset.count);
                         var sfx    = el.textContent.replace(/[\d,.]/g, '');
                         if(reduced){ el.textContent = target + sfx; return; }
-                        var obj = {v: 0};
-                        gsap.to(obj, {
-                            v: target, duration: 2, ease: 'expo.out',
-                            onUpdate:  function(){ el.textContent = Math.round(obj.v) + sfx; },
-                            onComplete:function(){ el.textContent = target + sfx; }
-                        });
+                        var start = null, duration = 2000;
+                        function tick(ts){
+                            if(!start) start = ts;
+                            var p = Math.min(1, (ts - start) / duration);
+                            var eased = 1 - Math.pow(1 - p, 3); /* cubic ease-out, close to expo.out */
+                            el.textContent = Math.round(target * eased) + sfx;
+                            if(p < 1) requestAnimationFrame(tick);
+                            else el.textContent = target + sfx;
+                        }
+                        requestAnimationFrame(tick);
                     });
-                }
-            });
-
-            /* FAQ open animation */
-            document.querySelectorAll('.faq-item').forEach(function(item){
-                item.addEventListener('toggle', function(){
-                    if(item.open && !reduced){
-                        var b = item.querySelector('.faq-body');
-                        if(b) gsap.from(b, {opacity: 0, y: 8, duration: .35, ease: 'expo.out'});
-                    }
                 });
-            });
-        } else {
-            /* GSAP fallback: only show scroll hint; CSS animations handle hero elements */
-            var sh = document.getElementById('heroScrollHint');
-            if(sh){ sh.style.opacity = '1'; }
+            }, {threshold: .2});
+            statsIo.observe(statsEl);
         }
+
+        /* FAQ open animation now handled purely via CSS (.faq-item[open] > :last-child) */
 
     })();
     </script>

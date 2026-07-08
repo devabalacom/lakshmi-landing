@@ -155,9 +155,7 @@
     </script>
     <link rel="preload" as="image" href="../img/medical/service-hero-medical.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"></noscript>
     <style>
@@ -647,6 +645,10 @@
         .faq-list { max-width: 860px; display: flex; flex-direction: column; }
         .faq-item { border-top: 1px solid var(--bg3); overflow: hidden; border-radius: var(--rs); }
         .faq-item:last-child { border-bottom: 1px solid var(--bg3); }
+        @keyframes faqReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: no-preference) {
+            .faq-item[open] > :last-child { animation: faqReveal .35s cubic-bezier(.16,1,.3,1) both; }
+        }
         .faq-item summary {
             padding: 1.4rem 0;
             font-weight: 600; font-size: .93rem;
@@ -1097,9 +1099,6 @@
         </div>
     </div>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
 var pb=document.getElementById('progressBar');
@@ -1111,11 +1110,10 @@ burger.addEventListener('click',function(){var open=burger.classList.toggle('ope
 mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';});});
 var mobToggle=document.getElementById('mobMenuToggle'),mobSub=document.getElementById('mobMenuSub'),mobArrow=document.getElementById('mobMenuArrow');
 if(mobToggle) mobToggle.addEventListener('click',function(){var open=mobSub.classList.toggle('open');if(mobArrow) mobArrow.textContent=open?'▴':'▾';});
-gsap.registerPlugin(ScrollTrigger);
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-document.querySelectorAll('.faq-item').forEach(function(item){item.addEventListener('toggle',function(){if(item.open&&!reduced){var p=item.querySelector('p');if(p)gsap.from(p,{opacity:0,y:6,duration:.3,ease:'expo.out'});}});});
+
 })();
 </script>
 </body>

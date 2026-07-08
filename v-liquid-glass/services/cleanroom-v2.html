@@ -98,9 +98,7 @@
     </script>
     <link rel="preload" as="image" href="../img/cleanroom/service-hero-cleanroom.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"></noscript>
     <style>
@@ -599,6 +597,10 @@
         .faq-list { max-width: 860px; display: flex; flex-direction: column; }
         .faq-item { border-top: 1px solid var(--bg3); overflow: hidden; border-radius: var(--rs); }
         .faq-item:last-child { border-bottom: 1px solid var(--bg3); }
+        @keyframes faqReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: no-preference) {
+            .faq-item[open] > :last-child { animation: faqReveal .35s cubic-bezier(.16,1,.3,1) both; }
+        }
         .faq-item summary {
             padding: 1.4rem 0;
             font-weight: 600; font-size: .93rem;
@@ -958,9 +960,6 @@
     </section>
 
 <footer><div class="shell"><div class="footer-grid"><div><div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem">Пром-текстиль</div><p style="font-size:.88rem;color:var(--ink3);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p></div><div><h4>Направления</h4><ul><li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li><li><a href="../services/specodezhda-v2.html">Спецодежда</a></li><li><a href="../services/tactical-v2.html">Тактика</a></li><li><a href="../services/medical-v2.html">Медицинский</a></li><li><a href="../services/interior-v2.html">Интерьерный B2B</a></li><li><a href="../services/transport-v2.html">Транспортный</a></li><li><a href="../services/agro-v2.html">Агропромышленный</a></li><li><a href="../services/fire-v2.html">Пожарозащита</a></li><li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li></ul></div><div><h4>Компания</h4><ul><li><a href="../pages/about-v2.html">О компании</a></li><li><a href="tel:+74996477281">+7 499 647-72-81</a></li><li><a href="../privacy.html">Конфиденциальность</a></li></ul></div></div><div class="footer-base"><span>© 2026 Пром-текстиль</span><span>СПб · Литовская 12 к Д</span></div></div></footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
 var pb=document.getElementById('progressBar');
@@ -972,11 +971,10 @@ burger.addEventListener('click',function(){burger.classList.toggle('open');mob.c
 mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';});});
 var mobToggle=document.getElementById('mobMenuToggle'),mobSub=document.getElementById('mobMenuSub'),mobArrow=document.getElementById('mobMenuArrow');
 if(mobToggle) mobToggle.addEventListener('click',function(){var open=mobSub.classList.toggle('open');if(mobArrow) mobArrow.textContent=open?'▴':'▾';});
-gsap.registerPlugin(ScrollTrigger);
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-document.querySelectorAll('.faq-item').forEach(function(item){item.addEventListener('toggle',function(){if(item.open&&!reduced){var p=item.querySelector('.faq-body');if(p)gsap.from(p,{opacity:0,y:6,duration:.3,ease:'expo.out'});}});});
+
 })();
 </script>
 </body>
