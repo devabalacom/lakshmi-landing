@@ -27,6 +27,12 @@
         <priority>0.3</priority>
     </url>
     <url>
+        <loc>https://пром-текстиль.рф/sitemap.html</loc>
+        <lastmod>2026-07-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <url>
         <loc>https://пром-текстиль.рф/services/chekhly-tenty-v2.html</loc>
         <lastmod>2026-07-02</lastmod>
         <changefreq>monthly</changefreq>
