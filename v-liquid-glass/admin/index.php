@@ -20,15 +20,15 @@ require __DIR__ . '/includes/layout-header.php';
 ?>
 <div class="admin-header"><h1>Дашборд</h1></div>
 
-<div class="card" style="display:flex;gap:1.4rem;flex-wrap:wrap">
-    <div><div style="font-size:1.8rem;font-weight:800"><?= $counts['published'] ?></div><div style="color:var(--ink3);font-size:.82rem">Опубликовано</div></div>
-    <div><div style="font-size:1.8rem;font-weight:800"><?= $counts['draft'] ?></div><div style="color:var(--ink3);font-size:.82rem">Черновики</div></div>
-    <div><div style="font-size:1.8rem;font-weight:800"><?= $counts['scheduled'] ?></div><div style="color:var(--ink3);font-size:.82rem">Запланировано</div></div>
-    <div><div style="font-size:1.8rem;font-weight:800"><?= $counts['hidden'] ?></div><div style="color:var(--ink3);font-size:.82rem">Скрыто</div></div>
+<div class="card stat-row">
+    <div><div class="stat-value"><?= $counts['published'] ?></div><div class="stat-label">Опубликовано</div></div>
+    <div><div class="stat-value"><?= $counts['draft'] ?></div><div class="stat-label">Черновики</div></div>
+    <div><div class="stat-value"><?= $counts['scheduled'] ?></div><div class="stat-label">Запланировано</div></div>
+    <div><div class="stat-value"><?= $counts['hidden'] ?></div><div class="stat-label">Скрыто</div></div>
 </div>
 
 <div class="card">
-    <h3 style="margin-top:0">Недавно изменённые статьи</h3>
+    <h3>Недавно изменённые статьи</h3>
     <div class="table-wrap">
         <table class="admin-table">
             <thead><tr><th>Название</th><th>Статус</th><th>Изменено</th><th></th></tr></thead>
@@ -42,7 +42,7 @@ require __DIR__ . '/includes/layout-header.php';
                 </tr>
             <?php endforeach; ?>
             <?php if (!$recent): ?>
-                <tr><td colspan="4" style="color:var(--ink3)">Пока нет статей. <a href="/admin/article-edit.php?id=new">Создать первую →</a></td></tr>
+                <tr><td colspan="4" class="text-muted">Пока нет статей. <a href="/admin/article-edit.php?id=new">Создать первую</a></td></tr>
             <?php endif; ?>
             </tbody>
         </table>

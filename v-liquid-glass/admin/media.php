@@ -126,26 +126,26 @@ require __DIR__ . '/includes/layout-header.php';
         <div class="media-item">
             <img src="/uploads/blog/<?= htmlspecialchars($m['path'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($m['alt'], ENT_QUOTES, 'UTF-8') ?>">
             <div class="media-meta">
-                <div style="font-weight:700;color:var(--ink);margin-bottom:.3rem;word-break:break-word"><?= htmlspecialchars($m['original_filename'], ENT_QUOTES, 'UTF-8') ?></div>
-                <form method="post" style="margin-bottom:.3rem">
+                <div class="media-title"><?= htmlspecialchars($m['original_filename'], ENT_QUOTES, 'UTF-8') ?></div>
+                <form method="post">
                     <?= csrf_field() ?>
                     <input type="hidden" name="action" value="update_meta">
                     <input type="hidden" name="id" value="<?= $m['id'] ?>">
-                    <input type="text" name="alt" value="<?= htmlspecialchars($m['alt'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Alt-текст" style="margin-bottom:.3rem">
-                    <input type="text" name="title" value="<?= htmlspecialchars($m['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>" placeholder="Название" style="margin-bottom:.3rem">
-                    <input type="text" name="caption" value="<?= htmlspecialchars($m['caption'] ?? '', ENT_QUOTES, 'UTF-8') ?>" placeholder="Подпись" style="margin-bottom:.3rem">
-                    <button type="submit" class="btn btn-sm" style="width:100%">Сохранить</button>
+                    <input type="text" name="alt" value="<?= htmlspecialchars($m['alt'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Alt-текст">
+                    <input type="text" name="title" value="<?= htmlspecialchars($m['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>" placeholder="Название">
+                    <input type="text" name="caption" value="<?= htmlspecialchars($m['caption'] ?? '', ENT_QUOTES, 'UTF-8') ?>" placeholder="Подпись">
+                    <button type="submit" class="btn btn-sm">Сохранить</button>
                 </form>
                 <form method="post" onsubmit="return confirm('Удалить изображение?');">
                     <?= csrf_field() ?>
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= $m['id'] ?>">
-                    <button type="submit" class="btn btn-sm btn-danger" style="width:100%">Удалить</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
                 </form>
             </div>
         </div>
     <?php endforeach; ?>
-    <?php if (!$items): ?><p style="color:var(--ink3)">Пока нет загруженных изображений.</p><?php endif; ?>
+    <?php if (!$items): ?><p class="text-muted">Пока нет загруженных изображений.</p><?php endif; ?>
 </div>
 
 <script>

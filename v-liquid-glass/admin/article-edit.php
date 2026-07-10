@@ -107,7 +107,7 @@ require __DIR__ . '/includes/layout-header.php';
 <div class="admin-header">
     <h1><?= $isNew ? 'Новая статья' : htmlspecialchars($article['title'], ENT_QUOTES, 'UTF-8') ?></h1>
     <?php if (!$isNew): ?>
-        <div style="display:flex;gap:.5rem">
+        <div class="btn-row">
             <button type="button" class="btn" id="preview-btn" <?= $isNew ? 'disabled' : '' ?>>Предпросмотр</button>
             <a href="<?= htmlspecialchars($publicUrl, ENT_QUOTES, 'UTF-8') ?>" target="_blank" class="btn btn-ghost">Открыть на сайте</a>
         </div>
@@ -181,8 +181,8 @@ require __DIR__ . '/includes/layout-header.php';
                     </div>
                     <div class="field">
                         <label>Обложка статьи</label>
-                        <div id="cover-preview">
-                            <?php if ($coverMedia): ?><img src="/uploads/blog/<?= htmlspecialchars($coverMedia['path'], ENT_QUOTES, 'UTF-8') ?>" style="width:100%;border-radius:8px;margin-bottom:.5rem"><?php endif; ?>
+                        <div id="cover-preview" class="media-preview">
+                            <?php if ($coverMedia): ?><img src="/uploads/blog/<?= htmlspecialchars($coverMedia['path'], ENT_QUOTES, 'UTF-8') ?>"><?php endif; ?>
                         </div>
                         <input type="hidden" name="cover_media_id" id="cover_media_id" value="<?= htmlspecialchars((string) ($article['cover_media_id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
                         <button type="button" class="btn btn-sm" onclick="openMediaPicker('cover')">Выбрать обложку</button>
@@ -205,37 +205,37 @@ require __DIR__ . '/includes/layout-header.php';
             <div class="field"><label for="meta_description">Meta Description (пусто → краткое описание)</label><textarea id="meta_description" name="meta_description"><?= htmlspecialchars($article['meta_description'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea></div>
             <div class="field"><label for="h1">H1 (пусто → название статьи)</label><input type="text" id="h1" name="h1" value="<?= htmlspecialchars($article['h1'] ?? '', ENT_QUOTES, 'UTF-8') ?>"></div>
             <div class="field"><label for="canonical_url">Canonical URL (пусто → текущий URL)</label><input type="url" id="canonical_url" name="canonical_url" value="<?= htmlspecialchars($article['canonical_url'] ?? '', ENT_QUOTES, 'UTF-8') ?>"></div>
-            <div class="field checkbox-row"><input type="checkbox" id="robots_index" name="robots_index" <?= ($article['robots_index'] ?? 1) ? 'checked' : '' ?>><label for="robots_index" style="margin:0">Индексировать (robots: index)</label></div>
-            <div class="field checkbox-row"><input type="checkbox" id="robots_follow" name="robots_follow" <?= ($article['robots_follow'] ?? 1) ? 'checked' : '' ?>><label for="robots_follow" style="margin:0">Переходить по ссылкам (robots: follow)</label></div>
+            <div class="field checkbox-row"><input type="checkbox" id="robots_index" name="robots_index" <?= ($article['robots_index'] ?? 1) ? 'checked' : '' ?>><label for="robots_index">Индексировать (robots: index)</label></div>
+            <div class="field checkbox-row"><input type="checkbox" id="robots_follow" name="robots_follow" <?= ($article['robots_follow'] ?? 1) ? 'checked' : '' ?>><label for="robots_follow">Переходить по ссылкам (robots: follow)</label></div>
             <div class="field"><label for="focus_keyword">Основной ключевой запрос</label><input type="text" id="focus_keyword" name="focus_keyword" value="<?= htmlspecialchars($article['focus_keyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>"></div>
             <div class="field"><label for="secondary_keywords">Дополнительные ключевые запросы</label><textarea id="secondary_keywords" name="secondary_keywords"><?= htmlspecialchars($article['secondary_keywords'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea><div class="hint">Только для внутреннего использования — никогда не выводится как публичный meta keywords.</div></div>
             <div class="field"><label for="schema_type">Тип Schema.org</label><select id="schema_type" name="schema_type"><option value="Article" <?= ($article['schema_type'] ?? 'Article') === 'Article' ? 'selected' : '' ?>>Article</option><option value="BlogPosting" <?= ($article['schema_type'] ?? '') === 'BlogPosting' ? 'selected' : '' ?>>BlogPosting</option></select></div>
         </div>
         <div class="card">
-            <h3 style="margin-top:0">Open Graph</h3>
+            <h3>Open Graph</h3>
             <div class="field"><label for="og_title">OG Title</label><input type="text" id="og_title" name="og_title" value="<?= htmlspecialchars($article['og_title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"></div>
             <div class="field"><label for="og_description">OG Description</label><textarea id="og_description" name="og_description"><?= htmlspecialchars($article['og_description'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea></div>
             <div class="field">
                 <label>OG Image</label>
-                <div id="og-preview"><?php if ($ogMedia): ?><img src="/uploads/blog/<?= htmlspecialchars($ogMedia['path'], ENT_QUOTES, 'UTF-8') ?>" style="max-width:200px;border-radius:8px;margin-bottom:.5rem"><?php endif; ?></div>
+                <div id="og-preview" class="media-preview"><?php if ($ogMedia): ?><img src="/uploads/blog/<?= htmlspecialchars($ogMedia['path'], ENT_QUOTES, 'UTF-8') ?>"><?php endif; ?></div>
                 <input type="hidden" name="og_image_id" id="og_image_id" value="<?= htmlspecialchars((string) ($article['og_image_id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
                 <button type="button" class="btn btn-sm" onclick="openMediaPicker('og')">Выбрать изображение</button>
             </div>
         </div>
         <div class="card">
-            <h3 style="margin-top:0">Twitter Card</h3>
+            <h3>Twitter Card</h3>
             <div class="field"><label for="twitter_title">Twitter Title</label><input type="text" id="twitter_title" name="twitter_title" value="<?= htmlspecialchars($article['twitter_title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"></div>
             <div class="field"><label for="twitter_description">Twitter Description</label><textarea id="twitter_description" name="twitter_description"><?= htmlspecialchars($article['twitter_description'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea></div>
             <div class="field">
                 <label>Twitter Image</label>
-                <div id="twitter-preview"><?php if ($twitterMedia): ?><img src="/uploads/blog/<?= htmlspecialchars($twitterMedia['path'], ENT_QUOTES, 'UTF-8') ?>" style="max-width:200px;border-radius:8px;margin-bottom:.5rem"><?php endif; ?></div>
+                <div id="twitter-preview" class="media-preview"><?php if ($twitterMedia): ?><img src="/uploads/blog/<?= htmlspecialchars($twitterMedia['path'], ENT_QUOTES, 'UTF-8') ?>"><?php endif; ?></div>
                 <input type="hidden" name="twitter_image_id" id="twitter_image_id" value="<?= htmlspecialchars((string) ($article['twitter_image_id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
                 <button type="button" class="btn btn-sm" onclick="openMediaPicker('twitter')">Выбрать изображение</button>
             </div>
         </div>
         <div class="card">
-            <h3 style="margin-top:0">Sitemap</h3>
-            <div class="field checkbox-row"><input type="checkbox" id="include_in_sitemap" name="include_in_sitemap" <?= ($article['include_in_sitemap'] ?? 1) ? 'checked' : '' ?>><label for="include_in_sitemap" style="margin:0">Включить в sitemap.xml</label></div>
+            <h3>Sitemap</h3>
+            <div class="field checkbox-row"><input type="checkbox" id="include_in_sitemap" name="include_in_sitemap" <?= ($article['include_in_sitemap'] ?? 1) ? 'checked' : '' ?>><label for="include_in_sitemap">Включить в sitemap.xml</label></div>
             <div class="field"><label for="sitemap_priority">Приоритет (0.0–1.0)</label><input type="text" id="sitemap_priority" name="sitemap_priority" value="<?= htmlspecialchars((string) ($article['sitemap_priority'] ?? 0.6), ENT_QUOTES, 'UTF-8') ?>"></div>
             <div class="field"><label for="sitemap_changefreq">Частота обновления</label>
                 <select id="sitemap_changefreq" name="sitemap_changefreq">
@@ -247,7 +247,7 @@ require __DIR__ . '/includes/layout-header.php';
         </div>
     </div>
 
-    <div style="display:flex;gap:.6rem;margin-top:1rem">
+    <div class="btn-row form-actions">
         <button type="submit" name="form_action" value="save_changes" class="btn btn-gold">Сохранить изменения</button>
         <button type="submit" name="form_action" value="save_draft" class="btn">Сохранить как черновик</button>
     </div>
@@ -287,7 +287,7 @@ window.setPickedMedia = function (target, id, path) {
     var hidden = document.getElementById(hiddenId);
     var preview = document.getElementById(previewId);
     if (hidden) hidden.value = id;
-    if (preview) preview.innerHTML = '<img src="/uploads/blog/' + path + '" style="max-width:200px;border-radius:8px;margin-bottom:.5rem">';
+    if (preview) preview.innerHTML = '<img src="/uploads/blog/' + path + '">';
 };
 
 <?php if (!$isNew): ?>

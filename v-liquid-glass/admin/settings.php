@@ -46,8 +46,8 @@ require __DIR__ . '/includes/layout-header.php';
 </form>
 
 <div class="card">
-    <h3 style="margin-top:0">Резервная копия</h3>
-    <p style="color:var(--ink3);font-size:.88rem;margin-bottom:1rem">База данных блога (статьи, медиатека, редиректы) хранится в одном файле SQLite. Скачайте копию перед крупными изменениями.</p>
+    <h3>Резервная копия</h3>
+    <p class="text-muted" style="font-size:.88rem;margin-bottom:1rem">База данных блога (статьи, медиатека, редиректы) хранится в одном файле SQLite. Скачайте копию перед крупными изменениями.</p>
     <a href="/admin/backup.php" class="btn">Скачать резервную копию (.sqlite)</a>
 </div>
 

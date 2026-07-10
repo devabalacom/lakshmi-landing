@@ -102,32 +102,32 @@ require __DIR__ . '/includes/layout-header.php';
                 <td><span class="badge badge-<?= $a['status'] ?>"><?= htmlspecialchars($a['status'], ENT_QUOTES, 'UTF-8') ?></span></td>
                 <td><?= htmlspecialchars($a['published_at'] ?? $a['publish_at'] ?? '—', ENT_QUOTES, 'UTF-8') ?></td>
                 <td><?= htmlspecialchars($a['updated_at'], ENT_QUOTES, 'UTF-8') ?></td>
-                <td><a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" target="_blank" style="font-size:.78rem;color:var(--ink3)"><?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?></a></td>
+                <td><a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" target="_blank" class="text-muted" style="font-size:.78rem"><?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?></a></td>
                 <td class="admin-actions">
                     <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" target="_blank" class="btn btn-sm btn-ghost">Открыть</a>
                     <a href="/admin/article-edit.php?id=<?= $a['id'] ?>" class="btn btn-sm">Редактировать</a>
-                    <form method="post" style="display:inline">
+                    <form method="post" class="inline-form">
                         <?= csrf_field() ?>
                         <input type="hidden" name="id" value="<?= $a['id'] ?>">
                         <input type="hidden" name="action" value="duplicate">
                         <button type="submit" class="btn btn-sm btn-ghost">Копия</button>
                     </form>
                     <?php if ($a['status'] === 'published'): ?>
-                        <form method="post" style="display:inline">
+                        <form method="post" class="inline-form">
                             <?= csrf_field() ?>
                             <input type="hidden" name="id" value="<?= $a['id'] ?>">
                             <input type="hidden" name="action" value="unpublish">
                             <button type="submit" class="btn btn-sm btn-ghost">Снять с публикации</button>
                         </form>
                     <?php else: ?>
-                        <form method="post" style="display:inline">
+                        <form method="post" class="inline-form">
                             <?= csrf_field() ?>
                             <input type="hidden" name="id" value="<?= $a['id'] ?>">
                             <input type="hidden" name="action" value="publish">
                             <button type="submit" class="btn btn-sm btn-ghost">Опубликовать</button>
                         </form>
                     <?php endif; ?>
-                    <form method="post" style="display:inline" onsubmit="return confirm('Удалить статью «<?= htmlspecialchars(addslashes($a['title']), ENT_QUOTES, 'UTF-8') ?>»? Это необратимо.');">
+                    <form method="post" class="inline-form" onsubmit="return confirm('Удалить статью «<?= htmlspecialchars(addslashes($a['title']), ENT_QUOTES, 'UTF-8') ?>»? Это необратимо.');">
                         <?= csrf_field() ?>
                         <input type="hidden" name="id" value="<?= $a['id'] ?>">
                         <input type="hidden" name="action" value="delete">
@@ -137,7 +137,7 @@ require __DIR__ . '/includes/layout-header.php';
             </tr>
         <?php endforeach; ?>
         <?php if (!$result['items']): ?>
-            <tr><td colspan="8" style="color:var(--ink3)">Ничего не найдено.</td></tr>
+            <tr><td colspan="8" class="text-muted">Ничего не найдено.</td></tr>
         <?php endif; ?>
         </tbody>
     </table>
