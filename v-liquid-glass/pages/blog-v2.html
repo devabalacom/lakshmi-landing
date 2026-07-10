@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О компании · Пром-текстиль</title>
-    <meta name="description" content="Пром-текстиль — 20 лет в техническом текстиле. 1400 м², 50 специалистов. Конструкторский отдел, цех, контроль качества.">
+    <title>Блог · Пром-текстиль</title>
+    <meta name="description" content="Блог Пром-текстиль: новости производства, статьи о технических тканях, сертификации и реализованных проектах.">
     <meta name="theme-color" content="#D4A017">
-    <link rel="canonical" href="https://пром-текстиль.рф/pages/about-v2.html">
+    <link rel="canonical" href="https://пром-текстиль.рф/pages/blog-v2.html">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Пром-текстиль">
     <meta name="geo.region" content="RU-SPE">
@@ -18,14 +18,14 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Пром-текстиль">
-    <meta property="og:url" content="https://пром-текстиль.рф/pages/about-v2.html">
-    <meta property="og:title" content="О компании · Пром-текстиль">
-    <meta property="og:description" content="Пром-текстиль — 20 лет в техническом текстиле. 1400 м², 50 специалистов.">
+    <meta property="og:url" content="https://пром-текстиль.рф/pages/blog-v2.html">
+    <meta property="og:title" content="Блог · Пром-текстиль">
+    <meta property="og:description" content="Новости производства, статьи о технических тканях, сертификации и реализованных проектах.">
     <meta property="og:image" content="https://пром-текстиль.рф/og-image.svg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="О компании · Пром-текстиль">
-    <meta name="twitter:description" content="Пром-текстиль — 20 лет в техническом текстиле. 1400 м², 50 специалистов.">
+    <meta name="twitter:title" content="Блог · Пром-текстиль">
+    <meta name="twitter:description" content="Новости производства, статьи о технических тканях, сертификации и реализованных проектах.">
     <meta name="twitter:image" content="https://пром-текстиль.рф/og-image.svg">
 
     <meta name="yandex-verification" content="cc20bc028820e8f1">
@@ -61,7 +61,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem","position": 1,"name": "Главная","item": "https://пром-текстиль.рф/"},
-    {"@type": "ListItem","position": 2,"name": "О компании","item": "https://пром-текстиль.рф/pages/about-v2.html"}
+    {"@type": "ListItem","position": 2,"name": "Блог","item": "https://пром-текстиль.рф/pages/blog-v2.html"}
   ]
 }
     </script>
@@ -190,6 +190,8 @@
         }
         .nav-links a:hover { color: var(--g2); }
         .nav-links a:hover::after { right: 0; }
+        .nav-links a[aria-current="page"] { color: var(--g2); }
+        .nav-links a[aria-current="page"]::after { right: 0; }
 
         .nav-cta {
             display: none;
@@ -284,115 +286,17 @@
         .mnl-sub a:hover { color: var(--g0); }
 
         /* ═══════════════════════════════════════════
-           HERO
+           PAGE HEAD
            ═══════════════════════════════════════════ */
-        .hero-section { background: white; padding: 90px 0 3rem; }
-        .hero {
-            position: relative;
-            min-height: 80svh;
-            display: flex; align-items: center;
-            padding: 4rem 3rem 5rem;
-            overflow: hidden;
-            border-radius: var(--rl);
-            background: linear-gradient(rgba(253,250,245,0.5), rgba(253,250,245,0.5)), var(--bg2);
-        }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background-image: radial-gradient(rgba(26,22,18,0.042) 1.5px, transparent 1.5px);
-            background-size: 28px 28px;
-            pointer-events: none;
-        }
-        .hero::after {
-            content: ''; position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse 60% 65% at 78% 28%, rgba(197,151,62,0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 50% at 18% 78%, rgba(197,151,62,0.05) 0%, transparent 65%);
-            pointer-events: none;
-        }
-        .hero-inner {
-            position: relative; z-index: 1;
-            display: grid; grid-template-columns: 1fr;
-            gap: 2.5rem; width: 100%; max-width: 760px;
-        }
-        .hero-text-glass {
-            background: var(--gbg);
-            border: 1px solid var(--gbd);
-            border-radius: var(--rl);
-            box-shadow: var(--gsh), inset 0 1px 0 rgba(255,255,255,0.92);
-            padding: 2.5rem 2.8rem;
-            position: relative;
-        }
-        .hero-text-glass::before {
-            content: ''; position: absolute;
-            top: 0; left: 12%; right: 12%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,.96), transparent);
-            border-radius: var(--rp);
-        }
-        .hero-h1 {
-            font-family: var(--fd);
-            font-size: clamp(2rem, 5vw, 4.8rem);
-            font-weight: 400; line-height: .95; letter-spacing: -.02em;
-            animation: heroFadeUp 0.8s var(--ease) both;
-        }
-        @keyframes heroFadeUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to   { opacity: 1; transform: none; }
-        }
-        .hero-h1 em {
-            font-style: normal;
-            background: linear-gradient(
-                135deg,
-                var(--g2) 0%,
-                var(--g0) 28%,
-                var(--g1) 52%,
-                var(--g0) 74%,
-                var(--g2) 100%
-            );
-            background-size: 220% 220%;
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent; color: transparent;
-            animation: goldShimmer 9s ease-in-out infinite;
-        }
-        @keyframes goldShimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50%       { background-position: 100% 50%; }
-        }
-        .hero-lead {
-            font-size: 1rem; color: var(--ink2); font-weight: 400;
-            max-width: 560px; line-height: 1.75;
-            margin-top: 1.5rem;
-            animation: heroFadeUp 0.8s 0.2s var(--ease) both;
-        }
-        .hero-btns {
-            display: flex; gap: .8rem; flex-wrap: wrap;
-            margin-top: 2rem;
-            animation: heroFadeUp 0.7s 0.35s var(--ease) both;
-        }
-
-        /* ─── BUTTONS ─── */
-        .btn {
-            display: inline-flex; align-items: center; gap: .5rem;
-            padding: .9rem 1.9rem; border-radius: var(--rp);
-            font-weight: 700; font-size: .82rem; letter-spacing: .04em;
-            transition: all .4s var(--ease);
-        }
-        .btn-gold {
-            background: #D4A017;
-            color: #111827;
-            box-shadow: 0 8px 28px rgba(212,160,23,0.28);
-        }
-        .btn-gold:hover {
-            background: #B8860B;
-            color: #FFFFFF;
-            transform: translateY(-2px);
-            box-shadow: 0 14px 36px rgba(212,160,23,0.38);
-        }
+        .hero-section { background: white; padding: 90px 0 1rem; }
+        .page-head { padding: 3.5rem 0 1rem; max-width: 680px; }
+        .page-head .s-h2 { margin-bottom: .9rem; }
 
         /* ═══════════════════════════════════════════
            SECTION BASE
            ═══════════════════════════════════════════ */
-        .section { padding: 6rem 0; position: relative; }
-        @media(min-width:768px) { .section { padding: 8rem 0; } }
+        .section { padding: 3rem 0 6rem; position: relative; }
+        @media(min-width:768px) { .section { padding: 3rem 0 8rem; } }
 
         .s-head { margin-bottom: 3.5rem; }
         .s-h2 {
@@ -403,10 +307,6 @@
         }
         .s-sub { font-size: 1rem; color: var(--ink2); max-width: 560px; line-height: 1.7; }
 
-        /* Dark variants */
-        .s-dark .s-h2 { color: var(--nt); }
-        .s-dark .s-sub { color: var(--nt2); }
-
         /* ─── SCROLL REVEAL ─── */
         .reveal {
             opacity: 0; transform: translateY(24px);
@@ -415,161 +315,71 @@
         .reveal.vis { opacity: 1; transform: none; }
 
         /* ═══════════════════════════════════════════
-           STATS — island for visual rhythm
+           BLOG GRID
            ═══════════════════════════════════════════ */
-        .stats-section { background: var(--bg); padding: 5rem 0; position: relative; }
-        .stats-island {
-            background: var(--nr);
-            border-radius: 24px;
-            padding: 4rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .stats-island::before {
-            content: ''; position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse 65% 80% at 22% 50%, rgba(197,151,62,0.055) 0%, transparent 65%),
-                radial-gradient(ellipse 55% 70% at 82% 50%, rgba(197,151,62,0.035) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .stats-island::after {
-            content: ''; position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
-            background-size: 56px 56px;
-            pointer-events: none;
-        }
-        .stats-inner { position: relative; z-index: 1; }
-        .stats-row {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 12px; background: transparent;
-        }
-        @media(min-width:640px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
-        .stat-cell {
-            background: var(--nr); padding: 3rem 2.5rem; text-align: center;
-            border-radius: var(--rs);
-            transition: background .3s;
-        }
-        .stat-cell:hover { background: var(--nr2); }
-        .stat-num {
-            font-family: var(--fd);
-            font-size: clamp(2.6rem, 5vw, 4rem);
-            color: var(--g0); line-height: 1;
-            display: block; margin-bottom: .5rem;
-        }
-        .stat-desc { font-size: .78rem; color: var(--nt2); line-height: 1.5; max-width: 120px; margin: 0 auto; }
-
-        /* ═══════════════════════════════════════════
-           ABOUT — capability cards on light
-           ═══════════════════════════════════════════ */
-        .about-grid {
+        .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
-        .about-card {
+        @media(min-width:640px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(min-width:1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .blog-card {
+            position: relative;
+            display: flex; flex-direction: column;
+            height: 100%;
             background: white;
             border: 1px solid var(--gbd);
             border-radius: var(--r);
-            padding: 2.2rem 2rem;
-            transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
-            position: relative;
             overflow: hidden;
+            transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
         }
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--g0), var(--g1));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .4s var(--ease);
-            z-index: 1;
-        }
-        .about-card:hover {
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 44px rgba(212,160,23,0.14), 0 4px 12px rgba(26,22,18,0.06);
             border-color: var(--glh);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 36px rgba(212,160,23,0.10), 0 2px 8px rgba(26,22,18,0.04);
         }
-        .about-card:hover::before { transform: scaleX(1); }
-        .about-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
-        .about-card p { font-size: .85rem; color: var(--ink2); line-height: 1.65; }
+        .blog-card-media { position: relative; overflow: hidden; aspect-ratio: 16/10; background: var(--bg2); }
+        .blog-card-media img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform .6s var(--ease);
+        }
+        .blog-card:hover .blog-card-media img { transform: scale(1.06); }
 
-        /* ═══ ДЛЯ КОГО РАБОТАЕМ — unique tag cloud (no canon analog) ═══ */
-        .apps-grid { display: grid; gap: .6rem; grid-template-columns: 1fr; }
-        @media(min-width:500px) { .apps-grid { grid-template-columns: 1fr 1fr; } }
-        .application-v2 {
-            display: flex; align-items: center; gap: .6rem;
-            padding: .75rem 1rem;
-            background: var(--gbg);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--gbd); border-radius: var(--rs);
-            font-size: .88rem; color: var(--ink);
-            transition: border-color .3s, transform .3s;
+        .blog-card-body { padding: 1.6rem 1.7rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+        .blog-card-cat {
+            align-self: flex-start;
+            font-family: var(--fm); font-size: .58rem; font-weight: 700;
+            letter-spacing: .14em; text-transform: uppercase;
+            color: white; background: var(--g2);
+            padding: .28rem .75rem; border-radius: var(--rp);
+            margin-bottom: .9rem;
         }
-        .application-v2:hover { border-color: var(--glh); transform: translateY(-1px); }
-        .application-v2 svg { color: var(--g0); flex-shrink: 0; }
-
-        /* ═══════════════════════════════════════════
-           PROCESS — numbered editorial steps
-           ═══════════════════════════════════════════ */
-        .process-bg { background: var(--bg2); }
-        .process-list {
-            display: grid; grid-template-columns: 1fr;
-            gap: 12px; background: transparent;
+        .blog-card-title {
+            font-size: 1.05rem; font-weight: 700; line-height: 1.35;
+            margin-bottom: .6rem;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
         }
-        @media(min-width:640px) { .process-list { grid-template-columns: repeat(5, 1fr); } }
-        .p-step {
-            background: var(--bg2); padding: 2.2rem 1.8rem;
-            border-radius: var(--r);
-            position: relative; overflow: hidden;
-            transition: background .3s;
+        .blog-card-title a { color: var(--ink); transition: color .25s; }
+        .blog-card:hover .blog-card-title a { color: var(--g2); }
+        .blog-card-desc {
+            font-size: .86rem; color: var(--ink2); line-height: 1.65;
+            margin-bottom: 1.3rem; flex: 1;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
         }
-        .p-step:hover { background: white; }
-        .p-step::before {
-            content: attr(data-n);
-            position: absolute; bottom: -.05em; right: .1em;
-            font-family: var(--fm); font-weight: 800;
-            font-size: 5.5rem; line-height: 1;
-            color: var(--ink); opacity: .028;
-            pointer-events: none;
+        .blog-card-meta {
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+            padding-top: 1rem; margin-top: auto; border-top: 1px solid var(--bg3);
         }
-        .p-step h3 { font-size: .98rem; font-weight: 700; margin-bottom: .4rem; position: relative; }
-        .p-step p { font-size: .82rem; color: var(--ink2); line-height: 1.6; position: relative; }
-
-        /* ═══════════════════════════════════════════
-           CONTACT
-           ═══════════════════════════════════════════ */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px; background: transparent;
-            border: none;
-            margin-bottom: 2.5rem;
+        .blog-card-meta time { font-size: .75rem; color: var(--ink3); }
+        .blog-card-read {
+            font-size: .78rem; font-weight: 700; color: var(--g0);
+            display: inline-flex; align-items: center; gap: .35rem;
+            transition: gap .3s var(--ease);
         }
-        .contact-cell {
-            display: block;
-            background: var(--bg); padding: 1.8rem 2rem;
-            border-radius: var(--r);
-            position: relative; overflow: hidden;
-            transition: background .3s;
-        }
-        .contact-cell::before {
-            content: ''; position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
-            transform: scaleX(0); transform-origin: left;
-            transition: transform .45s var(--ease);
-        }
-        .contact-cell:hover::before { transform: scaleX(1); }
-        .contact-cell:hover { background: white; }
-        .c-label {
-            font-family: var(--fm); font-size: .58rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: .18em;
-            color: var(--ink3); margin-bottom: .5rem;
-        }
-        .c-value { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+        .blog-card:hover .blog-card-read { gap: .55rem; }
+        .stretched-link::after { content: ''; position: absolute; inset: 0; z-index: 2; }
 
         /* ═══════════════════════════════════════════
            FOOTER
@@ -606,17 +416,14 @@
 
         /* ─── RESPONSIVE ─── */
         @media(max-width:767px) {
-            .section { padding: 4rem 0; }
-            .hero { padding: 64px 0 2rem; }
-            .stats-section { padding: 3.5rem 0; }
-            .stats-island { padding: 2.5rem 1.5rem; border-radius: var(--r); }
+            .section { padding: 2.5rem 0 4rem; }
+            .page-head { padding: 2.5rem 0 .5rem; }
         }
 
         /* ─── REDUCED MOTION ─── */
         @media(prefers-reduced-motion: reduce) {
             .reveal { transition: none !important; }
-            .hero-h1, .hero-lead, .hero-btns { animation: none !important; opacity: 1 !important; }
-            .hero-h1 em { animation: none !important; }
+            .blog-card, .blog-card-media img { transition: none !important; }
         }
     </style>
 </head>
@@ -640,11 +447,10 @@
                     <a href="../services/cleanroom-v2.html">Чистые помещения</a>
                 </div>
             </div>
-            <a href="../pages/about-v2.html" aria-current="page">О нас</a>
+            <a href="../pages/about-v2.html">О нас</a>
             <a href="../index.html#process">Как работаем</a>
-            <a href="../index.html#faq">FAQ</a>
-            <a href="../pages/blog-v2.html">Блог</a>
-            <a href="#contact">Контакты</a>
+            <a href="../pages/blog-v2.html" aria-current="page">Блог</a>
+            <a href="../pages/contacts-v2.html">Контакты</a>
         </div>
         <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
         <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -665,162 +471,119 @@
             <a href="../services/cleanroom-v2.html" class="mnl">Чистые помещения</a>
         </div>
     </div>
-    <a href="../pages/about-v2.html" class="mnl" aria-current="page">О нас</a>
+    <a href="../pages/about-v2.html" class="mnl">О нас</a>
     <a href="../index.html#process" class="mnl">Как работаем</a>
-    <a href="../index.html#faq" class="mnl">FAQ</a>
-    <a href="../pages/blog-v2.html" class="mnl">Блог</a>
-    <a href="#contact" class="mnl">Контакты</a>
+    <a href="../pages/blog-v2.html" class="mnl" aria-current="page">Блог</a>
+    <a href="../pages/contacts-v2.html" class="mnl">Контакты</a>
     <a href="tel:+74996477281">+7 499 647-72-81</a>
 </div>
 
 <main>
-    <!-- ═══ HERO ═══ -->
+    <!-- ═══ ЗАГОЛОВОК СТРАНИЦЫ ═══ -->
     <section class="hero-section">
         <div class="shell">
-            <div class="hero">
-                <div class="hero-inner">
-                    <div class="hero-text-glass">
-                        <h1 class="hero-h1">Пром-текстиль — <em>производство технического текстиля</em></h1>
-                        <p class="hero-lead">20 лет на рынке. Собственный цех 1400 м² в Санкт-Петербурге. Конструкторский отдел, серийный пошив, контроль качества на каждом этапе.</p>
-                        <div class="hero-btns">
-                            <a href="tel:+74996477281" class="btn btn-gold">Позвонить →</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="page-head reveal">
+                <h1 class="s-h2">Блог</h1>
+                <p class="s-sub">Новости производства, разборы материалов и реализованных проектов — рассказываем, как устроено производство технического текстиля изнутри, и делимся тем, что полезно знать перед заказом партии.</p>
             </div>
         </div>
     </section>
 
-    <!-- ═══ STATS — island ═══ -->
-    <section class="stats-section">
-        <div class="shell">
-            <div class="stats-island reveal">
-                <div class="stats-inner">
-                    <div class="s-head s-dark">
-                        <h2 class="s-h2">Компания в цифрах</h2>
-                        <p class="s-sub">Факты о производстве.</p>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat-cell">
-                            <span class="stat-num">20</span>
-                            <div class="stat-desc">лет на рынке технического текстиля</div>
-                        </div>
-                        <div class="stat-cell">
-                            <span class="stat-num">1400</span>
-                            <div class="stat-desc">м² производственной площади</div>
-                        </div>
-                        <div class="stat-cell">
-                            <span class="stat-num">50</span>
-                            <div class="stat-desc">специалистов в штате</div>
-                        </div>
-                        <div class="stat-cell">
-                            <span class="stat-num">9</span>
-                            <div class="stat-desc">направлений технического текстиля</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ НАШИ ВОЗМОЖНОСТИ ═══ -->
+    <!-- ═══ СЕТКА ПУБЛИКАЦИЙ ═══ -->
     <section class="section">
         <div class="shell">
-            <div class="s-head reveal">
-                <h2 class="s-h2">Наши возможности</h2>
-                <p class="s-sub">Полный цикл от ТЗ до отгрузки.</p>
-            </div>
-            <div class="about-grid reveal">
-                <div class="about-card">
-                    <h3>Конструкторский отдел</h3>
-                    <p>Разрабатываем лекала по фото, чертежу или образцу. Индивидуальные ТЗ любой сложности.</p>
-                </div>
-                <div class="about-card">
-                    <h3>Швейный цех 1400 м²</h3>
-                    <p>ПВХ, кордура, брезент, огнеупорные и антистатические ткани, многослойные композиты.</p>
-                </div>
-                <div class="about-card">
-                    <h3>Контроль качества</h3>
-                    <p>Проверка соответствия ТЗ и прочности швов перед каждой отгрузкой. Паспорт качества на партию.</p>
-                </div>
-                <div class="about-card">
-                    <h3>СТМ и брендирование</h3>
-                    <p>Пошив под торговой маркой клиента. Печать, вышивка, термотрансфер, фирменная упаковка.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="blog-grid reveal">
 
-    <!-- ═══ ДЛЯ КОГО РАБОТАЕМ — unique section, no canon analog, tokens only ═══ -->
-    <section class="section" style="background:var(--bg2)">
-        <div class="shell">
-            <div class="s-head reveal">
-                <h2 class="s-h2">Для кого работаем</h2>
-                <p class="s-sub">Промышленность, госсектор, B2B.</p>
-            </div>
-            <div class="apps-grid reveal">
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Промышленные предприятия</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Агрохолдинги</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Медицинские центры</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Силовые структуры и МЧС</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Транспорт и логистика</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Девелоперы и HoReCa</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Фармпроизводства</span></div>
-                <div class="application-v2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><span>Строительство и энергетика</span></div>
-            </div>
-        </div>
-    </section>
+                <article class="blog-card">
+                    <div class="blog-card-media">
+                        <img src="../img/cat-01-covers.jpg" alt="Рулоны ПВХ-ткани и брезента на складе материалов" loading="lazy">
+                    </div>
+                    <div class="blog-card-body">
+                        <span class="blog-card-cat">Материалы</span>
+                        <h3 class="blog-card-title"><a href="blog-tkani-dlya-tentov.html" class="stretched-link">Как выбрать ткань для тентов и укрытий: ПВХ, брезент, кордура</a></h3>
+                        <p class="blog-card-desc">Разбираем, чем отличаются основные материалы для чехлов и тентов и как подобрать плотность и пропитку под климат и условия эксплуатации.</p>
+                        <div class="blog-card-meta">
+                            <time datetime="2026-06-18">18 июня 2026</time>
+                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        </div>
+                    </div>
+                </article>
 
-    <!-- ═══ ПРОЦЕСС ═══ -->
-    <section class="section process-bg" id="process">
-        <div class="shell">
-            <div class="s-head reveal">
-                <h2 class="s-h2">Как мы работаем — 5 шагов</h2>
-                <p class="s-sub">От заявки до отгрузки. Прозрачно на каждом этапе.</p>
-            </div>
-            <div class="process-list reveal">
-                <div class="p-step" data-n="1">
-                    <h3>Заявка</h3>
-                    <p>ТЗ, чертежи или замеры по телефону / email.</p>
-                </div>
-                <div class="p-step" data-n="2">
-                    <h3>Расчёт</h3>
-                    <p>Согласовываем материалы, стоимость, срок. Образцы курьером.</p>
-                </div>
-                <div class="p-step" data-n="3">
-                    <h3>Договор</h3>
-                    <p>Документы, предоплата, запуск партии в работу.</p>
-                </div>
-                <div class="p-step" data-n="4">
-                    <h3>Производство</h3>
-                    <p>Пошив и контроль качества. 1–2 дня на партию 50 шт.</p>
-                </div>
-                <div class="p-step" data-n="5">
-                    <h3>Доставка</h3>
-                    <p>По РФ и СНГ ТК. Сопроводительные документы в комплекте.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <article class="blog-card">
+                    <div class="blog-card-media">
+                        <img src="../img/cat-02-workwear.jpg" alt="Комплект спецодежды на производственном манекене" loading="lazy">
+                    </div>
+                    <div class="blog-card-body">
+                        <span class="blog-card-cat">Спецодежда</span>
+                        <h3 class="blog-card-title"><a href="blog-sertifikaciya-specodezhdy.html" class="stretched-link">Сертификация спецодежды: какие документы должны быть у поставщика</a></h3>
+                        <p class="blog-card-desc">Что входит в пакет документов на СИЗ, зачем нужна декларация соответствия и как проверить поставщика перед крупным заказом.</p>
+                        <div class="blog-card-meta">
+                            <time datetime="2026-06-02">2 июня 2026</time>
+                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        </div>
+                    </div>
+                </article>
 
-    <!-- ═══ КОНТАКТЫ ═══ -->
-    <section class="section" id="contact">
-        <div class="shell">
-            <div class="s-head reveal">
-                <h2 class="s-h2">Контакты</h2>
-                <p class="s-sub">Производство — Санкт-Петербург, Литовская 12 к Д.</p>
-            </div>
-            <div class="contact-grid reveal">
-                <a class="contact-cell" href="tel:+74996477281">
-                    <div class="c-label">Phone · Производство</div>
-                    <div class="c-value">+7 499 647-72-81</div>
-                    <p style="font-size:.82rem;color:var(--ink3);margin-top:.35rem">Расчёт, сроки, технические вопросы. Пн–Пт 9–18.</p>
-                </a>
-                <a class="contact-cell" href="../pages/contacts-v2.html">
-                    <div class="c-label">Studio · Санкт-Петербург</div>
-                    <div class="c-value">Литовская 12 к Д</div>
-                    <p style="font-size:.82rem;color:var(--ink3);margin-top:.35rem">Все контакты и реквизиты →</p>
-                </a>
+                <article class="blog-card">
+                    <div class="blog-card-media">
+                        <img src="../img/expertise-batch.jpg" alt="Швейный цех предприятия во время пошива партии изделий" loading="lazy">
+                    </div>
+                    <div class="blog-card-body">
+                        <span class="blog-card-cat">Производство</span>
+                        <h3 class="blog-card-title"><a href="blog-proizvodstvenny-cikl.html" class="stretched-link">От эскиза до партии: как устроен производственный цикл</a></h3>
+                        <p class="blog-card-desc">Показываем весь путь заказа — от технического задания и лекал до раскроя, пошива и контроля качества готовых изделий.</p>
+                        <div class="blog-card-meta">
+                            <time datetime="2026-05-20">20 мая 2026</time>
+                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-media">
+                        <img src="../img/cat-03-tactical.jpg" alt="Тактическое снаряжение из плотной кордуры" loading="lazy">
+                    </div>
+                    <div class="blog-card-body">
+                        <span class="blog-card-cat">Тактическое снаряжение</span>
+                        <h3 class="blog-card-title"><a href="blog-takticheskie-materialy.html" class="stretched-link">Материалы для тактического снаряжения: кордура, рипстоп, VX-21</a></h3>
+                        <p class="blog-card-desc">Сравниваем ткани, которые используют для разгрузок, рюкзаков и чехлов под нагрузку, и объясняем, где какая оправдана.</p>
+                        <div class="blog-card-meta">
+                            <time datetime="2026-05-05">5 мая 2026</time>
+                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-media">
+                        <img src="../img/cat-04-medical.jpg" alt="Медицинский текстиль на производственном столе" loading="lazy">
+                    </div>
+                    <div class="blog-card-body">
+                        <span class="blog-card-cat">Медицинский текстиль</span>
+                        <h3 class="blog-card-title"><a href="blog-antibakterialnye-tkani.html" class="stretched-link">Антибактериальные ткани: требования и область применения</a></h3>
+                        <p class="blog-card-desc">Какие свойства обязательны для тканей в медицинских учреждениях и как мы подтверждаем антибактериальную обработку.</p>
+                        <div class="blog-card-meta">
+                            <time datetime="2026-04-22">22 апреля 2026</time>
+                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-media">
+                        <img src="../img/cat-08-fire.jpg" alt="Огнестойкая ткань для средств пожарозащиты" loading="lazy">
+                    </div>
+                    <div class="blog-card-body">
+                        <span class="blog-card-cat">Пожарозащита</span>
+                        <h3 class="blog-card-title"><a href="blog-ognestoykie-tkani.html" class="stretched-link">Огнестойкие ткани: классы защиты и сертификация EN 45545</a></h3>
+                        <p class="blog-card-desc">Рассказываем, чем отличаются классы огнестойкости, какие тесты проходят ткани и почему это критично для транспорта и энергетики.</p>
+                        <div class="blog-card-meta">
+                            <time datetime="2026-04-08">8 апреля 2026</time>
+                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
