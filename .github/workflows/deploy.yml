@@ -27,3 +27,7 @@ jobs:
           timeout: 60000
           log-level: standard
           security: loose
+          exclude: |
+            data/blog.sqlite
+            uploads/blog/**
+            admin/config.php

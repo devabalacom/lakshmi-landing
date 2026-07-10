@@ -29,3 +29,11 @@ build/
 # Logs
 logs/
 *.log
+
+# Blog CMS (v-liquid-glass) — runtime data, never synced by deploy
+v-liquid-glass/data/blog.sqlite
+v-liquid-glass/data/blog.sqlite-journal
+v-liquid-glass/uploads/blog/*
+!v-liquid-glass/uploads/blog/.htaccess
+!v-liquid-glass/uploads/blog/legacy
+v-liquid-glass/admin/config.php

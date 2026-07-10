@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Order matters: blog-v2.html must be matched before the generic blog-<slug>.html
+# rule below, or it would itself be treated as a slug ("v2").
+RewriteRule ^blog-v2\.html$ blog-v2.php [L,QSA]
+RewriteRule ^blog-([a-z0-9-]+)\.html$ blog-post.php?slug=$1 [L,QSA]

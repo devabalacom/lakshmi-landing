@@ -1,0 +1,14 @@
+# Uploaded images stay publicly readable (needed for image search / <img> src),
+# but PHP must never execute here even if upload validation is ever bypassed.
+<FilesMatch "\.(php|php[3-8]?|phtml|pht)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>

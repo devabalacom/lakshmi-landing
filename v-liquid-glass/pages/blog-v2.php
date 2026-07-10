@@ -1,3 +1,13 @@
+<?php
+require_once dirname(__DIR__) . '/includes/queries.php';
+
+$db = blog_db();
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$perPage = 12;
+$articles = get_published_articles($db, $perPage, ($page - 1) * $perPage);
+$total = count_published_articles($db);
+$totalPages = max(1, (int) ceil($total / $perPage));
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -70,26 +80,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"></noscript>
     <style>
-        /* ═══════════════════════════════════════════
-           DESIGN TOKENS — LIGHT PREMIUM / BRUSHED GOLD
-           ═══════════════════════════════════════════ */
         :root {
-            /* Backgrounds */
             --bg:    #F8FAFC;
             --bg2:   #EEF2F6;
             --bg3:   #E2E8F0;
             --card:  #FFFFFF;
-
-            /* Borders */
             --border:  #CBD5E1;
-
-            /* Ink / Text */
             --ink:       #1E293B;
             --ink2:      #475569;
             --ink3:      #64748B;
             --text-soft: #94A3B8;
-
-            /* Gold / Accent */
             --g0:    #D4A017;
             --g1:    #FACC15;
             --g2:    #8B6508;
@@ -100,331 +100,169 @@
             --accent-active: #8B6508;
             --accent-bg:     #FFFBEB;
             --accent-border: #FDE68A;
-
-            /* Dark strip */
             --nr:    #0F172A;
             --nr2:   #1D1914;
             --nt:    #F8FAFC;
             --nt2:   rgba(248,250,252,0.65);
             --dark-muted: #CBD5E1;
-
-            /* Glass */
             --gbg:   rgba(255,255,255,0.68);
             --gbg2:  rgba(255,255,255,0.86);
             --gbd:   rgba(212,160,23,0.18);
             --gsh:   0 8px 32px rgba(26,22,18,0.07), 0 1px 3px rgba(26,22,18,0.04);
-
-            /* Typography */
             --fd: 'Montserrat', sans-serif;
             --fs: 'Montserrat', sans-serif;
             --fb: 'Montserrat', sans-serif;
             --fm: 'Montserrat', monospace;
-
-            /* Radii */
             --rs:  6px;
             --r:   16px;
             --rl:  24px;
             --rp:  999px;
-
-            /* Motion */
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
         }
-
-        /* ─── RESET ─── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; background: var(--bg); }
         body {
-            background: var(--bg);
-            color: var(--ink);
-            font-family: var(--fb);
-            font-weight: 400;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
+            background: var(--bg); color: var(--ink); font-family: var(--fb); font-weight: 400;
+            line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden;
         }
         a { color: inherit; text-decoration: none; }
         ul { list-style: none; }
         button { cursor: pointer; border: 0; font: inherit; background: none; }
         :focus-visible { outline: 2px solid var(--g0); outline-offset: 3px; border-radius: 4px; }
-
-        /* ─── PROGRESS ─── */
         .progress {
-            position: fixed; top: 0; left: 0;
-            height: 2px; width: 0;
+            position: fixed; top: 0; left: 0; height: 2px; width: 0;
             background: linear-gradient(90deg, var(--g2), var(--g0), var(--g1));
             z-index: 300; transition: width .08s linear; pointer-events: none;
         }
-
-        /* ─── SHELL ─── */
         .shell { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
         @media(min-width:768px) { .shell { padding: 0 3rem; } }
-
-        /* ═══════════════════════════════════════════
-           NAV — glass on scroll
-           ═══════════════════════════════════════════ */
         .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1.2rem 0;
-            background: white;
-            border-bottom: 1px solid var(--bg3);
-            transition: padding .4s var(--ease);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 0;
+            background: white; border-bottom: 1px solid var(--bg3); transition: padding .4s var(--ease);
         }
         .nav.solid { padding: .85rem 0; }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-
         .brand { display: flex; align-items: center; gap: .75rem; }
         .brand-name { font-weight: 800; font-size: .95rem; letter-spacing: .01em; color: var(--ink); }
-
         .nav-links { display: none; align-items: center; gap: 2.2rem; }
         @media(min-width:900px) { .nav-links { display: flex; } }
         .nav-links a {
-            font-size: .72rem; font-weight: 600;
-            color: var(--ink3); letter-spacing: .08em; text-transform: uppercase;
+            font-size: .72rem; font-weight: 600; color: var(--ink3); letter-spacing: .08em; text-transform: uppercase;
             transition: color .25s; position: relative; padding: .2rem 0;
         }
         .nav-links a::after {
-            content: ''; position: absolute;
-            left: 0; right: 100%; bottom: -2px;
-            height: 1px; background: var(--g0);
+            content: ''; position: absolute; left: 0; right: 100%; bottom: -2px; height: 1px; background: var(--g0);
             transition: right .35s var(--ease);
         }
         .nav-links a:hover { color: var(--g2); }
         .nav-links a:hover::after { right: 0; }
         .nav-links a[aria-current="page"] { color: var(--g2); }
         .nav-links a[aria-current="page"]::after { right: 0; }
-
         .nav-cta {
-            display: none;
-            padding: .55rem 1.4rem; border-radius: var(--rp);
-            border: 1.5px solid var(--glh);
-            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-            color: var(--g0);
+            display: none; padding: .55rem 1.4rem; border-radius: var(--rp); border: 1.5px solid var(--glh);
+            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--g0);
             transition: background .3s, color .3s, border-color .3s, transform .25s;
         }
         @media(min-width:920px) { .nav-cta { display: inline-flex; } }
         .nav-cta:hover { background: var(--g0); border-color: var(--g0); color: white; transform: translateY(-1px); }
-
-        .nav-burger {
-            display: flex; flex-direction: column; gap: 5px;
-            width: 36px; height: 36px; justify-content: center; padding: 4px;
-        }
-        .nav-burger span {
-            display: block; width: 100%; height: 1.5px;
-            background: var(--ink); border-radius: 2px;
-            transition: transform .3s, opacity .3s;
-        }
+        .nav-burger { display: flex; flex-direction: column; gap: 5px; width: 36px; height: 36px; justify-content: center; padding: 4px; }
+        .nav-burger span { display: block; width: 100%; height: 1.5px; background: var(--ink); border-radius: 2px; transition: transform .3s, opacity .3s; }
         .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
         .nav-burger.open span:nth-child(2) { opacity: 0; }
         .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
         @media(min-width:900px) { .nav-burger { display: none; } }
-
         .nav-mobile {
-            display: none; position: fixed; inset: 0; top: 58px;
-            background: rgba(253,250,245,0.97);
+            display: none; position: fixed; inset: 0; top: 58px; background: rgba(253,250,245,0.97);
             backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
             padding: 2.5rem 2rem; flex-direction: column; gap: .2rem; z-index: 99;
         }
         .nav-mobile.open { display: flex; }
         .nav-mobile a {
-            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
-            color: var(--ink2); border-bottom: 1px solid var(--bg3);
-            transition: color .25s, padding-left .25s;
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800; color: var(--ink2);
+            border-bottom: 1px solid var(--bg3); transition: color .25s, padding-left .25s;
         }
         .nav-mobile a:hover { color: var(--g0); padding-left: .5rem; }
-
-        /* ═══ DROPDOWN NAV ═══ */
         .nav-dropdown { position: relative; }
         .dropdown-menu {
-            display: none; position: absolute; top: calc(100% + 1.2rem); left: -1rem;
-            min-width: 240px;
-            background: var(--gbg2); backdrop-filter: blur(24px) saturate(1.3);
-            -webkit-backdrop-filter: blur(24px) saturate(1.3);
-            border: 1px solid var(--gbd); border-radius: var(--r);
-            box-shadow: var(--gsh); padding: .5rem 0; z-index: 200;
-            opacity: 0; transform: translateY(-8px);
-            transition: opacity .25s var(--ease), transform .25s var(--ease), display .25s;
+            display: none; position: absolute; top: calc(100% + 1.2rem); left: -1rem; min-width: 240px;
+            background: var(--gbg2); backdrop-filter: blur(24px) saturate(1.3); -webkit-backdrop-filter: blur(24px) saturate(1.3);
+            border: 1px solid var(--gbd); border-radius: var(--r); box-shadow: var(--gsh); padding: .5rem 0; z-index: 200;
+            opacity: 0; transform: translateY(-8px); transition: opacity .25s var(--ease), transform .25s var(--ease), display .25s;
             pointer-events: none;
         }
-        .dropdown-menu::before {
-            content: ''; position: absolute;
-            top: -1.2rem; left: 0; right: 0; height: 1.2rem;
-        }
-        .nav-dropdown:hover .dropdown-menu,
-        .nav-dropdown:focus-within .dropdown-menu {
-            display: block; opacity: 1; transform: none; pointer-events: auto;
-        }
+        .dropdown-menu::before { content: ''; position: absolute; top: -1.2rem; left: 0; right: 0; height: 1.2rem; }
+        .nav-dropdown:hover .dropdown-menu, .nav-dropdown:focus-within .dropdown-menu { display: block; opacity: 1; transform: none; pointer-events: auto; }
         .dropdown-menu a {
-            display: block; padding: .6rem 1.2rem;
-            font-size: .78rem; font-weight: 500; color: var(--ink2);
-            transition: color .2s, background .2s; letter-spacing: .02em;
-            text-transform: none;
+            display: block; padding: .6rem 1.2rem; font-size: .78rem; font-weight: 500; color: var(--ink2);
+            transition: color .2s, background .2s; letter-spacing: .02em; text-transform: none;
         }
         .dropdown-menu a:hover { color: var(--g2); background: var(--ga); }
         .dropdown-menu a::after { display: none !important; }
-        .nav-dd-arrow {
-            display: inline-block; margin-left: .3rem; font-size: .6rem;
-            transition: transform .25s var(--ease); vertical-align: middle;
-        }
+        .nav-dd-arrow { display: inline-block; margin-left: .3rem; font-size: .6rem; transition: transform .25s var(--ease); vertical-align: middle; }
         .nav-dropdown:hover .nav-dd-arrow { transform: rotate(180deg); }
-
-        /* Mobile dropdown */
         .mnl-group { display: flex; flex-direction: column; }
         .mnl-toggle {
-            padding: 1rem 0; font-size: 1.3rem; font-weight: 800;
-            color: var(--ink2); border-bottom: 1px solid var(--bg3);
-            transition: color .25s; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 0; font-size: 1.3rem; font-weight: 800; color: var(--ink2); border-bottom: 1px solid var(--bg3);
+            transition: color .25s; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
         }
         .mnl-toggle:hover { color: var(--g0); }
         .mnl-sub { display: none; flex-direction: column; padding: .4rem 0 .8rem 1rem; }
         .mnl-sub.open { display: flex; }
-        .mnl-sub a {
-            padding: .55rem 0; font-size: .95rem; font-weight: 600;
-            color: var(--ink3); border-bottom: none !important;
-            transition: color .2s;
-        }
+        .mnl-sub a { padding: .55rem 0; font-size: .95rem; font-weight: 600; color: var(--ink3); border-bottom: none !important; transition: color .2s; }
         .mnl-sub a:hover { color: var(--g0); }
-
-        /* ═══════════════════════════════════════════
-           PAGE HEAD
-           ═══════════════════════════════════════════ */
         .hero-section { background: white; padding: 90px 0 1rem; }
         .page-head { padding: 3.5rem 0 1rem; max-width: 680px; }
         .page-head .s-h2 { margin-bottom: .9rem; }
-
-        /* ═══════════════════════════════════════════
-           SECTION BASE
-           ═══════════════════════════════════════════ */
         .section { padding: 3rem 0 6rem; position: relative; }
         @media(min-width:768px) { .section { padding: 3rem 0 8rem; } }
-
         .s-head { margin-bottom: 3.5rem; }
-        .s-h2 {
-            font-family: var(--fd);
-            font-size: clamp(2rem, 4vw, 3.6rem);
-            font-weight: 400; line-height: 1.05; letter-spacing: -.01em;
-            margin-bottom: .7rem;
-        }
+        .s-h2 { font-family: var(--fd); font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 400; line-height: 1.05; letter-spacing: -.01em; margin-bottom: .7rem; }
         .s-sub { font-size: 1rem; color: var(--ink2); max-width: 560px; line-height: 1.7; }
-
-        /* ─── SCROLL REVEAL ─── */
-        .reveal {
-            opacity: 0; transform: translateY(24px);
-            transition: opacity .72s var(--ease), transform .72s var(--ease);
-        }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .72s var(--ease), transform .72s var(--ease); }
         .reveal.vis { opacity: 1; transform: none; }
-
-        /* ═══════════════════════════════════════════
-           BLOG GRID
-           ═══════════════════════════════════════════ */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
+        .blog-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
         @media(min-width:640px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(min-width:1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
-
         .blog-card {
-            position: relative;
-            display: flex; flex-direction: column;
-            height: 100%;
-            background: white;
-            border: 1px solid var(--gbd);
-            border-radius: var(--r);
-            overflow: hidden;
+            position: relative; display: flex; flex-direction: column; height: 100%; background: white;
+            border: 1px solid var(--gbd); border-radius: var(--r); overflow: hidden;
             transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
         }
-        .blog-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 44px rgba(212,160,23,0.14), 0 4px 12px rgba(26,22,18,0.06);
-            border-color: var(--glh);
-        }
+        .blog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(212,160,23,0.14), 0 4px 12px rgba(26,22,18,0.06); border-color: var(--glh); }
         .blog-card-media { position: relative; overflow: hidden; aspect-ratio: 16/10; background: var(--bg2); }
-        .blog-card-media img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: transform .6s var(--ease);
-        }
+        .blog-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
         .blog-card:hover .blog-card-media img { transform: scale(1.06); }
-
         .blog-card-body { padding: 1.6rem 1.7rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
         .blog-card-cat {
-            align-self: flex-start;
-            font-family: var(--fm); font-size: .58rem; font-weight: 700;
-            letter-spacing: .14em; text-transform: uppercase;
-            color: white; background: var(--g2);
-            padding: .28rem .75rem; border-radius: var(--rp);
-            margin-bottom: .9rem;
+            align-self: flex-start; font-family: var(--fm); font-size: .58rem; font-weight: 700; letter-spacing: .14em;
+            text-transform: uppercase; color: white; background: var(--g2); padding: .28rem .75rem; border-radius: var(--rp); margin-bottom: .9rem;
         }
-        .blog-card-title {
-            font-size: 1.05rem; font-weight: 700; line-height: 1.35;
-            margin-bottom: .6rem;
-            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-        }
+        .blog-card-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; margin-bottom: .6rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .blog-card-title a { color: var(--ink); transition: color .25s; }
         .blog-card:hover .blog-card-title a { color: var(--g2); }
-        .blog-card-desc {
-            font-size: .86rem; color: var(--ink2); line-height: 1.65;
-            margin-bottom: 1.3rem; flex: 1;
-            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-        }
-        .blog-card-meta {
-            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-            padding-top: 1rem; margin-top: auto; border-top: 1px solid var(--bg3);
-        }
+        .blog-card-desc { font-size: .86rem; color: var(--ink2); line-height: 1.65; margin-bottom: 1.3rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .blog-card-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; margin-top: auto; border-top: 1px solid var(--bg3); }
         .blog-card-meta time { font-size: .75rem; color: var(--ink3); }
-        .blog-card-read {
-            font-size: .78rem; font-weight: 700; color: var(--g0);
-            display: inline-flex; align-items: center; gap: .35rem;
-            transition: gap .3s var(--ease);
-        }
+        .blog-card-read { font-size: .78rem; font-weight: 700; color: var(--g0); display: inline-flex; align-items: center; gap: .35rem; transition: gap .3s var(--ease); }
         .blog-card:hover .blog-card-read { gap: .55rem; }
         .stretched-link::after { content: ''; position: absolute; inset: 0; z-index: 2; }
-
-        /* ═══════════════════════════════════════════
-           FOOTER
-           ═══════════════════════════════════════════ */
-        footer {
-            background: var(--bg2);
-            position: relative;
-            padding: 3rem 0 2rem;
-        }
+        .blog-pagination { display: flex; gap: .5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+        .blog-pagination a, .blog-pagination span { padding: .5rem .95rem; border-radius: var(--rp); font-size: .82rem; font-weight: 700; border: 1px solid var(--gbd); }
+        .blog-pagination .current { background: var(--g0); color: white; border-color: var(--g0); }
+        footer { background: var(--bg2); position: relative; padding: 3rem 0 2rem; }
         footer::before {
-            content: ''; position: absolute;
-            top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(197,151,62,0.35) 25%,
-                rgba(197,151,62,0.6)  50%,
-                rgba(197,151,62,0.35) 75%,
-                transparent 100%);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(197,151,62,0.35) 25%, rgba(197,151,62,0.6) 50%, rgba(197,151,62,0.35) 75%, transparent 100%);
         }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
         @media(min-width:768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
-        .footer-grid h4 {
-            font-size: .8rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: .1em; color: var(--ink3); margin-bottom: 1rem;
-        }
+        .footer-grid h4 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink3); margin-bottom: 1rem; }
         .footer-grid ul { display: flex; flex-direction: column; gap: .5rem; }
         .footer-grid ul a { font-size: .88rem; color: var(--ink2); transition: color .3s; }
         .footer-grid ul a:hover { color: var(--g0); }
-        .footer-base {
-            display: flex; flex-wrap: wrap; gap: 1rem;
-            font-size: .8rem; color: var(--ink3);
-            border-top: 1px solid var(--bg3); padding-top: 1.5rem;
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media(max-width:767px) {
-            .section { padding: 2.5rem 0 4rem; }
-            .page-head { padding: 2.5rem 0 .5rem; }
-        }
-
-        /* ─── REDUCED MOTION ─── */
-        @media(prefers-reduced-motion: reduce) {
-            .reveal { transition: none !important; }
-            .blog-card, .blog-card-media img { transition: none !important; }
-        }
+        .footer-base { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .8rem; color: var(--ink3); border-top: 1px solid var(--bg3); padding-top: 1.5rem; }
+        @media(max-width:767px) { .section { padding: 2.5rem 0 4rem; } .page-head { padding: 2.5rem 0 .5rem; } }
+        @media(prefers-reduced-motion: reduce) { .reveal { transition: none !important; } .blog-card, .blog-card-media img { transition: none !important; } }
     </style>
 </head>
 <body>
@@ -479,7 +317,6 @@
 </div>
 
 <main>
-    <!-- ═══ ЗАГОЛОВОК СТРАНИЦЫ ═══ -->
     <section class="hero-section">
         <div class="shell">
             <div class="page-head reveal">
@@ -489,105 +326,49 @@
         </div>
     </section>
 
-    <!-- ═══ СЕТКА ПУБЛИКАЦИЙ ═══ -->
     <section class="section">
         <div class="shell">
             <div class="blog-grid reveal">
-
-                <article class="blog-card">
-                    <div class="blog-card-media">
-                        <img src="../img/cat-01-covers.jpg" alt="Рулоны ПВХ-ткани и брезента на складе материалов" loading="lazy">
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-cat">Материалы</span>
-                        <h3 class="blog-card-title"><a href="blog-tkani-dlya-tentov.html" class="stretched-link">Как выбрать ткань для тентов и укрытий: ПВХ, брезент, кордура</a></h3>
-                        <p class="blog-card-desc">Разбираем, чем отличаются основные материалы для чехлов и тентов и как подобрать плотность и пропитку под климат и условия эксплуатации.</p>
-                        <div class="blog-card-meta">
-                            <time datetime="2026-06-18">18 июня 2026</time>
-                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                <?php foreach ($articles as $a): ?>
+                    <?php
+                    $url = article_public_url($a);
+                    $img = $a['cover_path'] ? '/uploads/blog/' . $a['cover_path'] : '/img/cat-01-covers.jpg';
+                    $alt = $a['cover_alt'] ?: $a['title'];
+                    $dateIso = $a['published_at'] ?? $a['publish_at'] ?? $a['created_at'];
+                    ?>
+                    <article class="blog-card">
+                        <div class="blog-card-media">
+                            <img src="<?= htmlspecialchars($img, ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($alt, ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
                         </div>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-card-media">
-                        <img src="../img/cat-02-workwear.jpg" alt="Комплект спецодежды на производственном манекене" loading="lazy">
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-cat">Спецодежда</span>
-                        <h3 class="blog-card-title"><a href="blog-sertifikaciya-specodezhdy.html" class="stretched-link">Сертификация спецодежды: какие документы должны быть у поставщика</a></h3>
-                        <p class="blog-card-desc">Что входит в пакет документов на СИЗ, зачем нужна декларация соответствия и как проверить поставщика перед крупным заказом.</p>
-                        <div class="blog-card-meta">
-                            <time datetime="2026-06-02">2 июня 2026</time>
-                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                        <div class="blog-card-body">
+                            <span class="blog-card-cat"><?= htmlspecialchars($a['category_name'] ?? 'Блог', ENT_QUOTES, 'UTF-8') ?></span>
+                            <h3 class="blog-card-title"><a href="<?= htmlspecialchars(basename($url), ENT_QUOTES, 'UTF-8') ?>" class="stretched-link"><?= htmlspecialchars($a['title'], ENT_QUOTES, 'UTF-8') ?></a></h3>
+                            <p class="blog-card-desc"><?= htmlspecialchars($a['excerpt'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
+                            <div class="blog-card-meta">
+                                <time datetime="<?= htmlspecialchars(substr($dateIso, 0, 10), ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(format_ru_date($dateIso), ENT_QUOTES, 'UTF-8') ?></time>
+                                <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-card-media">
-                        <img src="../img/expertise-batch.jpg" alt="Швейный цех предприятия во время пошива партии изделий" loading="lazy">
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-cat">Производство</span>
-                        <h3 class="blog-card-title"><a href="blog-proizvodstvenny-cikl.html" class="stretched-link">От эскиза до партии: как устроен производственный цикл</a></h3>
-                        <p class="blog-card-desc">Показываем весь путь заказа — от технического задания и лекал до раскроя, пошива и контроля качества готовых изделий.</p>
-                        <div class="blog-card-meta">
-                            <time datetime="2026-05-20">20 мая 2026</time>
-                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-card-media">
-                        <img src="../img/cat-03-tactical.jpg" alt="Тактическое снаряжение из плотной кордуры" loading="lazy">
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-cat">Тактическое снаряжение</span>
-                        <h3 class="blog-card-title"><a href="blog-takticheskie-materialy.html" class="stretched-link">Материалы для тактического снаряжения: кордура, рипстоп, VX-21</a></h3>
-                        <p class="blog-card-desc">Сравниваем ткани, которые используют для разгрузок, рюкзаков и чехлов под нагрузку, и объясняем, где какая оправдана.</p>
-                        <div class="blog-card-meta">
-                            <time datetime="2026-05-05">5 мая 2026</time>
-                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-card-media">
-                        <img src="../img/cat-04-medical.jpg" alt="Медицинский текстиль на производственном столе" loading="lazy">
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-cat">Медицинский текстиль</span>
-                        <h3 class="blog-card-title"><a href="blog-antibakterialnye-tkani.html" class="stretched-link">Антибактериальные ткани: требования и область применения</a></h3>
-                        <p class="blog-card-desc">Какие свойства обязательны для тканей в медицинских учреждениях и как мы подтверждаем антибактериальную обработку.</p>
-                        <div class="blog-card-meta">
-                            <time datetime="2026-04-22">22 апреля 2026</time>
-                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-card-media">
-                        <img src="../img/cat-08-fire.jpg" alt="Огнестойкая ткань для средств пожарозащиты" loading="lazy">
-                    </div>
-                    <div class="blog-card-body">
-                        <span class="blog-card-cat">Пожарозащита</span>
-                        <h3 class="blog-card-title"><a href="blog-ognestoykie-tkani.html" class="stretched-link">Огнестойкие ткани: классы защиты и сертификация EN 45545</a></h3>
-                        <p class="blog-card-desc">Рассказываем, чем отличаются классы огнестойкости, какие тесты проходят ткани и почему это критично для транспорта и энергетики.</p>
-                        <div class="blog-card-meta">
-                            <time datetime="2026-04-08">8 апреля 2026</time>
-                            <span class="blog-card-read">Читать статью <span aria-hidden="true">→</span></span>
-                        </div>
-                    </div>
-                </article>
-
+                    </article>
+                <?php endforeach; ?>
+                <?php if (!$articles): ?>
+                    <p style="color:var(--ink3)">Пока нет опубликованных статей.</p>
+                <?php endif; ?>
             </div>
+
+            <?php if ($totalPages > 1): ?>
+                <div class="blog-pagination">
+                    <?php for ($p = 1; $p <= $totalPages; $p++): ?>
+                        <?php if ($p === $page): ?>
+                            <span class="current"><?= $p ?></span>
+                        <?php else: ?>
+                            <a href="?page=<?= $p ?>"><?= $p ?></a>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
-
 </main>
 <footer>
     <div class="shell">

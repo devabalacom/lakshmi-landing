@@ -3,9 +3,11 @@
 
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 User-agent: Yandex
 Allow: /
+Disallow: /admin/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
 Host: пром-текстиль.рф
 
