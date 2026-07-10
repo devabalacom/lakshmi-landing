@@ -13,7 +13,7 @@ class CtaTool {
             heading: data.heading || '',
             text: data.text || '',
             buttonText: data.buttonText || 'Позвонить →',
-            buttonHref: data.buttonHref || 'tel:+74996477281',
+            buttonHref: data.buttonHref || 'tel:+79818172649',
         };
         this.wrapper = null;
     }

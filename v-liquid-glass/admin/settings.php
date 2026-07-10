@@ -9,7 +9,7 @@ const SETTINGS_FIELDS = [
     'site_name' => 'Название сайта',
     'default_meta_description' => 'Meta description по умолчанию (если у статьи нет своего и нет краткого описания)',
     'default_og_image' => 'OG-изображение по умолчанию (URL, напр. /og-image.svg)',
-    'cta_phone' => 'Телефон для CTA-блоков (напр. +7 499 647-72-81)',
+    'cta_phone' => 'Телефон для CTA-блоков (напр. +7 981 817-26-49)',
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

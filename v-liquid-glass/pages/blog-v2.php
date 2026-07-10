@@ -52,7 +52,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
   "image": "https://пром-текстиль.рф/og-image.svg",
   "description": "Производство технического текстиля для промышленности и бизнеса. Чехлы, тенты, спецодежда, тактическое снаряжение, медицинский и интерьерный текстиль. Серии от 1 единицы.",
   "foundingDate": "2005",
-  "telephone": "+7-499-647-72-81",
+  "telephone": "+7-981-817-26-49",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Литовская 12, к. Д",
@@ -290,7 +290,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
             <a href="../pages/blog-v2.html" aria-current="page">Блог</a>
             <a href="../pages/contacts-v2.html">Контакты</a>
         </div>
-        <a href="tel:+74996477281" class="nav-cta">+7 499 647-72-81</a>
+        <a href="tel:+79818172649" class="nav-cta">+7 981 817-26-49</a>
         <button class="nav-burger" id="navBurger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 </nav>
@@ -313,7 +313,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
     <a href="../index.html#process" class="mnl">Как работаем</a>
     <a href="../pages/blog-v2.html" class="mnl" aria-current="page">Блог</a>
     <a href="../pages/contacts-v2.html" class="mnl">Контакты</a>
-    <a href="tel:+74996477281">+7 499 647-72-81</a>
+    <a href="tel:+79818172649">+7 981 817-26-49</a>
 </div>
 
 <main>
@@ -397,7 +397,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
                     <li><a href="../pages/about-v2.html">О компании</a></li>
                     <li><a href="../pages/blog-v2.html">Блог</a></li>
                     <li><a href="../pages/contacts-v2.html">Контакты</a></li>
-                    <li><a href="tel:+74996477281">+7 499 647-72-81</a></li>
+                    <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>
                     <li><a href="../privacy.html">Конфиденциальность</a></li>
                     <li><a href="../sitemap.html">Карта сайта</a></li>
                 </ul>

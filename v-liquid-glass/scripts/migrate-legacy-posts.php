@@ -160,7 +160,7 @@ function parse_legacy_post(string $filePath): array
                     'heading' => $h3 ? trim($h3->textContent) : '',
                     'text' => $p ? trim($p->textContent) : '',
                     'buttonText' => $a ? trim($a->textContent) : 'Позвонить →',
-                    'buttonHref' => $a ? $a->getAttribute('href') : 'tel:+74996477281',
+                    'buttonHref' => $a ? $a->getAttribute('href') : 'tel:+79818172649',
                 ],
             ];
         }
