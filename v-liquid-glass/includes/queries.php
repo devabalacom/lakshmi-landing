@@ -1,14 +1,26 @@
 <?php
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/seo-ping.php';
 
 /**
  * Lazily flips due "scheduled" articles to "published". Called at the top of
  * every read path below instead of depending on cron being available on the
- * shared host.
+ * shared host. Only pings search engines for slugs that actually flip here —
+ * on the overwhelming majority of page loads (nothing due) this is a single
+ * no-op UPDATE with zero network calls.
  */
 function flip_scheduled_articles(PDO $db): void
 {
+    $due = $db->query(
+        "SELECT slug FROM articles
+         WHERE status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= datetime('now')"
+    )->fetchAll();
+
+    if (!$due) {
+        return;
+    }
+
     $db->exec(
         "UPDATE articles
          SET status = 'published',
@@ -16,6 +28,10 @@ function flip_scheduled_articles(PDO $db): void
              updated_at = CURRENT_TIMESTAMP
          WHERE status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= datetime('now')"
     );
+
+    foreach ($due as $row) {
+        notify_search_engines(SITE_BASE . '/pages/blog-' . $row['slug'] . '.html');
+    }
 }
 
 function article_public_url(array $article): string
@@ -301,7 +317,13 @@ function create_article(PDO $db, array $input): int
     $sql = 'INSERT INTO articles (' . implode(',', array_keys($values)) . ') VALUES (' . implode(',', $placeholders) . ')';
     $stmt = $db->prepare($sql);
     $stmt->execute($values);
-    return (int) $db->lastInsertId();
+    $id = (int) $db->lastInsertId();
+
+    if ($status === 'published') {
+        notify_search_engines(SITE_BASE . '/pages/blog-' . $slug . '.html');
+    }
+
+    return $id;
 }
 
 /** Returns the effective public URL the article had BEFORE this update, for redirect bookkeeping. */
@@ -349,6 +371,10 @@ function update_article(PDO $db, int $id, array $input): void
     $values['id'] = $id;
     $db->prepare("UPDATE articles SET $setSql WHERE id = :id")->execute($values);
 
+    if ($status === 'published' && $existing['status'] !== 'published') {
+        notify_search_engines(SITE_BASE . '/pages/blog-' . $slug . '.html');
+    }
+
     if ($slug !== $existing['slug']) {
         $newUrl = '/pages/blog-' . $slug . '.html';
         record_slug_change_redirect($db, $oldUrl, $newUrl);
@@ -388,6 +414,10 @@ function set_article_status(PDO $db, int $id, string $status): void
     }
     $db->prepare('UPDATE articles SET status = :status, published_at = :pub, updated_at = CURRENT_TIMESTAMP WHERE id = :id')
         ->execute(['status' => $status, 'pub' => $publishedAt, 'id' => $id]);
+
+    if ($status === 'published' && $article['status'] !== 'published') {
+        notify_search_engines(SITE_BASE . '/pages/blog-' . $article['slug'] . '.html');
+    }
 }
 
 function delete_article(PDO $db, int $id): void
