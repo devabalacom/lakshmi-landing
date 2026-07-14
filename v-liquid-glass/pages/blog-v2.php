@@ -249,7 +249,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
         .blog-card-body { padding: 1.6rem 1.7rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
         .blog-card-cat {
             align-self: flex-start; font-family: var(--fm); font-size: .58rem; font-weight: 700; letter-spacing: .14em;
-            text-transform: uppercase; color: white; background: var(--g2); padding: .28rem .75rem; border-radius: var(--rp); margin-bottom: .9rem;
+            text-transform: uppercase; color: var(--ink); background: transparent; padding: .28rem .75rem; border-radius: var(--rp); margin-bottom: .9rem;
         }
         .blog-card-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; margin-bottom: .6rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .blog-card-title a { color: var(--ink); transition: color .25s; }

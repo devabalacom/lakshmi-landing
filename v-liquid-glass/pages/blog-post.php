@@ -238,7 +238,7 @@ $breadcrumbLd = [
         .breadcrumbs a:hover { color: var(--g2); }
         .breadcrumbs span { color: var(--text-soft); }
         .article-head { max-width: 760px; }
-        .article-cat { display: inline-block; font-family: var(--fm); font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: white; background: var(--g2); padding: .3rem .8rem; border-radius: var(--rp); margin-bottom: 1.1rem; }
+        .article-cat { display: inline-block; font-family: var(--fm); font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); background: transparent; padding: .3rem .8rem; border-radius: var(--rp); margin-bottom: 1.1rem; }
         .article-h1 { font-family: var(--fd); font-size: clamp(1.9rem, 4vw, 3.1rem); font-weight: 400; line-height: 1.12; letter-spacing: -.01em; margin-bottom: 1.1rem; }
         .article-meta { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: .82rem; color: var(--ink3); padding-bottom: 2rem; border-bottom: 1px solid var(--bg3); }
         .article-meta time { color: var(--ink2); font-weight: 600; }
