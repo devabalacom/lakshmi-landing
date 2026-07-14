@@ -301,6 +301,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
             </div>
             <a href="../pages/about-v2.html">О нас</a>
             <a href="../index.html#process">Как работаем</a>
+            <a href="../index.html#faq">FAQ</a>
             <a href="../pages/blog-v2.html" aria-current="page">Блог</a>
             <a href="../pages/contacts-v2.html">Контакты</a>
         </div>
@@ -325,6 +326,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
     </div>
     <a href="../pages/about-v2.html" class="mnl">О нас</a>
     <a href="../index.html#process" class="mnl">Как работаем</a>
+    <a href="../index.html#faq" class="mnl">FAQ</a>
     <a href="../pages/blog-v2.html" class="mnl" aria-current="page">Блог</a>
     <a href="../pages/contacts-v2.html" class="mnl">Контакты</a>
     <a href="tel:+79818172649">+7 981 817-26-49</a>
