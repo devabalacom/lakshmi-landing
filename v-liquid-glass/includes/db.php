@@ -30,5 +30,8 @@ function blog_db(): PDO
         $pdo->exec($schema);
     }
 
+    require_once __DIR__ . '/seed-articles.php';
+    seed_default_articles($pdo);
+
     return $pdo;
 }
