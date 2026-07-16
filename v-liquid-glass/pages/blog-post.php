@@ -56,6 +56,7 @@ $robotsContent = ($noindex ? 'noindex' : 'index') . ', ' . ($nofollow ? 'nofollo
 $defaultOgImage = get_setting($db, 'default_og_image', '/og-image.svg');
 $defaultOgImageAbs = str_starts_with($defaultOgImage, 'http') ? $defaultOgImage : $siteBase . $defaultOgImage;
 $coverUrl = $article['cover_path'] ? $siteBase . '/uploads/blog/' . $article['cover_path'] : $defaultOgImageAbs;
+$heroImageUrl = $article['cover_path'] ? $siteBase . '/uploads/blog/' . $article['cover_path'] : '';
 $coverAlt = $article['cover_alt'] ?: $effectiveTitle;
 
 $ogTitle = trim((string) ($article['og_title'] ?? '')) ?: $effectiveTitle;
@@ -365,9 +366,11 @@ $breadcrumbLd = [
                     <span>Чтение — <?= (int) $readingMinutes ?> минут</span>
                 </div>
             </div>
-            <div class="article-hero-img">
-                <img src="<?= htmlspecialchars($coverUrl, ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($coverAlt, ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
-            </div>
+            <?php if ($heroImageUrl !== ''): ?>
+                <div class="article-hero-img">
+                    <img src="<?= htmlspecialchars($heroImageUrl, ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($coverAlt, ENT_QUOTES, 'UTF-8') ?>" loading="lazy">
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 
