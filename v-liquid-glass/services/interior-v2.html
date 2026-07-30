@@ -254,10 +254,10 @@
 
         .nav-cta {
             display: none;
-            padding: .55rem 1.4rem; border-radius: var(--rp);
+            padding: .8rem 1.5rem; border-radius: var(--rp);
             border: 1.5px solid var(--glh);
-            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-            color: var(--g0);
+            font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g2);
             transition: background .3s, color .3s, border-color .3s, transform .25s;
         }
         @media(min-width:920px) { .nav-cta { display: inline-flex; } }
@@ -265,7 +265,7 @@
 
         .nav-burger {
             display: flex; flex-direction: column; gap: 5px;
-            width: 36px; height: 36px; justify-content: center; padding: 4px;
+            width: 44px; height: 44px; justify-content: center; padding: 8px;
         }
         .nav-burger span {
             display: block; width: 100%; height: 1.5px;
@@ -493,7 +493,7 @@
         .spec-row{padding:1rem 0;border-bottom:1px solid var(--bg3)}
         .spec-row:last-child{border-bottom:0}
         .spec-name{font-weight:700;font-size:1rem;margin-bottom:.25rem}
-        .spec-meta{color:var(--ink3);font-size:.88rem}
+        .spec-meta{color:var(--ink2);font-size:.88rem}
         .spec-block-title{font-family:var(--fm);font-size:.75rem;color:var(--g2);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--bg3);font-weight:600}
         .props-v2-grid{display:grid;gap:.4rem;grid-template-columns:1fr}
         @media(min-width:500px){.props-v2-grid{grid-template-columns:1fr 1fr}}
@@ -522,10 +522,36 @@
         /* ═══ PROCESS (was step/process-grid) ═══ */
         .process-list{display:grid;grid-template-columns:1fr;gap:12px}
         @media(min-width:640px){.process-list{grid-template-columns:repeat(5,1fr)}}
-        .p-step{background:var(--bg2);padding:2.2rem 1.8rem;border-radius:var(--r);position:relative;overflow:hidden;transition:background .3s}
+        .p-step{background:var(--bg2);padding:2.2rem 1.8rem;border-radius:var(--r);position:relative;overflow: visible;transition:background .3s}
         .p-step:hover{background:white}
-        .p-step::before{content:attr(data-n);position:absolute;bottom:-.05em;right:.1em;font-family:var(--fm);font-weight:800;font-size:5.5rem;line-height:1;color:var(--ink);opacity:.028;pointer-events:none}
-        .p-step h3{font-size:.98rem;font-weight:700;margin-bottom:.4rem;position:relative}
+        /* Step marker — replaces the old ghost digit, which overlapped the copy
+           and sat closer to the next column than to its own */
+        .p-step::before {
+            content: attr(data-n);
+            position: absolute; top: 2.2rem; left: 1.8rem;
+            width: 2rem; height: 2rem; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--fm); font-weight: 700; font-size: .85rem;
+            color: var(--g2); background: var(--bg);
+            border: 1px solid var(--glh);
+            pointer-events: none; z-index: 1;
+        }
+        /* Hairline tying the steps into one sequence */
+        @media(min-width:640px) {
+            .p-step { padding-top: 5.4rem; }
+            .p-step::after {
+                content: ''; position: absolute;
+                top: 3.2rem; left: 3.8rem; right: -12px;
+                height: 1px; background: var(--bg3);
+                pointer-events: none; z-index: 0;
+            }
+            .p-step:last-child::after { display: none; }
+        }
+        @media(max-width:639px) {
+            .p-step { padding-left: 5rem; }
+            .p-step::before { top: 2.2rem; left: 1.8rem; }
+        }
+        .p-step h3{font-size:1rem;font-weight:700;margin-bottom:.4rem;position:relative}
         .p-step p{font-size:.82rem;color:var(--ink2);line-height:1.6;position:relative}
 
         /* ═══ FAQ ═══ */
@@ -539,7 +565,7 @@
         .faq-item summary{padding:1.4rem 0;font-weight:600;font-size:.93rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;color:var(--ink2);gap:1rem;transition:color .25s}
         .faq-item summary::-webkit-details-marker{display:none}
         .faq-item summary:hover,.faq-item[open] summary{color:var(--ink)}
-        .faq-toggle{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--glh);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--g0);flex-shrink:0;font-family:var(--fm);font-weight:600;transition:transform .35s var(--ease),background .3s,border-color .3s}
+        .faq-toggle{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--glh);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--g2);flex-shrink:0;font-family:var(--fm);font-weight:600;transition:transform .35s var(--ease),background .3s,border-color .3s}
         .faq-item[open] .faq-toggle{transform:rotate(45deg);background:var(--ga)}
         .faq-body{padding:0 0 1.4rem;font-size:.9rem;color:var(--ink2);line-height:1.75;max-width:72ch}
 
@@ -556,8 +582,8 @@
         .cat-card:hover::after{transform:scaleX(1)}
         .cat-card h3{font-family:var(--fd);font-size:1.4rem;font-weight:400;line-height:1.2;margin-bottom:.6rem;transition:color .3s}
         .cat-card:hover h3{color:var(--g2)}
-        .cat-arrow{font-size:.75rem;font-weight:700;color:var(--ink3);display:flex;align-items:center;gap:.3rem;letter-spacing:.04em;transition:color .3s,gap .35s var(--ease)}
-        .cat-card:hover .cat-arrow{color:var(--g0);gap:.6rem}
+        .cat-arrow{font-size:.75rem;font-weight:700;color:var(--ink2);display:flex;align-items:center;gap:.3rem;letter-spacing:.04em;transition:color .3s,gap .35s var(--ease)}
+        .cat-card:hover .cat-arrow{color:var(--g2);gap:.6rem}
 
         /* ═══ CONTACT ═══ */
         .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:2.5rem}
@@ -565,20 +591,24 @@
         .contact-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g2),var(--g0),var(--g1));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
         .contact-cell:hover::before{transform:scaleX(1)}
         .contact-cell:hover{background:white}
-        .c-label{font-family:var(--fm);font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--ink3);margin-bottom:.5rem}
+        .c-label{font-family:var(--fm);font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--ink2);margin-bottom:.5rem}
         .c-value{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
-        .contact-cell .hint{font-size:.82rem;color:var(--ink3)}
+        .contact-cell .hint{font-size:.82rem;color:var(--ink2)}
 
         /* ═══ FOOTER ═══ */
         footer{position:relative;z-index:1;background:var(--bg2);padding:3rem 0 2rem}
         footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(197,151,62,0.35) 25%,rgba(197,151,62,0.6) 50%,rgba(197,151,62,0.35) 75%,transparent 100%)}
         .footer-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-bottom:2.5rem}
         @media(min-width:768px){.footer-grid{grid-template-columns:1.5fr 1fr 1fr}}
-        .footer-grid h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:1rem}
+        .footer-grid h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2);margin-bottom:1rem}
         .footer-grid ul{display:flex;flex-direction:column;gap:.5rem}
-        .footer-grid ul a{font-size:.88rem;color:var(--ink2);transition:color .3s}
-        .footer-grid ul a:hover{color:var(--g0)}
-        .footer-base{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--bg3);padding-top:1.5rem}
+        .footer-grid ul a{font-size:.88rem;color:var(--ink2);transition:color .3s;display:inline-flex;align-items:center;min-height:32px}
+        .footer-grid ul a:hover{color:var(--g2)}
+        /* Footer links need a real touch target on phones */
+        @media(max-width:767px) {
+            .footer-grid ul a, footer ul li a { min-height: 40px; }
+        }
+        .footer-base{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--ink2);border-top:1px solid var(--bg3);padding-top:1.5rem}
 
         /* ─── RESPONSIVE ─── */
         @media(max-width:767px){
@@ -656,7 +686,7 @@
                         <h1 class="hero-h1">Технический <em>интерьерный текстиль B2B</em></h1>
                         <p class="hero-lead">Шторы, обивка, текстильные панели и защитные ткани для отелей, ресторанов, апарт-комплексов и коммерческих объектов.</p>
                         <div class="hero-btns">
-                            <a href="tel:+79818172649" class="btn btn-gold">Получить расчёт →</a>
+                            <a href="tel:+79818172649" class="btn btn-gold">Позвонить →</a>
                         </div>
                     </div>
                 </div>
@@ -875,7 +905,7 @@
         </div>
     </section>
 
-<footer><div class="shell"><div class="footer-grid"><div><div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem">Пром-текстиль</div><p style="font-size:.88rem;color:var(--ink3);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p></div><div><h4>Направления</h4><ul><li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li><li><a href="../services/specodezhda-v2.html">Спецодежда</a></li><li><a href="../services/tactical-v2.html">Тактика</a></li><li><a href="../services/medical-v2.html">Медицинский</a></li><li><a href="../services/interior-v2.html">Интерьерный B2B</a></li><li><a href="../services/transport-v2.html">Транспортный</a></li><li><a href="../services/agro-v2.html">Агропромышленный</a></li><li><a href="../services/fire-v2.html">Пожарозащита</a></li><li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li></ul></div><div><h4>Компания</h4><ul><li><a href="../pages/about-v2.html">О компании</a></li><li><a href="../pages/blog-v2.html">Блог</a></li><li><a href="tel:+79818172649">+7 981 817-26-49</a></li><li><a href="../privacy.html">Конфиденциальность</a></li><li><a href="../sitemap.html">Карта сайта</a></li></ul></div></div><div class="footer-base"><span>© 2026 Пром-текстиль</span><span>СПб · Литовская 12 к Д</span></div></div></footer>
+<footer><div class="shell"><div class="footer-grid"><div><div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem">Пром-текстиль</div><p style="font-size:.88rem;color:var(--ink2);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p></div><div><h4>Направления</h4><ul><li><a href="../services/chekhly-tenty-v2.html">Чехлы и тенты</a></li><li><a href="../services/specodezhda-v2.html">Спецодежда</a></li><li><a href="../services/tactical-v2.html">Тактика</a></li><li><a href="../services/medical-v2.html">Медицинский</a></li><li><a href="../services/interior-v2.html">Интерьерный B2B</a></li><li><a href="../services/transport-v2.html">Транспортный</a></li><li><a href="../services/agro-v2.html">Агропромышленный</a></li><li><a href="../services/fire-v2.html">Пожарозащита</a></li><li><a href="../services/cleanroom-v2.html">Чистые помещения</a></li></ul></div><div><h4>Компания</h4><ul><li><a href="../pages/about-v2.html">О компании</a></li><li><a href="../pages/blog-v2.html">Блог</a></li><li><a href="tel:+79818172649">+7 981 817-26-49</a></li><li><a href="../privacy.html">Конфиденциальность</a></li><li><a href="../sitemap.html">Карта сайта</a></li></ul></div></div><div class="footer-base"><span>© 2026 Пром-текстиль</span><span>СПб · Литовская 12 к Д</span></div></div></footer>
 <script>
 (function(){
 var pb=document.getElementById('progressBar');

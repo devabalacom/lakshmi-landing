@@ -110,17 +110,17 @@
         .nav-links a:hover::after { right: 0; }
         .nav-cta {
             display: none;
-            padding: .55rem 1.4rem; border-radius: var(--rp);
+            padding: .8rem 1.5rem; border-radius: var(--rp);
             border: 1.5px solid var(--glh);
-            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-            color: var(--g0);
+            font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g2);
             transition: background .3s, color .3s, border-color .3s, transform .25s;
         }
         @media(min-width:920px) { .nav-cta { display: inline-flex; } }
         .nav-cta:hover { background: var(--g0); border-color: var(--g0); color: white; transform: translateY(-1px); }
         .nav-burger {
             display: flex; flex-direction: column; gap: 5px;
-            width: 36px; height: 36px; justify-content: center; padding: 4px;
+            width: 44px; height: 44px; justify-content: center; padding: 8px;
         }
         .nav-burger span {
             display: block; width: 100%; height: 1.5px;
@@ -202,6 +202,37 @@
         .sitemap-col li:last-child { border-bottom: none; }
         .sitemap-col a { display: block; padding: 0.7rem 0; color: rgba(255,255,255,0.78); font-size: 0.92rem; transition: color .2s, padding-left .2s; }
         .sitemap-col a:hover { color: #FACC15; padding-left: 0.3rem; }
+
+        /* ─── FOOTER (same structure as the rest of the site) ─── */
+        footer.footer {
+            background: var(--bg-alt); position: relative; padding: 3rem 0 2rem;
+        }
+        footer.footer::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(197,151,62,0.35) 25%,
+                rgba(197,151,62,0.6) 50%, rgba(197,151,62,0.35) 75%, transparent 100%);
+        }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        @media(min-width:768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+        .footer-grid h4 {
+            font-size: .8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: .1em; color: var(--ink2); margin-bottom: 1rem;
+        }
+        .footer-grid ul { display: flex; flex-direction: column; gap: .5rem; }
+        .footer-grid ul a {
+            font-size: .88rem; color: var(--ink2); transition: color .3s;
+            display: inline-flex; align-items: center; min-height: 32px;
+        }
+        .footer-grid ul a:hover { color: var(--g2); }
+        /* Footer links need a real touch target on phones */
+        @media(max-width:767px) {
+            .footer-grid ul a, footer ul li a { min-height: 40px; }
+        }
+        .footer-base {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            font-size: .8rem; color: var(--ink2);
+            border-top: 1px solid var(--divider); padding-top: 1.5rem;
+        }
     </style>
     <script type="application/ld+json">
 {
@@ -313,7 +344,7 @@
     <main class="bg-noir" style="padding: 10rem 0 6rem; min-height: 80vh; background: #0F172A;">
         <div class="shell" style="max-width: 1080px;">
             <div class="font-eyebrow" style="color: #FACC15;">Навигация</div>
-            <h1 class="hero-title" style="font-size: clamp(2.4rem, 5vw, 4rem); margin: 1rem 0 1.5rem;">
+            <h1 class="hero-title" style="font-size: clamp(1.8rem, 5vw, 4rem); margin: 1rem 0 1.5rem; overflow-wrap: break-word; hyphens: auto;">
                 Карта <em>сайта</em>
             </h1>
             <div class="brass-rule"></div>
@@ -373,10 +404,40 @@
 
     <footer class="footer">
         <div class="shell">
+            <div class="footer-grid">
+                <div>
+                    <div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem;color:var(--ink)">Пром-текстиль</div>
+                    <p style="font-size:.88rem;color:var(--ink2);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
+                </div>
+                <div>
+                    <h4>Направления</h4>
+                    <ul>
+                        <li><a href="services/chekhly-tenty-v2.html">Чехлы и тенты</a></li>
+                        <li><a href="services/specodezhda-v2.html">Спецодежда</a></li>
+                        <li><a href="services/tactical-v2.html">Тактика</a></li>
+                        <li><a href="services/medical-v2.html">Медицинский</a></li>
+                        <li><a href="services/interior-v2.html">Интерьерный B2B</a></li>
+                        <li><a href="services/transport-v2.html">Транспортный</a></li>
+                        <li><a href="services/agro-v2.html">Агропромышленный</a></li>
+                        <li><a href="services/fire-v2.html">Пожарозащита</a></li>
+                        <li><a href="services/cleanroom-v2.html">Чистые помещения</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="pages/about-v2.html">О компании</a></li>
+                        <li><a href="pages/blog-v2.html">Блог</a></li>
+                        <li><a href="pages/contacts-v2.html">Контакты</a></li>
+                        <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>
+                        <li><a href="privacy.html">Конфиденциальность</a></li>
+                        <li><a href="sitemap.html">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-base">
                 <span>© 2026 Пром-текстиль</span>
-                <span>Санкт-Петербург · Литовская 12, к. Д</span>
-                <span><a href="index.html" style="color: inherit;">На главную</a></span>
+                <span>СПб · Литовская 12, к. Д</span>
             </div>
         </div>
     </footer>

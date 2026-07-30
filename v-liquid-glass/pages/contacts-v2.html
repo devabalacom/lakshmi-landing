@@ -242,10 +242,10 @@
 
         .nav-cta {
             display: none;
-            padding: .55rem 1.4rem; border-radius: var(--rp);
+            padding: .8rem 1.5rem; border-radius: var(--rp);
             border: 1.5px solid var(--glh);
-            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-            color: var(--g0);
+            font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g2);
             transition: background .3s, color .3s, border-color .3s, transform .25s;
         }
         @media(min-width:920px) { .nav-cta { display: inline-flex; } }
@@ -253,7 +253,7 @@
 
         .nav-burger {
             display: flex; flex-direction: column; gap: 5px;
-            width: 36px; height: 36px; justify-content: center; padding: 4px;
+            width: 44px; height: 44px; justify-content: center; padding: 8px;
         }
         .nav-burger span {
             display: block; width: 100%; height: 1.5px;
@@ -418,6 +418,12 @@
             color: var(--ink3); margin-bottom: .5rem;
         }
         .c-value { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+        /* The phone is the only conversion path on this site — give it the weight */
+        .contact-cell[href^="tel:"] .c-value {
+            font-size: 1.9rem; font-weight: 800; color: var(--g2);
+            letter-spacing: -.01em; line-height: 1.25; margin: .1rem 0 .2rem;
+        }
+        .contact-cell[href^="tel:"]:hover .c-value { color: var(--g0); }
         .c-value a { color: var(--g2); transition: color .25s; }
         .c-value a:hover { color: var(--g0); }
         /* .hint — unique to contacts page, no direct canon analogue */
@@ -456,15 +462,19 @@
             font-size: .82rem; margin-bottom: 1rem;
             font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
         }
-        footer p, footer .footer-copy { font-size: .88rem; color: var(--ink3); line-height: 1.6; }
+        footer p, footer .footer-copy { font-size: .88rem; color: var(--ink2); line-height: 1.6; }
         footer ul li { margin-bottom: .6rem; font-size: .88rem; }
-        footer ul li a { color: var(--ink3); transition: color .25s; }
-        footer ul li a:hover { color: var(--g0); }
+        footer ul li a { color: var(--ink2); transition: color .25s; display: inline-flex; align-items: center; min-height: 32px; }
+        footer ul li a:hover { color: var(--g2); }
+        /* Footer links need a real touch target on phones */
+        @media(max-width:767px) {
+            .footer-grid ul a, footer ul li a { min-height: 40px; }
+        }
         .footer-base {
             border-top: 1px solid var(--bg3);
             padding-top: 1.5rem;
             display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
-            font-size: .78rem; color: var(--ink3);
+            font-size: .78rem; color: var(--ink2);
         }
         @media(max-width:767px) { .footer-base { flex-direction: column; gap: .35rem; } }
 
@@ -547,8 +557,8 @@
     <section class="section">
         <div class="shell">
             <div class="contact-grid reveal">
-                <a class="contact-cell" href="tel:+79818172649"><div class="c-label">Phone · Производство</div><div class="c-value">+7 981 817-26-49</div><div class="hint">Расскажите, что нужно изготовить: количество, размеры, условия эксплуатации, материал. Пн–Пт 9–18.</div></a>
-                <a class="contact-cell" href="https://maps.google.com/?q=Пром-текстиль+Москва"><div class="c-label">Производство · Санкт-Петербург</div><div class="c-value" style="font-size:.95rem">Литовская 12, к. Д</div><div class="hint">Приезд по согласованию. Покажем производство.</div></a>
+                <a class="contact-cell" href="tel:+79818172649"><div class="c-label">Телефон · Производство</div><div class="c-value">+7 981 817-26-49</div><div class="hint">Расскажите, что нужно изготовить: количество, размеры, условия эксплуатации, материал. Пн–Пт 9–18.</div></a>
+                <a class="contact-cell" href="https://maps.google.com/?q=Санкт-Петербург,+Литовская+12,+к.+Д"><div class="c-label">Производство · Санкт-Петербург</div><div class="c-value" style="font-size:.95rem">Литовская 12, к. Д</div><div class="hint">Приезд по согласованию. Покажем производство.</div></a>
             </div>
 
             <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--bg3);font-size:.9rem;color:var(--ink2);line-height:1.7">
@@ -564,7 +574,7 @@
         <div class="shell">
             <div class="footer-grid">
                 <div>
-                    <div style="font-weight:800;font-size:1.3rem;color:var(--ink);margin-bottom:.5rem">Пром-текстиль <span style="font-size:.6em;color:var(--ink3)">/ Lakshmi</span></div>
+                    <div style="font-weight:800;font-size:1.3rem;color:var(--ink);margin-bottom:.5rem">Пром-текстиль <span style="font-size:.6em;color:var(--ink2)">/ Lakshmi</span></div>
                     <p style="max-width:38ch">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
                 </div>
                 <div>

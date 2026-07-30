@@ -173,13 +173,13 @@ $totalPages = max(1, (int) ceil($total / $perPage));
         .nav-links a[aria-current="page"] { color: var(--g2); }
         .nav-links a[aria-current="page"]::after { right: 0; }
         .nav-cta {
-            display: none; padding: .55rem 1.4rem; border-radius: var(--rp); border: 1.5px solid var(--glh);
-            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--g0);
+            display: none; padding: .8rem 1.5rem; border-radius: var(--rp); border: 1.5px solid var(--glh);
+            font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--g2);
             transition: background .3s, color .3s, border-color .3s, transform .25s;
         }
         @media(min-width:920px) { .nav-cta { display: inline-flex; } }
         .nav-cta:hover { background: var(--g0); border-color: var(--g0); color: white; transform: translateY(-1px); }
-        .nav-burger { display: flex; flex-direction: column; gap: 5px; width: 36px; height: 36px; justify-content: center; padding: 4px; }
+        .nav-burger { display: flex; flex-direction: column; gap: 5px; width: 44px; height: 44px; justify-content: center; padding: 8px; }
         .nav-burger span { display: block; width: 100%; height: 1.5px; background: var(--ink); border-radius: 2px; transition: transform .3s, opacity .3s; }
         .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
         .nav-burger.open span:nth-child(2) { opacity: 0; }
@@ -270,11 +270,15 @@ $totalPages = max(1, (int) ceil($total / $perPage));
         }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
         @media(min-width:768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
-        .footer-grid h4 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink3); margin-bottom: 1rem; }
+        .footer-grid h4 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink2); margin-bottom: 1rem; }
         .footer-grid ul { display: flex; flex-direction: column; gap: .5rem; }
-        .footer-grid ul a { font-size: .88rem; color: var(--ink2); transition: color .3s; }
-        .footer-grid ul a:hover { color: var(--g0); }
-        .footer-base { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .8rem; color: var(--ink3); border-top: 1px solid var(--bg3); padding-top: 1.5rem; }
+        .footer-grid ul a { font-size: .88rem; display: inline-flex; align-items: center; min-height: 32px; color: var(--ink2); transition: color .3s; }
+        .footer-grid ul a:hover { color: var(--g2); }
+        /* Footer links need a real touch target on phones */
+        @media(max-width:767px) {
+            .footer-grid ul a, footer ul li a { min-height: 40px; }
+        }
+        .footer-base { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .8rem; color: var(--ink2); border-top: 1px solid var(--bg3); padding-top: 1.5rem; }
         @media(max-width:767px) { .section { padding: 2.5rem 0 4rem; } .page-head { padding: 2.5rem 0 .5rem; } }
         @media(prefers-reduced-motion: reduce) { .reveal { transition: none !important; } .blog-card, .blog-card-media img { transition: none !important; } }
     </style>
@@ -368,7 +372,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
                     </article>
                 <?php endforeach; ?>
                 <?php if (!$articles): ?>
-                    <p style="color:var(--ink3)">Пока нет опубликованных статей.</p>
+                    <p style="color:var(--ink2)">Пока нет опубликованных статей.</p>
                 <?php endif; ?>
             </div>
 
@@ -391,7 +395,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
         <div class="footer-grid">
             <div>
                 <div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem;color:var(--ink)">Пром-текстиль</div>
-                <p style="font-size:.88rem;color:var(--ink3);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
+                <p style="font-size:.88rem;color:var(--ink2);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
             </div>
             <div>
                 <h4>Направления</h4>

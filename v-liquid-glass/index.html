@@ -278,10 +278,10 @@
 
         .nav-cta {
             display: none;
-            padding: .55rem 1.4rem; border-radius: var(--rp);
+            padding: .8rem 1.5rem; border-radius: var(--rp);
             border: 1.5px solid var(--glh);
-            font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-            color: var(--g0);
+            font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+            color: var(--g2);
             transition: background .3s, color .3s, border-color .3s, transform .25s;
         }
         @media(min-width:920px) { .nav-cta { display: inline-flex; } }
@@ -289,7 +289,7 @@
 
         .nav-burger {
             display: flex; flex-direction: column; gap: 5px;
-            width: 36px; height: 36px; justify-content: center; padding: 4px;
+            width: 44px; height: 44px; justify-content: center; padding: 8px;
         }
         .nav-burger span {
             display: block; width: 100%; height: 1.5px;
@@ -582,18 +582,19 @@
             background-repeat: no-repeat;
             padding: 2.2rem 2rem 2rem;
             position: relative; overflow: hidden;
-            display: block;
+            display: flex; flex-direction: column;
             transition: transform .4s var(--ease), box-shadow .4s var(--ease);
         }
-        /* Light overlay over background image */
+        /* Light overlay over background image — opaque enough that text contrast
+           does not depend on how bright the photo underneath happens to be */
         .cat-card::before {
             content: ''; position: absolute; inset: 0;
-            background: rgba(253,250,245,0.78);
+            background: rgba(253,250,245,0.90);
             border-radius: inherit;
             transition: background .4s var(--ease);
             z-index: 0;
         }
-        .cat-card:hover::before { background: rgba(255,255,255,0.70); }
+        .cat-card:hover::before { background: rgba(255,255,255,0.84); }
         /* All children above overlay */
         .cat-card > * { position: relative; z-index: 1; }
         /* Gold bottom sweep */
@@ -627,22 +628,23 @@
         .cat-arrow {
             font-size: .75rem; font-weight: 700; color: var(--ink3);
             display: flex; align-items: center; gap: .3rem; letter-spacing: .04em;
+            margin-top: auto; /* pin to card bottom so links align across a row */
             transition: color .3s, gap .35s var(--ease);
         }
-        .cat-card:hover .cat-arrow { color: var(--g0); gap: .6rem; }
+        .cat-card:hover .cat-arrow { color: var(--g2); gap: .6rem; }
 
         /* ═══════════════════════════════════════════
            STATS — island for visual rhythm
            ═══════════════════════════════════════════ */
         .stats-section {
             background: var(--bg);
-            padding: 5rem 0;
+            padding: 8rem 0;
             position: relative;
         }
         .stats-island {
             background: var(--nr);
             border-radius: 24px;
-            padding: 4rem 3rem;
+            padding: 3rem;
             position: relative;
             overflow: hidden;
         }
@@ -663,15 +665,17 @@
         }
         .stats-inner { position: relative; z-index: 1; }
         .stats-row {
-            display: grid; grid-template-columns: repeat(2, 1fr);
+            display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px; background: transparent;
         }
-        @media(min-width:640px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
+        @media(min-width:640px) { .stats-row { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
         .stat-cell {
             background: var(--nr); padding: 3rem 2.5rem; text-align: center;
             border-radius: var(--rs);
+            min-width: 0; overflow-wrap: break-word;
             transition: background .3s;
         }
+        @media(max-width:640px) { .stat-cell { padding: 2rem 1rem; } }
         .stat-cell:hover { background: var(--nr2); }
         .stat-num {
             font-family: var(--fd);
@@ -730,31 +734,55 @@
         .p-step {
             background: var(--bg2); padding: 2.2rem 1.8rem;
             border-radius: var(--r);
-            position: relative; overflow: hidden;
+            position: relative; overflow: visible;
             transition: background .3s;
         }
         .p-step:hover { background: white; }
-        /* Large ghost number — editorial depth */
+        /* Step marker — replaces the old ghost digit, which overlapped the copy
+           and sat closer to the next column than to its own */
         .p-step::before {
             content: attr(data-n);
-            position: absolute; bottom: -.05em; right: .1em;
-            font-family: var(--fm); font-weight: 800;
-            font-size: 5.5rem; line-height: 1;
-            color: var(--ink); opacity: .028;
-            pointer-events: none;
+            position: absolute; top: 2.2rem; left: 1.8rem;
+            width: 2rem; height: 2rem; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--fm); font-weight: 700; font-size: .85rem;
+            color: var(--g2); background: var(--bg);
+            border: 1px solid var(--glh);
+            pointer-events: none; z-index: 1;
+        }
+        /* Hairline tying the steps into one sequence */
+        @media(min-width:640px) {
+            .p-step { padding-top: 5.4rem; }
+            .p-step::after {
+                content: ''; position: absolute;
+                top: 3.2rem; left: 3.8rem; right: -12px;
+                height: 1px; background: var(--bg3);
+                pointer-events: none; z-index: 0;
+            }
+            .p-step:last-child::after { display: none; }
+        }
+        @media(max-width:639px) {
+            .p-step { padding-left: 5rem; }
+            .p-step::before { top: 2.2rem; left: 1.8rem; }
         }
         .p-num {
             font-family: var(--fm); font-size: .58rem; letter-spacing: .22em;
             color: var(--g0); margin-bottom: 1rem; font-weight: 600;
             text-transform: uppercase;
         }
-        .p-step h3 { font-size: .98rem; font-weight: 700; margin-bottom: .4rem; position: relative; }
+        .p-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; position: relative; }
         .p-step p { font-size: .82rem; color: var(--ink2); line-height: 1.6; position: relative; }
 
         /* ═══════════════════════════════════════════
            FAQ — clean accordion
            ═══════════════════════════════════════════ */
-        .faq-list { max-width: 860px; display: flex; flex-direction: column; }
+        .faq-list { display: flex; flex-direction: column; }
+        /* Heading sits beside the questions instead of leaving the right
+           third of the section empty */
+        @media(min-width:1024px) {
+            .faq-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
+            .faq-layout .s-head { margin-bottom: 0; position: sticky; top: 7rem; }
+        }
         .faq-item { border-top: 1px solid var(--bg3); overflow: hidden; border-radius: var(--rs); }
         .faq-item:last-child { border-bottom: 1px solid var(--bg3); }
         @keyframes faqReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -775,7 +803,7 @@
             width: 24px; height: 24px; border-radius: 50%;
             border: 1.5px solid var(--glh);
             display: flex; align-items: center; justify-content: center;
-            font-size: .9rem; color: var(--g0); flex-shrink: 0;
+            font-size: .9rem; color: var(--g2); flex-shrink: 0;
             font-family: var(--fm); font-weight: 600;
             transition: transform .35s var(--ease), background .3s, border-color .3s;
         }
@@ -818,7 +846,11 @@
             color: var(--ink3); margin-bottom: .5rem;
         }
         .c-value { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
-        .c-value a { color: var(--g2); transition: color .25s; }
+        .c-value a {
+            color: var(--g2); transition: color .25s;
+            font-size: 1.35rem; letter-spacing: -.01em;
+            display: inline-flex; align-items: center; min-height: 44px;
+        }
         .c-value a:hover { color: var(--g0); }
 
         /* CTA — liquid glass block */
@@ -854,7 +886,7 @@
         footer {
             background: var(--bg2);
             position: relative;
-            padding: 2.5rem 0;
+            padding: 3rem 0 2rem;
         }
         /* Gold gradient top rule */
         footer::before {
@@ -867,14 +899,27 @@
                 rgba(197,151,62,0.35) 75%,
                 transparent 100%);
         }
-        .footer-inner {
-            display: flex; align-items: center;
-            justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        @media(min-width:768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+        .footer-grid h4 {
+            font-size: .8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: .1em; color: var(--ink2); margin-bottom: 1rem;
         }
-        .footer-copy, .footer-inner a {
-            font-size: .78rem; color: var(--ink3); transition: color .25s;
+        .footer-grid ul { display: flex; flex-direction: column; gap: .5rem; }
+        .footer-grid ul a {
+            font-size: .88rem; color: var(--ink2); transition: color .3s;
+            display: inline-flex; align-items: center; min-height: 32px;
         }
-        .footer-inner a:hover { color: var(--g0); }
+        .footer-grid ul a:hover { color: var(--g2); }
+        /* Footer links need a real touch target on phones */
+        @media(max-width:767px) {
+            .footer-grid ul a, footer ul li a { min-height: 40px; }
+        }
+        .footer-base {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            font-size: .8rem; color: var(--ink2);
+            border-top: 1px solid var(--bg3); padding-top: 1.5rem;
+        }
 
         /* ─── RESPONSIVE ─── */
         @media(max-width:767px) {
@@ -1028,7 +1073,7 @@
             font-family: var(--fm); font-size: .58rem; letter-spacing: .22em;
             text-transform: uppercase; color: var(--g0); font-weight: 600; margin-bottom: .8rem;
         }
-        .task-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; color: var(--ink); }
+        .task-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; color: var(--ink); }
         .task-card p { font-size: .85rem; color: var(--ink2); line-height: 1.65; }
 
         /* ═══ WHY ISLAND ═══ */
@@ -1101,7 +1146,7 @@
         }
         .pt-content { padding: .6rem 0 3rem; flex: 1; }
         .pt-item--last .pt-content { padding-bottom: 0; }
-        .pt-content h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; color: var(--ink); }
+        .pt-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; color: var(--ink); }
         .pt-content p { font-size: .88rem; color: var(--ink2); line-height: 1.7; }
     </style>
 </head>
@@ -1354,11 +1399,12 @@
     <!-- ═══ STATS — island ═══ -->
     <section class="stats-section" id="stats">
         <div class="shell">
+            <div class="s-head reveal">
+                <h2 class="s-h2">Производство в цифрах</h2>
+                <p class="s-sub">Мощности, команда и опыт, на которые опирается каждый заказ.</p>
+            </div>
             <div class="stats-island reveal">
                 <div class="stats-inner">
-                    <div class="s-head s-dark">
-                        <h2 class="s-h2">20 лет в производстве</h2>
-                    </div>
                     <div class="stats-row">
                         <div class="stat-cell">
                             <span class="stat-num" data-count="20">20</span>
@@ -1509,7 +1555,7 @@
                         <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
                             <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">B2G</span>
                         </div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.5rem">Защитные тенты для объектов РЖД</h3>
+                        <h3 style="font-size:1rem;margin-bottom:.5rem">Защитные тенты для объектов РЖД</h3>
                         <p>2 000+ защитных чехлов для путевого оборудования по техническому заданию. Сертификация EN 45545, поставка в срок 4 недели.</p>
                         <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2019 года</p>
                     </div>
@@ -1520,7 +1566,7 @@
                         <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
                             <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">B2B</span>
                         </div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.5rem">Спецодежда для нефтегазового холдинга</h3>
+                        <h3 style="font-size:1rem;margin-bottom:.5rem">Спецодежда для нефтегазового холдинга</h3>
                         <p>5 000 комплектов огнестойкой спецодежды с логотипом заказчика. Регулярные поставки 3 раза в год по единым ценам.</p>
                         <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2018 года</p>
                     </div>
@@ -1531,7 +1577,7 @@
                         <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
                             <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">WB</span>
                         </div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.5rem">Тактическое снаряжение для маркетплейса</h3>
+                        <h3 style="font-size:1rem;margin-bottom:.5rem">Тактическое снаряжение для маркетплейса</h3>
                         <p>500 рюкзаков и подсумков под СТМ. Вышли в топ категории Wildberries за первые 3 месяца после запуска.</p>
                         <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Серийный выпуск под брендом клиента</p>
                     </div>
@@ -1542,7 +1588,7 @@
                         <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
                             <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">Премиум</span>
                         </div>
-                        <h3 style="font-size:1.05rem;margin-bottom:.5rem">Текстиль для автомобилей премиум-класса</h3>
+                        <h3 style="font-size:1rem;margin-bottom:.5rem">Текстиль для автомобилей премиум-класса</h3>
                         <p>Индивидуальный пошив чехлов и обивки для автомобилей по размерам производителя. Партнёрство с детейлинг-центрами.</p>
                         <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Москва, Санкт-Петербург, Казань</p>
                     </div>
@@ -1555,9 +1601,10 @@
 
     <!-- ═══ FAQ ═══ -->
     <section class="section" id="faq">
-        <div class="shell">
+        <div class="shell faq-layout">
             <div class="s-head reveal">
                 <h2 class="s-h2">Частые вопросы</h2>
+                <p class="s-sub">Не нашли ответ — позвоните, разберём вашу задачу по телефону.</p>
             </div>
             <div class="faq-list">
                 <details class="faq-item reveal">
@@ -1618,11 +1665,42 @@
 
     <!-- ═══ FOOTER ═══ -->
     <footer>
-        <div class="shell footer-inner">
-            <div class="footer-copy">© 2026 Пром-текстиль · по СПб и РФ</div>
-            <div class="footer-copy">Производство технического текстиля</div>
-            <a href="privacy.html">Политика конфиденциальности</a>
-            <a href="sitemap.html">Карта сайта</a>
+        <div class="shell">
+            <div class="footer-grid">
+                <div>
+                    <div style="font-weight:900;font-size:1.2rem;margin-bottom:.5rem;color:var(--ink)">Пром-текстиль</div>
+                    <p style="font-size:.88rem;color:var(--ink2);max-width:34ch;line-height:1.65">Производство технического текстиля. Санкт-Петербург, 1400 м², 50 специалистов, 20 лет на рынке.</p>
+                </div>
+                <div>
+                    <h4>Направления</h4>
+                    <ul>
+                        <li><a href="services/chekhly-tenty-v2.html">Чехлы и тенты</a></li>
+                        <li><a href="services/specodezhda-v2.html">Спецодежда</a></li>
+                        <li><a href="services/tactical-v2.html">Тактика</a></li>
+                        <li><a href="services/medical-v2.html">Медицинский</a></li>
+                        <li><a href="services/interior-v2.html">Интерьерный B2B</a></li>
+                        <li><a href="services/transport-v2.html">Транспортный</a></li>
+                        <li><a href="services/agro-v2.html">Агропромышленный</a></li>
+                        <li><a href="services/fire-v2.html">Пожарозащита</a></li>
+                        <li><a href="services/cleanroom-v2.html">Чистые помещения</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="pages/about-v2.html">О компании</a></li>
+                        <li><a href="pages/blog-v2.html">Блог</a></li>
+                        <li><a href="pages/contacts-v2.html">Контакты</a></li>
+                        <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>
+                        <li><a href="privacy.html">Конфиденциальность</a></li>
+                        <li><a href="sitemap.html">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-base">
+                <span>© 2026 Пром-текстиль</span>
+                <span>СПб · Литовская 12 к Д</span>
+            </div>
         </div>
     </footer>
 
