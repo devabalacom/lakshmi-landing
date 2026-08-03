@@ -233,7 +233,13 @@
             font-size: .8rem; color: var(--ink2);
             border-top: 1px solid var(--divider); padding-top: 1.5rem;
         }
-    </style>
+    
+        /* 7 top-level items: tighten the row before the burger kicks in */
+        @media(min-width:900px) and (max-width:1180px) {
+            .nav-links { gap: 1.35rem; }
+            .nav-links a { font-size: .67rem; }
+        }
+</style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -306,7 +312,7 @@
                         <a href="services/cleanroom-v2.html">Чистые помещения</a>
                     </div>
                 </div>
-                <a href="pages/about-v2.html">О нас</a>
+                <a href="pages/cases-v2.html">Кейсы</a><a href="pages/about-v2.html">О нас</a>
                 <a href="index.html#process">Как работаем</a>
                 <a href="index.html#faq">FAQ</a>
                 <a href="pages/blog-v2.html">Блог</a>
@@ -333,7 +339,7 @@
                 <a href="services/cleanroom-v2.html" class="mnl">Чистые помещения</a>
             </div>
         </div>
-        <a href="pages/about-v2.html" class="mnl">О нас</a>
+        <a href="pages/cases-v2.html" class="mnl">Кейсы</a><a href="pages/about-v2.html" class="mnl">О нас</a>
         <a href="index.html#process" class="mnl">Как работаем</a>
         <a href="index.html#faq" class="mnl">FAQ</a>
         <a href="pages/blog-v2.html" class="mnl">Блог</a>
@@ -355,6 +361,7 @@
                     <ul>
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="pages/about-v2.html">О компании</a></li>
+                        <li><a href="pages/cases-v2.html">Кейсы</a></li>
                         <li><a href="pages/contacts-v2.html">Контакты</a></li>
                         <li><a href="privacy.html">Политика конфиденциальности</a></li>
                         <li><a href="sitemap.html">Карта сайта</a></li>
@@ -389,6 +396,16 @@
                         <li><a href="pages/blog-takticheskie-materialy.html">Материалы для тактического снаряжения</a></li>
                         <li><a href="pages/blog-antibakterialnye-tkani.html">Антибактериальные ткани</a></li>
                         <li><a href="pages/blog-ognestoykie-tkani.html">Огнестойкие ткани</a></li>
+                    </ul>
+                </div>
+                <div class="sitemap-col">
+                    <h2>Кейсы</h2>
+                    <ul>
+                        <li><a href="pages/cases-v2.html">Кейсы — все проекты</a></li>
+                        <li><a href="cases/rzd-tents.html">Защитные тенты для объектов РЖД</a></li>
+                        <li><a href="cases/neftegaz-specodezhda.html">Спецодежда для нефтегазового холдинга</a></li>
+                        <li><a href="cases/wb-tactical.html">Тактическое снаряжение под СТМ</a></li>
+                        <li><a href="cases/premium-auto.html">Текстиль для премиум-авто</a></li>
                     </ul>
                 </div>
             </div>
@@ -426,7 +443,7 @@
                 <div>
                     <h4>Компания</h4>
                     <ul>
-                        <li><a href="pages/about-v2.html">О компании</a></li>
+                        <li><a href="pages/about-v2.html">О компании</a></li><li><a href="pages/cases-v2.html">Кейсы</a></li>
                         <li><a href="pages/blog-v2.html">Блог</a></li>
                         <li><a href="pages/contacts-v2.html">Контакты</a></li>
                         <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>

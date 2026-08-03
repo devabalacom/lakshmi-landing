@@ -1148,7 +1148,47 @@
         .pt-item--last .pt-content { padding-bottom: 0; }
         .pt-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; color: var(--ink); }
         .pt-content p { font-size: .88rem; color: var(--ink2); line-height: 1.7; }
-    </style>
+
+        /* ═══ CASE CARDS — shared with /pages/cases-v2.html ═══ */
+        .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+        .case-card {
+            display: flex; flex-direction: column;
+            background: #fff; border: 1px solid var(--gbd); border-radius: var(--r);
+            overflow: hidden; position: relative;
+            transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+        }
+        .case-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--g0), var(--g1));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform .4s var(--ease); z-index: 2;
+        }
+        .case-card:hover { border-color: var(--glh); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(212,160,23,.10); }
+        .case-card:hover::before { transform: scaleX(1); }
+        .case-card img { height: 180px; width: 100%; object-fit: cover; display: block; }
+        .case-card-body { padding: 1.6rem 1.8rem 1.8rem; display: flex; flex-direction: column; flex: 1; }
+        .case-card h3 { font-size: 1.02rem; font-weight: 700; margin: .75rem 0 .5rem; }
+        .case-card p { font-size: .86rem; color: var(--ink2); line-height: 1.65; }
+        .case-card-foot { margin-top: auto; padding-top: 1.15rem; display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
+        .case-kpi { font-size: .78rem; font-weight: 700; color: var(--g2); }
+        .mat-tag {
+            display: block; font-family: var(--fm); font-size: .54rem; font-weight: 700;
+            letter-spacing: .16em; text-transform: uppercase; color: var(--ink3); margin-bottom: .6rem;
+        }
+        .case-more {
+            font-family: var(--fm); font-size: .6rem; font-weight: 700;
+            letter-spacing: .14em; text-transform: uppercase; color: var(--ink3);
+            display: inline-flex; align-items: center; gap: .35rem;
+            transition: color .25s, gap .25s;
+        }
+        .case-card:hover .case-more { color: var(--g2); gap: .6rem; }
+    
+        /* 7 top-level items: tighten the row before the burger kicks in */
+        @media(min-width:900px) and (max-width:1180px) {
+            .nav-links { gap: 1.35rem; }
+            .nav-links a { font-size: .67rem; }
+        }
+</style>
 </head>
 <body>
     <div class="progress" id="progressBar"></div>
@@ -1174,7 +1214,7 @@
                         <a href="services/cleanroom-v2.html">Чистые помещения</a>
                     </div>
                 </div>
-                <a href="#about">О нас</a>
+                <a href="pages/cases-v2.html">Кейсы</a><a href="#about">О нас</a>
                 <a href="#process">Как работаем</a>
                 <a href="#faq">FAQ</a>
                 <a href="pages/blog-v2.html">Блог</a>
@@ -1202,7 +1242,7 @@
                 <a href="services/cleanroom-v2.html" class="mnl">Чистые помещения</a>
             </div>
         </div>
-        <a href="#about" class="mnl">О нас</a>
+        <a href="pages/cases-v2.html" class="mnl">Кейсы</a><a href="#about" class="mnl">О нас</a>
         <a href="#process" class="mnl">Как работаем</a>
         <a href="#faq" class="mnl">FAQ</a>
         <a href="pages/blog-v2.html" class="mnl">Блог</a>
@@ -1546,53 +1586,60 @@
         <div class="shell">
             <div class="s-head reveal">
                 <h2 class="s-h2">Наши кейсы</h2>
-                <p class="s-sub">Работаем с B2B, B2G, маркетплейсами и премиум-сегментом.</p>
+                <p class="s-sub">Работаем с B2B, B2G, маркетплейсами и премиум-сегментом. Каждый проект разобран отдельно: задача, материалы, этапы, сроки и результат.</p>
             </div>
-            <div class="about-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-                <div class="about-card" style="padding:0;overflow:hidden">
-                    <img src="img/cases/case-rzd-tents.webp" alt="Защитные тенты для объектов РЖД" style="height:180px;width:100%;object-fit:cover;display:block">
-                    <div style="padding:1.8rem 2rem">
-                        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-                            <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">B2G</span>
+            <div class="case-grid reveal">
+                <a class="case-card" href="cases/rzd-tents.html">
+                    <img src="img/cases/case-rzd-tents.webp" alt="Защитные тенты и чехлы для путевого оборудования на объектах РЖД" width="600" height="180" loading="lazy">
+                    <div class="case-card-body">
+                        <span class="mat-tag">B2G · Инфраструктура</span>
+                        <h3>Защитные тенты для объектов РЖД</h3>
+                        <p>2 000+ защитных чехлов для путевого оборудования по техническому заданию. Соответствие EN 45545, первая партия за 4 недели.</p>
+                        <div class="case-card-foot">
+                            <span class="case-kpi">Партнёр с 2019 года</span>
+                            <span class="case-more">Кейс →</span>
                         </div>
-                        <h3 style="font-size:1rem;margin-bottom:.5rem">Защитные тенты для объектов РЖД</h3>
-                        <p>2 000+ защитных чехлов для путевого оборудования по техническому заданию. Сертификация EN 45545, поставка в срок 4 недели.</p>
-                        <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2019 года</p>
                     </div>
-                </div>
-                <div class="about-card" style="padding:0;overflow:hidden">
-                    <img src="img/cases/case-neftegaz-workers.webp" alt="Спецодежда для нефтегазового холдинга" style="height:180px;width:100%;object-fit:cover;display:block">
-                    <div style="padding:1.8rem 2rem">
-                        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-                            <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">B2B</span>
+                </a>
+                <a class="case-card" href="cases/neftegaz-specodezhda.html">
+                    <img src="img/cases/case-neftegaz-workers.webp" alt="Огнестойкая спецодежда для полевого персонала нефтегазового холдинга" width="600" height="180" loading="lazy">
+                    <div class="case-card-body">
+                        <span class="mat-tag">B2B · Нефтегаз</span>
+                        <h3>Спецодежда для нефтегазового холдинга</h3>
+                        <p>5 000 комплектов огнестойкой спецодежды с логотипом заказчика. Единый корпоративный стандарт, три поставки в год.</p>
+                        <div class="case-card-foot">
+                            <span class="case-kpi">Партнёр с 2018 года</span>
+                            <span class="case-more">Кейс →</span>
                         </div>
-                        <h3 style="font-size:1rem;margin-bottom:.5rem">Спецодежда для нефтегазового холдинга</h3>
-                        <p>5 000 комплектов огнестойкой спецодежды с логотипом заказчика. Регулярные поставки 3 раза в год по единым ценам.</p>
-                        <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Постоянный партнёр с 2018 года</p>
                     </div>
-                </div>
-                <div class="about-card" style="padding:0;overflow:hidden">
-                    <img src="img/cases/case-wb-backpacks.webp" alt="Тактическое снаряжение для маркетплейса" style="height:180px;width:100%;object-fit:cover;display:block">
-                    <div style="padding:1.8rem 2rem">
-                        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-                            <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">WB</span>
-                        </div>
-                        <h3 style="font-size:1rem;margin-bottom:.5rem">Тактическое снаряжение для маркетплейса</h3>
+                </a>
+                <a class="case-card" href="cases/wb-tactical.html">
+                    <img src="img/cases/case-wb-backpacks.webp" alt="Тактические рюкзаки и подсумки под собственной торговой маркой для маркетплейса" width="600" height="180" loading="lazy">
+                    <div class="case-card-body">
+                        <span class="mat-tag">Маркетплейс · СТМ</span>
+                        <h3>Тактическое снаряжение для маркетплейса</h3>
                         <p>500 рюкзаков и подсумков под СТМ. Вышли в топ категории Wildberries за первые 3 месяца после запуска.</p>
-                        <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Серийный выпуск под брендом клиента</p>
-                    </div>
-                </div>
-                <div class="about-card" style="padding:0;overflow:hidden">
-                    <img src="img/cases/case-premium-car-cover.webp" alt="Текстиль для автомобилей премиум-класса" style="height:180px;width:100%;object-fit:cover;display:block">
-                    <div style="padding:1.8rem 2rem">
-                        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-                            <span style="font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;padding:.25rem .7rem;border-radius:var(--rp)">Премиум</span>
+                        <div class="case-card-foot">
+                            <span class="case-kpi">Серийный выпуск под брендом клиента</span>
+                            <span class="case-more">Кейс →</span>
                         </div>
-                        <h3 style="font-size:1rem;margin-bottom:.5rem">Текстиль для автомобилей премиум-класса</h3>
-                        <p>Индивидуальный пошив чехлов и обивки для автомобилей по размерам производителя. Партнёрство с детейлинг-центрами.</p>
-                        <p style="margin-top:.8rem;font-size:.82rem;color:var(--g2);font-weight:600">Москва, Санкт-Петербург, Казань</p>
                     </div>
-                </div>
+                </a>
+                <a class="case-card" href="cases/premium-auto.html">
+                    <img src="img/cases/case-premium-car-cover.webp" alt="Чехлы и салонный текстиль для автомобилей премиум-класса" width="600" height="180" loading="lazy">
+                    <div class="case-card-body">
+                        <span class="mat-tag">Премиум · Детейлинг</span>
+                        <h3>Текстиль для автомобилей премиум-класса</h3>
+                        <p>Индивидуальный пошив чехлов и обивки по фактическим размерам модели. Партнёрство с детейлинг-центрами.</p>
+                        <div class="case-card-foot">
+                            <span class="case-kpi">Москва · СПб · Казань</span>
+                            <span class="case-more">Кейс →</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-btns reveal" style="margin-top:2.5rem">
+                <a href="pages/cases-v2.html" class="btn btn-ghost">Все кейсы с разбором →</a>
             </div>
         </div>
     </section>
@@ -1688,7 +1735,7 @@
                 <div>
                     <h4>Компания</h4>
                     <ul>
-                        <li><a href="pages/about-v2.html">О компании</a></li>
+                        <li><a href="pages/about-v2.html">О компании</a></li><li><a href="pages/cases-v2.html">Кейсы</a></li>
                         <li><a href="pages/blog-v2.html">Блог</a></li>
                         <li><a href="pages/contacts-v2.html">Контакты</a></li>
                         <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>

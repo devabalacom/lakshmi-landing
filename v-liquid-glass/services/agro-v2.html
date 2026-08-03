@@ -685,7 +685,13 @@
             .hero-h1, .hero-lead, .hero-btns { animation: none !important; opacity: 1 !important; }
             .hero-h1 em { animation: none !important; }
         }
-    </style>
+    
+        /* 7 top-level items: tighten the row before the burger kicks in */
+        @media(min-width:900px) and (max-width:1180px) {
+            .nav-links { gap: 1.35rem; }
+            .nav-links a { font-size: .67rem; }
+        }
+</style>
 </head>
 <body>
 <div class="progress" id="progressBar"></div>
@@ -710,7 +716,7 @@
                     <a href="cleanroom-v2.html">Чистые помещения</a>
                 </div>
             </div>
-            <a href="../pages/about-v2.html">О нас</a>
+            <a href="../pages/cases-v2.html">Кейсы</a><a href="../pages/about-v2.html">О нас</a>
             <a href="../index.html#process">Как работаем</a>
             <a href="../index.html#faq">FAQ</a>
             <a href="../pages/blog-v2.html">Блог</a>
@@ -738,7 +744,7 @@
             <a href="cleanroom-v2.html" class="mnl">Чистые помещения</a>
         </div>
     </div>
-    <a href="../pages/about-v2.html" class="mnl">О нас</a>
+    <a href="../pages/cases-v2.html" class="mnl">Кейсы</a><a href="../pages/about-v2.html" class="mnl">О нас</a>
     <a href="../index.html#process" class="mnl">Как работаем</a>
     <a href="../index.html#faq" class="mnl">FAQ</a>
     <a href="../pages/blog-v2.html" class="mnl">Блог</a>
@@ -993,7 +999,7 @@
             <div>
                 <h4>Компания</h4>
                 <ul>
-                    <li><a href="../pages/about-v2.html">О компании</a></li>
+                    <li><a href="../pages/about-v2.html">О компании</a></li><li><a href="../pages/cases-v2.html">Кейсы</a></li>
                     <li><a href="../pages/blog-v2.html">Блог</a></li>
                     <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>
                     <li><a href="../privacy.html">Конфиденциальность</a></li>

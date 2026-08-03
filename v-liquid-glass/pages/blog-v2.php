@@ -281,7 +281,13 @@ $totalPages = max(1, (int) ceil($total / $perPage));
         .footer-base { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .8rem; color: var(--ink2); border-top: 1px solid var(--bg3); padding-top: 1.5rem; }
         @media(max-width:767px) { .section { padding: 2.5rem 0 4rem; } .page-head { padding: 2.5rem 0 .5rem; } }
         @media(prefers-reduced-motion: reduce) { .reveal { transition: none !important; } .blog-card, .blog-card-media img { transition: none !important; } }
-    </style>
+    
+        /* 7 top-level items: tighten the row before the burger kicks in */
+        @media(min-width:900px) and (max-width:1180px) {
+            .nav-links { gap: 1.35rem; }
+            .nav-links a { font-size: .67rem; }
+        }
+</style>
 </head>
 <body>
 <div class="progress" id="progressBar"></div>
@@ -303,7 +309,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
                     <a href="../services/cleanroom-v2.html">Чистые помещения</a>
                 </div>
             </div>
-            <a href="../pages/about-v2.html">О нас</a>
+            <a href="../pages/cases-v2.html">Кейсы</a><a href="../pages/about-v2.html">О нас</a>
             <a href="../index.html#process">Как работаем</a>
             <a href="../index.html#faq">FAQ</a>
             <a href="../pages/blog-v2.html" aria-current="page">Блог</a>
@@ -328,7 +334,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
             <a href="../services/cleanroom-v2.html" class="mnl">Чистые помещения</a>
         </div>
     </div>
-    <a href="../pages/about-v2.html" class="mnl">О нас</a>
+    <a href="../pages/cases-v2.html" class="mnl">Кейсы</a><a href="../pages/about-v2.html" class="mnl">О нас</a>
     <a href="../index.html#process" class="mnl">Как работаем</a>
     <a href="../index.html#faq" class="mnl">FAQ</a>
     <a href="../pages/blog-v2.html" class="mnl" aria-current="page">Блог</a>
@@ -414,7 +420,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
             <div>
                 <h4>Компания</h4>
                 <ul>
-                    <li><a href="../pages/about-v2.html">О компании</a></li>
+                    <li><a href="../pages/about-v2.html">О компании</a></li><li><a href="../pages/cases-v2.html">Кейсы</a></li>
                     <li><a href="../pages/blog-v2.html">Блог</a></li>
                     <li><a href="../pages/contacts-v2.html">Контакты</a></li>
                     <li><a href="tel:+79818172649">+7 981 817-26-49</a></li>
