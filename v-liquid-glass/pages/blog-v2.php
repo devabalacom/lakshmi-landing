@@ -28,8 +28,8 @@ $totalPages = max(1, (int) ceil($total / $perPage));
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Блог · Пром-текстиль</title>
-    <meta name="description" content="Блог Пром-текстиль: новости производства, статьи о технических тканях, сертификации и реализованных проектах.">
+    <title>Блог о техническом текстиле | Пром-текстиль</title>
+    <meta name="description" content="Статьи Пром-текстиль о техническом текстиле: чехлы, тенты, материалы, спецодежда, чистые помещения, огнестойкие ткани и подготовка ТЗ.">
     <meta name="theme-color" content="#D4A017">
     <link rel="canonical" href="https://пром-текстиль.рф/pages/blog-v2.html">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -43,13 +43,13 @@ $totalPages = max(1, (int) ceil($total / $perPage));
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Пром-текстиль">
     <meta property="og:url" content="https://пром-текстиль.рф/pages/blog-v2.html">
-    <meta property="og:title" content="Блог · Пром-текстиль">
-    <meta property="og:description" content="Новости производства, статьи о технических тканях, сертификации и реализованных проектах.">
+    <meta property="og:title" content="Блог о техническом текстиле | Пром-текстиль">
+    <meta property="og:description" content="Статьи Пром-текстиль о техническом текстиле: чехлы, тенты, материалы, спецодежда, чистые помещения, огнестойкие ткани и подготовка ТЗ.">
     <meta property="og:image" content="https://пром-текстиль.рф/og-image.svg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Блог · Пром-текстиль">
-    <meta name="twitter:description" content="Новости производства, статьи о технических тканях, сертификации и реализованных проектах.">
+    <meta name="twitter:title" content="Блог о техническом текстиле | Пром-текстиль">
+    <meta name="twitter:description" content="Статьи Пром-текстиль о техническом текстиле: чехлы, тенты, материалы, спецодежда, чистые помещения, огнестойкие ткани и подготовка ТЗ.">
     <meta name="twitter:image" content="https://пром-текстиль.рф/og-image.svg">
 
     <meta name="yandex-verification" content="cc20bc028820e8f1">
@@ -346,8 +346,8 @@ $totalPages = max(1, (int) ceil($total / $perPage));
     <section class="hero-section">
         <div class="shell">
             <div class="page-head reveal">
-                <h1 class="s-h2">Блог</h1>
-                <p class="s-sub">Новости производства, разборы материалов и реализованных проектов — рассказываем, как устроено производство технического текстиля изнутри, и делимся тем, что полезно знать перед заказом партии.</p>
+                <h1 class="s-h2">Блог о техническом текстиле</h1>
+                <p class="s-sub">В блоге Пром-текстиль будут материалы о техническом текстиле для бизнеса: как подготовить ТЗ, выбрать ткань, согласовать фурнитуру, проверить требования к документам и не ошибиться при заказе партии.</p>
             </div>
         </div>
     </section>
