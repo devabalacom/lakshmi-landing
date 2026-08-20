@@ -643,19 +643,19 @@ function seed_article_covers(PDO $db): void
     ensure_seed_article_cover(
         $db,
         'kak-snyat-tz-na-chehol-dlya-oborudovaniya',
-        '/img/blog-covers/cover-tz-chehol-oborudovanie.svg',
+        '/img/blog-covers/cover-tz-chehol-oborudovanie.webp',
         'Замер защитного чехла для оборудования'
     );
     ensure_seed_article_cover(
         $db,
         'kak-vybrat-material-dlya-chehla-pvh-oxford-cordura-brezent',
-        '/img/blog-covers/cover-materialy-chehla.svg',
+        '/img/blog-covers/cover-materialy-chehla.webp',
         'Образцы материалов для защитного чехла'
     );
     ensure_seed_article_cover(
         $db,
         'en-45545-dlya-tekstilya-chto-proverit-pered-zakupkoy',
-        '/img/blog-covers/cover-en-45545-tekstilya.svg',
+        '/img/blog-covers/cover-en-45545-tekstilya.webp',
         'Текстиль под требования EN 45545'
     );
 }
@@ -701,7 +701,7 @@ function find_or_create_seed_media(PDO $db, string $path, string $alt): int
         'filename' => $filename,
         'original_filename' => $filename,
         'path' => $path,
-        'mime_type' => 'image/svg+xml',
+        'mime_type' => str_ends_with($path, '.webp') ? 'image/webp' : 'image/svg+xml',
         'file_size' => $fileSize ?: 1,
         'width' => 1600,
         'height' => 1000,

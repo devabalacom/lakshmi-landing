@@ -58,7 +58,7 @@ Push в `main` с изменениями в `v-liquid-glass/**` автомати
 
 ```
 v-liquid-glass/content/blog/<slug>.json
-v-liquid-glass/img/blog-covers/<cover>.svg
+v-liquid-glass/img/blog-covers/<cover>.webp
 ```
 
 CMS импортирует эти JSON-файлы в SQLite через `v-liquid-glass/includes/seed-articles.php`
@@ -68,7 +68,7 @@ CMS импортирует эти JSON-файлы в SQLite через `v-liquid
 
 - `.github/workflows/blog-watchdog.yml` ежедневно проверяет, что последняя git-backed статья не старше 10 дней;
 - тот же workflow проверяет, что URL последней статьи открывается на живом сайте;
-- фактическая публикация остается задачей OpenClaw heartbeat: подготовить статью, добавить JSON + обложку, запушить в `main`, проверить deploy и live URL.
+- фактическая публикация остается задачей OpenClaw heartbeat: подготовить статью, добавить JSON + OpenAI Image 2 WebP-обложку, запушить в `main`, проверить deploy и live URL.
 
 ## Локальный запуск
 

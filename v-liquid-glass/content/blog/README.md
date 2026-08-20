@@ -1,7 +1,7 @@
 # Git-backed blog articles
 
 New weekly articles should be published as one JSON file in this directory plus
-any required cover asset under `v-liquid-glass/img/blog-covers/`.
+an OpenAI Image 2 generated WebP cover under `v-liquid-glass/img/blog-covers/`.
 
 The public CMS imports these files into SQLite on request via
 `includes/seed-articles.php`. This keeps article content reviewable in git while
