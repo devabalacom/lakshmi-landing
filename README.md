@@ -52,6 +52,24 @@ Push в `main` с изменениями в `v-liquid-glass/**` автомати
 
 Секреты в настройках репозитория: `FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD`.
 
+## Блог
+
+Новые еженедельные статьи добавляются как git-backed JSON:
+
+```
+v-liquid-glass/content/blog/<slug>.json
+v-liquid-glass/img/blog-covers/<cover>.svg
+```
+
+CMS импортирует эти JSON-файлы в SQLite через `v-liquid-glass/includes/seed-articles.php`
+при открытии блога. Старые PHP seed-функции оставлены только для совместимости.
+
+Контроль свежести:
+
+- `.github/workflows/blog-watchdog.yml` ежедневно проверяет, что последняя git-backed статья не старше 10 дней;
+- тот же workflow проверяет, что URL последней статьи открывается на живом сайте;
+- фактическая публикация остается задачей OpenClaw heartbeat: подготовить статью, добавить JSON + обложку, запушить в `main`, проверить deploy и live URL.
+
 ## Локальный запуск
 
 ```bash

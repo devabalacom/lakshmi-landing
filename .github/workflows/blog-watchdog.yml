@@ -1,0 +1,57 @@
+name: Blog freshness watchdog
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check latest git-backed article
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import datetime as dt
+          import json
+          import sys
+          import urllib.request
+          from pathlib import Path
+
+          site_base = "https://xn----jtbjhgbnhjpid6k.xn--p1ai"
+          now = dt.datetime.now(dt.UTC)
+          articles = []
+
+          for path in Path("v-liquid-glass/content/blog").glob("*.json"):
+              data = json.loads(path.read_text(encoding="utf-8"))
+              if data.get("status", "published") != "published":
+                  continue
+              published = dt.datetime.strptime(data["published_at"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=dt.UTC)
+              articles.append((published, data["slug"], data["title"], path))
+
+          if not articles:
+              print("No published git-backed blog articles found.")
+              sys.exit(1)
+
+          published, slug, title, path = max(articles)
+          age_days = (now - published).days
+          print(f"Latest article: {title} ({slug}) from {path}, age={age_days}d")
+          if age_days > 10:
+              print("Latest git-backed blog article is older than 10 days.")
+              sys.exit(1)
+
+          url = f"{site_base}/pages/blog-{slug}.html"
+          with urllib.request.urlopen(url, timeout=20) as response:
+              body = response.read().decode("utf-8", errors="replace")
+              status = response.status
+
+          print(f"Live URL: {url} status={status}")
+          if status != 200 or title not in body:
+              print("Latest article is not visible on the live site.")
+              sys.exit(1)
+          PY

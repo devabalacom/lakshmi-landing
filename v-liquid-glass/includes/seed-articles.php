@@ -3,10 +3,182 @@ require_once __DIR__ . '/functions.php';
 
 function seed_default_articles(PDO $db): void
 {
+    // Legacy seed articles stay here for backward compatibility. New weekly
+    // articles should be added as JSON files in v-liquid-glass/content/blog/.
     seed_tz_cover_article($db);
     seed_cover_material_choice_article($db);
     seed_en_45545_textile_procurement_article($db);
+    seed_git_blog_articles($db);
     seed_article_covers($db);
+}
+
+function seed_git_blog_articles(PDO $db): void
+{
+    $dir = dirname(__DIR__) . '/content/blog';
+    foreach (glob($dir . '/*.json') ?: [] as $file) {
+        $article = json_decode(file_get_contents($file) ?: '', true);
+        if (!is_array($article)) {
+            continue;
+        }
+        upsert_seed_blog_article($db, $article);
+    }
+}
+
+function upsert_seed_blog_article(PDO $db, array $article): void
+{
+    $slug = (string) ($article['slug'] ?? '');
+    $title = (string) ($article['title'] ?? '');
+    $blocks = $article['blocks'] ?? [];
+    if (!is_valid_slug($slug) || $title === '' || !is_array($blocks)) {
+        return;
+    }
+
+    $categoryId = find_or_create_seed_category($db, (string) ($article['category'] ?? 'Блог'));
+    $contentJson = json_encode([
+        'time' => strtotime((string) ($article['published_at'] ?? 'now')) * 1000,
+        'blocks' => $blocks,
+        'version' => '2.29.1',
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    $contentHtml = render_editorjs_to_html($contentJson);
+    $publishedAt = (string) ($article['published_at'] ?? date('Y-m-d H:i:s'));
+    $coverPath = trim((string) ($article['cover_path'] ?? ''));
+    $coverMediaId = null;
+    if ($coverPath !== '') {
+        $coverMediaId = find_or_create_seed_media($db, $coverPath, (string) ($article['cover_alt'] ?? $title));
+    }
+
+    $secondaryKeywords = $article['secondary_keywords'] ?? [];
+    if (!is_array($secondaryKeywords)) {
+        $secondaryKeywords = [(string) $secondaryKeywords];
+    }
+
+    $values = [
+        'title' => $title,
+        'slug' => $slug,
+        'excerpt' => (string) ($article['excerpt'] ?? ''),
+        'content_json' => $contentJson,
+        'content_html' => $contentHtml,
+        'category_id' => $categoryId,
+        'author' => (string) ($article['author'] ?? 'Пром-текстиль'),
+        'reading_time_minutes' => estimate_reading_minutes($contentHtml),
+        'status' => (string) ($article['status'] ?? 'published'),
+        'published_at' => $publishedAt,
+        'created_at' => $publishedAt,
+        'updated_at' => date('Y-m-d H:i:s'),
+        'seo_title' => (string) ($article['seo_title'] ?? $title),
+        'meta_description' => (string) ($article['meta_description'] ?? ($article['excerpt'] ?? '')),
+        'h1' => (string) ($article['h1'] ?? $title),
+        'canonical_url' => (string) ($article['canonical_url'] ?? ('https://пром-текстиль.рф/pages/blog-' . $slug . '.html')),
+        'focus_keyword' => (string) ($article['focus_keyword'] ?? ''),
+        'secondary_keywords' => implode(', ', array_filter($secondaryKeywords)),
+        'og_title' => (string) ($article['og_title'] ?? $title),
+        'og_description' => (string) ($article['og_description'] ?? ($article['excerpt'] ?? '')),
+        'twitter_title' => (string) ($article['twitter_title'] ?? $title),
+        'twitter_description' => (string) ($article['twitter_description'] ?? ($article['excerpt'] ?? '')),
+        'schema_type' => (string) ($article['schema_type'] ?? 'BlogPosting'),
+        'sitemap_changefreq' => (string) ($article['sitemap_changefreq'] ?? 'monthly'),
+        'cover_media_id' => $coverMediaId,
+    ];
+
+    $stmt = $db->prepare('SELECT id FROM articles WHERE slug = :slug');
+    $stmt->execute(['slug' => $slug]);
+    $existing = $stmt->fetch();
+    if ($existing) {
+        $updateValues = [
+            'id' => (int) $existing['id'],
+            'title' => $values['title'],
+            'excerpt' => $values['excerpt'],
+            'content_json' => $values['content_json'],
+            'content_html' => $values['content_html'],
+            'category_id' => $values['category_id'],
+            'author' => $values['author'],
+            'cover_media_id' => $values['cover_media_id'],
+            'reading_time_minutes' => $values['reading_time_minutes'],
+            'status' => $values['status'],
+            'published_at' => $values['published_at'],
+            'updated_at' => $values['updated_at'],
+            'seo_title' => $values['seo_title'],
+            'meta_description' => $values['meta_description'],
+            'h1' => $values['h1'],
+            'canonical_url' => $values['canonical_url'],
+            'focus_keyword' => $values['focus_keyword'],
+            'secondary_keywords' => $values['secondary_keywords'],
+            'og_title' => $values['og_title'],
+            'og_description' => $values['og_description'],
+            'twitter_title' => $values['twitter_title'],
+            'twitter_description' => $values['twitter_description'],
+            'schema_type' => $values['schema_type'],
+            'sitemap_changefreq' => $values['sitemap_changefreq'],
+        ];
+        $db->prepare(
+            'UPDATE articles SET
+                title = :title, excerpt = :excerpt, content_json = :content_json,
+                content_html = :content_html, category_id = :category_id, author = :author,
+                cover_media_id = :cover_media_id, reading_time_minutes = :reading_time_minutes,
+                status = :status, published_at = :published_at, updated_at = :updated_at,
+                seo_title = :seo_title, meta_description = :meta_description, h1 = :h1,
+                canonical_url = :canonical_url, focus_keyword = :focus_keyword,
+                secondary_keywords = :secondary_keywords, og_title = :og_title,
+                og_description = :og_description, og_image_id = :cover_media_id,
+                twitter_title = :twitter_title, twitter_description = :twitter_description,
+                twitter_image_id = :cover_media_id, schema_type = :schema_type,
+                sitemap_changefreq = :sitemap_changefreq
+             WHERE id = :id'
+        )->execute($updateValues);
+        $articleId = (int) $existing['id'];
+    } else {
+        $insertValues = [
+            'title' => $values['title'],
+            'slug' => $values['slug'],
+            'excerpt' => $values['excerpt'],
+            'content_json' => $values['content_json'],
+            'content_html' => $values['content_html'],
+            'category_id' => $values['category_id'],
+            'author' => $values['author'],
+            'cover_media_id' => $values['cover_media_id'],
+            'reading_time_minutes' => $values['reading_time_minutes'],
+            'status' => $values['status'],
+            'published_at' => $values['published_at'],
+            'created_at' => $values['created_at'],
+            'updated_at' => $values['updated_at'],
+            'seo_title' => $values['seo_title'],
+            'meta_description' => $values['meta_description'],
+            'h1' => $values['h1'],
+            'canonical_url' => $values['canonical_url'],
+            'focus_keyword' => $values['focus_keyword'],
+            'secondary_keywords' => $values['secondary_keywords'],
+            'og_title' => $values['og_title'],
+            'og_description' => $values['og_description'],
+            'twitter_title' => $values['twitter_title'],
+            'twitter_description' => $values['twitter_description'],
+            'schema_type' => $values['schema_type'],
+            'sitemap_changefreq' => $values['sitemap_changefreq'],
+        ];
+        $db->prepare(
+            'INSERT INTO articles (
+                title, slug, excerpt, content_json, content_html, category_id, author,
+                cover_media_id, reading_time_minutes, status, published_at, created_at, updated_at,
+                seo_title, meta_description, h1, canonical_url, robots_index, robots_follow,
+                focus_keyword, secondary_keywords, og_title, og_description, og_image_id,
+                twitter_title, twitter_description, twitter_image_id, schema_type,
+                include_in_sitemap, sitemap_priority, sitemap_changefreq
+            ) VALUES (
+                :title, :slug, :excerpt, :content_json, :content_html, :category_id, :author,
+                :cover_media_id, :reading_time_minutes, :status, :published_at, :created_at, :updated_at,
+                :seo_title, :meta_description, :h1, :canonical_url, 1, 1,
+                :focus_keyword, :secondary_keywords, :og_title, :og_description, :cover_media_id,
+                :twitter_title, :twitter_description, :cover_media_id, :schema_type,
+                1, 0.6, :sitemap_changefreq
+            )'
+        )->execute($insertValues);
+        $articleId = (int) $db->lastInsertId();
+    }
+
+    $tags = $article['tags'] ?? [];
+    if (!is_array($tags)) {
+        $tags = [(string) $tags];
+    }
+    set_seed_article_tags($db, $articleId, $tags);
 }
 
 function seed_tz_cover_article(PDO $db): void
