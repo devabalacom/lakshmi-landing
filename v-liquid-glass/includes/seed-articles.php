@@ -6,6 +6,7 @@ function seed_default_articles(PDO $db): void
     seed_tz_cover_article($db);
     seed_cover_material_choice_article($db);
     seed_en_45545_textile_procurement_article($db);
+    seed_article_covers($db);
 }
 
 function seed_tz_cover_article(PDO $db): void
@@ -463,6 +464,81 @@ function seed_en_45545_textile_procurement_article(PDO $db): void
         'технический текстиль',
         'транспорт',
     ]);
+}
+
+function seed_article_covers(PDO $db): void
+{
+    ensure_seed_article_cover(
+        $db,
+        'kak-snyat-tz-na-chehol-dlya-oborudovaniya',
+        '/img/blog-covers/cover-tz-chehol-oborudovanie.svg',
+        'Замер защитного чехла для оборудования'
+    );
+    ensure_seed_article_cover(
+        $db,
+        'kak-vybrat-material-dlya-chehla-pvh-oxford-cordura-brezent',
+        '/img/blog-covers/cover-materialy-chehla.svg',
+        'Образцы материалов для защитного чехла'
+    );
+    ensure_seed_article_cover(
+        $db,
+        'en-45545-dlya-tekstilya-chto-proverit-pered-zakupkoy',
+        '/img/blog-covers/cover-en-45545-tekstilya.svg',
+        'Текстиль под требования EN 45545'
+    );
+}
+
+function ensure_seed_article_cover(PDO $db, string $slug, string $path, string $alt): void
+{
+    $mediaId = find_or_create_seed_media($db, $path, $alt);
+    $stmt = $db->prepare(
+        'UPDATE articles
+         SET cover_media_id = :media_id,
+             og_image_id = :media_id,
+             twitter_image_id = :media_id,
+             updated_at = CURRENT_TIMESTAMP
+         WHERE slug = :slug'
+    );
+    $stmt->execute(['media_id' => $mediaId, 'slug' => $slug]);
+}
+
+function find_or_create_seed_media(PDO $db, string $path, string $alt): int
+{
+    $stmt = $db->prepare('SELECT id FROM media WHERE path = :path');
+    $stmt->execute(['path' => $path]);
+    $row = $stmt->fetch();
+    if ($row) {
+        return (int) $row['id'];
+    }
+
+    $absolutePath = str_starts_with($path, '/')
+        ? dirname(__DIR__) . $path
+        : dirname(__DIR__) . '/uploads/blog/' . $path;
+    $fileSize = is_file($absolutePath) ? filesize($absolutePath) : 0;
+    $filename = basename($path);
+    $stmt = $db->prepare(
+        'INSERT INTO media (
+            filename, original_filename, path, mime_type, file_size,
+            width, height, alt, title, caption, description
+        ) VALUES (
+            :filename, :original_filename, :path, :mime_type, :file_size,
+            :width, :height, :alt, :title, :caption, :description
+        )'
+    );
+    $stmt->execute([
+        'filename' => $filename,
+        'original_filename' => $filename,
+        'path' => $path,
+        'mime_type' => 'image/svg+xml',
+        'file_size' => $fileSize ?: 1,
+        'width' => 1600,
+        'height' => 1000,
+        'alt' => $alt,
+        'title' => $alt,
+        'caption' => '',
+        'description' => '',
+    ]);
+    return (int) $db->lastInsertId();
 }
 
 function block_paragraph(string $text): array

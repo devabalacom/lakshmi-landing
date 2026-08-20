@@ -66,6 +66,21 @@ function is_safe_url(string $url): bool
     return (bool) preg_match('#^(https?|mailto|tel):#i', $url);
 }
 
+function media_public_url(string $path, string $siteBase = ''): string
+{
+    $path = trim($path);
+    if ($path === '') {
+        return '';
+    }
+    if (preg_match('#^https?://#i', $path)) {
+        return $path;
+    }
+    if (str_starts_with($path, '/')) {
+        return rtrim($siteBase, '/') . $path;
+    }
+    return rtrim($siteBase, '/') . '/uploads/blog/' . ltrim($path, '/');
+}
+
 /**
  * Allowlist-based inline HTML sanitizer for text coming out of Editor.js's
  * inline toolbar (bold/italic/link/marker/code). Disallowed tags are unwrapped

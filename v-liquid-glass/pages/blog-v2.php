@@ -358,7 +358,7 @@ $totalPages = max(1, (int) ceil($total / $perPage));
                 <?php foreach ($articles as $a): ?>
                     <?php
                     $url = article_public_url($a);
-                    $img = $a['cover_path'] ? '/uploads/blog/' . $a['cover_path'] : '/img/cat-01-covers.jpg';
+                    $img = $a['cover_path'] ? media_public_url($a['cover_path']) : '/img/cat-01-covers.jpg';
                     $alt = $a['cover_alt'] ?: $a['title'];
                     $dateIso = $a['published_at'] ?? $a['publish_at'] ?? $a['created_at'];
                     ?>

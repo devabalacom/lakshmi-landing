@@ -55,22 +55,22 @@ $robotsContent = ($noindex ? 'noindex' : 'index') . ', ' . ($nofollow ? 'nofollo
 
 $defaultOgImage = get_setting($db, 'default_og_image', '/og-image.svg');
 $defaultOgImageAbs = str_starts_with($defaultOgImage, 'http') ? $defaultOgImage : $siteBase . $defaultOgImage;
-$coverUrl = $article['cover_path'] ? $siteBase . '/uploads/blog/' . $article['cover_path'] : $defaultOgImageAbs;
-$heroImageUrl = $article['cover_path'] ? $siteBase . '/uploads/blog/' . $article['cover_path'] : '';
+$coverUrl = $article['cover_path'] ? media_public_url($article['cover_path'], $siteBase) : $defaultOgImageAbs;
+$heroImageUrl = $article['cover_path'] ? media_public_url($article['cover_path']) : '';
 $coverAlt = $article['cover_alt'] ?: $effectiveTitle;
 
 $ogTitle = trim((string) ($article['og_title'] ?? '')) ?: $effectiveTitle;
 $ogDescription = trim((string) ($article['og_description'] ?? '')) ?: $effectiveDescription;
 $ogImage = $article['og_image_id'] ? (function () use ($article, $siteBase) {
     $m = find_media_by_id((int) $article['og_image_id']);
-    return $m ? $siteBase . '/uploads/blog/' . $m['path'] : null;
+    return $m ? media_public_url($m['path'], $siteBase) : null;
 })() : $coverUrl;
 
 $twitterTitle = trim((string) ($article['twitter_title'] ?? '')) ?: $effectiveTitle;
 $twitterDescription = trim((string) ($article['twitter_description'] ?? '')) ?: $effectiveDescription;
 $twitterImage = $article['twitter_image_id'] ? (function () use ($article, $siteBase) {
     $m = find_media_by_id((int) $article['twitter_image_id']);
-    return $m ? $siteBase . '/uploads/blog/' . $m['path'] : null;
+    return $m ? media_public_url($m['path'], $siteBase) : null;
 })() : $coverUrl;
 
 $publishedIso = $article['published_at'] ?? $article['publish_at'] ?? $article['created_at'];
